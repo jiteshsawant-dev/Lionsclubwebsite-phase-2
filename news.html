@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>News &amp; Events | Lions Club of Byculla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/light-redesign.css">
+<link rel="stylesheet" href="css/nav-submenu.css">
+<style>
+
+/* ── NEWS & EVENTS HERO ── */
+.news-hero {
+  position: relative;
+  background: var(--navy-deep) url('images/news&events (1).png') center/cover no-repeat;
+  padding: 149px 0 125px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.news-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 0;
+}
+.news-hero::after { display: none; }
+.news-hero .wrap { position: relative; z-index: 1; }
+.news-hero .eyebrow { color: var(--gold); margin-bottom: 18px; }
+.news-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0 0 22px;
+}
+.news-hero h1 em { color: inherit; font-style: normal; }
+.news-hero .lede {
+  font-family: var(--serif);
+  font-style: italic;
+  color: rgba(255,255,255,0.68);
+  font-size: 1.05rem;
+  max-width: 560px;
+  line-height: 24px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  margin-bottom: 26px;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color .2s; }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb svg { color: rgba(255,255,255,0.3); flex-shrink: 0; }
+
+
+/* Section helpers */
+.pg-section { padding: 40px 0 96px; }
+.pg-section.bg-paper  { background: var(--paper); }
+.pg-section.bg-cream  { background: var(--white); }
+.pg-section.bg-frost  { background: #F7FAFD; }
+.pg-section.bg-white  { background: #fff; }
+.pg-section.bg-navy   { background: var(--navy); }
+.pg-section.bg-navy-deep { background: var(--navy-deep); }
+.pg-section.bg-warm   { background: var(--paper-warm); }
+
+.sec-h {
+  font: var(--type-section-title);
+  color: var(--navy);
+  margin: 0 0 20px;
+  letter-spacing: -0.02em;
+}
+.sec-h em  { color: inherit; font-style: normal; }
+.sec-h.light { color: #fff; }
+.sec-h.light em { color: inherit; }
+.sec-lead {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 620px;
+  margin: 0 0 52px;
+}
+
+/* ── NEWS / EVENTS TABS ── */
+.ne-tabs-bar {
+  display: flex;
+  background: #F7FAFD;
+  padding: 40px 0;
+  justify-content: center;
+  transition: background 0.35s ease;
+}
+.ne-tabs {
+  position: relative;
+  display: inline-flex;
+  background: transparent;
+  padding: 0;
+  border: 1.5px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.ne-tab {
+  position: relative;
+  z-index: 2;
+  border: none;
+  background: transparent;
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 32px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.ne-tab:hover { background: rgba(16,44,87,0.06); color: var(--navy); }
+.ne-tab[aria-selected="true"] { background: var(--navy); color: var(--white); }
+.ne-tab[aria-selected="true"]:hover { background: var(--navy); }
+.ne-tab-thumb { display: none; }
+.ne-tabs[data-active="news"] .ne-tab-thumb { transform: translateX(100%); }
+.ne-tabs[data-active="bulletin"] .ne-tab-thumb { transform: translateX(200%); }
+
+/* ── FEATURED NEWS ── */
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 28px;
+  margin-bottom: 56px;
+}
+
+.news-card-featured {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.32s ease, border-color 0.2s ease;
+  text-decoration: none;
+}
+.news-card-featured:hover { box-shadow: var(--shadow-md); border-color: rgba(252,203,6,0.6); }
+
+.news-card-featured__img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #102C57 0%, #1a3a70 60%, #d4a800 100%);
+  position: relative;
+}
+.news-card-featured__img-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.18;
+}
+.news-card-featured__img-inner svg { width: 80px; height: 80px; color: #fff; }
+
+.news-card-featured__body { padding: 28px 30px 32px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+
+.news-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.news-card__date {
+  font-size: 11.5px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.news-card-featured__title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.news-card-featured__excerpt {
+  font-size: 14.5px;
+  color: var(--body);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.news-card__read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--navy);
+  transition: gap 0.2s;
+}
+.news-card__read-more:hover { gap: 14px; }
+
+/* Stack of 2 smaller featured cards */
+.featured-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.news-card-side {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.32s ease, border-color 0.2s ease;
+  text-decoration: none;
+  flex: 1;
+}
+.news-card-side:hover { box-shadow: var(--shadow-md); border-color: rgba(252,203,6,0.6); }
+
+.news-card-side__img {
+  width: 100px;
+  min-height: 100%;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #102C57 0%, #1a3a70 100%);
+  position: relative;
+  overflow: hidden;
+}
+.news-card-side__img-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.22;
+}
+.news-card-side__img-inner svg { width: 36px; height: 36px; color: #fff; }
+
+.news-card-side__body { padding: 18px 20px; display: flex; flex-direction: column; gap: 7px; flex: 1; }
+
+.news-card-side__title {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.news-card-side__excerpt { font-size: 12.5px; color: var(--body); line-height: 1.55; flex: 1; }
+
+/* ── NEWS GRID ── */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.news-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.32s ease, border-color 0.2s ease;
+  text-decoration: none;
+}
+.news-card:hover { box-shadow: var(--shadow-md); border-color: rgba(252,203,6,0.6); }
+.news-card.is-hidden { display: none; }
+
+.news-card__img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+.news-card[data-type="event"]     .news-card__img { background: linear-gradient(135deg, #d4e8d4 0%, #8ab88a 100%); }
+.news-card[data-type="news"]      .news-card__img { background: linear-gradient(135deg, #d4dde8 0%, #8a98b8 100%); }
+.news-card[data-type="award"]     .news-card__img { background: linear-gradient(135deg, #e8e0d4 0%, #c8a870 100%); }
+.news-card[data-type="health"]    .news-card__img { background: linear-gradient(135deg, #d4e8e1 0%, #8ab8af 100%); }
+.news-card[data-type="community"] .news-card__img { background: linear-gradient(135deg, #e4d4e8 0%, #b48ab8 100%); }
+
+.news-card__img-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.28;
+}
+.news-card__img-inner svg { width: 48px; height: 48px; color: var(--navy); }
+
+.news-card__body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
+
+.news-card__title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.news-card__excerpt { font-size: 13.5px; color: var(--body); line-height: 1.6; flex: 1; }
+
+/* ── UPCOMING EVENTS ── */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.event-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.32s ease, border-color 0.2s ease;
+}
+.event-card:hover { box-shadow: var(--shadow-md); border-color: rgba(252,203,6,0.6); }
+
+.event-card__img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.event-card__img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+}
+.event-card__img-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.22;
+}
+.event-card__img-inner svg { width: 56px; height: 56px; color: #fff; }
+
+.event-card__date {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--white);
+  border-radius: 10px;
+  padding: 8px 12px;
+  min-width: 50px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.28);
+}
+.event-card__date .day {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+}
+.event-card__date .month {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 600;
+  margin-top: 3px;
+}
+.event-card__date .year {
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.event-card__status {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+.event-card__body {
+  padding: 22px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.event-card__name {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.event-card__details {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.event-card__details span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.event-card__details svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+.event-card__desc { font-family: var(--sans); font-size: 13px; color: var(--body); line-height: 1.65; flex: 1; }
+
+.event-card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  align-self: flex-start;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--navy);
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+.event-card__more:hover { color: var(--gold-deep); gap: 10px; }
+.event-card__more svg { width: 14px; height: 14px; }
+
+.event-badge {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.event-badge.open    { background: rgba(26,107,68,0.1); color: #1a6b44; border: 1.5px solid rgba(26,107,68,0.25); }
+.event-badge.soon    { background: rgba(122,79,13,0.1);  color: #7a4f0d; border: 1.5px solid rgba(122,79,13,0.25); }
+.event-badge.members { background: rgba(16,44,87,0.1);  color: var(--navy); border: 1.5px solid rgba(16,44,87,0.2); }
+
+/* ── NEWSLETTER CTA ── */
+.newsletter-wrap {
+  background: var(--navy);
+  border-radius: var(--radius-lg);
+  padding: 52px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  border: 1px solid rgba(252,203,6,0.18);
+}
+.newsletter-text h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.2;
+  margin: 0 0 14px;
+}
+.newsletter-text h2 em { font-style: normal; color: inherit; }
+.newsletter-text p { font-family: var(--serif); font-style: italic; font-size: 14.5px; color: rgba(255,255,255,0.6); line-height: 1.7; margin: 0; }
+
+.newsletter-form { display: flex; flex-direction: column; gap: 12px; }
+.newsletter-input-row { display: flex; gap: 0; }
+.newsletter-input {
+  flex: 1;
+  padding: 13px 18px;
+  font-family: var(--sans);
+  font-size: 14px;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.newsletter-input::placeholder { color: rgba(255,255,255,0.3); }
+.newsletter-input:focus { border-color: var(--gold); }
+.newsletter-btn {
+  padding: 13px 22px;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 700;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+.newsletter-btn:hover { background: var(--gold-deep); color: #fff; }
+.newsletter-note { font-size: 11.5px; color: rgba(255,255,255,0.3); }
+
+/* ── CTA CARDS ── */
+.cta-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 820px; margin: 56px auto 0; }
+.cta-card {
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.cta-card--dark {
+  background: var(--gold);
+}
+.cta-card__headline {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+.cta-card--dark .cta-card__headline { color: var(--navy); }
+.cta-card__body { font-size: 13.5px; color: rgba(255,255,255,0.6); line-height: 1.65; flex: 1; }
+.cta-card--dark .cta-card__body { color: rgba(16,44,87,0.72); }
+
+/* ── BULLETIN GRID ── */
+.bulletin-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.bl-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bl-card__cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 210 / 297;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: linear-gradient(150deg, #102C57 0%, #0B1F3F 100%);
+  box-shadow: var(--shadow-md);
+  transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease;
+  border: 1px solid var(--rule);
+}
+.bl-card:hover .bl-card__cover,
+.bl-card:focus-visible .bl-card__cover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+.bl-card:focus-visible { outline: none; }
+.bl-card:focus-visible .bl-card__cover { border-color: var(--gold-deep); }
+
+/* spine accent */
+.bl-card__cover::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 8px;
+  background: linear-gradient(to right, rgba(0,0,0,0.28), rgba(0,0,0,0));
+  z-index: 3;
+  pointer-events: none;
+}
+
+.bl-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0;
+  transition: opacity .5s ease;
+  z-index: 1;
+}
+.bl-card__cover.is-loaded .bl-card__img { opacity: 1; }
+
+.bl-card__spinner {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 34px; height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 3px solid rgba(255,255,255,0.25);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: bl-spin .8s linear infinite;
+  z-index: 2;
+}
+.bl-card__cover.is-loaded .bl-card__spinner { display: none; }
+@keyframes bl-spin { to { transform: rotate(360deg); } }
+
+/* hover "flip through" overlay */
+.bl-card__hint {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(11,31,63,0.55);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity .32s ease;
+}
+.bl-card__hint svg { width: 34px; height: 34px; color: var(--gold); }
+.bl-card:hover .bl-card__hint,
+.bl-card:focus-visible .bl-card__hint { opacity: 1; }
+
+.bl-card__pages {
+  position: absolute;
+  bottom: 12px; right: 12px;
+  z-index: 4;
+  background: rgba(11,31,63,0.82);
+  color: rgba(255,255,255,0.92);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.bl-card__err {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.7);
+  font-family: var(--sans);
+  font-size: 13px;
+}
+
+.bl-card__body { display: flex; flex-direction: column; gap: 6px; }
+.bl-card__eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.bl-card__title {
+  font-family: var(--serif);
+  font-size: 1.28rem;
+  font-weight: 500;
+  color: var(--navy);
+  line-height: 1.25;
+}
+
+/* ── FLIP VIEWER OVERLAY ── */
+.flip-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  background: rgba(8,20,42,0.97);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+.flip-overlay.is-open { opacity: 1; visibility: visible; }
+
+.flip-topbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 26px;
+  color: #fff;
+}
+.flip-titlewrap { min-width: 0; }
+.flip-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.flip-sub {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.55);
+  margin-top: 3px;
+}
+.flip-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.flip-iconbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+  text-decoration: none;
+}
+.flip-iconbtn:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.5); }
+.flip-iconbtn svg { width: 16px; height: 16px; }
+.flip-close {
+  width: 40px; height: 40px; padding: 0;
+  justify-content: center;
+}
+
+.flip-stage {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 8px;
+}
+#flipMount { touch-action: pan-y; }
+#flipMount .stf__parent { margin: 0 auto; }
+
+.flip-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  color: rgba(255,255,255,0.85);
+  font-family: var(--sans);
+  font-size: 14px;
+}
+.flip-loading.is-hidden { display: none; }
+.flip-loading .sp {
+  width: 46px; height: 46px;
+  border: 3px solid rgba(255,255,255,0.2);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: bl-spin .8s linear infinite;
+}
+
+/* prev / next arrows */
+.flip-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px; height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.28);
+  background: rgba(11,31,63,0.55);
+  color: #fff;
+  cursor: pointer;
+  z-index: 5;
+  transition: background .2s, border-color .2s, opacity .2s;
+}
+.flip-nav:hover { background: rgba(252,203,6,0.9); border-color: var(--gold); color: var(--navy); }
+.flip-nav:disabled { opacity: 0.28; cursor: default; }
+.flip-nav:disabled:hover { background: rgba(11,31,63,0.55); border-color: rgba(255,255,255,0.28); color: #fff; }
+.flip-nav svg { width: 22px; height: 22px; }
+.flip-prev { left: 18px; }
+.flip-next { right: 18px; }
+
+.flip-bottombar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.flip-counter {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  padding: 8px 18px;
+  border-radius: 999px;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .featured-grid { grid-template-columns: 1fr; }
+  .featured-stack { flex-direction: row; }
+  .news-card-side__img { width: 90px; }
+}
+@media (max-width: 1100px) {
+  .events-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .nav-c-links { display: none; }
+  .nav-c-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .news-grid { grid-template-columns: repeat(2, 1fr); }
+  .events-grid { grid-template-columns: repeat(2, 1fr); }
+  .bulletin-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+}
+@media (max-width: 640px) {
+  .news-grid { grid-template-columns: 1fr; }
+  .events-grid { grid-template-columns: 1fr; }
+  .bulletin-grid { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; }
+  .newsletter-input-row { flex-direction: column; }
+  .newsletter-input { border-right: 1.5px solid rgba(255,255,255,0.18); border-radius: 8px; border-bottom: none; border-radius: 8px 8px 0 0; }
+  .newsletter-btn { border-radius: 0 0 8px 8px; text-align: center; }
+  .wrap { padding: 0 16px; }
+  .pg-section { padding: 28px 0 64px; }
+  .flip-nav { width: 42px; height: 42px; }
+  .flip-prev { left: 6px; }
+  .flip-next { right: 6px; }
+  .flip-iconbtn span { display: none; }
+  .flip-iconbtn { padding: 0 12px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="main" id="mainNav" aria-label="Main navigation">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <div class="brand-logo">
+        <img src="images/Logo.png" alt="Lions Club of Byculla">
+      </div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <ul class="nav-c-links">
+      <li class="has-sub">
+        <a href="about.html">About us <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </li>
+      <li><a href="impact.html">Our impact</a></li>
+      <li class="has-sub">
+        <a href="activities.html">Our activities <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="activities.html">All projects</a></li>
+          <li><a href="activities.html?cat=health">Diabetes &amp; Healthcare</a></li>
+          <li><a href="activities.html?cat=cancer">Childhood Cancer Care</a></li>
+          <li><a href="activities.html?cat=education">Education &amp; Youth</a></li>
+          <li><a href="activities.html?cat=vision">Eye Care &amp; Vision</a></li>
+          <li><a href="activities.html?cat=elder">Elder care</a></li>
+          <li><a href="activities.html?cat=hunger">Hunger &amp; Food Security</a></li>
+          <li><a href="activities.html?cat=animal">Animal Welfare</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="news.html">News &amp; events <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="news.html?tab=event">Events</a></li>
+          <li><a href="news.html?tab=news">News</a></li>
+          <li><a href="news.html?tab=bulletin">Bulletin</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+    <div class="nav-c-cta">
+      <a href="donate.html" class="nav-c-donate">Donate</a>
+      <a href="#" class="nav-login-icon" aria-label="Login"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <div class="drawer-head">
+    <a class="brand" href="index.html">
+      <div class="brand-logo"><img src="images/Logo.png" id="drawerLogo" alt="Lions Club of Byculla"></div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <button type="button" class="drawer-acc-toggle drawer-first" data-target="drawerAbout" aria-expanded="false">
+      About us
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerAbout">
+      <a href="about.html#story">Our story</a>
+      <a href="about.html#tl-v2">Our journey</a>
+      <a href="about.html#board">Leadership</a>
+      <a href="about.html#presidents">Past presidents</a>
+      <a href="about.html#lions-international">Lions International</a>
+    </div>
+    <a href="impact.html">Our impact</a>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerActivities" aria-expanded="false">
+      Our activities
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerActivities">
+      <a href="activities.html">All projects</a>
+      <a href="activities.html?cat=health">Diabetes &amp; Healthcare</a>
+      <a href="activities.html?cat=cancer">Childhood Cancer Care</a>
+      <a href="activities.html?cat=education">Education &amp; Youth</a>
+      <a href="activities.html?cat=vision">Eye Care &amp; Vision</a>
+      <a href="activities.html?cat=elder">Elder care</a>
+      <a href="activities.html?cat=hunger">Hunger &amp; Food Security</a>
+      <a href="activities.html?cat=animal">Animal Welfare</a>
+    </div>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerNews" aria-expanded="false">
+      News &amp; events
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerNews">
+      <a href="news.html?tab=event">Events</a>
+      <a href="news.html?tab=news">News</a>
+      <a href="news.html?tab=bulletin">Bulletin</a>
+    </div>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="drawer-foot">
+    <a href="#" class="login-pill-mob">
+      <svg viewBox="0 0 24 24" width="18" height="18" style="stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Login
+    </a>
+    <a href="donate.html" class="donate-pill-mob">Donate</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="news-hero" aria-labelledby="news-hero-headline">
+  <div class="wrap">
+    <h1 id="news-hero-headline">
+      Stories of service,<br>
+      <em>moments that matter.</em>
+    </h1>
+    <p class="lede">
+      From health camps and blood drives to award ceremonies and community gatherings — stay up to date with everything happening at Lions Club of Byculla.
+    </p>
+  </div>
+</section>
+
+
+<!-- PAGE TABS -->
+<div class="ne-tabs-bar">
+  <div class="wrap">
+    <div class="ne-tabs" role="tablist" aria-label="Switch between events, news, and bulletin" data-active="event">
+      <button class="ne-tab" data-filter="event" role="tab" aria-selected="true">Events</button>
+      <button class="ne-tab" data-filter="news" role="tab" aria-selected="false">News</button>
+      <button class="ne-tab" data-filter="bulletin" role="tab" aria-selected="false">Bulletin</button>
+      <span class="ne-tab-thumb" aria-hidden="true"></span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ── UPCOMING EVENTS ── -->
+  <section class="pg-section bg-frost" id="upcoming" aria-labelledby="events-headline">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Mark your calendar</div>
+        <h2 class="sec-h" id="events-headline">
+          Upcoming <em>events.</em>
+        </h2>
+      </div>
+
+      <div class="events-grid">
+
+        <!-- Card 1 -->
+        <article class="event-card">
+          <div class="event-card__img">
+            <img src="images/Free cataract surgery camp.png" alt="Free cataract surgery camp, Masina Hospital">
+            <div class="event-card__date" aria-label="July 19, 2026">
+              <div class="day">19</div>
+              <div class="month">Jul</div>
+              <div class="year">2026</div>
+            </div>
+            <div class="event-card__status"><span class="event-badge open">Open</span></div>
+          </div>
+          <div class="event-card__body">
+            <h3 class="event-card__name">Free cataract surgery camp &mdash; Masina Hospital</h3>
+            <div class="event-card__details">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                9:00 AM &ndash; 5:00 PM
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Masina Hospital, Byculla
+              </span>
+            </div>
+            <p class="event-card__desc">Free cataract surgeries for patients identified from our December eye camp. Referrals only. All costs borne by the club.</p>
+            <a class="event-card__more" href="event.html?id=cataract-camp">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="event-card">
+          <div class="event-card__img">
+            <img src="images/school kit.png" alt="School kit distribution drive, BMC Schools">
+            <div class="event-card__date" aria-label="August 3, 2026">
+              <div class="day">3</div>
+              <div class="month">Aug</div>
+              <div class="year">2026</div>
+            </div>
+            <div class="event-card__status"><span class="event-badge soon">Coming soon</span></div>
+          </div>
+          <div class="event-card__body">
+            <h3 class="event-card__name">School kit distribution drive &mdash; BMC Schools</h3>
+            <div class="event-card__details">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                10:00 AM &ndash; 2:00 PM
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                3 BMC Schools, South Mumbai
+              </span>
+            </div>
+            <p class="event-card__desc">Distribution of 500 school kits (notebooks, stationery, bags) to students of Class 1&ndash;7 in partner schools funded by the Golden Jubilee fundraiser.</p>
+            <a class="event-card__more" href="event.html?id=school-kit-drive">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="event-card">
+          <div class="event-card__img">
+            <img src="images/Blood donation andheri.jpg" alt="Blood donation camp, Nair Hospital">
+            <div class="event-card__date" aria-label="September 14, 2026">
+              <div class="day">14</div>
+              <div class="month">Sep</div>
+              <div class="year">2026</div>
+            </div>
+            <div class="event-card__status"><span class="event-badge open">Open</span></div>
+          </div>
+          <div class="event-card__body">
+            <h3 class="event-card__name">Blood donation camp &mdash; Nair Hospital</h3>
+            <div class="event-card__details">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                8:00 AM &ndash; 4:00 PM
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Nair Hospital, Mumbai Central
+              </span>
+            </div>
+            <p class="event-card__desc">Open blood donation camp with on-site thalassemia screening. Walk-ins welcome. In collaboration with Nair Hospital blood bank.</p>
+            <a class="event-card__more" href="event.html?id=blood-donation-nair">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="event-card">
+          <div class="event-card__img" style="background:linear-gradient(135deg,#0f2440 0%,#1a3560 100%)">
+            <div class="event-card__img-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="event-card__date" aria-label="October 2, 2026">
+              <div class="day">2</div>
+              <div class="month">Oct</div>
+              <div class="year">2026</div>
+            </div>
+            <div class="event-card__status"><span class="event-badge members">Members only</span></div>
+          </div>
+          <div class="event-card__body">
+            <h3 class="event-card__name">Annual general meeting &mdash; Members only</h3>
+            <div class="event-card__details">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                6:30 PM &ndash; 9:00 PM
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Byculla Club, Byculla
+              </span>
+            </div>
+            <p class="event-card__desc">Annual general meeting to review the year's activities, financials, and upcoming Golden Jubilee plans for 2027. Attendance mandatory for all active members.</p>
+            <a class="event-card__more" href="event.html?id=agm-2026">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="event-card">
+          <div class="event-card__img" style="background:linear-gradient(135deg,#102C57 0%,#1a3a70 55%,#7a5500 100%)">
+            <div class="event-card__img-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+            </div>
+            <div class="event-card__date" aria-label="November 22, 2026">
+              <div class="day">22</div>
+              <div class="month">Nov</div>
+              <div class="year">2026</div>
+            </div>
+            <div class="event-card__status"><span class="event-badge soon">Coming soon</span></div>
+          </div>
+          <div class="event-card__body">
+            <h3 class="event-card__name">Golden Jubilee gala dinner &mdash; 50 years of service</h3>
+            <div class="event-card__details">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                7:00 PM onwards
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Taj Mahal Palace Hotel, Colaba
+              </span>
+            </div>
+            <p class="event-card__desc">A grand celebration marking 50 years of Lions Club of Byculla. Gala dinner, keynote by Lions International, lifetime achievement awards, and a major charity pledge.</p>
+            <a class="event-card__more" href="event.html?id=golden-jubilee-gala">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ALL NEWS FEED ── -->
+  <section class="pg-section bg-frost" id="news-feed" aria-labelledby="feed-headline">
+    <div class="wrap">
+      <div class="sec-head" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:40px;">
+        <div>
+          <div class="eyebrow">All stories</div>
+          <h2 class="sec-h" id="feed-headline" style="margin-bottom:0;">
+            News &amp; <em>announcements.</em>
+          </h2>
+        </div>
+      </div>
+
+      <div class="news-grid" id="newsGrid">
+
+        <a class="news-card" href="news-article.html?id=best-club-award" data-type="award" aria-label="Read: Second Best Club Award 2025-26">
+          <div class="news-card__img">
+            <img src="images/123.jpg" alt="Second Best Club Award 2025-26 presented at District Convention, Lonavala">
+          </div>
+          <div class="news-card__body">
+            <h3 class="news-card__title">Second Best Club Award 2025&ndash;26 presented at District Convention, Lonavala</h3>
+            <p class="news-card__excerpt">Lions Club of Byculla was honoured for the fourth consecutive year with the Second Best Club Award by District 3231 A1 at the annual district convention.</p>
+            <div class="news-card__foot">
+              <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+              <span class="news-card__date">10 May 2026</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="news-card" href="news-article.html?id=installation-ceremony" data-type="event" aria-label="Read: Installation ceremony 2025-26">
+          <div class="news-card__img">
+            <img src="images/bod.jpg" alt="Installation ceremony 2025-26, new office bearers">
+          </div>
+          <div class="news-card__body">
+            <h3 class="news-card__title">Installation ceremony 2025&ndash;26: New office bearers inducted with pride</h3>
+            <p class="news-card__excerpt">The installation ceremony at Byculla Club welcomed the new board for the coming Lions year, with District Governor Lion Rajesh Mehta presiding.</p>
+            <div class="news-card__foot">
+              <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+              <span class="news-card__date">28 Apr 2026</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="news-card" href="news-article.html?id=diabetes-screening-camp" data-type="health" aria-label="Read: Diabetes screening camp">
+          <div class="news-card__img">
+            <div class="news-card__img-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="14" width="8" height="6" rx="1"/><path d="M12 4v10M8 8h8"/></svg>
+            </div>
+          </div>
+          <div class="news-card__body">
+            <h3 class="news-card__title">Free diabetes and blood pressure screening camp benefits 340 residents of Byculla</h3>
+            <p class="news-card__excerpt">Conducted in collaboration with Masina Hospital, the camp provided free testing and consultations to over 340 local residents in a single afternoon.</p>
+            <div class="news-card__foot">
+              <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+              <span class="news-card__date">15 Apr 2026</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="news-card" href="news-article.html?id=do-good-cookbook" data-type="community" aria-label="Read: Do-Good Cookbook launch">
+          <div class="news-card__img">
+            <img src="images/Do_Good_Cookbook.jpg" alt="The Do-Good Cookbook launch">
+          </div>
+          <div class="news-card__body">
+            <h3 class="news-card__title">The Do-Good Cookbook launched: recipes from Lions families raise funds for hunger relief</h3>
+            <p class="news-card__excerpt">Our community cookbook, featuring 80 recipes contributed by Lions families, was launched at the clubhouse with proceeds supporting the hunger and nutrition pillar.</p>
+            <div class="news-card__foot">
+              <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+              <span class="news-card__date">5 Mar 2026</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="news-card" href="news-article.html?id=press-feature-cancer" data-type="news" aria-label="Read: Lions Byculla in the press">
+          <div class="news-card__img">
+            <img src="images/clown_magicshow.jpg" alt="Lions Byculla childhood cancer support programme">
+          </div>
+          <div class="news-card__body">
+            <h3 class="news-card__title">Mid-Day and Times of India feature Lions Byculla's childhood cancer support programme</h3>
+            <p class="news-card__excerpt">Two leading Mumbai dailies spotlighted our partnership with Tata Memorial Hospital and the impact of over ₹8 lakhs raised for paediatric cancer care.</p>
+            <div class="news-card__foot">
+              <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+              <span class="news-card__date">18 Feb 2026</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="news-card" href="news-article.html?id=annual-picnic" data-type="event" aria-label="Read: Annual picnic and sports day">
+          <div class="news-card__img">
+            <div class="news-card__img-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+          </div>
+          <div class="news-card__body">
+            <h3 class="news-card__title">Annual picnic and sports day brings Lions families together at Essel World</h3>
+            <p class="news-card__excerpt">Over 150 members, spouses, and children gathered for a day of games, food, and fellowship at Essel World, strengthening the Lions family bond.</p>
+            <div class="news-card__foot">
+              <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+              <span class="news-card__date">26 Jan 2026</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="news-card" href="news-article.html?id=wheelchair-donation" data-type="community" aria-label="Read: Wheelchair distribution drive">
+          <div class="news-card__img">
+            <div class="news-card__img-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M9 12H5l-2 6h14l-2-6h-4V8l-2 2-2-2z"/><circle cx="9" cy="20" r="1"/><circle cx="15" cy="20" r="1"/></svg>
+            </div>
+          </div>
+          <div class="news-card__body">
+            <h3 class="news-card__title">20 wheelchairs donated to differently-abled residents of South Mumbai</h3>
+            <p class="news-card__excerpt">In partnership with the BMC, Lions Byculla distributed 20 motorised and manual wheelchairs to beneficiaries identified through community outreach.</p>
+            <div class="news-card__foot">
+              <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+              <span class="news-card__date">8 Jan 2026</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="news-card" href="news-article.html?id=eye-camp-gt-hospital" data-type="health" aria-label="Read: Eye camp at G.T. Hospital">
+          <div class="news-card__img">
+            <img src="images/slit lamp.png" alt="Free eye check-up camp at G.T. Hospital">
+          </div>
+          <div class="news-card__body">
+            <h3 class="news-card__title">Free eye check-up camp at G.T. Hospital screens 210 patients, 32 referred for surgery</h3>
+            <p class="news-card__excerpt">In collaboration with the Lions Eye Bank, our annual vision camp identified 32 patients requiring cataract surgery, all covered at no cost.</p>
+            <div class="news-card__foot">
+              <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+              <span class="news-card__date">3 Dec 2025</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="news-card" href="news-article.html?id=melvin-jones-fellowship" data-type="award" aria-label="Read: Melvin Jones Fellowship">
+          <div class="news-card__img">
+            <div class="news-card__img-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+          </div>
+          <div class="news-card__body">
+            <h3 class="news-card__title">Three members receive the Melvin Jones Fellowship at the international convention</h3>
+            <p class="news-card__excerpt">The Melvin Jones Fellowship, Lions International's highest humanitarian honour, was awarded to three members for exceptional service contributions.</p>
+            <div class="news-card__foot">
+              <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+              <span class="news-card__date">18 Nov 2025</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Load more -->
+      <div style="text-align:center;margin-top:48px;">
+        <button class="btn-outline" id="loadMoreBtn" aria-label="Load more stories">Load more stories</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── BULLETIN ARCHIVE ── -->
+  <section class="pg-section bg-frost" id="bulletin-feed" aria-labelledby="bulletin-headline" style="display:none;">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">The archive</div>
+        <h2 class="sec-h" id="bulletin-headline">Read our <em>bulletins.</em></h2>
+        <p class="sec-lead">Leaf through our club bulletins — a record of the projects, milestones, and fellowship that define each Lion Year. Click any cover to read it, page by page.</p>
+      </div>
+      <div class="bulletin-grid" id="bulletinGrid" aria-label="Bulletin archive"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FLIP VIEWER ── -->
+<div class="flip-overlay" id="flipOverlay" role="dialog" aria-modal="true" aria-label="Bulletin reader" aria-hidden="true">
+  <div class="flip-topbar">
+    <div class="flip-titlewrap">
+      <div class="flip-title" id="flipTitle">Bulletin</div>
+      <div class="flip-sub" id="flipSub"></div>
+    </div>
+    <div class="flip-actions">
+      <a class="flip-iconbtn" id="flipDownload" href="#" aria-label="Download PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download</span>
+      </a>
+      <button class="flip-iconbtn flip-close" id="flipClose" aria-label="Close reader">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="flip-stage">
+    <button class="flip-nav flip-prev" id="flipPrev" aria-label="Previous page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+
+    <div id="flipMount"></div>
+
+    <button class="flip-nav flip-next" id="flipNext" aria-label="Next page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <div class="flip-loading" id="flipLoading">
+      <div class="sp" aria-hidden="true"></div>
+      <div id="flipLoadingText">Preparing pages…</div>
+    </div>
+  </div>
+
+  <div class="flip-bottombar">
+    <div class="flip-counter" id="flipCounter">—</div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="footer-motto">Ushta Te - Happiness Unto All</div>
+        <p>A multi-generational service organisation rooted in South Mumbai. Premier Club, District 3231 A1. Serving without interruption since 1977.</p>
+        <div class="est">Est. 1977 &middot; Golden jubilee 2027</div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick links</h5>
+        <ul>
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="#">Leadership</a></li>
+          <li><a href="#">Annual reports</a></li>
+          <li><a href="#">Press &amp; media</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Our causes</h5>
+        <ul>
+          <li><a href="#">Vision &amp; eye care</a></li>
+          <li><a href="#">Childhood cancer</a></li>
+          <li><a href="#">Education</a></li>
+          <li><a href="#">Hunger &amp; nutrition</a></li>
+          <li><a href="#">Medical aid</a></li>
+          <li><a href="#">Animal welfare</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="#">Join as a member</a></li>
+          <li><a href="#">Volunteer for a day</a></li>
+          <li><a href="#">Do-good cookbook</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Golden Jubilee FRD</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <ul>
+          <li>Byculla, Mumbai - 400 008</li>
+          <li><a href="mailto:info@lionsbyculla.org">info@lionsbyculla.org</a></li>
+          <li>+91 22 2300 XXXX</li>
+        </ul>
+        <a href="#" class="whatsapp">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2025 Lions Club of Byculla &middot; District 3231 A1 &middot; Premier Club &middot; Golden jubilee 2027</div>
+      <div><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script-1.js"></script>
+<script src="js/members-auth.js"></script>
+<script src="js/lib/pdf.js"></script>
+<script src="js/lib/page-flip.browser.js"></script>
+<script src="js/bulletin.js"></script>
+<script>
+'use strict';
+
+/* Nav scroll */
+(function () {
+  var nav = document.getElementById('mainNav');
+  if (!nav) return;
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+})();
+
+/* News / Events / Bulletin page tabs */
+(function () {
+  var tabsEl = document.querySelector('.ne-tabs');
+  if (!tabsEl) return;
+  var tabsBar = document.querySelector('.ne-tabs-bar');
+  var tabs = tabsEl.querySelectorAll('.ne-tab');
+  var sections = {
+    news: document.getElementById('news-feed'),
+    event: document.getElementById('upcoming'),
+    bulletin: document.getElementById('bulletin-feed')
+  };
+
+  function applyFilter(value) {
+    tabsEl.setAttribute('data-active', value);
+    if (tabsBar) tabsBar.setAttribute('data-active', value);
+    tabs.forEach(function (t) {
+      t.setAttribute('aria-selected', t.getAttribute('data-filter') === value ? 'true' : 'false');
+    });
+    Object.keys(sections).forEach(function (key) {
+      if (sections[key]) sections[key].style.display = key === value ? '' : 'none';
+    });
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      applyFilter(tab.getAttribute('data-filter'));
+      history.replaceState(null, '', tab.getAttribute('data-filter') === 'bulletin' ? '#bulletin' : location.pathname);
+    });
+  });
+
+  var validTabs = ['event', 'news', 'bulletin'];
+  var tabParam = new URLSearchParams(location.search).get('tab');
+  var initial = (tabParam && validTabs.indexOf(tabParam) >= 0)
+    ? tabParam
+    : (location.hash === '#bulletin' ? 'bulletin' : (tabsEl.getAttribute('data-active') || 'news'));
+  applyFilter(initial);
+
+  window.addEventListener('hashchange', function () {
+    if (location.hash === '#bulletin') applyFilter('bulletin');
+  });
+})();
+
+/* Newsletter */
+function handleNewsletterSubmit(e) {
+  e.preventDefault();
+  var input = document.getElementById('newsletterEmail');
+  var msg = document.getElementById('newsletterMsg');
+  if (!input.value || !input.value.includes('@')) {
+    msg.textContent = 'Please enter a valid email address.';
+    msg.style.color = '#e05252';
+    return;
+  }
+  msg.textContent = 'You\'re subscribed! Welcome to the Lions Byculla community.';
+  msg.style.color = 'var(--gold)';
+  input.value = '';
+}
+
+/* Load more stub */
+document.getElementById('loadMoreBtn').addEventListener('click', function () {
+  this.textContent = 'All stories loaded';
+  this.disabled = true;
+  this.style.opacity = '0.5';
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Our Impact | Lions Club of Byculla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/light-redesign.css">
+<link rel="stylesheet" href="css/nav-submenu.css">
+<style>
+
+/* ── IMPACT HERO ── */
+.imp-hero {
+  position: relative;
+  background: var(--navy-deep) url('images/Our impact.png') center/cover no-repeat;
+  padding: 149px 0 125px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.imp-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 0;
+}
+.imp-hero::after { display: none; }
+.imp-hero .wrap { position: relative; z-index: 1; }
+.imp-hero .eyebrow { color: var(--gold); margin-bottom: 18px; }
+.imp-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.1;
+  margin: 22px 0 22px;
+}
+.imp-hero h1 em { color: inherit; font-style: normal; }
+.imp-hero .lede {
+  font-family: var(--serif);
+  font-style: italic;
+  color: rgba(255,255,255,0.68);
+  font-size: 1.05rem;
+  max-width: 600px;
+  line-height: 24px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  margin-bottom: 26px;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color .2s; }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb svg { color: rgba(255,255,255,0.3); flex-shrink: 0; }
+
+/* Identity strip */
+.identity-strip { background: #FFCB2B; }
+.identity-strip .wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.id-item {
+  padding: 26px 32px;
+  border-right: 1px solid rgba(7,35,56,0.15);
+}
+.id-item:last-child { border-right: none; }
+.id-item .lbl {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #072338;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+.id-item .val {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #082C61;
+  line-height: 1.3;
+}
+.id-item .val em { color: inherit; font-style: normal; }
+
+/* Section helpers */
+.pg-section { padding: 96px 0; }
+.pg-section.bg-paper  { background: var(--paper); }
+.pg-section.bg-cream  { background: var(--white); }
+.pg-section.bg-frost  { background: #F7FAFD; }
+.pg-section.bg-white  { background: #fff; }
+.pg-section.bg-navy   { background: #0F1F35; }
+#communities .eyebrow{color:#ADA890;}
+#communities .sec-h{color:#E1DBC4;}
+#communities .sec-h em{color:inherit;}
+#communities .sec-lead{color:#C1BCA4;}
+#communities .community-col{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);box-shadow:none;}
+#communities .community-col__icon{color:var(--gold);}
+#communities .community-col__title{color:#E1DBC4;border-bottom-color:rgba(252,203,6,0.25);}
+#communities .community-col ul li{color:#C1BCA4;}
+.pg-section.bg-navy-deep { background: var(--navy-deep); }
+.pg-section.bg-warm   { background: var(--paper-warm); }
+
+.sec-h {
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.5vw, 46px);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.12;
+  margin: 0 0 20px;
+  letter-spacing: -0.02em;
+}
+.sec-h em  { color: inherit; font-style: normal; }
+.sec-h.light { color: #fff; }
+.sec-h.light em { color: inherit; }
+.sec-lead {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 620px;
+  margin: 0 0 52px;
+}
+
+/* ── IMPACT NUMBERS ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #EFE8D7;
+  border: 1px solid #EFE8D7;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 16px;
+}
+.stat-item {
+  background: #fff;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background 0.22s ease;
+}
+.stat-item:hover { background: #fdfcf8; }
+.stat-num {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.stat-num em { color: #77735F; font-style: normal; font-size: 24px; }
+.stat-label {
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.3;
+}
+.stat-desc { font-family: var(--serif); font-style: italic; font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── STORY CARDS ── */
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+.story-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.32s ease, border-color 0.2s ease;
+}
+.story-card:hover { box-shadow: var(--shadow-md); border-color: rgba(252,203,6,0.5); }
+.story-card__img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+.story-card__content {
+  padding: 28px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+.story-card__title {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.25;
+}
+.story-card__body { font-family: var(--sans); font-size: 14.5px; color: var(--body); line-height: 1.75; flex: 1; }
+
+/* ── COMMUNITIES SERVED ── */
+.communities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.community-col {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: 28px 26px;
+  box-shadow: var(--shadow-sm);
+}
+.community-col__icon {
+  width: 40px;
+  height: 40px;
+  color: var(--gold-deep);
+  margin-bottom: 14px;
+}
+.community-col__title {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(252,203,6,0.3);
+}
+.community-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.community-col ul li {
+  font-size: 13px;
+  color: var(--body);
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+}
+.community-col ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-deep);
+  flex-shrink: 0;
+}
+
+/* ── RECOGNITION ── */
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 52px;
+}
+.award-item {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.28s ease;
+}
+.award-item:hover { border-color: rgba(252,203,6,0.35); box-shadow: 0 0 32px rgba(252,203,6,0.08); }
+.award-icon { width: 40px; height: 40px; color: var(--gold); }
+.award-name { font-family: var(--serif); font-size: 1rem; font-weight: 600; color: #fff; line-height: 1.3; }
+.award-body { font-size: 11.5px; color: rgba(255,255,255,0.42); letter-spacing: 0.06em; text-transform: uppercase; }
+.awards-closing { text-align: center; font-size: 13.5px; font-style: italic; color: rgba(255,255,255,0.35); margin-top: 48px; }
+
+/* ── VISION SECTION ── */
+.vision-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 16px;
+}
+.vision-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 24px 22px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: border-color 0.2s ease;
+}
+.vision-item:hover { border-color: rgba(252,203,6,0.3); }
+.vision-item__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.vision-item__text {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.65;
+}
+.vision-item__text strong { color: #fff; font-weight: 600; display: block; margin-bottom: 4px; }
+
+/* ── CLOSING CTA ── */
+.cta-inner { text-align: center; max-width: 680px; margin: 0 auto; }
+.cta-inner h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 16px;
+  line-height: 1.2;
+}
+.cta-inner h2 em { font-style: normal; color: inherit; }
+.cta-inner .sub { font-size: 15px; color: var(--body); line-height: 1.8; margin-bottom: 12px; }
+.cta-note {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 36px;
+}
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 52px; }
+.closing-quote {
+  border-top: 1px solid var(--rule);
+  padding-top: 40px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.closing-quote blockquote {
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-style: italic;
+  color: var(--navy);
+  line-height: 1.55;
+  margin: 0 0 12px;
+}
+.closing-quote cite {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: normal;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .communities-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .nav-c-links { display: none; }
+  .nav-c-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .identity-strip .wrap { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .story-grid { grid-template-columns: 1fr; }
+  .communities-grid { grid-template-columns: 1fr; }
+  .awards-grid { grid-template-columns: 1fr; }
+  .vision-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .identity-strip .wrap { grid-template-columns: 1fr 1fr; }
+  .id-item { padding: 18px 20px; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .wrap { padding: 0 16px; }
+  .pg-section { padding: 64px 0; }
+}
+@media (max-width: 400px) {
+  .identity-strip .wrap { grid-template-columns: 1fr; }
+  .id-item { padding: 14px 16px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="main" id="mainNav" aria-label="Main navigation">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <div class="brand-logo">
+        <img src="images/Logo.png" alt="Lions Club of Byculla">
+      </div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <ul class="nav-c-links">
+      <li class="has-sub">
+        <a href="about.html">About us <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </li>
+      <li><a href="impact.html">Our impact</a></li>
+      <li class="has-sub">
+        <a href="activities.html">Our activities <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="activities.html">All projects</a></li>
+          <li><a href="activities.html?cat=health">Diabetes &amp; Healthcare</a></li>
+          <li><a href="activities.html?cat=cancer">Childhood Cancer Care</a></li>
+          <li><a href="activities.html?cat=education">Education &amp; Youth</a></li>
+          <li><a href="activities.html?cat=vision">Eye Care &amp; Vision</a></li>
+          <li><a href="activities.html?cat=elder">Elder care</a></li>
+          <li><a href="activities.html?cat=hunger">Hunger &amp; Food Security</a></li>
+          <li><a href="activities.html?cat=animal">Animal Welfare</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="news.html">News &amp; events <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="news.html?tab=event">Events</a></li>
+          <li><a href="news.html?tab=news">News</a></li>
+          <li><a href="news.html?tab=bulletin">Bulletin</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+    <div class="nav-c-cta">
+      <a href="donate.html" class="nav-c-donate">Donate</a>
+      <a href="#" class="nav-login-icon" aria-label="Login"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <div class="drawer-head">
+    <a class="brand" href="index.html">
+      <div class="brand-logo"><img src="images/Logo.png" id="drawerLogo" alt="Lions Club of Byculla"></div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <button type="button" class="drawer-acc-toggle drawer-first" data-target="drawerAbout" aria-expanded="false">
+      About us
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerAbout">
+      <a href="about.html#story">Our story</a>
+      <a href="about.html#tl-v2">Our journey</a>
+      <a href="about.html#board">Leadership</a>
+      <a href="about.html#presidents">Past presidents</a>
+      <a href="about.html#lions-international">Lions International</a>
+    </div>
+    <a href="impact.html">Our impact</a>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerActivities" aria-expanded="false">
+      Our activities
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerActivities">
+      <a href="activities.html">All projects</a>
+      <a href="activities.html?cat=health">Diabetes &amp; Healthcare</a>
+      <a href="activities.html?cat=cancer">Childhood Cancer Care</a>
+      <a href="activities.html?cat=education">Education &amp; Youth</a>
+      <a href="activities.html?cat=vision">Eye Care &amp; Vision</a>
+      <a href="activities.html?cat=elder">Elder care</a>
+      <a href="activities.html?cat=hunger">Hunger &amp; Food Security</a>
+      <a href="activities.html?cat=animal">Animal Welfare</a>
+    </div>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerNews" aria-expanded="false">
+      News &amp; events
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerNews">
+      <a href="news.html?tab=event">Events</a>
+      <a href="news.html?tab=news">News</a>
+      <a href="news.html?tab=bulletin">Bulletin</a>
+    </div>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="drawer-foot">
+    <a href="#" class="login-pill-mob">
+      <svg viewBox="0 0 24 24" width="18" height="18" style="stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Login
+    </a>
+    <a href="#" class="donate-pill-mob">Donate</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="imp-hero" aria-labelledby="imp-hero-headline">
+  <div class="wrap">
+    <h1 id="imp-hero-headline">
+      Every life we touch<br>
+      <em>is a life we've changed.</em>
+    </h1>
+    <p class="lede">
+      For nearly 50 years, the Lions Club of Byculla has shown up, for the sick, the hungry, the blind, the orphaned, the elderly, and the forgotten, with one unwavering conviction: that service is not charity, it is dignity.
+    </p>
+  </div>
+</section>
+
+<main>
+
+  <!-- IMPACT NUMBERS -->
+  <section class="pg-section bg-cream" id="numbers" aria-labelledby="numbers-headline">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Our impact in numbers</div>
+        <h2 class="sec-h" id="numbers-headline">Numbers don't capture kindness. <em>But they do show commitment.</em></h2>
+      </div>
+      <div class="stats-grid" role="list">
+
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">50 <em>Years</em></div>
+          <div class="stat-label">Uninterrupted service</div>
+          <p class="stat-desc">From 1977 to today, never missing a year of giving back.</p>
+        </div>
+
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">111 <em>+</em></div>
+          <div class="stat-label">Active members strong</div>
+          <p class="stat-desc">Professionals, families, and young leaders, united by one purpose.</p>
+        </div>
+
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">261 <em>+</em></div>
+          <div class="stat-label">Units of blood collected</div>
+          <p class="stat-desc">Across multiple blood donation camps. Each unit a potential life saved.</p>
+        </div>
+
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">100 <em>%</em></div>
+          <div class="stat-label">Donations directed to service</div>
+          <p class="stat-desc">Every rupee you contribute goes directly toward service activities. Zero administrative leakage.</p>
+        </div>
+
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">&#8377;23 <em>Lakhs</em></div>
+          <div class="stat-label">Projects in October alone</div>
+          <p class="stat-desc">47 service projects delivered in a single month during 2024.</p>
+        </div>
+
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">&#8377;7.83 <em>Lakhs</em></div>
+          <div class="stat-label">Additional projects</div>
+          <p class="stat-desc">Delivered between July and December 2024, with Rs. 5.81 Lakhs contributed directly by our members.</p>
+        </div>
+
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">&#8377;46 <em>Lakhs</em></div>
+          <div class="stat-label">Projects in 2023–24</div>
+          <p class="stat-desc">Including a Rs. 27 Lakh mega-project benefitting thousands of premature Adivasi babies at Shrimad Rajchandra Hospital, Gujarat.</p>
+        </div>
+
+        <div class="stat-item" role="listitem">
+          <div class="stat-num">&#8377;27 <em>Lakhs</em></div>
+          <div class="stat-label">Single flagship project</div>
+          <p class="stat-desc">Our largest single humanitarian intervention, supporting neonatal care for Adivasi newborns in Dharampur, Gujarat.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE IN ACTION -->
+  <section class="pg-section bg-frost" id="stories" aria-labelledby="stories-headline">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Service in action</div>
+        <h2 class="sec-h" id="stories-headline">This is what "say less, do more" <em>looks like in real life.</em></h2>
+        <p class="sec-lead nowrap-desktop">Four stories from five decades of service. Each one ordinary to us, life-changing to someone else.</p>
+      </div>
+
+      <div class="story-grid">
+
+        <article class="story-card">
+          <img class="story-card__img" src="images/img-5.png" alt="Child in hospital ward, Gujarat">
+          <div class="story-card__content">
+            <h3 class="story-card__title">The premature babies of Gujarat</h3>
+            <p class="story-card__body">In 2023–24, Lions Club of Byculla undertook a landmark Rs. 27 Lakh project at Shrimad Rajchandra Hospital in Dharampur, Gujarat, providing critical support for thousands of premature Adivasi newborns who would otherwise have had little access to specialised neonatal care. This single project stands as one of the most significant humanitarian interventions in our club's history.</p>
+          </div>
+        </article>
+
+        <article class="story-card">
+          <img class="story-card__img" src="images/img-3.png" alt="Blood donation camp">
+          <div class="story-card__content">
+            <h3 class="story-card__title">The blood donation at CST</h3>
+            <p class="story-card__body">At one of Mumbai's busiest railway stations, we set up blood donation camps that collected over 261 units of blood, reaching commuters, travellers, and everyday citizens, and showing that service doesn't need a stage.</p>
+          </div>
+        </article>
+
+        <article class="story-card">
+          <img class="story-card__img" src="images/Do_Good_Cookbook.jpg" alt="The Do-Good Cookbook launch">
+          <div class="story-card__content">
+            <h3 class="story-card__title">The do-good cookbook</h3>
+            <p class="story-card__body">When our Lion Ladies wanted to make a difference, they wrote a cookbook. Every recipe was given by a member with love. Every book was offered as a gift in exchange for a donation. Every rupee raised goes toward paediatric cancer and epilepsy treatment. This is what community-driven impact looks like.</p>
+          </div>
+        </article>
+
+        <article class="story-card">
+          <img class="story-card__img" src="images/img-9.png" alt="Lions Club of Byculla food and essentials distribution">
+          <div class="story-card__content">
+            <h3 class="story-card__title">The jute sheets of Byculla</h3>
+            <p class="story-card__body">In our earliest years, after a club dinner meeting, our members, led by past presidents and Lion Ladies, would walk through the streets of Byculla late at night and cover sleeping pavement-dwellers with raw jute sheets during winter. No press. No recognition. Just warmth, offered quietly in the dark.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITIES SERVED -->
+  <section class="pg-section bg-navy" id="communities" aria-labelledby="communities-headline">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Communities we've served</div>
+        <h2 class="sec-h" id="communities-headline">Our service goes wherever <em>the need exists.</em></h2>
+        <p class="sec-lead nowrap-desktop">Across Mumbai, across Maharashtra, and beyond. From neonatal wards in Gujarat to pavement corners in Byculla.</p>
+      </div>
+
+      <div class="communities-grid">
+
+        <div class="community-col">
+          <svg class="community-col__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="8" y="14" width="28" height="22" rx="3"/><path d="M22 4v10M16 9h12"/><path d="M22 20v8M18 24h8"/>
+          </svg>
+          <h3 class="community-col__title">Hospitals and medical institutions</h3>
+          <ul>
+            <li>BYL Nair Hospital</li>
+            <li>Tata Memorial Hospital</li>
+            <li>SRCC Children's Hospital, Haji Ali</li>
+            <li>Wadia Children's Hospital</li>
+            <li>B.D. Petit Parsee General Hospital</li>
+            <li>D.N. Mehta Sarvajanik Hospital, Navsari</li>
+            <li>Khidmat Dialysis Centre, Nagpada</li>
+            <li>H.C. Jehangir Health Clinic, Gamadia Colony</li>
+          </ul>
+        </div>
+
+        <div class="community-col">
+          <svg class="community-col__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 6 L38 14 L22 22 L6 14 Z"/><path d="M6 14v12"/><path d="M14 18v10a8 8 0 0 0 16 0V18"/>
+          </svg>
+          <h3 class="community-col__title">Schools and educational institutions</h3>
+          <ul>
+            <li>Vikas Vidyalaya School for the Deaf, Dadar</li>
+            <li>Bombay Institute for Deaf &amp; Mute, Mazgaon</li>
+            <li>Kamla Mehta School for the Blind</li>
+            <li>Dadar Athornan Madrassa</li>
+            <li>Avanbai Petit Girls High School, Bandra</li>
+            <li>Anjuman-e-Islam Girls School</li>
+            <li>Jai Vakil School, Kalachowky</li>
+          </ul>
+        </div>
+
+        <div class="community-col">
+          <svg class="community-col__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="22" cy="12" r="6"/><path d="M14 38 L14 28 C14 24 17 22 22 22 C27 22 30 24 30 28 L30 38"/>
+          </svg>
+          <h3 class="community-col__title">Orphanages and child care</h3>
+          <ul>
+            <li>Bal Asha Trust</li>
+            <li>Bai Dosabai Kotwal Orphanage, Navsari</li>
+            <li>Asha Sadan, Umerkhadi</li>
+            <li>Krupa Ghar, Madh Island</li>
+            <li>St. Jude India Child Care, Cotton Green</li>
+          </ul>
+        </div>
+
+        <div class="community-col">
+          <svg class="community-col__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="22" cy="12" r="6"/><path d="M14 38 L14 28 C14 24 17 22 22 22 C27 22 30 24 30 28 L30 38"/><path d="M30 28 C34 28 38 30 38 34"/>
+          </svg>
+          <h3 class="community-col__title">Senior citizens and community care</h3>
+          <ul>
+            <li>J.J. Dharamshalla, Nagpada</li>
+            <li>Anand Ashram Old Age Home, Vasai</li>
+            <li>Shanti Avedna Sadan, Bandra</li>
+            <li>Parekh Dharamshalla</li>
+            <li>N.M. Petit Widow's Chawl, Fort</li>
+            <li>Parsi Infirmary</li>
+          </ul>
+        </div>
+
+        <div class="community-col">
+          <svg class="community-col__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <ellipse cx="22" cy="28" rx="10" ry="8"/><circle cx="9" cy="15" r="4.2"/><circle cx="18" cy="8" r="4.2"/><circle cx="26" cy="8" r="4.2"/><circle cx="35" cy="15" r="4.2"/>
+          </svg>
+          <h3 class="community-col__title">Animal welfare</h3>
+          <ul>
+            <li>Animal Rescue Centre, Thane, supporting care of stray dogs and cats in recognition that compassion extends to all living beings</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="footer-motto">Ushta Te - Happiness Unto All</div>
+        <p>A multi-generational service organisation rooted in South Mumbai. Premier Club, District 3231 A1. Serving without interruption since 1977.</p>
+        <div class="est">Est. 1977 &middot; Golden jubilee 2027</div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick links</h5>
+        <ul>
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="#">Leadership</a></li>
+          <li><a href="#">Annual reports</a></li>
+          <li><a href="#">Press &amp; media</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Our causes</h5>
+        <ul>
+          <li><a href="#">Vision &amp; eye care</a></li>
+          <li><a href="#">Childhood cancer</a></li>
+          <li><a href="#">Education</a></li>
+          <li><a href="#">Hunger &amp; nutrition</a></li>
+          <li><a href="#">Medical aid</a></li>
+          <li><a href="#">Animal welfare</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="#">Join as a member</a></li>
+          <li><a href="#">Volunteer for a day</a></li>
+          <li><a href="#">Do-good cookbook</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Golden Jubilee FRD</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <ul>
+          <li>Byculla, Mumbai - 400 008</li>
+          <li><a href="mailto:info@lionsbyculla.org">info@lionsbyculla.org</a></li>
+          <li>+91 22 2300 XXXX</li>
+        </ul>
+        <a href="#" class="whatsapp">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2025 Lions Club of Byculla &middot; District 3231 A1 &middot; Premier Club &middot; Golden jubilee 2027</div>
+      <div><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script-1.js"></script>
+<script src="js/members-auth.js"></script>
+<script>
+'use strict';
+(function () {
+  var nav = document.getElementById('mainNav');
+  if (!nav) return;
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>

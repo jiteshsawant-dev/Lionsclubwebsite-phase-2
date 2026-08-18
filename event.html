@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Event | Lions Club of Byculla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/light-redesign.css">
+<link rel="stylesheet" href="css/nav-submenu.css">
+<style>
+
+/* ── EVENT HERO ── */
+.event-hero {
+  position: relative;
+  padding: 142px 0 64px;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--navy-deep);
+}
+.event-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--navy-deep);
+  z-index: 0;
+  opacity: 0.55;
+}
+.event-hero .wrap { position: relative; z-index: 1; }
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 26px;
+}
+.breadcrumb a { color: rgba(255,255,255,0.55); transition: color .2s; }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb span[aria-current] { color: rgba(255,255,255,0.75); }
+.breadcrumb .sep { color: rgba(255,255,255,0.3); }
+
+.event-hero__status { margin-bottom: 18px; }
+.event-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.event-badge.open    { background: rgba(46,204,113,0.16); color: #7ee2a8; border: 1.5px solid rgba(126,226,168,0.4); }
+.event-badge.soon    { background: rgba(252,203,6,0.16);  color: var(--gold); border: 1.5px solid rgba(252,203,6,0.4); }
+.event-badge.members { background: rgba(255,255,255,0.12); color: #fff; border: 1.5px solid rgba(255,255,255,0.3); }
+.event-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.16;
+  margin: 0;
+  max-width: 860px;
+}
+.event-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 26px;
+}
+.event-hero__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.78);
+}
+.event-hero__meta svg { width: 16px; height: 16px; color: var(--gold); flex-shrink: 0; }
+
+/* ── EVENT BODY ── */
+.event-section { padding: 60px 0 84px; }
+.event-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 56px;
+  align-items: start;
+}
+
+.event-body {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--navy);
+  max-width: 720px;
+}
+.event-body .lede {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--navy-deep);
+  font-weight: 500;
+  margin: 0 0 28px;
+}
+.event-body p { margin: 0 0 22px; }
+.event-body h2 {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--navy-deep);
+  margin: 40px 0 16px;
+}
+.event-body ul {
+  margin: 0 0 22px;
+  padding-left: 0;
+  list-style: none;
+}
+.event-body ul li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 12px;
+  line-height: 1.65;
+}
+.event-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 11px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.event-body blockquote {
+  margin: 32px 0;
+  padding: 4px 0 4px 26px;
+  border-left: 3px solid var(--gold);
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: var(--navy-deep);
+}
+
+/* Details card */
+.event-aside {
+  position: sticky;
+  top: 96px;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.event-aside__banner {
+  padding: 26px 26px 22px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.event-aside__date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 10px 14px;
+  min-width: 60px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+}
+.event-aside__date .day { font-family: var(--serif); font-size: 1.9rem; font-weight: 700; color: var(--gold); line-height: 1; }
+.event-aside__date .month { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 600; margin-top: 4px; }
+.event-aside__date .year { font-size: 9px; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.event-aside__banner-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+.event-aside__banner-title { font-family: var(--serif); font-size: 1.1rem; color: #fff; margin-top: 4px; line-height: 1.25; }
+
+.event-aside__rows { padding: 22px 26px 8px; }
+.event-aside__row {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
+}
+.event-aside__row:last-of-type { border-bottom: none; }
+.event-aside__row svg { width: 18px; height: 18px; color: var(--gold-deep); flex-shrink: 0; margin-top: 2px; }
+.event-aside__row-label { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.event-aside__row-value { font-family: var(--sans); font-size: 14px; color: var(--navy); margin-top: 3px; line-height: 1.4; }
+
+.event-aside__cta { padding: 0 26px 26px; }
+.event-aside__btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 13px;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  transition: background .2s, color .2s;
+}
+.event-aside__btn:hover { background: var(--navy); color: var(--gold); }
+
+.event-back { margin-top: 48px; }
+.event-back a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--navy-deep);
+  transition: color .2s;
+}
+.event-back a:hover { color: var(--gold); }
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .event-layout { grid-template-columns: 1fr; gap: 40px; }
+  .event-aside { position: static; order: -1; max-width: 420px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="main" id="mainNav" aria-label="Main navigation">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <div class="brand-logo">
+        <img src="images/Logo.png" alt="Lions Club of Byculla">
+      </div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <ul class="nav-c-links">
+      <li class="has-sub">
+        <a href="about.html">About us <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </li>
+      <li><a href="impact.html">Our impact</a></li>
+      <li class="has-sub">
+        <a href="activities.html">Our activities <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="activities.html">All projects</a></li>
+          <li><a href="activities.html?cat=health">Diabetes &amp; Healthcare</a></li>
+          <li><a href="activities.html?cat=cancer">Childhood Cancer Care</a></li>
+          <li><a href="activities.html?cat=education">Education &amp; Youth</a></li>
+          <li><a href="activities.html?cat=vision">Eye Care &amp; Vision</a></li>
+          <li><a href="activities.html?cat=elder">Elder care</a></li>
+          <li><a href="activities.html?cat=hunger">Hunger &amp; Food Security</a></li>
+          <li><a href="activities.html?cat=animal">Animal Welfare</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="news.html">News &amp; events <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="news.html?tab=event">Events</a></li>
+          <li><a href="news.html?tab=news">News</a></li>
+          <li><a href="news.html?tab=bulletin">Bulletin</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+    <div class="nav-c-cta">
+      <a href="donate.html" class="nav-c-donate">Donate</a>
+      <a href="#" class="nav-login-icon" aria-label="Login"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <div class="drawer-head">
+    <a class="brand" href="index.html">
+      <div class="brand-logo"><img src="images/Logo.png" id="drawerLogo" alt="Lions Club of Byculla"></div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <button type="button" class="drawer-acc-toggle drawer-first" data-target="drawerAbout" aria-expanded="false">
+      About us
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerAbout">
+      <a href="about.html#story">Our story</a>
+      <a href="about.html#tl-v2">Our journey</a>
+      <a href="about.html#board">Leadership</a>
+      <a href="about.html#presidents">Past presidents</a>
+      <a href="about.html#lions-international">Lions International</a>
+    </div>
+    <a href="impact.html">Our impact</a>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerActivities" aria-expanded="false">
+      Our activities
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerActivities">
+      <a href="activities.html">All projects</a>
+      <a href="activities.html?cat=health">Diabetes &amp; Healthcare</a>
+      <a href="activities.html?cat=cancer">Childhood Cancer Care</a>
+      <a href="activities.html?cat=education">Education &amp; Youth</a>
+      <a href="activities.html?cat=vision">Eye Care &amp; Vision</a>
+      <a href="activities.html?cat=elder">Elder care</a>
+      <a href="activities.html?cat=hunger">Hunger &amp; Food Security</a>
+      <a href="activities.html?cat=animal">Animal Welfare</a>
+    </div>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerNews" aria-expanded="false">
+      News &amp; events
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerNews">
+      <a href="news.html?tab=event">Events</a>
+      <a href="news.html?tab=news">News</a>
+      <a href="news.html?tab=bulletin">Bulletin</a>
+    </div>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="drawer-foot">
+    <a href="#" class="login-pill-mob">
+      <svg viewBox="0 0 24 24" width="18" height="18" style="stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Login
+    </a>
+    <a href="donate.html" class="donate-pill-mob">Donate</a>
+  </div>
+</nav>
+
+<!-- EVENT HERO -->
+<section class="event-hero" id="eventHero">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="news.html">News &amp; events</a>
+      <span class="sep">/</span>
+      <span aria-current="page" id="crumbTitle">Event</span>
+    </nav>
+    <div class="event-hero__status" id="eventStatus"></div>
+    <h1 id="eventTitle">Loading event&hellip;</h1>
+    <div class="event-hero__meta" id="eventMeta"></div>
+  </div>
+</section>
+
+<!-- EVENT BODY -->
+<main>
+  <section class="event-section">
+    <div class="wrap">
+      <div class="event-layout">
+        <div>
+          <article class="event-body" id="eventBody"></article>
+          <div class="event-back">
+            <a href="news.html">&larr; Back to all events</a>
+          </div>
+        </div>
+        <aside class="event-aside" id="eventAside"></aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="footer-motto">Ushta Te - Happiness Unto All</div>
+        <p>A multi-generational service organisation rooted in South Mumbai. Premier Club, District 3231 A1. Serving without interruption since 1977.</p>
+        <div class="est">Est. 1977 &middot; Golden jubilee 2027</div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick links</h5>
+        <ul>
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="#">Leadership</a></li>
+          <li><a href="#">Annual reports</a></li>
+          <li><a href="#">Press &amp; media</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Our causes</h5>
+        <ul>
+          <li><a href="#">Vision &amp; eye care</a></li>
+          <li><a href="#">Childhood cancer</a></li>
+          <li><a href="#">Education</a></li>
+          <li><a href="#">Hunger &amp; nutrition</a></li>
+          <li><a href="#">Medical aid</a></li>
+          <li><a href="#">Animal welfare</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="#">Join as a member</a></li>
+          <li><a href="#">Volunteer for a day</a></li>
+          <li><a href="#">Do-good cookbook</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Golden Jubilee FRD</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <ul>
+          <li>Byculla, Mumbai - 400 008</li>
+          <li><a href="mailto:info@lionsbyculla.org">info@lionsbyculla.org</a></li>
+          <li>+91 22 2300 XXXX</li>
+        </ul>
+        <a href="#" class="whatsapp">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2025 Lions Club of Byculla &middot; District 3231 A1 &middot; Premier Club &middot; Golden jubilee 2027</div>
+      <div><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script-1.js"></script>
+<script src="js/members-auth.js"></script>
+<script>
+'use strict';
+
+/* Nav scroll */
+(function () {
+  var nav = document.getElementById('mainNav');
+  if (!nav) return;
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+})();
+
+/* ── EVENT CONTENT ── */
+(function () {
+  var CLOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+  var PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+  var CAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+
+  var EVENTS = {
+    'cataract-camp': {
+      status: 'open', statusLabel: 'Open',
+      title: 'Free cataract surgery camp — Masina Hospital',
+      day: '19', month: 'Jul', year: '2026',
+      date: 'Sunday, 19 July 2026',
+      time: '9:00 AM – 5:00 PM',
+      location: 'Masina Hospital, Byculla',
+      gradient: 'linear-gradient(135deg,#1a5e6b 0%,#0d3840 100%)',
+      cta: { label: 'Refer a patient', href: 'contact.html' },
+      body:
+        '<p class="lede">Free cataract surgeries for patients identified from our December eye camp. Referrals only — all costs are borne fully by the club.</p>' +
+        '<p>Building on our annual vision-care programme, this surgical camp brings sight-restoring cataract procedures to residents who cannot otherwise afford them. Every patient scheduled for surgery was first screened and referred through our December eye check-up camp, ensuring care reaches those who need it most.</p>' +
+        '<h2>What the camp covers</h2>' +
+        '<ul>' +
+          '<li>Pre-operative assessment and consultation with ophthalmologists</li>' +
+          '<li>Fully-sponsored cataract surgery, including lens implants</li>' +
+          '<li>Post-operative medication and follow-up care</li>' +
+          '<li>Transport assistance for elderly and differently-abled patients</li>' +
+        '</ul>' +
+        '<p>The camp is run in collaboration with Masina Hospital and the Lions Eye Bank, continuing one of the club’s founding causes — the belief that sight is not a privilege.</p>' +
+        '<blockquote>To restore someone’s sight is to give them back their world. There is no greater service.</blockquote>' +
+        '<p>Referrals are accepted through club members and partner clinics. Please contact the club to refer an eligible patient.</p>'
+    },
+    'school-kit-drive': {
+      status: 'soon', statusLabel: 'Coming soon',
+      title: 'School kit distribution drive — BMC Schools',
+      day: '3', month: 'Aug', year: '2026',
+      date: 'Monday, 3 August 2026',
+      time: '10:00 AM – 2:00 PM',
+      location: '3 BMC Schools, South Mumbai',
+      gradient: 'linear-gradient(135deg,#102C57 0%,#1a3a70 100%)',
+      cta: { label: 'Support this drive', href: 'donate.html' },
+      body:
+        '<p class="lede">Distribution of 500 school kits — notebooks, stationery, and bags — to students of Class 1–7 in partner schools, funded by the Golden Jubilee fundraiser.</p>' +
+        '<p>As a new school year begins, the club steps in to make sure no child is held back for want of basic supplies. Working alongside three BMC schools across South Mumbai, our volunteers will hand-deliver complete kits to 500 students.</p>' +
+        '<h2>Each kit includes</h2>' +
+        '<ul>' +
+          '<li>A full set of notebooks for the academic year</li>' +
+          '<li>Pens, pencils, and a geometry box</li>' +
+          '<li>A sturdy school bag</li>' +
+          '<li>A water bottle and lunch box</li>' +
+        '</ul>' +
+        '<p>The drive is funded through contributions to our Golden Jubilee fundraiser, directing community generosity straight into the hands of young learners.</p>' +
+        '<blockquote>Education is the one gift that keeps giving — long after the notebooks are filled.</blockquote>' +
+        '<p>Volunteers and donors are welcome to support the drive. Reach out to the club to contribute.</p>'
+    },
+    'blood-donation-nair': {
+      status: 'open', statusLabel: 'Open',
+      title: 'Blood donation camp — Nair Hospital',
+      day: '14', month: 'Sep', year: '2026',
+      date: 'Monday, 14 September 2026',
+      time: '8:00 AM – 4:00 PM',
+      location: 'Nair Hospital, Mumbai Central',
+      gradient: 'linear-gradient(135deg,#6b1a1a 0%,#3d0a0a 100%)',
+      cta: { label: 'Register to donate', href: 'contact.html' },
+      body:
+        '<p class="lede">An open blood donation camp with on-site thalassemia screening. Walk-ins are welcome — run in collaboration with the Nair Hospital blood bank.</p>' +
+        '<p>A single donation can save up to three lives. This community camp invites healthy adults to donate blood in a safe, professionally-staffed environment, helping replenish critical hospital reserves.</p>' +
+        '<h2>What to expect on the day</h2>' +
+        '<ul>' +
+          '<li>Quick health check and haemoglobin test before donating</li>' +
+          '<li>Safe, sterile, single-use collection by trained staff</li>' +
+          '<li>Complimentary on-site thalassemia screening</li>' +
+          '<li>Refreshments and rest area for every donor</li>' +
+        '</ul>' +
+        '<h2>Who can donate</h2>' +
+        '<p>Healthy individuals aged 18–65, weighing at least 45 kg, who have not donated in the last three months. Please carry a valid photo ID and eat a proper meal before donating.</p>' +
+        '<blockquote>The blood you give today is a stranger’s tomorrow. Walk in — it takes minutes, it lasts a lifetime.</blockquote>' +
+        '<p>No appointment needed, though registering ahead helps us plan. Contact the club to confirm your slot.</p>'
+    },
+    'agm-2026': {
+      status: 'members', statusLabel: 'Members only',
+      title: 'Annual general meeting — Members only',
+      day: '2', month: 'Oct', year: '2026',
+      date: 'Friday, 2 October 2026',
+      time: '6:30 PM – 9:00 PM',
+      location: 'Byculla Club, Byculla',
+      gradient: 'linear-gradient(135deg,#0f2440 0%,#1a3560 100%)',
+      cta: { label: 'Member login', href: 'members.html' },
+      body:
+        '<p class="lede">The annual general meeting to review the year’s activities, financials, and upcoming Golden Jubilee plans for 2027. Attendance is mandatory for all active members.</p>' +
+        '<p>The AGM is the club’s most important governance gathering of the year — a moment to look back on our service, account for our stewardship, and set the course for the year ahead.</p>' +
+        '<h2>Agenda highlights</h2>' +
+        '<ul>' +
+          '<li>President’s report on the year’s service and impact</li>' +
+          '<li>Presentation and approval of the annual financial statements</li>' +
+          '<li>Golden Jubilee 2027 planning and committee updates</li>' +
+          '<li>Open floor for member proposals and discussion</li>' +
+        '</ul>' +
+        '<p>As we approach our 50th year of continuous service, this meeting sets the foundation for a landmark Golden Jubilee celebration.</p>' +
+        '<blockquote>We inherit not just titles but a responsibility — to keep showing up for those who need us most.</blockquote>' +
+        '<p>This is a members-only event. Please sign in to the members portal for the full agenda and papers.</p>'
+    },
+    'golden-jubilee-gala': {
+      status: 'soon', statusLabel: 'Coming soon',
+      title: 'Golden Jubilee gala dinner — 50 years of service',
+      day: '22', month: 'Nov', year: '2026',
+      date: 'Sunday, 22 November 2026',
+      time: '7:00 PM onwards',
+      location: 'Taj Mahal Palace Hotel, Colaba',
+      gradient: 'linear-gradient(135deg,#102C57 0%,#1a3a70 55%,#7a5500 100%)',
+      cta: { label: 'Enquire about tickets', href: 'contact.html' },
+      body:
+        '<p class="lede">A grand celebration marking 50 years of Lions Club of Byculla — gala dinner, a keynote by Lions International, lifetime achievement awards, and a major charity pledge.</p>' +
+        '<p>Half a century of uninterrupted service deserves a celebration to match. Set against the iconic backdrop of the Taj Mahal Palace Hotel, the Golden Jubilee gala brings together members past and present, partners, and dignitaries to honour a legacy built since 1977.</p>' +
+        '<h2>An evening to remember</h2>' +
+        '<ul>' +
+          '<li>Keynote address by a Lions International representative</li>' +
+          '<li>Lifetime achievement awards for long-serving members</li>' +
+          '<li>A retrospective of five decades of community service</li>' +
+          '<li>Announcement of a major Golden Jubilee charity pledge</li>' +
+        '</ul>' +
+        '<p>The evening is both a tribute to those who came before and a launchpad for the club’s next chapter of service.</p>' +
+        '<blockquote>Fifty years of quiet, consistent service — and the best is still ahead of us.</blockquote>' +
+        '<p>Details on tickets and tables will be announced soon. Contact the club to register your interest.</p>'
+    }
+  };
+
+  function getId() {
+    return new URLSearchParams(window.location.search).get('id');
+  }
+
+  var id = getId();
+  var data = id ? EVENTS[id] : null;
+
+  var hero = document.getElementById('eventHero');
+  var crumbEl = document.getElementById('crumbTitle');
+  var statusEl = document.getElementById('eventStatus');
+  var titleEl = document.getElementById('eventTitle');
+  var metaEl = document.getElementById('eventMeta');
+  var bodyEl = document.getElementById('eventBody');
+  var asideEl = document.getElementById('eventAside');
+
+  if (!data) {
+    document.title = 'Event not found | Lions Club of Byculla';
+    titleEl.textContent = 'Event not found';
+    crumbEl.textContent = 'Event not found';
+    bodyEl.innerHTML = '<p class="lede">Sorry, we couldn’t find that event.</p>' +
+      '<p>It may have been moved or removed. Please head back to the events page to browse everything coming up.</p>';
+    asideEl.style.display = 'none';
+    return;
+  }
+
+  var plainTitle = data.title.replace(/&[a-z]+;/g, '');
+  document.title = plainTitle + ' | Lions Club of Byculla';
+  crumbEl.textContent = plainTitle;
+  hero.style.background = data.gradient;
+
+  statusEl.innerHTML = '<span class="event-badge ' + data.status + '">' + data.statusLabel + '</span>';
+  titleEl.innerHTML = data.title;
+  metaEl.innerHTML =
+    '<span>' + CAL + data.date + '</span>' +
+    '<span>' + CLOCK + data.time + '</span>' +
+    '<span>' + PIN + data.location + '</span>';
+  bodyEl.innerHTML = data.body;
+
+  asideEl.innerHTML =
+    '<div class="event-aside__banner" style="background:' + data.gradient + '">' +
+      '<div class="event-aside__date">' +
+        '<div class="day">' + data.day + '</div>' +
+        '<div class="month">' + data.month + '</div>' +
+        '<div class="year">' + data.year + '</div>' +
+      '</div>' +
+      '<div>' +
+        '<div class="event-aside__banner-label">Event details</div>' +
+        '<div class="event-aside__banner-title">' + data.title + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="event-aside__rows">' +
+      '<div class="event-aside__row">' + CAL +
+        '<div><div class="event-aside__row-label">Date</div><div class="event-aside__row-value">' + data.date + '</div></div>' +
+      '</div>' +
+      '<div class="event-aside__row">' + CLOCK +
+        '<div><div class="event-aside__row-label">Time</div><div class="event-aside__row-value">' + data.time + '</div></div>' +
+      '</div>' +
+      '<div class="event-aside__row">' + PIN +
+        '<div><div class="event-aside__row-label">Location</div><div class="event-aside__row-value">' + data.location + '</div></div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="event-aside__cta"><a class="event-aside__btn" href="' + data.cta.href + '">' + data.cta.label + '</a></div>';
+})();
+</script>
+
+</body>
+</html>

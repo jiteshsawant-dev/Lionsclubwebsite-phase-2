@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>The Golden Chapter Begins — Lions Club of Byculla Bulletin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800&family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#102C57; --navy-deep:#0B1F3F; --gold:#FCCB06; --gold-deep:#e1b703;
+  --night:#0F1012; --white:#FCF8EF; --paper:#F4F0E6; --paper-warm:#EFE8D8;
+  --ink:#1A1A1F; --body:#3A3F47; --muted:#6B6F76; --rule:#EFE8D7;
+  --serif:'Roboto Serif',Garamond,'Times New Roman',serif;
+  --sans:'Mulish',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#484538;font-family:var(--sans);color:var(--body);-webkit-font-smoothing:antialiased;}
+
+/* ---------- PAGE SHELL ---------- */
+.page{
+  width:210mm;height:297mm;margin:14px auto;background:var(--white);
+  position:relative;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.45);
+}
+.page-pad{padding:16mm 16mm 14mm;height:100%;display:flex;flex-direction:column;}
+.folio{
+  position:absolute;bottom:8mm;left:16mm;right:16mm;display:flex;justify-content:space-between;
+  font-family:var(--sans);font-size:8.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--rule);padding-top:6px;
+}
+.folio span:last-child{color:var(--gold-deep);font-weight:800;}
+
+/* ============ COVER ============ */
+.cover{background:var(--navy-deep);color:var(--white);}
+.cover .page-pad{padding:0;}
+.cover-top{padding:13mm 16mm 0;display:flex;align-items:center;justify-content:space-between;}
+.cover-brand{display:flex;align-items:center;gap:10px;}
+.cover-brand img{height:30px;width:auto;}
+.cover-brand-text{font-family:var(--serif);font-size:12.5px;font-weight:700;letter-spacing:0.02em;color:var(--white);line-height:1.25;}
+.cover-brand-text small{display:block;font-family:var(--sans);font-size:8.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.cover-issue{font-family:var(--sans);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(252,248,239,0.55);text-align:right;line-height:1.7;}
+
+.cover-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6mm 16mm 0;position:relative;}
+.cover-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 38%, rgba(252,203,6,0.14) 0%, transparent 70%);pointer-events:none;}
+.cover-eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;position:relative;z-index:1;}
+.cover-crest{width:158px;height:auto;margin-bottom:22px;position:relative;z-index:1;filter:drop-shadow(0 10px 24px rgba(0,0,0,0.35));}
+.cover-title{font-family:var(--serif);font-weight:300;font-size:58px;line-height:1.02;letter-spacing:-0.02em;color:var(--white);position:relative;z-index:1;}
+.cover-title em{font-style:normal;font-weight:700;color:var(--gold);display:block;}
+.cover-sub{margin-top:20px;font-family:var(--serif);font-style:italic;font-size:15px;color:rgba(252,248,239,0.68);max-width:420px;line-height:1.6;position:relative;z-index:1;}
+.cover-dates{margin-top:26px;font-family:var(--sans);font-size:11px;letter-spacing:0.1em;color:rgba(252,248,239,0.5);position:relative;z-index:1;}
+.cover-dates b{color:var(--gold);font-weight:700;}
+
+.cover-photo-band{position:relative;height:96mm;}
+.cover-photo-band img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.02);}
+.cover-photo-band::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(11,31,63,0.85) 0%, rgba(11,31,63,0.05) 22%, rgba(11,31,63,0.05) 78%, rgba(11,31,63,0.92) 100%);}
+.cover-photo-cap{position:absolute;left:16mm;right:16mm;bottom:9mm;display:flex;justify-content:space-between;align-items:flex-end;z-index:2;}
+.cover-photo-cap-text{font-family:var(--sans);font-size:9px;letter-spacing:0.08em;color:rgba(252,248,239,0.75);text-transform:uppercase;}
+.cover-photo-cap-we{font-family:var(--serif);font-weight:700;font-size:15px;letter-spacing:0.06em;color:var(--gold);}
+
+/* ============ EDITOR PAGE ============ */
+.ed-kicker{font-family:var(--sans);font-size:10.5px;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px;}
+.ed-headline{font-family:var(--serif);font-weight:400;font-size:37px;line-height:1.08;letter-spacing:-0.01em;color:var(--navy);max-width:145mm;margin-bottom:6px;}
+.ed-headline em{font-style:normal;font-weight:700;color:var(--navy);}
+.ed-rule{height:2px;background:var(--gold-deep);width:56px;margin:16px 0 20px;}
+.ed-columns{column-count:2;column-gap:9mm;font-family:var(--serif);font-size:12.3px;line-height:1.72;color:var(--body);text-align:justify;flex:1;}
+.ed-columns p{margin-bottom:11px;}
+.ed-columns p:first-of-type::first-letter{
+  font-family:var(--serif);font-weight:700;color:var(--navy);font-size:58px;line-height:0.78;
+  float:left;padding:4px 7px 0 0;
+}
+.ed-signoff{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--navy);margin-top:6px;font-style:normal;break-inside:avoid;}
+.ed-signoff .role{display:block;font-family:var(--serif);font-style:italic;font-weight:400;color:var(--muted);font-size:11.5px;margin-top:3px;letter-spacing:0;}
+.ed-photo-strip{margin-top:14mm;position:relative;height:56mm;border-radius:3px;overflow:hidden;}
+.ed-photo-strip img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+.ed-photo-strip figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(0deg, rgba(16,44,87,0.88), transparent);color:var(--white);font-family:var(--sans);font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;padding:9px 12px 8px;}
+
+/* ============ FEATURE PAGES ============ */
+.ft-kicker{font-family:var(--sans);font-size:10.5px;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px;}
+.ft-headline{font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.1;letter-spacing:-0.01em;color:var(--navy);}
+.ft-sub{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--muted);margin-top:8px;line-height:1.5;}
+.ft-byline{display:flex;gap:14px;align-items:center;margin:14px 0 16px;padding-bottom:12px;border-bottom:1px solid var(--rule);font-family:var(--sans);font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+.ft-byline b{color:var(--navy);}
+
+.ft-body{column-count:2;column-gap:9mm;font-family:var(--serif);font-size:11.6px;line-height:1.66;color:var(--body);text-align:justify;flex:1;}
+.ft-body p{margin-bottom:10px;}
+.ft-body p:first-of-type::first-letter{
+  font-family:var(--serif);font-weight:700;color:var(--navy);font-size:52px;line-height:0.75;
+  float:left;padding:3px 6px 0 0;
+}
+
+.factbox{
+  break-inside:avoid;background:var(--paper-warm);border:1px solid var(--rule);border-radius:3px;
+  padding:14px 16px;margin:0 0 12px;float:left;width:100%;
+}
+.factbox h4{font-family:var(--sans);font-size:10px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--navy);margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--gold-deep);}
+.factbox ul{list-style:none;}
+.factbox li{font-family:var(--sans);font-size:10.3px;line-height:1.5;color:var(--body);padding:6px 0;border-bottom:1px dashed var(--rule);}
+.factbox li:last-child{border-bottom:none;}
+.factbox li b{display:block;font-family:var(--serif);font-size:13.5px;color:var(--navy);font-weight:700;}
+
+.pullquote{
+  break-inside:avoid;font-family:var(--serif);font-style:italic;font-weight:500;font-size:16.5px;
+  line-height:1.44;color:var(--navy);margin:4px 0 14px;padding:2px 0 2px 16px;border-left:3px solid var(--gold-deep);
+}
+.pullquote cite{display:block;font-family:var(--sans);font-style:normal;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:8px;}
+
+.ft-photo{break-inside:avoid;margin:0 0 12px;}
+.ft-photo img{width:100%;display:block;border-radius:2px;object-fit:cover;}
+.ft-photo figcaption{font-family:var(--sans);font-size:9px;color:var(--muted);margin-top:5px;line-height:1.4;}
+.ft-photo figcaption b{color:var(--navy);}
+
+/* ============ GALLERY PAGE ============ */
+.gal-head{margin-bottom:14px;}
+.gal-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;gap:8mm 8mm;flex:1;}
+.gal-item{display:flex;flex-direction:column;}
+.gal-photo{position:relative;flex:1;border-radius:2px;overflow:hidden;background:var(--paper-warm);}
+.gal-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.gal-num{position:absolute;top:8px;left:8px;background:var(--navy-deep);color:var(--gold);font-family:var(--serif);font-weight:700;font-size:11px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.gal-cap{font-family:var(--sans);font-size:9.3px;line-height:1.55;color:var(--body);margin-top:7px;}
+.gal-cap b{display:block;font-family:var(--serif);font-size:11.5px;color:var(--navy);font-weight:700;margin-bottom:2px;}
+.gal-placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:repeating-linear-gradient(135deg, var(--paper-warm), var(--paper-warm) 10px, var(--paper) 10px, var(--paper) 20px);
+  border:1.5px dashed var(--gold-deep);color:var(--muted);text-align:center;gap:6px;
+}
+.gal-placeholder svg{opacity:0.55;}
+.gal-placeholder span{font-family:var(--sans);font-size:8.5px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;color:var(--gold-deep);}
+
+/* ============ BACK PAGE ============ */
+.back{background:var(--navy-deep);color:var(--white);}
+.back .page-pad{align-items:center;justify-content:center;text-align:center;}
+.back-crest{width:90px;margin-bottom:26px;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.4));}
+.back-line1{font-family:var(--serif);font-weight:400;font-style:italic;font-size:20px;color:rgba(252,248,239,0.75);line-height:1.5;max-width:130mm;}
+.back-line2{font-family:var(--serif);font-weight:700;font-size:30px;color:var(--gold);margin:18px 0 8px;line-height:1.25;max-width:140mm;}
+.back-serve{margin-top:22px;font-family:var(--sans);font-size:13px;font-weight:800;letter-spacing:0.4em;color:var(--white);border-top:1px solid rgba(252,248,239,0.25);border-bottom:1px solid rgba(252,248,239,0.25);padding:12px 30px;}
+.back-contact{margin-top:44px;font-family:var(--sans);font-size:10px;letter-spacing:0.08em;color:rgba(252,248,239,0.5);line-height:2;}
+.back-contact b{color:rgba(252,248,239,0.8);}
+
+@media print{
+  body{background:none;}
+  .page{margin:0;box-shadow:none;page-break-after:always;}
+  .page:last-child{page-break-after:auto;}
+  @page{size:A4;margin:0;}
+}
+@media screen{
+  .print-bar{
+    position:fixed;top:0;left:0;right:0;background:var(--navy-deep);color:var(--white);z-index:99;
+    padding:10px 20px;font-family:var(--sans);font-size:13px;display:flex;justify-content:space-between;align-items:center;
+  }
+  .print-bar button{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;background:var(--gold);color:var(--navy);border:none;padding:8px 18px;border-radius:999px;cursor:pointer;}
+  body{padding-top:44px;}
+}
+@media print{.print-bar{display:none;} body{padding-top:0;}}
+</style>
+</head>
+<body>
+
+<div class="print-bar">
+  <span>Screen preview — six A4 pages, print-ready.</span>
+  <button onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<!-- ============ PAGE 1 — COVER ============ -->
+<div class="page cover">
+  <div class="page-pad">
+    <div class="cover-top">
+      <div class="cover-brand">
+        <img src="newsletter-assets/lc-logo.png" alt="Lions Club International">
+        <div class="cover-brand-text">Lions Club of Byculla<small>District 3231-A1 &middot; Premier Club</small></div>
+      </div>
+      <div class="cover-issue">Charter Night Special Edition<br>Golden Jubilee Bulletin &middot; Vol. I</div>
+    </div>
+
+    <div class="cover-hero">
+      <div class="cover-eyebrow">Golden Jubilee Year &middot; 1977–2027</div>
+      <img class="cover-crest" src="newsletter-assets/jubilee-crest.png" alt="Lions Club of Byculla Golden Jubilee 50 Years Crest">
+      <div class="cover-title">The Golden<br><em>Chapter Begins</em></div>
+      <p class="cover-sub">Fifty years of compassion, leadership and unwavering service — and the first page of the fifty still to come.</p>
+      <div class="cover-dates">Charter Night &amp; Installation Ceremony &middot; <b>Wednesday, 24 June 2026</b> &middot; Westend Hotel, Mumbai</div>
+    </div>
+
+    <div class="cover-photo-band">
+      <img src="newsletter-assets/cover-charter-banner.jpg" alt="Lions Club of Byculla 50th Charter Night and Installation Ceremony banner">
+      <div class="cover-photo-cap">
+        <span class="cover-photo-cap-text">Golden Jubilee President Lion Daara B. Patel &amp; team &middot; Charter Night</span>
+        <span class="cover-photo-cap-we">WE SERVE</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 — EDITOR'S NOTE ============ -->
+<div class="page">
+  <div class="page-pad">
+    <div class="ed-kicker">From the Editor's Workstation</div>
+    <h1 class="ed-headline">The Golden Chapter <em>Begins</em></h1>
+    <div class="ed-rule"></div>
+
+    <div class="ed-columns">
+      <p>Fifty years ago, a handful of Lions sat in a room much like the one we gathered in for Charter Night, and decided to start something. They had no way of knowing it would still be standing five decades later — still serving, still growing, still changing lives. And yet, here we are.</p>
+      <p>Charter Night marked more than an evening of celebration. It marked the opening of a chapter that will only ever happen once. A Golden Jubilee is not a milestone we get to revisit — it is a single, unrepeatable year, and everything we do in it becomes part of the permanent record of this club.</p>
+      <p>That is exactly how I intend to approach my role as your PRO and Bulletin Editor this year. Not as an editor compiling updates, but as a custodian — entrusted with capturing this year with the honesty and care it deserves, so that fifty years from now, when the Lions Club of Byculla gathers to mark its Centenary, our members can open these very pages and step right back into this moment.</p>
+      <p>So members, consider this your invitation to expect something different. This year, we are not producing a bulletin. We are building a historical record — one that will carry the voices of our Charter Members and Past Presidents, the milestones that shaped us, and the everyday moments that rarely make it into any record at all, but deserve to be remembered all the same.</p>
+      <p>New formats. New features. New ways of experiencing our own story. Some of it you'll recognise. Much of it, you won't have seen from us before.</p>
+      <p>Charter Night was our first page. What follows will be fifty years, told the way they deserve to be told.</p>
+      <p>Welcome to the Golden Chapter.</p>
+      <p class="ed-signoff">— PRO &amp; Bulletin Editor<span class="role">Lions Club of Byculla &middot; Golden Jubilee Year 1977–2027</span></p>
+    </div>
+
+    <figure class="ed-photo-strip">
+      <img src="newsletter-assets/editor-audience.jpg" alt="Members and guests at the Lions Club of Byculla Charter Night celebrations">
+      <figcaption>Members and guests fill the room as the Golden Jubilee Year is inaugurated &middot; Charter Night, Westend Hotel</figcaption>
+    </figure>
+  </div>
+  <div class="folio"><span>The Bulletin &middot; Golden Jubilee Year</span><span>02</span></div>
+</div>
+
+<!-- ============ PAGE 3 — FEATURE PART 1 ============ -->
+<div class="page">
+  <div class="page-pad">
+    <div class="ft-kicker">Cover Story</div>
+    <h1 class="ft-headline">The Golden Chapter Begins</h1>
+    <p class="ft-sub">Lions Club of Byculla Celebrates 50 Years of Service</p>
+    <div class="ft-byline"><b>Mumbai</b> &middot; Charter Night Report</div>
+
+    <div class="ft-body">
+      <p>Some organisations are remembered for the milestones they achieve. Others are remembered for the lives they transform. For the Lions Club of Byculla, the celebration of its Golden Jubilee Year is not merely the marking of fifty years since its charter on 24 June 1977 — it is a celebration of five decades of compassion, leadership and unwavering commitment to humanitarian service.</p>
+
+      <p>From restoring sight to the visually impaired, supporting children battling cancer, equipping hospitals with life-saving medical technology, caring for senior citizens, educating underprivileged children, feeding the hungry, protecting stray animals and responding during times of natural disasters and the COVID-19 pandemic, the Club has quietly become one of South Mumbai's most respected service institutions. Over the years, its work has reached far beyond Byculla, touching lives across Mumbai, Maharashtra and several parts of India through humanitarian initiatives, national collaborations and international Lions Foundation grants.</p>
+
+      <div class="factbox">
+        <h4>Fifty Years at a Glance</h4>
+        <ul>
+          <li><b>24 June 1977</b>Chartered under founding Charter President Lion Maneck Dastur — youngest Charter President of any Lions Club in the world</li>
+          <li><b>111 Members</b>Record Golden Jubilee Year membership, following the addition of 35+ new members in recent years</li>
+          <li><b>₹1.02 Crore</b>LCIF Grant for Childhood Cancer &amp; Epilepsy at Bai Jerbai Wadia Hospital for Children</li>
+          <li><b>₹60+ Lacs</b>Second LCIF Grant for modernisation of the Virar Old Age Home kitchen</li>
+          <li><b>₹3 Crore</b>Service Fund — the largest in the Club's history</li>
+          <li><b>2nd Best Club</b>District 3231-A1, with IPP Lion Tehemton Dalal named 2nd Best President</li>
+        </ul>
+      </div>
+
+      <p>This remarkable journey entered a historic new chapter as the Lions Club of Byculla officially inaugurated its Golden Jubilee Year (1977–2027) during its Charter Night celebrations, attended by members, distinguished guests and well-wishers.</p>
+
+      <p>At the helm of this landmark year is Golden Jubilee President Lion Daara Bahadur Patel, entrusted with leading the Club into one of the most significant chapters of its illustrious history. Addressing members during the inaugural celebrations, Lion Daara Bahadur Patel reflected on the responsibility that accompanies such a milestone.</p>
+
+      <blockquote class="pullquote">"A Golden Jubilee is not merely a celebration of fifty successful years — it is a tribute to every Lion whose selfless service has built this remarkable institution. We are merely custodians of this legacy, entrusted with strengthening it for the generations that will follow."<cite>Lion Daara Bahadur Patel &middot; Golden Jubilee President</cite></blockquote>
+
+      <p>Speaking about the vision for the year ahead, he added, "The greatest celebration of our Golden Jubilee will not be measured by ceremonies or commemorative events, but by the number of lives we continue to touch. Our journey has always been about serving humanity, and that journey is only just beginning." These words resonated deeply with members, reflecting the spirit that has defined the Lions Club of Byculla since its inception.</p>
+    </div>
+  </div>
+  <div class="folio"><span>The Bulletin &middot; Golden Jubilee Year</span><span>03</span></div>
+</div>
+
+<!-- ============ PAGE 4 — FEATURE PART 2 ============ -->
+<div class="page">
+  <div class="page-pad">
+    <div class="ft-body" style="margin-top:2mm;">
+      <figure class="ft-photo">
+        <img src="newsletter-assets/logo-unveiling.jpg" alt="Unveiling of the Lions Club of Byculla Golden Jubilee logo at Charter Night">
+        <figcaption><b>The unveiling.</b> The official Golden Jubilee Logo is revealed at Charter Night — conceptualised by Lion Feroze Katrak and Lion Adil Mistry.</figcaption>
+      </figure>
+
+      <p>One of the most memorable moments of the evening was the unveiling of the official Golden Jubilee Logo, which will become the identity of every commemorative event throughout the year. The logo was unveiled by Lion Daara Bahadur Patel and his team of board members, having been conceptualised by Lion Feroze Katrak and Lion Adil Mistry.</p>
+
+      <p>The theme chosen for the year — "The Golden Chapter Begins" — captures the philosophy behind the celebrations. Rather than looking upon fifty years as the culmination of a successful journey, the Club has chosen to regard it as the beginning of a new era of larger dreams, deeper impact and greater service.</p>
+
+      <p>Chartered on 24 June 1977 under the visionary leadership of Charter President Lion Maneck Dastur, who created history by becoming the youngest Charter President of any Lions Club in the world, the Lions Club of Byculla was founded with a simple yet powerful belief — that individuals united by a common purpose could transform communities through selfless service. That vision continues to guide the Club today.</p>
+
+      <p>Over the past five decades, generations of dedicated members have built upon that strong foundation, transforming the Club into one of the most respected and decorated Lions Clubs in District 3231-A1, committed throughout to the global causes of Lions International — Childhood Cancer, Vision, Diabetes, Hunger, Environment, Humanitarian Service and Youth Development.</p>
+
+      <p>Its humanitarian footprint is both diverse and far-reaching: specialised medical facilities, donated healthcare equipment for leading hospitals, blood donation drives, education support for underprivileged children, assistance to orphanages and old-age homes, and animal welfare partnerships. During the COVID-19 pandemic alone, the Club donated oxygen concentrators and critical medical equipment valued at over ₹1 crore while supporting thousands of families through community meal programmes.</p>
+
+      <figure class="ft-photo" style="width:52%;float:left;margin-right:10px;">
+        <img src="newsletter-assets/board-of-directors.jpg" alt="Lions Club of Byculla Board of Directors in session">
+        <figcaption><b>Governance.</b> The Board of Directors in session.</figcaption>
+      </figure>
+
+      <p>The years leading to the Golden Jubilee have been among the most successful in the Club's history. Membership witnessed unprecedented growth, thanks in large measure to the relentless efforts of Lion Adil Coover Bhesadia, Membership Development and Retention Chairperson of the Club and District Chairperson of the Global Membership Team, District 3231-A1, during 2025–26 — instrumental in bringing more than 35 new members into the Club, culminating in a record 111 members during the Golden Jubilee year.</p>
+
+      <p>The Lionistic Year 2025–26, steered by the visionary guidance of Immediate Past President Lion Advocate Tehemton Dalal, emerged as a landmark epoch in the Club's storied legacy — headlined by the facilitation of the most significant humanitarian funding project in its history, an LCIF Grant of ₹1.02 crore dedicated to Childhood Cancer and Epilepsy at the Bai Jerbai Wadia Hospital for Children, and a second LCIF Grant of approximately ₹60+ lacs for the modernisation of the Virar Old Age Home kitchen. With a Service Fund ascending to ₹3 crore, the Club championed larger humanitarian endeavours than ever before, and was named the Second Best Club in District 3231-A1, with Lion Tehemton Dalal lauded as the Second Best President of the District.</p>
+
+      <p>Adding yet another glorious chapter to the Club's history, Lion Feroze Kali Katrak successfully served as District Governor of District 3231-A1 for 2025–26, and was subsequently unanimously elevated to the prestigious office of Multiple Council Chairman — the first leader from District 3231 to hold this position in nearly three decades.</p>
+
+      <p>Today, the Lions Club of Byculla is far more than a service organisation — it is a family of dedicated volunteers, professionals, entrepreneurs and community leaders united by a common belief: that service above self has the power to transform lives. Under the leadership of Golden Jubilee President Lion Daara Bahadur Patel, the coming year promises expanded healthcare initiatives, community welfare projects, environmental programmes, youth leadership initiatives and several landmark humanitarian projects.</p>
+
+      <blockquote class="pullquote">"We do not celebrate fifty years because we have reached a destination. We celebrate because we are ready to begin the next fifty — with the same passion, the same compassion and the same unwavering commitment to serve."<cite>Lion Daara Bahadur Patel &middot; Golden Jubilee President</cite></blockquote>
+
+      <p style="font-family:var(--serif);font-weight:600;font-style:italic;color:var(--navy);">The Golden Chapter Begins. The Legacy Continues. The Next Fifty Years Start Now.</p>
+    </div>
+  </div>
+  <div class="folio"><span>The Bulletin &middot; Golden Jubilee Year</span><span>04</span></div>
+</div>
+
+<!-- ============ PAGE 5 — PHOTO GALLERY ============ -->
+<div class="page">
+  <div class="page-pad">
+    <div class="gal-head">
+      <div class="ft-kicker">Charter Night in Frame</div>
+      <h1 class="ft-headline" style="font-size:26px;">Image Captions</h1>
+    </div>
+
+    <div class="gal-grid">
+      <div class="gal-item">
+        <div class="gal-photo"><span class="gal-num">1</span><img src="newsletter-assets/gallery-1-installation.jpg" alt="Installation ceremony gavel exchange"></div>
+        <div class="gal-cap"><b>The Installation</b>[L to R] Immediate Past President Lion Tehemton Dalal &middot; President Lion Daara Patel &middot; Installing Officer Lion Rajesh Mehra &middot; Multiple Council Chairperson Lion Feroze Katrak</div>
+      </div>
+
+      <div class="gal-item">
+        <div class="gal-photo">
+          <span class="gal-num">2</span>
+          <div class="gal-placeholder">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+            <span>Photograph to be supplied</span>
+          </div>
+        </div>
+        <div class="gal-cap"><b>The President</b>President Lion Daara Patel</div>
+      </div>
+
+      <div class="gal-item">
+        <div class="gal-photo"><span class="gal-num">3</span><img src="newsletter-assets/gallery-3-group.jpg" alt="Charter Night group photograph"></div>
+        <div class="gal-cap"><b>Charter Night</b>Office bearers together on the Westend Hotel Terrace</div>
+      </div>
+
+      <div class="gal-item">
+        <div class="gal-photo"><span class="gal-num">4</span><img src="newsletter-assets/gallery-4-torch.jpg" alt="Immediate Past President and President at Charter Night"></div>
+        <div class="gal-cap"><b>Passing the Torch</b>Immediate Past President Lion Tehemton Dalal &middot; President Lion Daara Patel</div>
+      </div>
+
+      <div class="gal-item">
+        <div class="gal-photo"><span class="gal-num">5</span><img src="newsletter-assets/gallery-5-recognition.jpg" alt="Recognition moment at Charter Night"></div>
+        <div class="gal-cap"><b>In Recognition</b>Multiple Council Chairperson Lion Feroze Katrak &middot; President Lion Daara Patel &middot; Lion Adil Bhesadia</div>
+      </div>
+
+      <div class="gal-item">
+        <div class="gal-photo">
+          <span class="gal-num">6</span>
+          <div class="gal-placeholder">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+            <span>Photograph to be supplied</span>
+          </div>
+        </div>
+        <div class="gal-cap"><b>Behind the Pages</b>PRO &amp; Bulletin Editor</div>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span>The Bulletin &middot; Golden Jubilee Year</span><span>05</span></div>
+</div>
+
+<!-- ============ PAGE 6 — BACK PAGE ============ -->
+<div class="page back">
+  <div class="page-pad">
+    <img class="back-crest" src="Byculla- 50 years Logo.png" alt="Lions Club of Byculla Golden Jubilee Crest">
+    <p class="back-line1">Half a century ago, a small group of visionaries laid the foundation of an organisation that believed kindness could change lives. Fifty years later, that belief continues to inspire every project, every volunteer and every act of service.</p>
+    <p class="back-line2">The Golden Chapter Begins.<br>The Legacy Continues.<br>The Next Fifty Years Start Now.</p>
+    <div class="back-serve">WE SERVE</div>
+    <div class="back-contact">
+      <b>Lions Club of Byculla</b> &middot; District 3231-A1 &middot; Premier Club<br>
+      Byculla, Mumbai – 400 008 &middot; +91 22 2300 XXXX<br>
+      Golden Jubilee Year &middot; 1977–2027
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

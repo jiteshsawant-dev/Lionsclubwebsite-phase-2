@@ -1,0 +1,1034 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Our Journey | Lions Club of Byculla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+
+/* â”€â”€ CENTER-LINE TIMELINE (V2) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.tl-v2{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+  background:var(--navy-deep);
+}
+
+/* Background slides */
+.tl-v2-slides{position:absolute;inset:0;}
+.tl-v2-slide{
+  position:absolute;inset:0;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.35s ease;
+}
+.tl-v2-slide.active{opacity:1;pointer-events:auto;}
+.tl-v2-bg{
+  position:absolute;inset:0;
+  background:url('images/28.avif') center/cover no-repeat;
+  filter:brightness(0.38) saturate(0.65);
+  transform:scale(1.04);
+  transition:transform 8s ease;
+}
+.tl-v2-slide.active .tl-v2-bg{transform:scale(1);}
+.tl-v2-tint{
+  position:absolute;inset:0;
+  background:var(--v2-tint,rgba(10,26,50,0.5));
+  mix-blend-mode:multiply;
+}
+
+/* Vertical axis line */
+.tl-v2-axis{
+  position:absolute;
+  left:33%;top:0;bottom:0;
+  width:1px;
+  background:rgba(255,255,255,0.18);
+  z-index:5;
+}
+
+/* Year column &ndash; left of axis */
+.tl-v2-year-col{
+  position:absolute;
+  left:0;width:33%;
+  top:0;bottom:0;
+  z-index:10;
+  overflow:visible;
+  pointer-events:none;
+}
+.tl-v2-yr{
+  position:absolute;
+  right:0;
+  top:50%;
+  display:flex;align-items:center;
+  transform:translateY(calc(-50% + var(--yoff,0px)));
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1),
+             opacity 0.25s ease;
+  pointer-events:auto;
+  cursor:pointer;
+}
+.tl-v2-yr-text{
+  font-family:var(--serif);
+  font-size:18px;
+  font-weight:400;
+  color:rgba(255,255,255,0.6);
+  line-height:1;
+  letter-spacing:0.02em;
+  padding-right:20px;
+  transition:font-size 0.5s cubic-bezier(0.4,0,0.2,1),
+             color 0.4s ease,
+             letter-spacing 0.5s ease;
+  white-space:nowrap;
+}
+.tl-v2-yr-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,0.25);
+  flex-shrink:0;
+  margin-right:-4px;/* sits on the axis line */
+  transition:all 0.4s ease;
+}
+.tl-v2-yr.v2-active .tl-v2-yr-text{
+  font-size:60px;
+  color:#fff;
+  letter-spacing:-0.03em;
+  padding-right:24px;
+}
+.tl-v2-yr.v2-active .tl-v2-yr-dot{
+  width:12px;height:12px;
+  margin-right:-6px;
+  background:var(--gold);
+  box-shadow:0 0 0 3px rgba(252,203,6,0.25);
+}
+.tl-v2-yr.v2-near .tl-v2-yr-dot{
+  background:rgba(255,255,255,0.4);
+}
+
+/* Content &ndash; right of axis */
+.tl-v2-content{
+  position:absolute;
+  left:35%;right:0;
+  top:72px;
+  padding:0 56px 0 48px;
+  z-index:10;
+  opacity:0;transform:translateY(-10px);
+  transition:opacity 0.3s 0.08s ease,transform 0.3s 0.08s ease;
+  pointer-events:none;
+}
+.tl-v2-slide.active .tl-v2-content{
+  opacity:1;transform:translateY(0);pointer-events:auto;
+}
+.tl-v2-badge{
+  font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;
+}
+.tl-v2-headline{
+  font-family:var(--serif);
+  font-size:clamp(22px,2.8vw,38px);
+  font-weight:700;color:#fff;
+  line-height:1.25;margin:0 0 16px;
+  letter-spacing:-0.02em;max-width:560px;
+}
+.tl-v2-body{
+  font-size:14px;color:rgba(255,255,255,0.58);
+  line-height:1.75;max-width:520px;margin-bottom:20px;
+}
+.tl-v2-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tl-v2-tag{
+  font-size:9.5px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;
+  padding:3px 10px;border-radius:999px;
+  background:rgba(252,203,6,0.12);color:var(--gold);
+  border:1px solid rgba(252,203,6,0.2);
+}
+
+/* Counter + progress */
+.tl-v2-counter{
+  position:absolute;bottom:28px;left:44px;z-index:20;
+  font-size:11px;font-weight:700;letter-spacing:0.12em;
+  color:rgba(255,255,255,0.35);
+}
+.tl-v2-counter strong{color:rgba(255,255,255,0.85);}
+.tl-v2-progress{
+  position:absolute;bottom:0;left:0;right:0;
+  height:3px;background:rgba(255,255,255,0.07);z-index:20;
+}
+.tl-v2-fill{height:100%;background:var(--gold);transition:width .5s ease;}
+
+/* Nav buttons */
+.tl-v2-nav{
+  position:absolute;bottom:22px;right:56px;z-index:20;
+  display:flex;gap:8px;
+}
+.tl-v2-btn{
+  width:34px;height:34px;
+  border:1px solid rgba(255,255,255,0.2);border-radius:50%;
+  background:rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  backdrop-filter:blur(6px);
+  transition:background .2s,border-color .2s;
+}
+.tl-v2-btn:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.4);}
+.tl-v2-btn svg{stroke:#fff;stroke-width:2;fill:none;}
+
+/* Section label */
+.tl-v2-label{
+  position:absolute;top:32px;left:44px;z-index:20;
+  font-size:9px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(255,255,255,0.35);
+}
+
+/* V2 Responsive */
+@media(max-width:900px){
+  .tl-v2-axis{left:36%;}
+  .tl-v2-year-col{width:36%;}
+  .tl-v2-content{left:38%;padding:0 28px 0 32px;}
+  .tl-v2-yr.v2-active .tl-v2-yr-text{font-size:52px;}
+  .tl-v2-body{display:none;}
+}
+@media(max-width:640px){
+  .tl-v2-axis{left:40%;}
+  .tl-v2-year-col{width:40%;}
+  .tl-v2-content{left:42%;padding:0 16px 0 20px;top:auto;bottom:80px;}
+  .tl-v2-yr.v2-active .tl-v2-yr-text{font-size:44px;}
+  .tl-v2-headline{font-size:clamp(16px,3.8vw,22px);}
+  .tl-v2-label{left:16px;top:20px;}
+  .tl-v2-counter{left:16px;}
+}
+@media(max-width:420px){
+  .tl-v2-axis{left:38%;}
+  .tl-v2-year-col{width:38%;}
+  .tl-v2-content{left:40%;padding:0 12px 0 14px;bottom:72px;}
+  .tl-v2-yr.v2-active .tl-v2-yr-text{font-size:34px;padding-right:16px;}
+  .tl-v2-yr-text{font-size:14px;}
+  .tl-v2-headline{font-size:clamp(15px,4.2vw,19px);margin-bottom:10px;}
+  .tl-v2-nav{right:14px;bottom:18px;}
+  .tl-v2-counter{bottom:22px;}
+}
+
+/* ── HORIZONTAL TIMELINE (H) ─────────────────────────────── */
+.tl-h{position:relative;height:100vh;overflow:hidden;background:var(--navy-deep);}
+.tl-h-slides{position:absolute;inset:0;}
+.tl-h-slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity 0.35s ease;}
+.tl-h-slide.active{opacity:1;pointer-events:auto;}
+.tl-h-bg{
+  position:absolute;inset:0;
+  background:url('images/28.avif') center/cover no-repeat;
+  transform:scale(1.06);transition:transform 8s ease;
+  filter:brightness(0.38) saturate(0.65);
+}
+.tl-h-slide.active .tl-h-bg{transform:scale(1);}
+.tl-h-tint{position:absolute;inset:0;background:var(--h-tint,rgba(12,28,55,0.55));mix-blend-mode:multiply;}
+.tl-h-label{
+  position:absolute;top:32px;left:44px;z-index:20;
+  font-size:9px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(255,255,255,0.38);
+}
+.tl-h-content{display:none;}
+/* 3-card panel */
+.tl-h-panel{
+  position:absolute;left:0;right:0;
+  top:220px;bottom:calc(30% + 40px);
+  display:flex;align-items:center;justify-content:center;
+  padding:0 28px;gap:14px;z-index:10;
+  pointer-events:none;
+}
+.tl-h-card{
+  border-radius:10px;
+  pointer-events:auto;
+  transition:opacity 0.22s ease;
+}
+.tl-h-card-side{
+  width:21%;flex-shrink:0;
+  padding:22px 20px;
+  opacity:0.35;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  cursor:pointer;
+  display:flex;align-items:center;
+  align-self:stretch;
+  overflow:hidden;
+}
+.tl-h-card-side:hover{opacity:0.55;}
+.tl-h-card-center{
+  flex:0 0 44%;align-self:stretch;
+  padding:26px 30px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.22);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  overflow-y:auto;scrollbar-width:none;
+}
+.tl-h-card-center::-webkit-scrollbar{display:none;}
+.tl-h-card.h-card-hidden{opacity:0!important;pointer-events:none;visibility:hidden;}
+.tl-h-card.h-card-fade{opacity:0;}
+.tl-h-card-side .tl-h-badge{display:none;}
+.tl-h-card-side .tl-h-body{display:none;}
+.tl-h-card-side .tl-h-tags{display:none;}
+.tl-h-card-side .tl-h-headline{
+  font-size:clamp(13px,1.3vw,17px);
+  color:rgba(255,255,255,0.65);
+  margin:0;line-height:1.35;letter-spacing:0;max-width:none;
+}
+.tl-h-badge{
+  font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;
+}
+.tl-h-headline{
+  font-family:var(--serif);font-size:clamp(20px,2.6vw,36px);
+  font-weight:700;color:#fff;line-height:1.25;margin:0 0 14px;
+  letter-spacing:-0.02em;max-width:680px;
+}
+.tl-h-body{
+  font-size:13.5px;color:rgba(255,255,255,0.58);
+  line-height:1.75;max-width:600px;margin-bottom:18px;
+}
+.tl-h-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tl-h-tag{
+  font-size:9.5px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;
+  padding:3px 10px;border-radius:999px;
+  background:rgba(252,203,6,0.13);color:var(--gold);
+  border:1px solid rgba(252,203,6,0.22);
+}
+.tl-h-axis{
+  position:absolute;left:0;right:0;top:70%;
+  height:1px;background:rgba(255,255,255,0.18);z-index:5;
+}
+.tl-h-year-row{
+  position:absolute;left:50%;top:70%;
+  z-index:10;pointer-events:none;
+}
+.tl-h-yr{
+  position:absolute;top:0;left:0;
+  transform:translateX(calc(-50% + var(--xoff,0px)));
+  display:flex;flex-direction:column;align-items:center;
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1),opacity 0.25s ease;
+  pointer-events:auto;cursor:pointer;
+}
+.tl-h-yr-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,0.3);
+  margin-top:-4px;flex-shrink:0;
+  transition:all 0.3s ease;
+}
+.tl-h-yr.h-active .tl-h-yr-dot{
+  width:13px;height:13px;margin-top:-6px;
+  background:var(--gold);box-shadow:0 0 0 3px rgba(252,203,6,0.25);
+}
+.tl-h-yr-text{
+  font-family:var(--serif);font-size:13px;font-weight:400;
+  color:rgba(255,255,255,0.6);margin-top:14px;white-space:nowrap;
+  transition:font-size 0.35s cubic-bezier(0.4,0,0.2,1),color 0.25s ease,letter-spacing 0.35s ease;
+}
+.tl-h-yr.h-active .tl-h-yr-text{
+  font-size:54px;color:#fff;letter-spacing:-0.03em;margin-top:16px;
+}
+.tl-h-nav{
+  position:absolute;top:28px;right:48px;z-index:20;display:flex;gap:6px;
+}
+.tl-h-btn{
+  width:34px;height:34px;border:1px solid rgba(255,255,255,0.22);border-radius:50%;
+  background:rgba(255,255,255,0.07);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .2s,border-color .2s;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+.tl-h-btn:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.4);}
+.tl-h-btn svg{stroke:#fff;stroke-width:2;fill:none;}
+.tl-h-counter{
+  position:absolute;bottom:28px;left:44px;z-index:20;
+  font-size:11px;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.35);
+}
+.tl-h-counter strong{color:rgba(255,255,255,0.85);}
+.tl-h-progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.08);z-index:20;}
+.tl-h-fill{height:100%;background:var(--gold);transition:width .35s ease;}
+@media(max-width:900px){
+  .tl-h-card-side{display:none;}
+  .tl-h-panel{padding:0 20px;}
+  .tl-h-yr.h-active .tl-h-yr-text{font-size:44px;}
+}
+@media(max-width:640px){
+  .tl-h-panel{padding:0 16px;top:52px;}
+  .tl-h-yr.h-active .tl-h-yr-text{font-size:36px;}
+  .tl-h-label{left:16px;top:20px;}
+  .tl-h-counter{left:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- â”€â”€ CENTER-LINE TIMELINE (V2) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<section class="tl-v2" id="tl-v2">
+
+  <div class="tl-v2-label" aria-hidden="true">Our Journey</div>
+
+  <!-- Background slides -->
+  <div class="tl-v2-slides">
+
+    <div class="tl-v2-slide active" data-index="0">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(2,20,12,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 1 &middot; Roots &amp; founding &middot; 1977</div>
+        <h2 class="tl-v2-headline">Ten Lions. One Dream. A Club That Changed Mumbai.</h2>
+        <p class="tl-v2-body">A small but determined band of Lions broke away from Lions Club of Bombay Central to plant a new seed in the heart of Mumbai. They were ten in number: <strong>Lion Maneck Dastur</strong>, <strong>Lion Kersi Commissariat</strong>, <strong>Lion Pervez Buhariwalla</strong>, <strong>Lion Homi Divwala</strong>, <strong>Lion Phiroze Javeri</strong>, <strong>Lion Soli Kutar</strong>, <strong>Lion Cowas Palia</strong>, <strong>Lion Dorab Tata</strong>, <strong>Lion Shabbir Babrawalla</strong>, and <strong>Lion Kaizer Vasi</strong>. At just 29, Lion Maneck Dastur became the youngest Charter President of any Lions Club in the world. Their founding promise: fellowship, service, and able administration, still guides every Lion who wears this badge today.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Charter Night</span><span class="tl-v2-tag">Founded 1977</span><span class="tl-v2-tag">Ten Founders</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="1">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(4,24,16,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 1 &middot; Roots &amp; founding &middot; 1977&ndash;78</div>
+        <h2 class="tl-v2-headline">The first roar &mdash; Drug Bank launched.</h2>
+        <p class="tl-v2-body">In its very first year, the Club launched the Drug Bank, a brainchild of Lion Baji Nariman Maloo, supported by Late Lion Dr. Rustom Hakim. Within months it was operating with the efficiency of a nationalised bank, providing medicines to those who could not afford them. The habit of winning was also formed in this first year.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Founding project</span><span class="tl-v2-tag">Fellowship</span><span class="tl-v2-tag">Service</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="2">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(6,26,18,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 1 &middot; Roots &amp; founding &middot; 1978&ndash;79</div>
+        <h2 class="tl-v2-headline">104 projects in one year.</h2>
+        <p class="tl-v2-body">Under President Late Lion Homi P. Tavadia, the Club executed a record 104 service projects in a single Lionistic year â€” proof that no act of kindness is too small. A mini fair at Asha Dham brought joy to underprivileged children. His belief: "It is the small projects that really help small people."</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Record projects</span><span class="tl-v2-tag">Community care</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="3">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(8,28,20,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 1 &middot; Roots &amp; founding &middot; 1979&ndash;80</div>
+        <h2 class="tl-v2-headline">Saving lives at the Ganpati immersion.</h2>
+        <p class="tl-v2-body">President Late Lion Darius Gotla donated a Water Safety Patrol project to the Mumbai Police, a gesture that has been saving lives at the Ganpati immersion ceremony every year since.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Public safety</span><span class="tl-v2-tag">Community impact</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="4">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(18,10,4,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 2 &middot; Growing deeper &middot; 1980&ndash;81</div>
+        <h2 class="tl-v2-headline">The warmth of jute on a winter night.</h2>
+        <p class="tl-v2-body">Lions members went out after dinner meetings into the streets of Byculla in December and January, quietly covering pavement dwellers with raw jute sheets. No cameras. No press. Just pure service. This remains one of the most remembered acts of humanness in the Club's history.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Grassroots service</span><span class="tl-v2-tag">Human dignity</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="5">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(24,14,6,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 2 &middot; Growing deeper &middot; 1993&ndash;94</div>
+        <h2 class="tl-v2-headline">Rebuilding lives after Latur.</h2>
+        <p class="tl-v2-body">When the devastating earthquake struck Latur, the Club didn't just donate â€” it built. Thirteen tenements were constructed at Lions Village in Kawtha for earthquake victims. &#8377;7,80,000 was spent in service that year alone.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Disaster relief</span><span class="tl-v2-tag">Housing</span><span class="tl-v2-tag">Latur earthquake</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="6">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(28,16,6,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 2 &middot; Growing deeper &middot; 1994&ndash;95</div>
+        <h2 class="tl-v2-headline">Best president. Best secretary. Best docket.</h2>
+        <p class="tl-v2-body">Under President Lion Jimmy Firoze Khan, the Club swept three of the district's top honours in a single year. The Club adopted 16 children at the Happy Home and School for the Blind and sponsored open heart surgery for a patient in need.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Triple award year</span><span class="tl-v2-tag">Healthcare</span><span class="tl-v2-tag">Education</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="7">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(30,18,8,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 2 &middot; Growing deeper &middot; 1995&ndash;96</div>
+        <h2 class="tl-v2-headline">History written at the multiple.</h2>
+        <p class="tl-v2-body">The Club won the prestigious Late Lion Minoo J.D. Engineer Trophy for Best Secretary of the Multiple District and also won the Lions Quiz at the Multiple level. &#8377;9 Lakhs spent on service projects in one year.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Multiple district award</span><span class="tl-v2-tag">Excellence</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="8">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(10,28,48,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 3 &middot; Scaling impact &middot; 2000&ndash;01</div>
+        <h2 class="tl-v2-headline">A record that stands alone.</h2>
+        <p class="tl-v2-body">Lion Aspi Cooper became Best Secretary of the entire Multiple District 323 â€” the third time the Club won this honour. No other club in the multiple has won it three times. A benchmark of administrative excellence that defines the Byculla spirit.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Multiple district</span><span class="tl-v2-tag">Minoo J.D. Engineer Trophy</span><span class="tl-v2-tag">Third win</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="9">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(16,32,52,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 3 &middot; Scaling impact &middot; 2002&ndash;03</div>
+        <h2 class="tl-v2-headline">Best club in the district.</h2>
+        <p class="tl-v2-body">President Lion Aspi Cooper led the Club to win the Best President Award and Best Administered Club Award, completing &#8377;7 Lakhs in service projects covering eye care, education for the deaf, and support for the blind.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Best club award</span><span class="tl-v2-tag">Eye care</span><span class="tl-v2-tag">Education</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="10">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(14,30,50,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 3 &middot; Scaling impact &middot; 2003&ndash;04</div>
+        <h2 class="tl-v2-headline">&#8377;15.50 lakhs &mdash; a club record.</h2>
+        <p class="tl-v2-body">President Lion Eruch Dossabhoy Mistry oversaw the highest service project expenditure in the Club's history at that time. The landmark achievement: handing over an Outreach Mobile Van, funded by Lions Club International Foundation's first-ever grant to the Club, to B.Y.L. Nair Hospital, valued at &#8377;8.62 Lakhs.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">LCIF grant</span><span class="tl-v2-tag">Mobile healthcare</span><span class="tl-v2-tag">Milestone</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="11">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(20,35,55,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 3 &middot; Scaling impact &middot; 2004&ndash;05</div>
+        <h2 class="tl-v2-headline">From Mumbai to Chennai &mdash; serving tsunami victims.</h2>
+        <p class="tl-v2-body">When the 2004 tsunami devastated the coast, President Lion Kobad Doodhmal led a team to Chennai to distribute essential items, twinning with Lions Club of Chennai. The Club also donated a generator to B.Y.L. Nair Hospital.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Tsunami relief</span><span class="tl-v2-tag">National outreach</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="12">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(10,32,50,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 4 &middot; Deepening legacy &middot; 2013&ndash;14</div>
+        <h2 class="tl-v2-headline">Vision and childhood cancer become our calling.</h2>
+        <p class="tl-v2-body">The Club made vision and childhood cancer its twin pillars of priority. Probe accessories, Rose Trial Lens, ophthalmic instruments, and medical equipment worth lakhs were donated to hospitals, led by Project Champions Lion Sorab Bulsara and Lion Percy Kaikobad.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Childhood cancer</span><span class="tl-v2-tag">Vision</span><span class="tl-v2-tag">BYL Nair Hospital</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="13">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(12,35,55,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 4 &middot; Deepening legacy &middot; 2023&ndash;24</div>
+        <h2 class="tl-v2-headline">&#8377;46 lakhs in service. 261 units of blood. 90 members strong.</h2>
+        <p class="tl-v2-body">President Lion Adil C. Bhesadia, PMJF, led a transformational year. Projects worth &#8377;46 Lakhs were executed across Mumbai, Navsari, and Nashik. A mega project of &#8377;27 Lakhs at Dharampur's Shrimad Rajchandra Hospital benefitted thousands of premature Adivasi babies. Membership grew from 70 to 90 Lions.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">Record service</span><span class="tl-v2-tag">Blood donation</span><span class="tl-v2-tag">Adivasi healthcare</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="14">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(8,24,48,0.5)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Era 4 &middot; Deepening legacy &middot; 2024&ndash;25</div>
+        <h2 class="tl-v2-headline">Say less, do more.</h2>
+        <p class="tl-v2-body">Under President Lion Adil Mistry, the Club entered its most purposeful year yet, with nearly 95 members and a focus on childhood cancer, diabetes, hunger, education, and animal welfare. A "Do-Good Cookbook" was created by Lion Ladies, with proceeds directed to paediatric cancer and epilepsy care.</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">95 members</span><span class="tl-v2-tag">Childhood cancer</span><span class="tl-v2-tag">Do-Good Cookbook</span></div>
+      </div>
+    </div>
+
+    <div class="tl-v2-slide" data-index="15">
+      <div class="tl-v2-bg"></div>
+      <div class="tl-v2-tint" style="--v2-tint:rgba(80,60,0,0.45)"></div>
+      <div class="tl-v2-content">
+        <div class="tl-v2-badge">Golden Jubilee Milestone &middot; 2027</div>
+        <h2 class="tl-v2-headline">50 years of service. One unbroken promise.</h2>
+        <p class="tl-v2-body">As the Lions Club of Byculla enters its Golden Jubilee year, nearly 100 Lions stand together, carrying the same spirit of fellowship, service, and able administration that Lion Maneck Dastur and 8 founding members ignited in 1977. The journey continues. The promise remains.</p>
+        <p class="tl-v2-body" style="color:var(--gold);margin-top:10px;font-size:13px;">Golden Jubilee Celebration &middot; Sunday, 19th April 2026 &middot; Hotel West End, Mumbai</p>
+        <div class="tl-v2-tags"><span class="tl-v2-tag">50 Years</span><span class="tl-v2-tag">Golden Jubilee</span><span class="tl-v2-tag">One Mission</span></div>
+      </div>
+    </div>
+
+  </div><!-- /tl-v2-slides -->
+
+  <!-- Vertical axis -->
+  <div class="tl-v2-axis"></div>
+
+  <!-- Year column -->
+  <div class="tl-v2-year-col" id="v2YearCol">
+    <div class="tl-v2-yr v2-active" data-index="0"><span class="tl-v2-yr-text">1977</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="1"><span class="tl-v2-yr-text">1977&ndash;78</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="2"><span class="tl-v2-yr-text">1978&ndash;79</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="3"><span class="tl-v2-yr-text">1979&ndash;80</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="4"><span class="tl-v2-yr-text">1980&ndash;81</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="5"><span class="tl-v2-yr-text">1993&ndash;94</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="6"><span class="tl-v2-yr-text">1994&ndash;95</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="7"><span class="tl-v2-yr-text">1995&ndash;96</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="8"><span class="tl-v2-yr-text">2000&ndash;01</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="9"><span class="tl-v2-yr-text">2002&ndash;03</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="10"><span class="tl-v2-yr-text">2003&ndash;04</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="11"><span class="tl-v2-yr-text">2004&ndash;05</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="12"><span class="tl-v2-yr-text">2013&ndash;14</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="13"><span class="tl-v2-yr-text">2023&ndash;24</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="14"><span class="tl-v2-yr-text">2024&ndash;25</span><span class="tl-v2-yr-dot"></span></div>
+    <div class="tl-v2-yr" data-index="15"><span class="tl-v2-yr-text">2027</span><span class="tl-v2-yr-dot"></span></div>
+  </div>
+
+  <!-- Counter -->
+  <div class="tl-v2-counter" aria-live="polite">
+    <strong id="v2Curr">01</strong> / <span>16</span>
+  </div>
+
+  <!-- Nav buttons -->
+  <div class="tl-v2-nav">
+    <button class="tl-v2-btn" id="v2Prev" aria-label="Previous">
+      <svg width="14" height="14" viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>
+    </button>
+    <button class="tl-v2-btn" id="v2Next" aria-label="Next">
+      <svg width="14" height="14" viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>
+    </button>
+  </div>
+
+  <!-- Progress -->
+  <div class="tl-v2-progress">
+    <div class="tl-v2-fill" id="v2Fill" style="width:6.67%"></div>
+  </div>
+
+</section>
+
+<!-- ── HORIZONTAL TIMELINE (H) ──────────────────────────────── -->
+<section class="tl-h" id="tl-h">
+
+  <div class="tl-h-label" aria-hidden="true">Our Journey</div>
+
+  <div class="tl-h-slides">
+
+    <div class="tl-h-slide active" data-index="0">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(2,20,12,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 1 &middot; Roots &amp; founding &middot; 1977</div>
+        <h2 class="tl-h-headline">Ten Lions. One Dream. A Club That Changed Mumbai.</h2>
+        <p class="tl-h-body">A small but determined band of Lions broke away from Lions Club of Bombay Central to plant a new seed in the heart of Mumbai. They were ten in number: <strong>Lion Maneck Dastur</strong>, <strong>Lion Kersi Commissariat</strong>, <strong>Lion Pervez Buhariwalla</strong>, <strong>Lion Homi Divwala</strong>, <strong>Lion Phiroze Javeri</strong>, <strong>Lion Soli Kutar</strong>, <strong>Lion Cowas Palia</strong>, <strong>Lion Dorab Tata</strong>, <strong>Lion Shabbir Babrawalla</strong>, and <strong>Lion Kaizer Vasi</strong>. At just 29, Lion Maneck Dastur became the youngest Charter President of any Lions Club in the world.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Charter Night</span><span class="tl-h-tag">Founded 1977</span><span class="tl-h-tag">Ten Founders</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="1">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(4,24,16,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 1 &middot; Roots &amp; founding &middot; 1977&ndash;78</div>
+        <h2 class="tl-h-headline">The first roar &mdash; Drug Bank launched.</h2>
+        <p class="tl-h-body">In its very first year, the Club launched the Drug Bank, a brainchild of Lion Baji Nariman Maloo, supported by Late Lion Dr. Rustom Hakim. Within months it was operating with the efficiency of a nationalised bank, providing medicines to those who could not afford them. The habit of winning was also formed in this first year.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Founding project</span><span class="tl-h-tag">Fellowship</span><span class="tl-h-tag">Service</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="2">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(6,26,18,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 1 &middot; Roots &amp; founding &middot; 1978&ndash;79</div>
+        <h2 class="tl-h-headline">104 projects in one year.</h2>
+        <p class="tl-h-body">Under President Late Lion Homi P. Tavadia, the Club executed a record 104 service projects in a single Lionistic year — proof that no act of kindness is too small. A mini fair at Asha Dham brought joy to underprivileged children. His belief: "It is the small projects that really help small people."</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Record projects</span><span class="tl-h-tag">Community care</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="3">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(8,28,20,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 1 &middot; Roots &amp; founding &middot; 1979&ndash;80</div>
+        <h2 class="tl-h-headline">Saving lives at the Ganpati immersion.</h2>
+        <p class="tl-h-body">President Late Lion Darius Gotla donated a Water Safety Patrol project to the Mumbai Police, a gesture that has been saving lives at the Ganpati immersion ceremony every year since.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Public safety</span><span class="tl-h-tag">Community impact</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="4">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(18,10,4,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 2 &middot; Growing deeper &middot; 1980&ndash;81</div>
+        <h2 class="tl-h-headline">The warmth of jute on a winter night.</h2>
+        <p class="tl-h-body">Lions members went out after dinner meetings into the streets of Byculla in December and January, quietly covering pavement dwellers with raw jute sheets. No cameras. No press. Just pure service.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Grassroots service</span><span class="tl-h-tag">Human dignity</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="5">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(24,14,6,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 2 &middot; Growing deeper &middot; 1993&ndash;94</div>
+        <h2 class="tl-h-headline">Rebuilding lives after Latur.</h2>
+        <p class="tl-h-body">When the devastating earthquake struck Latur, the Club didn't just donate — it built. Thirteen tenements were constructed at Lions Village in Kawtha for earthquake victims. &#8377;7,80,000 was spent in service that year alone.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Disaster relief</span><span class="tl-h-tag">Housing</span><span class="tl-h-tag">Latur earthquake</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="6">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(28,16,6,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 2 &middot; Growing deeper &middot; 1994&ndash;95</div>
+        <h2 class="tl-h-headline">Best president. Best secretary. Best docket.</h2>
+        <p class="tl-h-body">Under President Lion Jimmy Firoze Khan, the Club swept three of the district's top honours in a single year. The Club adopted 16 children at the Happy Home and School for the Blind and sponsored open heart surgery for a patient in need.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Triple award year</span><span class="tl-h-tag">Healthcare</span><span class="tl-h-tag">Education</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="7">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(30,18,8,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 2 &middot; Growing deeper &middot; 1995&ndash;96</div>
+        <h2 class="tl-h-headline">History written at the multiple.</h2>
+        <p class="tl-h-body">The Club won the prestigious Late Lion Minoo J.D. Engineer Trophy for Best Secretary of the Multiple District and also won the Lions Quiz at the Multiple level. &#8377;9 Lakhs spent on service projects in one year.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Multiple district award</span><span class="tl-h-tag">Excellence</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="8">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(10,28,48,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 3 &middot; Scaling impact &middot; 2000&ndash;01</div>
+        <h2 class="tl-h-headline">A record that stands alone.</h2>
+        <p class="tl-h-body">Lion Aspi Cooper became Best Secretary of the entire Multiple District 323 — the third time the Club won this honour. No other club in the multiple has won it three times. A benchmark of administrative excellence that defines the Byculla spirit.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Multiple district</span><span class="tl-h-tag">Minoo J.D. Engineer Trophy</span><span class="tl-h-tag">Third win</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="9">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(16,32,52,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 3 &middot; Scaling impact &middot; 2002&ndash;03</div>
+        <h2 class="tl-h-headline">Best club in the district.</h2>
+        <p class="tl-h-body">President Lion Aspi Cooper led the Club to win the Best President Award and Best Administered Club Award, completing &#8377;7 Lakhs in service projects covering eye care, education for the deaf, and support for the blind.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Best club award</span><span class="tl-h-tag">Eye care</span><span class="tl-h-tag">Education</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="10">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(14,30,50,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 3 &middot; Scaling impact &middot; 2003&ndash;04</div>
+        <h2 class="tl-h-headline">&#8377;15.50 lakhs &mdash; a club record.</h2>
+        <p class="tl-h-body">President Lion Eruch Dossabhoy Mistry oversaw the highest service project expenditure in the Club's history at that time. The landmark: handing over an Outreach Mobile Van, funded by Lions Club International Foundation's first-ever grant to the Club, to B.Y.L. Nair Hospital at &#8377;8.62 Lakhs.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">LCIF grant</span><span class="tl-h-tag">Mobile healthcare</span><span class="tl-h-tag">Milestone</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="11">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(20,35,55,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 3 &middot; Scaling impact &middot; 2004&ndash;05</div>
+        <h2 class="tl-h-headline">From Mumbai to Chennai &mdash; serving tsunami victims.</h2>
+        <p class="tl-h-body">When the 2004 tsunami devastated the coast, President Lion Kobad Doodhmal led a team to Chennai to distribute essential items, twinning with Lions Club of Chennai. The Club also donated a generator to B.Y.L. Nair Hospital.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Tsunami relief</span><span class="tl-h-tag">National outreach</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="12">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(10,32,50,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 4 &middot; Deepening legacy &middot; 2013&ndash;14</div>
+        <h2 class="tl-h-headline">Vision and childhood cancer become our calling.</h2>
+        <p class="tl-h-body">The Club made vision and childhood cancer its twin pillars of priority. Probe accessories, Rose Trial Lens, ophthalmic instruments, and medical equipment worth lakhs were donated to hospitals, led by Project Champions Lion Sorab Bulsara and Lion Percy Kaikobad.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Childhood cancer</span><span class="tl-h-tag">Vision</span><span class="tl-h-tag">BYL Nair Hospital</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="13">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(12,35,55,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 4 &middot; Deepening legacy &middot; 2023&ndash;24</div>
+        <h2 class="tl-h-headline">&#8377;46 lakhs in service. 261 units of blood. 90 members strong.</h2>
+        <p class="tl-h-body">President Lion Adil C. Bhesadia, PMJF, led a transformational year. Projects worth &#8377;46 Lakhs were executed across Mumbai, Navsari, and Nashik. A mega project of &#8377;27 Lakhs at Dharampur's Shrimad Rajchandra Hospital benefitted thousands of premature Adivasi babies.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">Record service</span><span class="tl-h-tag">Blood donation</span><span class="tl-h-tag">Adivasi healthcare</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="14">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(8,24,48,0.5)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Era 4 &middot; Deepening legacy &middot; 2024&ndash;25</div>
+        <h2 class="tl-h-headline">Say less, do more.</h2>
+        <p class="tl-h-body">Under President Lion Adil Mistry, the Club entered its most purposeful year yet, with nearly 95 members and a focus on childhood cancer, diabetes, hunger, education, and animal welfare. A "Do-Good Cookbook" was created by Lion Ladies, with proceeds directed to paediatric cancer and epilepsy care.</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">95 members</span><span class="tl-h-tag">Childhood cancer</span><span class="tl-h-tag">Do-Good Cookbook</span></div>
+      </div>
+    </div>
+
+    <div class="tl-h-slide" data-index="15">
+      <div class="tl-h-bg"></div>
+      <div class="tl-h-tint" style="--h-tint:rgba(80,60,0,0.45)"></div>
+      <div class="tl-h-content">
+        <div class="tl-h-badge">Golden Jubilee Milestone &middot; 2027</div>
+        <h2 class="tl-h-headline">50 years of service. One unbroken promise.</h2>
+        <p class="tl-h-body">As the Lions Club of Byculla enters its Golden Jubilee year, nearly 100 Lions stand together, carrying the same spirit of fellowship, service, and able administration that Lion Maneck Dastur and 8 founding members ignited in 1977. The journey continues. The promise remains.</p>
+        <p class="tl-h-body" style="color:var(--gold);margin-top:8px;font-size:13px;">Golden Jubilee Celebration &middot; Sunday, 19th April 2026 &middot; Hotel West End, Mumbai</p>
+        <div class="tl-h-tags"><span class="tl-h-tag">50 Years</span><span class="tl-h-tag">Golden Jubilee</span><span class="tl-h-tag">One Mission</span></div>
+      </div>
+    </div>
+
+  </div><!-- /tl-h-slides -->
+
+  <!-- 3-card panel -->
+  <div class="tl-h-panel" id="thPanel">
+    <div class="tl-h-card tl-h-card-side h-card-hidden" id="thCardPrev"></div>
+    <div class="tl-h-card tl-h-card-center" id="thCardActive"></div>
+    <div class="tl-h-card tl-h-card-side" id="thCardNext"></div>
+  </div>
+
+  <!-- Axis -->
+  <div class="tl-h-axis"></div>
+
+  <!-- Year row -->
+  <div class="tl-h-year-row" id="thYearRow">
+    <div class="tl-h-yr h-active" data-index="0"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">1977</span></div>
+    <div class="tl-h-yr" data-index="1"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">1977&ndash;78</span></div>
+    <div class="tl-h-yr" data-index="2"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">1978&ndash;79</span></div>
+    <div class="tl-h-yr" data-index="3"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">1979&ndash;80</span></div>
+    <div class="tl-h-yr" data-index="4"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">1980&ndash;81</span></div>
+    <div class="tl-h-yr" data-index="5"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">1993&ndash;94</span></div>
+    <div class="tl-h-yr" data-index="6"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">1994&ndash;95</span></div>
+    <div class="tl-h-yr" data-index="7"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">1995&ndash;96</span></div>
+    <div class="tl-h-yr" data-index="8"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">2000&ndash;01</span></div>
+    <div class="tl-h-yr" data-index="9"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">2002&ndash;03</span></div>
+    <div class="tl-h-yr" data-index="10"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">2003&ndash;04</span></div>
+    <div class="tl-h-yr" data-index="11"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">2004&ndash;05</span></div>
+    <div class="tl-h-yr" data-index="12"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">2013&ndash;14</span></div>
+    <div class="tl-h-yr" data-index="13"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">2023&ndash;24</span></div>
+    <div class="tl-h-yr" data-index="14"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">2024&ndash;25</span></div>
+    <div class="tl-h-yr" data-index="15"><span class="tl-h-yr-dot"></span><span class="tl-h-yr-text">2027</span></div>
+  </div>
+
+  <!-- Counter -->
+  <div class="tl-h-counter" aria-live="polite">
+    <strong id="thCurr">01</strong> / <span>16</span>
+  </div>
+
+  <!-- Nav -->
+  <div class="tl-h-nav">
+    <button class="tl-h-btn" id="thPrev" aria-label="Previous">
+      <svg width="14" height="14" viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>
+    </button>
+    <button class="tl-h-btn" id="thNext" aria-label="Next">
+      <svg width="14" height="14" viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>
+    </button>
+  </div>
+
+  <!-- Progress -->
+  <div class="tl-h-progress">
+    <div class="tl-h-fill" id="thFill" style="width:6.25%"></div>
+  </div>
+
+</section>
+
+<script>
+(function(){
+  var TOTAL = 16;
+  /* â”€â”€â”€ SECTION 2: Center-line (V2) â”€â”€â”€ */
+  (function(){
+    var current  = 0;
+    var locked   = false;
+    var slides   = document.querySelectorAll('.tl-v2-slide');
+    var yrItems  = document.querySelectorAll('.tl-v2-yr');
+    var currEl   = document.getElementById('v2Curr');
+    var fillEl   = document.getElementById('v2Fill');
+    var section  = document.querySelector('.tl-v2');
+
+    /* Vertical offsets (px from center) for items at distance 0,1,2,3,4+ */
+    var YOFF = [0, 130, 215, 285, 345, 395];
+
+    function pad(n){ return n < 10 ? '0'+n : ''+n; }
+
+    function layout(cur){
+      yrItems.forEach(function(item, i){
+        var dist    = i - cur;
+        var absDist = Math.abs(dist);
+        var sign    = dist >= 0 ? 1 : -1;
+        var yOff    = sign * YOFF[Math.min(absDist, YOFF.length - 1)];
+        item.style.setProperty('--yoff', yOff + 'px');
+        item.classList.toggle('v2-active', dist === 0);
+        item.classList.toggle('v2-near',   absDist === 1);
+        item.style.opacity = absDist === 0 ? '1'
+                           : absDist === 1 ? '0.7'
+                           : absDist === 2 ? '0.4'
+                           : '0';
+        item.style.pointerEvents = absDist <= 2 ? 'auto' : 'none';
+      });
+    }
+
+    function goTo(idx){
+      if(idx === current) return;
+      slides[current].classList.remove('active');
+      current = (idx + TOTAL) % TOTAL;
+      slides[current].classList.add('active');
+      currEl.textContent = pad(current + 1);
+      fillEl.style.width = ((current + 1) / TOTAL * 100) + '%';
+      layout(current);
+    }
+
+    /* Initial layout */
+    layout(0);
+
+    section.addEventListener('wheel', function(e){
+      /* Right side (>70% viewport width) — let the page scroll naturally */
+      if(e.clientX > window.innerWidth * 0.70) return;
+      if(e.deltaY > 0 && current === TOTAL - 1) return;
+      if(e.deltaY < 0 && current === 0) return;
+      e.preventDefault();
+      if(locked) return;
+      locked = true;
+      setTimeout(function(){ locked = false; }, 420);
+      goTo(e.deltaY > 0 ? current + 1 : current - 1);
+    }, { passive: false });
+
+    document.getElementById('v2Prev').addEventListener('click', function(){ goTo(current - 1); });
+    document.getElementById('v2Next').addEventListener('click', function(){ goTo(current + 1); });
+
+    yrItems.forEach(function(item){
+      item.addEventListener('click', function(){
+        goTo(parseInt(this.dataset.index, 10));
+      });
+    });
+
+    var tx = 0;
+    section.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; }, {passive:true});
+    section.addEventListener('touchend', function(e){
+      var dx = e.changedTouches[0].clientX - tx;
+      if(Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+    }, {passive:true});
+
+    /* Keyboard: only when v2 section is in view */
+    document.addEventListener('keydown', function(e){
+      var rect = section.getBoundingClientRect();
+      if(rect.top > window.innerHeight || rect.bottom < 0) return;
+      if(e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  goTo(current - 1);
+      if(e.key === 'ArrowDown' || e.key === 'ArrowRight') goTo(current + 1);
+    });
+  })();
+
+  /* ─── SECTION 3: Horizontal (H) ─── */
+  (function(){
+    var current    = 0;
+    var locked     = false;
+    var slides     = document.querySelectorAll('.tl-h-slide');
+    var yrItems    = document.querySelectorAll('.tl-h-yr');
+    var currEl     = document.getElementById('thCurr');
+    var fillEl     = document.getElementById('thFill');
+    var section    = document.querySelector('.tl-h');
+    var contents   = document.querySelectorAll('.tl-h-content');
+    var cardPrev   = document.getElementById('thCardPrev');
+    var cardCenter = document.getElementById('thCardActive');
+    var cardNext   = document.getElementById('thCardNext');
+
+    /* Horizontal offsets (px from center) for items at distance 0,1,2,3,4+ */
+    var XOFF = [0, 210, 370, 500, 610, 700];
+
+    function fillCard(card, idx, isCenter){
+      if(idx < 0 || idx >= TOTAL){
+        card.classList.add('h-card-hidden');
+        return;
+      }
+      card.classList.remove('h-card-hidden');
+      var src = contents[idx];
+      if(isCenter){
+        card.innerHTML = src.innerHTML;
+      } else {
+        var badge = src.querySelector('.tl-h-badge');
+        var hl    = src.querySelector('.tl-h-headline');
+        card.innerHTML = (badge ? badge.outerHTML : '') + (hl ? hl.outerHTML : '');
+      }
+    }
+
+    function updateCards(cur){
+      fillCard(cardPrev,   cur - 1, false);
+      fillCard(cardCenter, cur,     true);
+      fillCard(cardNext,   cur + 1, false);
+    }
+
+    function pad(n){ return n < 10 ? '0'+n : ''+n; }
+
+    function layout(cur){
+      yrItems.forEach(function(item, i){
+        var dist    = i - cur;
+        var absDist = Math.abs(dist);
+        var sign    = dist >= 0 ? 1 : -1;
+        var xOff    = sign * XOFF[Math.min(absDist, XOFF.length - 1)];
+        item.style.setProperty('--xoff', xOff + 'px');
+        item.classList.toggle('h-active', dist === 0);
+        item.style.opacity = absDist === 0 ? '1'
+                           : absDist === 1 ? '0.7'
+                           : absDist === 2 ? '0.4'
+                           : '0';
+        item.style.pointerEvents = absDist <= 2 ? 'auto' : 'none';
+      });
+    }
+
+    function goTo(idx){
+      if(idx === current) return;
+      [cardPrev, cardCenter, cardNext].forEach(function(c){ c.classList.add('h-card-fade'); });
+      slides[current].classList.remove('active');
+      current = (idx + TOTAL) % TOTAL;
+      slides[current].classList.add('active');
+      currEl.textContent = pad(current + 1);
+      fillEl.style.width = ((current + 1) / TOTAL * 100) + '%';
+      layout(current);
+      setTimeout(function(){
+        updateCards(current);
+        [cardPrev, cardCenter, cardNext].forEach(function(c){ c.classList.remove('h-card-fade'); });
+      }, 180);
+    }
+
+    layout(0);
+    updateCards(0);
+
+    section.addEventListener('wheel', function(e){
+      /* Right side (>70% viewport width) — let the page scroll naturally */
+      if(e.clientX > window.innerWidth * 0.70) return;
+      if(e.deltaY > 0 && current === TOTAL - 1) return;
+      if(e.deltaY < 0 && current === 0) return;
+      e.preventDefault();
+      if(locked) return;
+      locked = true;
+      setTimeout(function(){ locked = false; }, 420);
+      goTo(e.deltaY > 0 ? current + 1 : current - 1);
+    }, { passive: false });
+
+    document.getElementById('thPrev').addEventListener('click', function(){ goTo(current - 1); });
+    document.getElementById('thNext').addEventListener('click', function(){ goTo(current + 1); });
+
+    yrItems.forEach(function(item){
+      item.addEventListener('click', function(){
+        goTo(parseInt(this.dataset.index, 10));
+      });
+    });
+
+    cardPrev.addEventListener('click', function(){ goTo(current - 1); });
+    cardNext.addEventListener('click', function(){ goTo(current + 1); });
+
+    var tx = 0;
+    section.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; }, {passive:true});
+    section.addEventListener('touchend', function(e){
+      var dx = e.changedTouches[0].clientX - tx;
+      if(Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+    }, {passive:true});
+
+    document.addEventListener('keydown', function(e){
+      var rect = section.getBoundingClientRect();
+      if(rect.top > window.innerHeight || rect.bottom < 0) return;
+      if(e.key === 'ArrowLeft'  || e.key === 'ArrowUp')    goTo(current - 1);
+      if(e.key === 'ArrowRight' || e.key === 'ArrowDown')  goTo(current + 1);
+    });
+  })();
+
+})();
+</script>
+</body>
+</html>

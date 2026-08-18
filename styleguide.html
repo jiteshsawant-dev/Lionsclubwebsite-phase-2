@@ -1,0 +1,1277 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Style Guide | Lions Club of Byculla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<!-- Load the SAME cascade every production page loads, in the SAME order.
+     styles.css defines tokens + base components; light-redesign.css overrides
+     many of them with !important and is the final authority on anything it
+     touches. If the guide loads only styles.css it documents a layer that
+     production always overrides — which is exactly how this file went stale. -->
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/light-redesign.css">
+<style>
+/* ── STYLE GUIDE CHROME ONLY ── all component colors come from styles.css tokens */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); background: #F5F4F1; color: var(--ink); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+.sg-layout { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+
+/* SIDEBAR */
+.sg-sidebar {
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  background: var(--navy-deep); border-right: 1px solid rgba(255,255,255,0.08);
+}
+.sg-sidebar-head { padding: 28px 20px 18px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sg-brand { font-family: var(--serif); font-size: 13px; font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 8px; }
+.sg-version { font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+.sg-nav { padding: 12px 0 40px; }
+.sg-nav-group { margin-bottom: 2px; }
+.sg-nav-group-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.28); font-weight: 700; padding: 14px 20px 5px; }
+.sg-nav a { display: block; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.6); padding: 7px 20px; border-left: 2px solid transparent; transition: color .15s, background .15s; }
+.sg-nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.sg-nav a.active { color: var(--gold); border-left-color: var(--gold); background: rgba(252,203,6,0.07); }
+
+/* HERO */
+.sg-hero { background: var(--navy-deep); padding: 64px 0 52px; position: relative; overflow: hidden; }
+.sg-hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 100% at 100% 50%, rgba(252,203,6,0.1) 0%, transparent 60%); pointer-events: none; }
+.sg-wrap { max-width: 1100px; margin: 0 auto; padding: 0 64px; position: relative; z-index: 1; }
+.sg-hero-eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; font-family: var(--serif); margin-bottom: 12px; }
+.sg-hero h1 { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 14px; letter-spacing: -0.02em; }
+.sg-hero h1 em { color: inherit; font-style: normal; }
+.sg-hero p { font-size: 15px; color: rgba(255,255,255,0.55); max-width: 500px; line-height: 1.65; }
+.sg-hero-strip { display: flex; align-items: center; gap: 0; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); }
+.sg-hero-stat { padding: 0 28px 0 0; margin: 0 28px 0 0; border-right: 1px solid rgba(255,255,255,0.1); }
+.sg-hero-stat:last-child { border-right: none; }
+.sg-hero-stat .v { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--gold); line-height: 1; }
+.sg-hero-stat .l { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-top: 5px; font-weight: 600; }
+
+/* MAIN */
+/* min-width:0 lets the 1fr track shrink below its content's min-content width,
+   so a wide table or code block scrolls internally instead of overflowing the page. */
+.sg-main { padding: 56px 64px 120px; min-width: 0; }
+
+/* SECTION */
+.sg-section { margin-bottom: 80px; padding-bottom: 72px; border-bottom: 1px solid var(--rule); }
+.sg-section:last-child { border-bottom: none; }
+.sg-section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 36px; }
+.sg-section-title { font-family: var(--serif); font-size: 21px; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
+.sg-badge { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; padding: 3px 9px; border-radius: var(--radius-sm); background: rgba(16,44,87,0.06); color: var(--muted); }
+
+/* CANVAS */
+.sg-canvas { background: #ffffff; border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 20px; }
+.sg-canvas--dark { background: var(--navy-deep); border-color: rgba(255,255,255,0.1); }
+.sg-canvas--paper { background: var(--paper); }
+.sg-canvas--flex { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 24px; }
+.sg-canvas--grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.sg-canvas--grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.sg-canvas--grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+/* SPEC LINE */
+.sg-spec { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+.sg-spec-name { font-family: var(--serif); font-size: 13px; font-weight: 600; color: var(--navy); }
+.sg-spec-meta { font-family: 'Courier New', monospace; font-size: 11px; color: var(--muted); }
+.sg-divider { border: none; border-top: 1px solid var(--rule); margin: 28px 0; }
+.sg-label { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin-bottom: 10px; display: block; }
+/* display:block, not flex — as a flex container every inline <code>/<strong>
+   became its own non-wrapping flex item, which spaced words oddly and forced
+   the grid track wider than the viewport on longer notes. */
+.sg-note { display: block; background: rgba(16,44,87,0.04); border-left: 3px solid var(--navy); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 14px; font-size: 13px; color: var(--navy); line-height: 1.6; margin-top: 14px; }
+.sg-note code { white-space: nowrap; }
+.sg-note--gold { border-left-color: var(--gold-deep); background: rgba(225,183,3,0.08); color: var(--ink); }
+.sg-code { background: #0F1012; border-radius: var(--radius-md); padding: 16px 20px; font-family: 'Courier New', monospace; font-size: 12px; color: #B4C5D8; line-height: 1.7; overflow-x: auto; margin-top: 14px; }
+.sg-code .ct { color: #7BBFFF; } .sg-code .cc { color: #D4A6FF; } .sg-code .cs { color: #A8E6CF; }
+
+/* SWATCHES */
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 14px; }
+.swatch { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--rule); }
+.swatch-color { height: 64px; }
+.swatch-info { padding: 9px 11px; background: #FCF8EF; }
+.swatch-name { font-weight: 700; font-size: 11.5px; color: var(--ink); margin-bottom: 2px; }
+.swatch-hex { font-family: 'Courier New', monospace; font-size: 10.5px; color: var(--muted); }
+.swatch-role { font-size: 10px; color: var(--muted); margin-top: 2px; font-style: italic; }
+
+/* TYPE specimens */
+.type-row { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+.type-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.type-meta { font-family: 'Courier New', monospace; font-size: 11px; color: var(--muted); margin-top: 5px; }
+
+/* RADIUS demo */
+.radius-grid { display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; }
+.radius-demo { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.radius-box { width: 56px; height: 44px; background: rgba(16,44,87,0.08); border: 1.5px solid var(--navy); }
+.radius-label { font-size: 11px; color: var(--muted); font-family: 'Courier New', monospace; }
+
+/* SHADOW demo */
+.shadow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.shadow-demo { background: #FCF8EF; border-radius: var(--radius-lg); padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+.shadow-demo .shadow-label { font-size: 12px; font-weight: 700; color: var(--navy); font-family: var(--serif); }
+.shadow-demo .shadow-use { font-size: 11px; color: var(--muted); }
+
+/* TOKEN TABLE */
+table.sg-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.sg-table th { text-align: left; padding: 10px 14px 10px 0; font-family: var(--serif); color: var(--navy); font-weight: 700; border-bottom: 2px solid var(--rule); }
+.sg-table td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--rule); color: var(--body); vertical-align: top; }
+.sg-table td:first-child { font-family: 'Courier New', monospace; font-size: 12px; color: var(--muted); }
+.sg-table td:nth-child(2) { font-weight: 600; color: var(--ink); }
+.sg-table tr:last-child td { border-bottom: none; }
+
+/* ── BUTTON DEMOS ──
+   The .sg-btn / .sg-btn--gold / .sg-btn--outline pill mirrors were DELETED.
+   They were hand-copied replicas that silently went stale when
+   light-redesign.css retired the pill, and they were being copied into new
+   pages as if they were current. The Buttons section now renders the real
+   .btn-gold / .btn-outline classes so it cannot drift from production again.
+   Only .sg-btn--submit remains, because .btn-contact has no shared class. */
+
+.sg-btn--submit{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:var(--navy);color:#fff;font-family:var(--serif);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:14px 28px;border:none;border-radius:var(--radius-md);cursor:pointer;transition:background .2s ease,box-shadow .2s ease;}
+.sg-btn--submit:hover{background:var(--navy-deep);box-shadow:var(--shadow-md);}
+.sg-btn--submit svg{stroke:var(--gold-deep);flex-shrink:0;}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .sg-layout { grid-template-columns: 1fr; }
+  .sg-sidebar { position: static; height: auto; }
+  .sg-main { padding: 40px 24px 80px; }
+  .sg-canvas--grid3, .sg-canvas--grid4 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .sg-main { padding: 24px 16px 60px; }
+  .sg-canvas { padding: 24px; }
+  .sg-canvas--grid3, .sg-canvas--grid4, .sg-canvas--grid2 { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="sg-hero">
+  <div class="sg-wrap">
+    <div class="sg-hero-eyebrow">Lions Club of Byculla</div>
+    <h1>Design <em>Style Guide</em></h1>
+    <p>Standardized tokens, components, and patterns for the LCB website. All values are pulled directly from <code style="font-size:13px;color:rgba(255,255,255,0.5)">css/styles.css</code>.</p>
+    <div class="sg-hero-strip">
+      <div class="sg-hero-stat"><div class="v">3</div><div class="l">Pages</div></div>
+      <div class="sg-hero-stat"><div class="v">2</div><div class="l">Fonts</div></div>
+      <div class="sg-hero-stat"><div class="v">7</div><div class="l">Color tokens</div></div>
+      <div class="sg-hero-stat"><div class="v">3</div><div class="l">Radius steps</div></div>
+      <div class="sg-hero-stat"><div class="v">3</div><div class="l">Shadow levels</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="sg-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sg-sidebar">
+    <div class="sg-sidebar-head">
+      <div class="sg-brand">LCB Style Guide</div>
+      <div class="sg-version">v3 · 2025–26</div>
+    </div>
+    <nav class="sg-nav">
+      <div class="sg-nav-group">
+        <div class="sg-nav-group-label">Start here</div>
+        <a href="#cascade">CSS Cascade</a>
+      </div>
+      <div class="sg-nav-group">
+        <div class="sg-nav-group-label">Foundations</div>
+        <a href="#colors" class="active">Colors</a>
+        <a href="#backgrounds">Backgrounds</a>
+        <a href="#typography">Typography</a>
+        <a href="#spacing">Spacing</a>
+        <a href="#radius">Border Radius</a>
+        <a href="#shadows">Shadows</a>
+        <a href="#icons">Icons</a>
+      </div>
+      <div class="sg-nav-group">
+        <div class="sg-nav-group-label">Components</div>
+        <a href="#buttons">Buttons</a>
+        <a href="#navigation">Navigation</a>
+        <a href="#forms">Form Inputs</a>
+        <a href="#cards">Cards</a>
+        <a href="#tags">Tags &amp; Labels</a>
+        <a href="#stats">Stats</a>
+        <a href="#section-heading">Section Headings</a>
+        <a href="#info-rows">Info Rows</a>
+        <a href="#steps">Steps</a>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="sg-main">
+
+    <!-- ── CSS CASCADE ── -->
+    <section class="sg-section" id="cascade">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">CSS Cascade</h2>
+        <span class="sg-badge">Start here</span>
+      </div>
+
+      <div class="sg-note sg-note--gold" style="margin-bottom:22px;">
+        <strong>Read this before styling anything.</strong> Design tokens live in one place, but components are defined twice — and the second definition wins. Skipping this is how retired styles get reintroduced.
+      </div>
+
+      <div class="sg-spec"><span class="sg-spec-name">Load order</span><span class="sg-spec-meta">later files override earlier ones</span></div>
+      <table class="sg-table" style="margin-bottom:20px;">
+        <tr><th>File</th><th>Role</th><th>Authority</th></tr>
+        <tr><td>css/styles.css</td><td>Tokens (<code>:root</code>) + base components</td><td>Base. Tokens defined here are never overridden.</td></tr>
+        <tr><td>css/light-redesign.css</td><td>The light redesign</td><td><strong>Final authority.</strong> ~50 <code>!important</code> rules. Wins on everything it touches.</td></tr>
+        <tr><td>css/nav-submenu.css</td><td>Nav dropdowns</td><td>Scoped to nav only.</td></tr>
+        <tr><td>css/about-pages.css</td><td>About-section pages</td><td>Page-scoped. 5 pages.</td></tr>
+        <tr><td>css/campaigns.css</td><td>Appeals grid, index only</td><td>Page-scoped. 1 page.</td></tr>
+        <tr><td>css/hero-light-reveal.css</td><td>Index hero animation</td><td>Page-scoped. 1 page.</td></tr>
+      </table>
+      <div class="sg-note">This guide loads <code>styles.css</code> + <code>light-redesign.css</code> — the same cascade, in the same order, as every production page. That is deliberate: it is the only way the demos on this page stay truthful.</div>
+
+      <hr class="sg-divider">
+      <div class="sg-spec"><span class="sg-spec-name">Components overridden by light-redesign.css</span><span class="sg-spec-meta">check here before styling any of these</span></div>
+      <div class="sg-note" style="margin-bottom:16px;">If a component is on this list, <code>styles.css</code> does <strong>not</strong> describe how it actually renders. Read <code>light-redesign.css</code> first.</div>
+      <div class="sg-code">.btn-gold        .btn-outline      .card           .news-card
+.voice-card      .method           .story-feature  .stepper::before
+.step .node      .stat .num        .join-stat      nav.main</div>
+
+      <hr class="sg-divider">
+      <div class="sg-spec"><span class="sg-spec-name">Rules</span><span class="sg-spec-meta">how to not reintroduce dead styles</span></div>
+      <div class="sg-note">
+        <strong>1. Reuse the shared class; never re-implement it.</strong> If a button is needed, write <code>class="btn-outline"</code>. Do not hand-write padding/border/radius for it in a page-level stylesheet — that produces a lookalike that drifts. <em>(This is exactly what happened to the appeals footer link in <code>campaigns.css</code>: a bespoke pill that survived the redesign because nothing pointed at the shared class.)</em><br><br>
+        <strong>2. Never copy CSS out of this guide's <code>&lt;style&gt;</code> block.</strong> Those <code>.sg-*</code> rules style the guide's own chrome. Copy the class <em>names</em> from the demos instead.<br><br>
+        <strong>3. Page-scoped CSS may position and space a component, not restyle it.</strong> Layout (grid, margin, alignment) is fine. Colour, border, radius, and typography belong to the shared class.<br><br>
+        <strong>4. Tokens only.</strong> No raw hex outside <code>:root</code>. Use <code>var(--navy)</code>, <code>var(--gold)</code>, <code>var(--rule)</code>.
+      </div>
+    </section>
+
+    <!-- ── COLORS ── -->
+    <section class="sg-section" id="colors">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Colors</h2>
+        <span class="sg-badge">Foundations</span>
+      </div>
+
+      <span class="sg-label">Brand</span>
+      <div class="sg-canvas" style="margin-bottom:16px;">
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#102C57"></div>
+            <div class="swatch-info"><div class="swatch-name">--navy</div><div class="swatch-hex">#102C57</div><div class="swatch-role">Primary backgrounds, text</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#0B1F3F"></div>
+            <div class="swatch-info"><div class="swatch-name">--navy-deep</div><div class="swatch-hex">#0B1F3F</div><div class="swatch-role">Hero, footer, dark sections</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FCCB06"></div>
+            <div class="swatch-info"><div class="swatch-name">--gold</div><div class="swatch-hex">#FCCB06</div><div class="swatch-role">On dark bg only CTAs, accents</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:var(--gold-deep)"></div>
+            <div class="swatch-info"><div class="swatch-name">--gold-deep</div><div class="swatch-hex">#e1b703</div><div class="swatch-role">Borders, focus rings, accents</div></div>
+          </div>
+        </div>
+      </div>
+
+      <span class="sg-label">Typography &amp; Surface</span>
+      <div class="sg-canvas">
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#1A1A1F"></div>
+            <div class="swatch-info"><div class="swatch-name">--ink</div><div class="swatch-hex">#1A1A1F</div><div class="swatch-role">Headings on light bg</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#3A3F47"></div>
+            <div class="swatch-info"><div class="swatch-name">--body</div><div class="swatch-hex">#3A3F47</div><div class="swatch-role">Paragraph text</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#6B6F76"></div>
+            <div class="swatch-info"><div class="swatch-name">--muted</div><div class="swatch-hex">#6B6F76</div><div class="swatch-role">Captions, metadata</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#F4F0E6; border:1px solid var(--rule)"></div>
+            <div class="swatch-info"><div class="swatch-name">--paper</div><div class="swatch-hex">#F4F0E6</div><div class="swatch-role">Warm page background</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#EFE8D8; border:1px solid var(--rule)"></div>
+            <div class="swatch-info"><div class="swatch-name">--paper-warm</div><div class="swatch-hex">#EFE8D8</div><div class="swatch-role">Card bg on paper sections</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#EFE8D7; border:1px solid var(--rule)"></div>
+            <div class="swatch-info"><div class="swatch-name">--rule</div><div class="swatch-hex">#EFE8D7</div><div class="swatch-role">Borders, dividers</div></div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="sg-divider">
+
+      <span class="sg-label">Gold / Warm Scale</span>
+      <div class="sg-canvas" style="margin-bottom:16px;">
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#F8C707"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 0</div><div class="swatch-hex">#F8C707</div><div class="swatch-role">Gold anchor</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FCF8EF; border:1px solid var(--rule)"></div>
+            <div class="swatch-info"><div class="swatch-name">--white</div><div class="swatch-hex">#FCF8EF</div><div class="swatch-role">Default bg (never use #fff)</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#EFE8D7"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 2</div><div class="swatch-hex">#EFE8D7</div><div class="swatch-role">Light sand</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#E1DBC4"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 3</div><div class="swatch-hex">#E1DBC4</div><div class="swatch-role">Sand</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#C2BCA4"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 4</div><div class="swatch-hex">#C2BCA4</div><div class="swatch-role">Warm gray</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#ADA890"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 5</div><div class="swatch-hex">#ADA890</div><div class="swatch-role">Medium warm</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#928D76"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 6</div><div class="swatch-hex">#928D76</div><div class="swatch-role">Stone</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#77735F"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 7</div><div class="swatch-hex">#77735F</div><div class="swatch-role">Dark stone</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#605C4D"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 8</div><div class="swatch-hex">#605C4D</div><div class="swatch-role">Khaki dark</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#484538"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 9</div><div class="swatch-hex">#484538</div><div class="swatch-role">Deep earth</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#323026"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 10</div><div class="swatch-hex">#323026</div><div class="swatch-role">Near black</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#1C1B14"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 11</div><div class="swatch-hex">#1C1B14</div><div class="swatch-role">Rich black</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#141208"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 12</div><div class="swatch-hex">#141208</div><div class="swatch-role">Deep black</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#0E0C06"></div>
+            <div class="swatch-info"><div class="swatch-name">Warm 13</div><div class="swatch-hex">#0E0C06</div><div class="swatch-role">Pure black</div></div>
+          </div>
+        </div>
+      </div>
+
+      <span class="sg-label">Blue Scale</span>
+      <div class="sg-canvas">
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#D1E2FF"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 0a</div><div class="swatch-hex">#D1E2FF</div><div class="swatch-role">Palest tint</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#D1E2FF"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 0b</div><div class="swatch-hex">#D1E2FF</div><div class="swatch-role">Palest tint</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#C0D7FF"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 0c</div><div class="swatch-hex">#C0D7FF</div><div class="swatch-role">Light sky</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#ADC7F5"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 0.5</div><div class="swatch-hex">#ADC7F5</div><div class="swatch-role">Sky</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#9AB7EA"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 1</div><div class="swatch-hex">#9AB7EA</div><div class="swatch-role">Cornflower</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#86A7E0"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 1.5</div><div class="swatch-hex">#86A7E0</div><div class="swatch-role">Periwinkle</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#7397D5"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 2</div><div class="swatch-hex">#7397D5</div><div class="swatch-role">Mid blue</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#4D78C1"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 3</div><div class="swatch-hex">#4D78C1</div><div class="swatch-role">True blue</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#2658AC"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 4</div><div class="swatch-hex">#2658AC</div><div class="swatch-role">Deep blue</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#003897"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 5</div><div class="swatch-hex">#003897</div><div class="swatch-role">Royal blue</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#002D79"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 6</div><div class="swatch-hex">#002D79</div><div class="swatch-role">Navy</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#00225B"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 7</div><div class="swatch-hex">#00225B</div><div class="swatch-role">Dark navy</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#00163C"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 8</div><div class="swatch-hex">#00163C</div><div class="swatch-role">Deep navy</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#00112D"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 8.5</div><div class="swatch-hex">#00112D</div><div class="swatch-role">Midnight</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#000B1E"></div>
+            <div class="swatch-info"><div class="swatch-name">Blue 9</div><div class="swatch-hex">#000B1E</div><div class="swatch-role">Near black</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-note" style="margin-bottom:10px;">
+        <strong>Background rule:</strong> Never use pure white (<code>#fff</code>) as a background. Always use <code>--white</code> (<code>#FCF8EF</code>) in its place — for page backgrounds, cards, panels, form inputs, and any surface that would otherwise be white.
+      </div>
+      <div class="sg-note sg-note--gold">
+        <strong>Gold rule:</strong> Neither <code>--gold</code> (#FCCB06) nor <code>--gold-deep</code> (#e1b703) pass contrast for text on white. Both are accent/decorative only. For gold-toned text on light backgrounds, use <code>--ink</code> or <code>--navy</code>. Gold colors are for borders, focus rings, and icon strokes &mdash; we no longer use gold to highlight <code>em</code> text within headings; <code>em</code> should inherit the surrounding heading color.
+      </div>
+    </section>
+
+    <!-- ── BACKGROUNDS ── -->
+    <section class="sg-section" id="backgrounds">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Backgrounds</h2>
+        <span class="sg-badge">Foundations</span>
+      </div>
+      <div class="sg-note" style="margin-bottom:28px;">Each section background has fixed text colors. Always use the exact values below — never mix text colors across backgrounds.</div>
+
+      <!-- 1. Cool White -->
+      <span class="sg-label">Frost — #F7FAFD</span>
+      <div class="sg-canvas" style="background:#F7FAFD;border-color:rgba(8,44,97,0.12);margin-bottom:8px;">
+        <div style="font-family:var(--sans);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#082C61;font-weight:700;margin-bottom:14px;">Est. 1974 · Golden Jubilee</div>
+        <div style="font-family:var(--serif);font-size:clamp(26px,3.2vw,40px);font-weight:400;color:#082C61;line-height:1.12;letter-spacing:-0.02em;margin-bottom:14px;">Seven fronts. One commitment.</div>
+        <p style="font-family:var(--serif);font-style:italic;font-size:15.5px;color:#6E7F95;line-height:24px;max-width:560px;">For nearly 50 years, Lions Club of Byculla has reached communities across the country through six pillars of service, bringing hope, support, and opportunity where it is needed most.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:24px;padding-top:18px;border-top:1px solid rgba(8,44,97,0.1);">
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:13px;height:13px;border-radius:50%;background:#082C61;flex-shrink:0;border:1px solid rgba(0,0,0,0.1);"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:#6E7F95;">Eyebrow · #082C61</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:13px;height:13px;border-radius:50%;background:#082C61;flex-shrink:0;border:1px solid rgba(0,0,0,0.1);"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:#6E7F95;">Heading · #082C61</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:13px;height:13px;border-radius:50%;background:#6E7F95;flex-shrink:0;"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:#6E7F95;">Body · #6E7F95</span></div>
+        </div>
+      </div>
+
+      <hr class="sg-divider">
+
+      <!-- 2. Dark Navy -->
+      <span class="sg-label">Navy — #0F1F35</span>
+      <div class="sg-canvas" style="background:#0F1F35;border-color:rgba(255,255,255,0.08);margin-bottom:8px;">
+        <div style="font-family:var(--sans);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#ADA890;font-weight:700;margin-bottom:14px;">Est. 1974 · Golden Jubilee</div>
+        <div style="font-family:var(--serif);font-size:clamp(26px,3.2vw,40px);font-weight:400;color:#E1DBC4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:14px;">Seven fronts. One commitment.</div>
+        <p style="font-family:var(--serif);font-style:italic;font-size:15.5px;color:#C1BCA4;line-height:24px;max-width:560px;">For nearly 50 years, Lions Club of Byculla has reached communities across the country through six pillars of service, bringing hope, support, and opportunity where it is needed most.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.08);">
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:13px;height:13px;border-radius:50%;background:#ADA890;flex-shrink:0;"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:#77735F;">Eyebrow · #ADA890</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:13px;height:13px;border-radius:50%;background:#E1DBC4;flex-shrink:0;"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:#77735F;">Heading · #E1DBC4</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:13px;height:13px;border-radius:50%;background:#C1BCA4;flex-shrink:0;border:1px solid rgba(255,255,255,0.15);"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:#77735F;">Body · #C1BCA4</span></div>
+        </div>
+      </div>
+
+      <hr class="sg-divider">
+
+      <!-- 3. Gold -->
+      <span class="sg-label">Gold — #FFCB2B</span>
+      <div class="sg-canvas" style="background:#FFCB2B;border-color:rgba(7,35,56,0.2);margin-bottom:8px;">
+        <div style="font-family:var(--sans);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#072338;font-weight:700;margin-bottom:14px;">Est. 1974 · Golden Jubilee</div>
+        <div style="font-family:var(--serif);font-size:clamp(26px,3.2vw,40px);font-weight:400;color:#082C61;line-height:1.12;letter-spacing:-0.02em;margin-bottom:14px;">Seven fronts. One commitment.</div>
+        <p style="font-family:var(--serif);font-style:italic;font-size:15.5px;color:#77735F;line-height:24px;max-width:560px;">For nearly 50 years, Lions Club of Byculla has reached communities across the country through six pillars of service, bringing hope, support, and opportunity where it is needed most.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:24px;padding-top:18px;border-top:1px solid rgba(7,35,56,0.15);">
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:13px;height:13px;border-radius:50%;background:#072338;flex-shrink:0;"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:#77735F;">Eyebrow · #072338</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:13px;height:13px;border-radius:50%;background:#082C61;flex-shrink:0;"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:#77735F;">Heading · #082C61</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:13px;height:13px;border-radius:50%;background:#77735F;flex-shrink:0;"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:#77735F;">Body · #77735F</span></div>
+        </div>
+      </div>
+
+      <hr class="sg-divider">
+
+      <!-- 4. Warm White -->
+      <span class="sg-label">Cream (--white) — #FCF8EF</span>
+      <div class="sg-canvas" style="background:#FCF8EF;border-color:rgba(7,35,56,0.12);margin-bottom:8px;">
+        <div style="font-family:var(--sans);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#072338;font-weight:700;margin-bottom:14px;">Est. 1974 · Golden Jubilee</div>
+        <div style="font-family:var(--serif);font-size:clamp(26px,3.2vw,40px);font-weight:400;color:#082C61;line-height:1.12;letter-spacing:-0.02em;margin-bottom:14px;">Seven fronts. One commitment.</div>
+        <p style="font-family:var(--serif);font-style:italic;font-size:15.5px;color:#77735F;line-height:24px;max-width:560px;">For nearly 50 years, Lions Club of Byculla has reached communities across the country through six pillars of service, bringing hope, support, and opportunity where it is needed most.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:24px;padding-top:18px;border-top:1px solid rgba(7,35,56,0.1);">
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:13px;height:13px;border-radius:50%;background:#072338;flex-shrink:0;"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:#77735F;">Eyebrow · #072338</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:13px;height:13px;border-radius:50%;background:#082C61;flex-shrink:0;"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:#77735F;">Heading · #082C61</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:13px;height:13px;border-radius:50%;background:#77735F;flex-shrink:0;"></div><span style="font-family:'Courier New',monospace;font-size:11px;color:#77735F;">Body · #77735F</span></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── TYPOGRAPHY ── -->
+    <section class="sg-section" id="typography">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Typography</h2>
+        <span class="sg-badge">Foundations</span>
+      </div>
+
+      <div class="sg-note" style="margin-bottom:16px;">Type scale only &mdash; color is not fixed here. Every style below takes its color from the section background it sits on; see <a href="#backgrounds" style="text-decoration:underline;">Backgrounds</a> for the exact eyebrow/heading/body pairing per surface.</div>
+
+      <div class="sg-note sg-note--gold" style="margin-bottom:22px;">
+        <strong>Use the token, don't retype the numbers.</strong> The serif styles below are available as <code>font:</code> shorthands in <code>:root</code>, so a heading is one declaration and an invented value is visibly off-system:
+        <br><br>
+        <code>.foo { font: var(--type-panel-title); color: var(--navy); }</code>
+        <br><br>
+        <code>--type-display</code> &middot; <code>--type-section-title</code> &middot; <code>--type-panel-title</code> &middot; <code>--type-lead</code> &middot; <code>--type-quote</code> &middot; <code>--type-label</code>
+        <br><br>
+        Two caveats: <code>--type-label</code> does not carry its <code>letter-spacing:0.08em</code> or <code>text-transform:uppercase</code> (the <code>font</code> shorthand cannot), and the shorthand <em>resets</em> any font property you don't name &mdash; so set <code>font</code> first, then overrides. <code>letter-spacing</code> is unaffected.
+        <br><br>
+        <strong>Honest status:</strong> production currently contains <strong>132 distinct serif size/weight combinations</strong> against these 6. Only exact matches have been migrated so far; most components still hand-write their type. Reach for the nearest token on new work rather than inventing a value.
+      </div>
+      <div class="sg-canvas">
+        <div class="type-row">
+          <div style="font-family:'Mulish',sans-serif;font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;">Eyebrow Label</div>
+          <div class="type-meta">Mulish · 700 · 11–12px · 0.18em tracking · uppercase</div>
+        </div>
+        <div class="type-row">
+          <div style="font-family:'Roboto Serif',serif;font-size:clamp(30px,3.5vw,46px);font-weight:400;line-height:1.12;letter-spacing:-0.02em;">Section <em style="font-style:normal;color:inherit;">Heading</em></div>
+          <div class="type-meta">Roboto Serif · 400 · clamp(30px,3.5vw,46px) · lh 1.12 · −0.02em · em inherits heading color</div>
+        </div>
+        <div class="type-row">
+          <div style="font-family:'Roboto Serif',serif;font-size:clamp(28px,4.5vw,54px);font-weight:300;line-height:1.1;letter-spacing:-0.02em;">Hero <em style="font-style:normal;color:inherit;">Headline</em></div>
+          <div class="type-meta">Roboto Serif · 300 · clamp(28px,4.5vw,54px) · em inherits heading color (no gold highlight)</div>
+        </div>
+        <div class="type-row">
+          <div style="font-family:'Roboto Serif',serif;font-size:22px;font-weight:400;line-height:1.25;">Card / Panel Title</div>
+          <div class="type-meta">Roboto Serif · 400 · 22px · lh 1.25</div>
+        </div>
+        <div class="type-row">
+          <div style="font-family:'Roboto Serif',serif;font-style:italic;font-size:16.5px;font-weight:500;line-height:1.52;">"A testimonial or pull quote in italic serif warmth without losing authority."</div>
+          <div class="type-meta">Roboto Serif · 500 · italic · 16.5px · lh 1.52</div>
+        </div>
+        <div class="type-row">
+          <div style="font-family:'Roboto Serif',serif;font-size:16px;line-height:24px;font-weight:400;font-style:italic;">Body copy. Section intros, page descriptions, supporting prose. Max-width ~700px.</div>
+          <div class="type-meta">Roboto Serif · 400 · italic · 16px · lh 24px</div>
+        </div>
+        <div class="type-row">
+          <div style="font-family:'Mulish',sans-serif;font-size:14px;line-height:1.6;font-weight:400;">Secondary body card descriptions, news excerpts, form helper text.</div>
+          <div class="type-meta">Mulish · 400 · 13–14px · lh 1.6</div>
+        </div>
+        <div class="type-row">
+          <div style="font-family:'Mulish',sans-serif;font-size:11px;line-height:1.5;font-weight:500;letter-spacing:0.04em;">Caption · metadata · role label · 11–12px</div>
+          <div class="type-meta">Mulish · 500 · 11–12px</div>
+        </div>
+        <div class="type-row">
+          <div style="font-family:'Roboto Serif',serif;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Button / CTA Label</div>
+          <div class="type-meta">Roboto Serif · 700 · 13px · 0.08em · uppercase</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SPACING ── -->
+    <section class="sg-section" id="spacing">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Spacing</h2>
+        <span class="sg-badge">Foundations</span>
+      </div>
+      <div class="sg-canvas">
+        <table class="sg-table">
+          <thead><tr><th>Token</th><th>Value</th><th>Used for</th></tr></thead>
+          <tbody>
+            <tr><td>--section-pad</td><td>100px</td><td>Vertical padding on all &lt;section&gt; elements</td></tr>
+            <tr><td>--gap-row</td><td>32px</td><td>Row gaps between section elements</td></tr>
+            <tr><td>--gap-card</td><td>28px</td><td>Gap between card grid items</td></tr>
+            <tr><td>.wrap</td><td>max-width:1440px · padding:0 48px</td><td>Page-wide content container</td></tr>
+            <tr><td>.sec-head</td><td>margin-bottom:52px</td><td>Gap below section header before content</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── BORDER RADIUS ── -->
+    <section class="sg-section" id="radius">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Border Radius</h2>
+        <span class="sg-badge">Foundations</span>
+      </div>
+      <div class="sg-canvas">
+        <div class="radius-grid">
+          <div class="radius-demo">
+            <div class="radius-box" style="border-radius:2px"></div>
+            <div class="radius-label">2px</div>
+            <div style="font-size:11px;color:var(--muted);text-align:center;">Photos,<br>images</div>
+          </div>
+          <div class="radius-demo">
+            <div class="radius-box" style="border-radius:var(--radius-sm)"></div>
+            <div class="radius-label">--radius-sm · 4px</div>
+            <div style="font-size:11px;color:var(--muted);text-align:center;">Tags,<br>badges</div>
+          </div>
+          <div class="radius-demo">
+            <div class="radius-box" style="border-radius:var(--radius-md)"></div>
+            <div class="radius-label">--radius-md · 8px</div>
+            <div style="font-size:11px;color:var(--muted);text-align:center;">Inputs,<br>small buttons</div>
+          </div>
+          <div class="radius-demo">
+            <div class="radius-box" style="border-radius:var(--radius-lg)"></div>
+            <div class="radius-label">--radius-lg · 4px</div>
+            <div style="font-size:11px;color:var(--muted);text-align:center;">Cards,<br>panels, modals</div>
+          </div>
+          <div class="radius-demo">
+            <div class="radius-box" style="border-radius:50%;width:44px;height:44px;"></div>
+            <div class="radius-label">50%</div>
+            <div style="font-size:11px;color:var(--muted);text-align:center;">Avatars,<br>circle nodes</div>
+          </div>
+          <div class="radius-demo">
+            <div class="radius-box" style="border-radius:999px;width:80px;"></div>
+            <div class="radius-label">999px</div>
+            <div style="font-size:11px;color:var(--muted);text-align:center;">Nav pills<br>only</div>
+          </div>
+        </div>
+      </div>
+      <div class="sg-note">No content card should exceed <code>--radius-lg (4px)</code>. The 999px pill is reserved exclusively for navigation never for cards, modals, or form elements.</div>
+    </section>
+
+    <!-- ── SHADOWS ── -->
+    <section class="sg-section" id="shadows">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Shadows</h2>
+        <span class="sg-badge">Foundations</span>
+      </div>
+      <div class="sg-canvas" style="background:var(--paper);">
+        <div class="shadow-grid">
+          <div class="shadow-demo" style="box-shadow:var(--shadow-sm);">
+            <div class="shadow-label">--shadow-sm</div>
+            <div style="font-family:'Courier New',monospace;font-size:10.5px;color:var(--muted);margin-bottom:4px;">0 2px 8px rgba(16,44,87,0.08)</div>
+            <div class="shadow-use">Resting cards, president cards, charter cards</div>
+          </div>
+          <div class="shadow-demo" style="box-shadow:var(--shadow-md);">
+            <div class="shadow-label">--shadow-md</div>
+            <div style="font-family:'Courier New',monospace;font-size:10.5px;color:var(--muted);margin-bottom:4px;">0 8px 24px rgba(16,44,87,0.12)</div>
+            <div class="shadow-use">Hover state for cards, pillar hover</div>
+          </div>
+          <div class="shadow-demo" style="box-shadow:var(--shadow-lg);">
+            <div class="shadow-label">--shadow-lg</div>
+            <div style="font-family:'Courier New',monospace;font-size:10.5px;color:var(--muted);margin-bottom:4px;">0 16px 40px rgba(16,44,87,0.16)</div>
+            <div class="shadow-use">Form card, modals, floating elements</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ICONS ── -->
+    <section class="sg-section" id="icons">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Icons</h2>
+        <span class="sg-badge">Foundations</span>
+      </div>
+
+      <!-- Style rule -->
+      <div class="sg-spec"><span class="sg-spec-name">Style stroke outline only</span><span class="sg-spec-meta">fill:none · stroke-linecap:round · stroke-linejoin:round</span></div>
+      <div class="sg-canvas sg-canvas--flex" style="align-items:flex-start;gap:40px;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+          <div style="width:56px;height:56px;background:rgba(16,44,87,0.05);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div style="text-align:center;"><div style="font-size:12px;font-weight:600;color:var(--navy);">Stroke</div><div style="font-size:11px;color:var(--muted);">Always use this</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+          <div style="width:56px;height:56px;background:rgba(16,44,87,0.05);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;position:relative;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--navy)" stroke="none"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 7.2 11.1 7.5 11.35a.75.75 0 0 0 1 0C12.8 21.1 20 15.25 20 10a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+            <div style="position:absolute;top:4px;right:4px;width:16px;height:16px;background:#E24B4A;border-radius:50%;display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:10px;font-weight:700;line-height:1;">✕</span></div>
+          </div>
+          <div style="text-align:center;"><div style="font-size:12px;font-weight:600;color:#E24B4A;">Filled</div><div style="font-size:11px;color:var(--muted);">Never use</div></div>
+        </div>
+        <div style="flex:1;padding-left:20px;border-left:1px solid var(--rule);">
+          <div class="sg-note" style="margin-top:0;">
+            All icons must be <strong>stroke-only</strong>. Use <code>fill="none"</code> always. Filled icons look heavy and informal they break the sharp, editorial character of the brand. Stroke width: <code>1.8px</code> at 20–24px · <code>1.5px</code> at 16px · <code>2px</code> at 28–32px.
+          </div>
+        </div>
+      </div>
+
+      <hr class="sg-divider">
+
+      <!-- Color variants -->
+      <div class="sg-spec"><span class="sg-spec-name">Color variants</span><span class="sg-spec-meta">4 approved contexts</span></div>
+      <div class="sg-canvas sg-canvas--grid4" style="gap:12px;">
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <span class="sg-label">On light bg</span>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;padding:16px;background:#FCF8EF;border-radius:var(--radius-md);border:1px solid var(--rule);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 9.79 19.79 19.79 0 0 1 1.07 1.16 2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div style="font-size:11px;font-family:'Courier New',monospace;color:var(--muted);">stroke: var(--navy)</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <span class="sg-label">On dark bg</span>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;padding:16px;background:var(--navy-deep);border-radius:var(--radius-md);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 9.79 19.79 19.79 0 0 1 1.07 1.16 2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div style="font-size:11px;font-family:'Courier New',monospace;color:var(--muted);">stroke: rgba(255,255,255,0.85)</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <span class="sg-label">Gold accent</span>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;padding:16px;background:#FCF8EF;border-radius:var(--radius-md);border:1px solid var(--rule);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 9.79 19.79 19.79 0 0 1 1.07 1.16 2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div style="font-size:11px;font-family:'Courier New',monospace;color:var(--muted);">stroke: var(--gold-deep) light &amp; dark bg</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <span class="sg-label">Muted</span>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;padding:16px;background:#FCF8EF;border-radius:var(--radius-md);border:1px solid var(--rule);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 9.79 19.79 19.79 0 0 1 1.07 1.16 2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div style="font-size:11px;font-family:'Courier New',monospace;color:var(--muted);">stroke: var(--muted) captions, metadata</div>
+        </div>
+
+      </div>
+
+      <hr class="sg-divider">
+
+      <!-- Size scale -->
+      <div class="sg-spec"><span class="sg-spec-name">Size scale</span><span class="sg-spec-meta">4 steps · all in 0 0 24 24 viewBox</span></div>
+      <div class="sg-canvas sg-canvas--flex" style="align-items:flex-end;gap:36px;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <div style="text-align:center;"><div style="font-size:12px;font-weight:600;color:var(--navy);">16px</div><div style="font-size:11px;color:var(--muted);">sw: 1.5 · breadcrumbs,<br>inline UI</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <div style="text-align:center;"><div style="font-size:12px;font-weight:600;color:var(--navy);">20px</div><div style="font-size:11px;color:var(--muted);">sw: 1.8 · info rows,<br>form labels</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <div style="text-align:center;"><div style="font-size:12px;font-weight:600;color:var(--navy);">24px</div><div style="font-size:11px;color:var(--muted);">sw: 1.8 · standard UI,<br>buttons</div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <div style="text-align:center;"><div style="font-size:12px;font-weight:600;color:var(--navy);">32px</div><div style="font-size:11px;color:var(--muted);">sw: 2 · decorative,<br>card placeholders</div></div>
+        </div>
+      </div>
+
+      <hr class="sg-divider">
+
+      <!-- In context -->
+      <div class="sg-spec"><span class="sg-spec-name">In context</span><span class="sg-spec-meta">badge · button arrow · standalone</span></div>
+      <div class="sg-canvas sg-canvas--flex" style="align-items:flex-start;gap:32px;">
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span class="sg-label">Badge container</span>
+          <div style="display:flex;gap:12px;">
+            <div style="width:38px;height:38px;border-radius:var(--radius-md);background:rgba(16,44,87,0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div style="width:38px;height:38px;border-radius:var(--radius-md);background:rgba(16,44,87,0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 9.79 19.79 19.79 0 0 1 1.07 1.16 2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div style="width:38px;height:38px;border-radius:var(--radius-md);background:rgba(16,44,87,0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+          </div>
+          <div style="font-size:11px;font-family:'Courier New',monospace;color:var(--muted);">38×38 · radius-md · rgba(navy,0.06)</div>
+        </div>
+
+        <div style="width:1px;background:var(--rule);align-self:stretch;"></div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span class="sg-label">Button arrow</span>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <div style="display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;font-family:var(--serif);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:12px 22px;border-radius:999px;">
+              Join Us
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg>
+            </div>
+            <div style="display:inline-flex;align-items:center;gap:10px;background:#FCF8EF;color:var(--navy);font-family:var(--serif);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:12px 22px;border-radius:999px;border:1.5px solid var(--navy);">
+              Learn More
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg>
+            </div>
+          </div>
+          <div style="font-size:11px;font-family:'Courier New',monospace;color:var(--muted);">17px · sw:2.2 · --gold-deep on navy · navy on outline</div>
+        </div>
+
+      </div>
+
+      <div class="sg-note">Use <strong>Lucide</strong> or <strong>Feather</strong> icon sets as the source library both are 24×24 viewBox stroke icons that match this spec out of the box. Always inline SVG; never use an icon font.</div>
+
+    </section>
+
+    <!-- ── BUTTONS ── -->
+    <section class="sg-section" id="buttons">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Buttons</h2>
+        <span class="sg-badge">Components</span>
+      </div>
+
+      <div class="sg-note sg-note--gold" style="margin-bottom:22px;"><strong>Buttons are not pills.</strong> The pill treatment was retired in the light redesign. <code>light-redesign.css</code> rewrites <code>.btn-gold</code> and <code>.btn-outline</code> into <strong>plain text links with an animated underline</strong> — no background, no border, no radius, no arrow SVG. The demos below use the <em>real</em> production classes, so what you see here is exactly what ships.</div>
+
+      <div class="sg-spec"><span class="sg-spec-name">Secondary / default CTA (.btn-outline)</span><span class="sg-spec-meta">Most used · section footers on light bg</span></div>
+      <div class="sg-canvas sg-canvas--flex" style="align-items:center;gap:32px;">
+        <a href="#" class="btn-outline">See all the ways to give</a>
+        <a href="#" class="btn-outline">View all activities</a>
+      </div>
+      <div class="sg-code"><span class="ct">&lt;a</span> <span class="cc">href</span>=<span class="cs">"donate.html"</span> <span class="cc">class</span>=<span class="cs">"btn-outline"</span><span class="ct">&gt;</span>See all the ways to give<span class="ct">&lt;/a&gt;</span></div>
+      <div class="sg-note">Serif, <code>15px</code>, <code>weight 400</code>, <strong>sentence case</strong> (never uppercase). Colour <code>--navy</code> on light backgrounds. A <code>1px</code> <code>::after</code> underline sits at <code>opacity 0.35</code>; on hover it becomes a navy→gold→navy gradient shimmer. <strong>Do not add an arrow SVG</strong> — <code>.btn-outline svg</code> is <code>display:none !important</code>.</div>
+
+      <hr class="sg-divider">
+      <div class="sg-spec"><span class="sg-spec-name">Gold CTA (.btn-gold)</span><span class="sg-spec-meta">Dark sections only · hero, join</span></div>
+      <div class="sg-canvas sg-canvas--dark sg-canvas--flex" style="align-items:center;gap:32px;">
+        <a href="#" class="btn-gold">Support us</a>
+        <a href="#" class="btn-gold">Apply for membership</a>
+      </div>
+      <div class="sg-note sg-note--gold">Identical geometry to <code>.btn-outline</code>, only the colour differs (<code>--gold</code>). <strong>Dark backgrounds only</strong> — gold text fails contrast on light. Inside <code>.hero</code> / <code>.join</code> / <code>.cta-close</code>, <code>.btn-outline</code> flips to <code>rgba(255,255,255,0.88)</code> and the hover shimmer becomes gold→white→gold.</div>
+
+      <hr class="sg-divider">
+      <div class="sg-spec"><span class="sg-spec-name">Form Submit (.btn-contact)</span><span class="sg-spec-meta">contact.html · full-width inline action</span></div>
+      <div class="sg-canvas" style="max-width:360px;">
+        <button type="button" class="sg-btn--submit">
+          Send Message
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg>
+        </button>
+      </div>
+      <div class="sg-note">Hover: navy → navy-deep + shadow. Arrow: <code>--gold-deep</code> stroke. <code>border-radius: --radius-md (8px)</code> not a pill.</div>
+    </section>
+
+    <!-- ── NAVIGATION ── -->
+    <section class="sg-section" id="navigation">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Navigation</h2>
+        <span class="sg-badge">Components</span>
+      </div>
+      <div class="sg-spec"><span class="sg-spec-name">Nav Pills (glassmorphism on dark)</span><span class="sg-spec-meta">All pages · desktop nav</span></div>
+      <div class="sg-canvas sg-canvas--dark sg-canvas--flex" style="align-items:center;">
+        <a href="#" style="display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:rgba(255,255,255,0.88);background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);padding:9px 16px;border-radius:999px;cursor:pointer;">About</a>
+        <a href="#" style="display:inline-flex;align-items:center;font-size:13px;font-weight:600;background:rgba(252,203,6,0.22);color:#FCCB06;border:1px solid rgba(252,203,6,0.5);padding:9px 16px;border-radius:999px;cursor:pointer;">Projects · active</a>
+        <a href="#" style="display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:rgba(255,255,255,0.88);background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);padding:9px 16px;border-radius:999px;cursor:pointer;">Contact</a>
+        <a href="#" style="display:inline-flex;align-items:center;font-size:13px;font-family:var(--serif);font-weight:700;letter-spacing:0.06em;background:#FCCB06;color:#102C57;border:1px solid #FCCB06;padding:9px 16px;border-radius:999px;cursor:pointer;">Donate</a>
+      </div>
+      <hr class="sg-divider">
+      <div class="sg-spec"><span class="sg-spec-name">Breadcrumb</span><span class="sg-spec-meta">about.html, contact.html · dark hero context</span></div>
+      <div class="sg-canvas sg-canvas--dark">
+        <nav style="display:flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.38);">
+          <a href="#" style="color:rgba(255,255,255,0.5);">Home</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <span style="color:rgba(255,255,255,0.7);">About Us</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ── FORMS ── -->
+    <section class="sg-section" id="forms">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Form Inputs</h2>
+        <span class="sg-badge">Components</span>
+      </div>
+      <div class="sg-spec"><span class="sg-spec-name">Input, Select, Textarea (.cf-group)</span><span class="sg-spec-meta">contact.html</span></div>
+      <div class="sg-canvas" style="max-width:440px;">
+        <div style="display:flex;flex-direction:column;gap:0;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div style="position:relative;padding-top:16px;">
+              <input type="text" value="Jitesh" style="width:100%;padding:10px 2px;border:none;border-bottom:1.5px solid var(--rule);border-radius:0;font-family:var(--sans);font-size:14px;color:var(--ink);background:transparent;outline:none;">
+              <label style="position:absolute;left:2px;top:0;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);pointer-events:none;">First name</label>
+            </div>
+            <div style="position:relative;padding-top:16px;">
+              <input type="text" placeholder="Last name" style="width:100%;padding:10px 2px;border:none;border-bottom:1.5px solid var(--rule);border-radius:0;font-family:var(--sans);font-size:14px;color:var(--ink);background:transparent;outline:none;">
+            </div>
+          </div>
+          <div style="position:relative;padding-top:16px;margin-bottom:14px;">
+            <input type="email" value="jitesh@lionsbyculla.org" style="width:100%;padding:9px 2px;border:none;border-bottom:2px solid var(--gold-deep);border-radius:0;font-family:var(--sans);font-size:14px;color:var(--ink);background:transparent;outline:none;">
+            <label style="position:absolute;left:2px;top:0;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-deep);pointer-events:none;">Email</label>
+          </div>
+          <div style="position:relative;padding-top:16px;margin-bottom:14px;">
+            <select style="width:100%;padding:10px 24px 10px 2px;border:none;border-bottom:1.5px solid var(--rule);border-radius:0;font-family:var(--sans);font-size:14px;color:var(--ink);background:transparent;outline:none;appearance:none;cursor:pointer;">
+              <option>Volunteering</option>
+            </select>
+            <label style="position:absolute;left:2px;top:0;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);pointer-events:none;">Area of interest</label>
+          </div>
+          <div style="position:relative;padding-top:16px;">
+            <textarea rows="3" placeholder="Your message" style="width:100%;padding:10px 2px;border:none;border-bottom:1.5px solid var(--rule);border-radius:0;font-family:var(--sans);font-size:14px;color:var(--ink);background:transparent;outline:none;resize:vertical;"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="sg-note">Bottom-stroke style: no box, no corners &mdash; only <code>border-bottom</code> defines the field. Default: <code>1.5px solid var(--rule)</code> (#EFE8D7). Focus: <code>2px solid var(--gold-deep)</code> (thicker line, no box-shadow ring). Background: transparent.<br><strong>Floating label:</strong> each field has a <code>&lt;label&gt;</code> that overlaps the (invisible) placeholder until the field is focused or filled, then floats to a small uppercase label above (<code>10.5px</code>, <code>letter-spacing:0.08em</code>, matches <code>.cri-label</code>/<code>.lcb-label</code> convention). On focus it turns <code>var(--gold-deep)</code>. <strong>Select is the exception:</strong> its label stays hidden (<code>opacity:0</code>) until a real option is chosen (<code>.has-value</code>, set by JS) &mdash; otherwise it would double up with the select's own placeholder option text.</div>
+    </section>
+
+    <!-- ── CARDS ── -->
+    <section class="sg-section" id="cards">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Cards</h2>
+        <span class="sg-badge">Components</span>
+      </div>
+
+      <div class="sg-spec"><span class="sg-spec-name">Impact Card (.card)</span><span class="sg-spec-meta">index.html · carousel · border-radius: 12px</span></div>
+      <div class="sg-canvas sg-canvas--flex" style="background:var(--paper);">
+        <div data-sg-card style="position:relative;flex:0 0 200px;height:340px;border-radius:var(--radius-lg);cursor:pointer;">
+          <svg class="sg-card-svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10;overflow:visible;"></svg>
+          <div style="position:absolute;inset:0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);background:linear-gradient(160deg,#102C57,#0B1F3F);">
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(11,31,63,0.92))"></div>
+            <div style="position:absolute;top:14px;left:14px;"><span style="font-family:var(--serif);font-size:13px;font-weight:700;background:rgba(252,203,6,0.22);border:1px solid rgba(252,203,6,0.65);color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;">01</span></div>
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:18px 18px 22px;">
+              <h3 style="font-family:var(--serif);font-size:24px;font-weight:700;color:#fff;line-height:1.15;">Eye Care &amp;<br>Vision</h3>
+            </div>
+          </div>
+        </div>
+        <div data-sg-card style="position:relative;flex:0 0 280px;height:340px;border-radius:var(--radius-lg);cursor:pointer;">
+          <svg class="sg-card-svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10;overflow:visible;"></svg>
+          <div style="position:absolute;inset:0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);background:linear-gradient(160deg,#1a3a6b,#102C57);">
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(11,31,63,0.93))"></div>
+            <div style="position:absolute;top:14px;left:14px;"><span style="font-family:var(--serif);font-size:13px;font-weight:700;background:rgba(252,203,6,0.22);border:1px solid rgba(252,203,6,0.65);color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;">02</span></div>
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:18px 18px 22px;">
+              <h3 style="font-family:var(--serif);font-size:28px;font-weight:700;color:#fff;line-height:1.15;margin-bottom:8px;">Youth &amp;<br>Education</h3>
+              <p style="font-size:12.5px;color:rgba(255,255,255,0.88);line-height:1.62;">Scholarships, mentorship and skill-development workshops.</p>
+            </div>
+          </div>
+        </div>
+        <div data-sg-card style="position:relative;flex:0 0 200px;height:340px;border-radius:var(--radius-lg);cursor:pointer;">
+          <svg class="sg-card-svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10;overflow:visible;"></svg>
+          <div style="position:absolute;inset:0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);background:linear-gradient(160deg,#0d2244,#0B1F3F);">
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(11,31,63,0.92))"></div>
+            <div style="position:absolute;top:14px;left:14px;"><span style="font-family:var(--serif);font-size:13px;font-weight:700;background:rgba(252,203,6,0.22);border:1px solid rgba(252,203,6,0.65);color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;">03</span></div>
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:18px 18px 22px;">
+              <h3 style="font-family:var(--serif);font-size:24px;font-weight:700;color:#fff;line-height:1.15;">Blood &amp;<br>Health</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sg-note">Card number tag: <code>36×36px circle</code>. Normal: <code>flex:0 0 220px</code>. Featured (expanded): <code>flex:0 0 320px</code>. Card desc hidden on normal, visible on featured.</div>
+
+      <hr class="sg-divider">
+      <div class="sg-spec"><span class="sg-spec-name">News Card (.news-card)</span><span class="sg-spec-meta">index.html · paper bg · border-radius: --radius-lg</span></div>
+      <div class="sg-canvas sg-canvas--grid3" style="background:var(--paper);">
+        <div data-sg-card style="position:relative;border-radius:var(--radius-lg);cursor:pointer;">
+          <svg class="sg-card-svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10;overflow:visible;"></svg>
+          <div style="background:var(--paper);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);">
+            <div style="aspect-ratio:3/2;background:linear-gradient(135deg,#102C57,#1a3a6b);display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(252,203,6,0.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+            <div style="padding:22px 24px 26px;flex:1;display:flex;flex-direction:column;">
+              <div style="font-family:var(--serif);font-weight:600;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-deep);">Service</div>
+              <h3 style="font-family:var(--serif);font-weight:600;font-size:19px;color:var(--navy);line-height:1.25;margin:10px 0;letter-spacing:-0.01em;">Annual Eye Camp 2025 300 Patients Screened</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:var(--body);font-weight:400;">Lions conducted its annual eye camp at Byculla Community Hall.</p>
+            </div>
+          </div>
+        </div>
+        <div data-sg-card style="position:relative;border-radius:var(--radius-lg);cursor:pointer;">
+          <svg class="sg-card-svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10;overflow:visible;"></svg>
+          <div style="background:var(--paper);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);">
+            <div style="aspect-ratio:3/2;background:linear-gradient(135deg,#0B1F3F,#102C57);display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(252,203,6,0.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+            <div style="padding:22px 24px 26px;flex:1;display:flex;flex-direction:column;">
+              <div style="font-family:var(--serif);font-weight:600;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-deep);">Events</div>
+              <h3 style="font-family:var(--serif);font-weight:600;font-size:19px;color:var(--navy);line-height:1.25;margin:10px 0;letter-spacing:-0.01em;">Charter Night 48 Years of Service</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:var(--body);font-weight:400;">A grand celebration marking nearly five decades of service.</p>
+            </div>
+          </div>
+        </div>
+        <div data-sg-card style="position:relative;border-radius:var(--radius-lg);cursor:pointer;">
+          <svg class="sg-card-svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10;overflow:visible;"></svg>
+          <div style="background:var(--paper);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);">
+            <div style="aspect-ratio:3/2;background:linear-gradient(135deg,#1a3a6b,#0d2244);display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(252,203,6,0.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+            <div style="padding:22px 24px 26px;flex:1;display:flex;flex-direction:column;">
+              <div style="font-family:var(--serif);font-weight:600;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-deep);">Membership</div>
+              <h3 style="font-family:var(--serif);font-weight:600;font-size:19px;color:var(--navy);line-height:1.25;margin:10px 0;letter-spacing:-0.01em;">New Members Inducted Growing the Pride</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:var(--body);font-weight:400;">Five new Lions inducted at the Mumbai District convention.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="sg-divider">
+      <div class="sg-spec"><span class="sg-spec-name">Testimonial / Voice Card (.voice-card)</span><span class="sg-spec-meta">index.html · white on paper bg</span></div>
+      <div class="sg-canvas sg-canvas--grid2" style="background:var(--paper-warm);">
+        <div data-sg-card style="position:relative;border-radius:var(--radius-lg);cursor:pointer;">
+          <svg class="sg-card-svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10;overflow:visible;"></svg>
+          <div style="height:100%;background:#FCF8EF;padding:32px 30px;display:flex;flex-direction:column;border-top:2.5px solid var(--gold);border-radius:var(--radius-lg);overflow:hidden;">
+            <div style="font-family:var(--serif);font-size:56px;color:var(--gold);line-height:0.4;margin-bottom:20px;font-weight:600;">&ldquo;</div>
+            <p style="font-family:var(--serif);font-weight:500;font-style:italic;font-size:16.5px;line-height:1.52;color:var(--navy);flex:1;margin-bottom:24px;">This year has been transformatory for me as a Lion. The brotherhood and the service there is nothing quite like it.</p>
+            <div style="display:flex;align-items:center;gap:12px;padding-top:20px;border-top:1px solid var(--rule);">
+              <div style="width:46px;height:46px;border-radius:50%;border:2px solid var(--gold);background:rgba(16,44,87,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+              <div><div style="font-family:var(--serif);font-weight:600;font-size:14px;color:var(--navy);">Adil K. Mistry</div><div style="font-size:11.5px;color:var(--muted);letter-spacing:0.04em;margin-top:2px;">President · LCB 2025–26</div></div>
+            </div>
+          </div>
+        </div>
+        <div data-sg-card style="position:relative;border-radius:var(--radius-lg);cursor:pointer;">
+          <svg class="sg-card-svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:10;overflow:visible;"></svg>
+          <div style="height:100%;background:#FCF8EF;padding:32px 30px;display:flex;flex-direction:column;border-top:2.5px solid var(--gold);border-radius:var(--radius-lg);overflow:hidden;">
+            <div style="font-family:var(--serif);font-size:56px;color:var(--gold);line-height:0.4;margin-bottom:20px;font-weight:600;">&ldquo;</div>
+            <p style="font-family:var(--serif);font-weight:500;font-style:italic;font-size:16.5px;line-height:1.52;color:var(--navy);flex:1;margin-bottom:24px;">Seeing a patient leave with clear vision after years of impairment that is why we Lions do what we do.</p>
+            <div style="display:flex;align-items:center;gap:12px;padding-top:20px;border-top:1px solid var(--rule);">
+              <div style="width:46px;height:46px;border-radius:50%;border:2px solid var(--gold);background:rgba(16,44,87,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+              <div><div style="font-family:var(--serif);font-weight:600;font-size:14px;color:var(--navy);">Ritu Sharma</div><div style="font-size:11.5px;color:var(--muted);letter-spacing:0.04em;margin-top:2px;">Service Director · LCB</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="sg-divider">
+      <div class="sg-spec"><span class="sg-spec-name">Overlapping Photo Card (.photo-panel-card / .is-card)</span><span class="sg-spec-meta">image + offset card &middot; reusable anywhere a story/history block is needed</span></div>
+      <div class="sg-note" style="margin-bottom:16px;">Two color variants of the same layout: an image on one side, a card overlapping it by a fixed margin on the other. Use <strong>Navy</strong> for "our story"-type intros, <strong>Dark olive</strong> for impact/testimonial story callouts. Card eyebrow is optional &mdash; omit it when the heading alone is enough.</div>
+      <div class="sg-canvas sg-canvas--grid2" style="background:var(--paper);padding:0;overflow:hidden;">
+        <div style="display:flex;align-items:stretch;min-height:340px;background:var(--navy-deep);">
+          <div style="flex:0 0 38%;background:linear-gradient(160deg,#102C57,#0B1F3F);"></div>
+          <div style="position:relative;flex:1;display:flex;align-items:center;">
+            <div style="position:relative;z-index:2;background:#0C2945;border:1px solid #1C466F;border-radius:4px;padding:32px 30px;margin-left:-15%;width:80%;">
+              <span style="color:#D1E2FF;font-weight:700;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:12px;display:block;opacity:0.9;">Eyebrow (optional)</span>
+              <h3 style="font-family:var(--serif);font-weight:400;font-size:22px;line-height:1.1;color:#E0E6EE;letter-spacing:-0.02em;margin-bottom:12px;">A premier club.</h3>
+              <p style="color:rgba(255,255,255,0.58);font-size:13px;line-height:1.6;margin-bottom:16px;">Short supporting copy about the story being told.</p>
+              <span style="display:inline-flex;align-items:center;gap:8px;color:#D1E2FF;font-family:var(--serif);font-size:13px;">View our history <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;min-height:340px;background:#1C1B14;padding:28px;">
+          <div style="flex:0 0 40%;height:100%;border-radius:6px;overflow:hidden;background:linear-gradient(160deg,#3a3326,#1C1B14);"></div>
+          <div style="position:relative;flex:1;">
+            <div style="position:relative;z-index:2;background:#323026;padding:28px 26px;margin-left:-15%;margin-top:24px;width:85%;">
+              <h3 style="font-family:var(--serif);font-weight:400;font-size:22px;color:#F8C707;line-height:1.1;letter-spacing:-0.02em;margin-bottom:12px;">A half-century of quiet change.</h3>
+              <p style="color:rgba(255,255,255,0.72);font-size:13px;line-height:1.6;margin-bottom:16px;">Short supporting copy about the story being told.</p>
+              <span style="display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-family:var(--serif);font-size:13px;">All stories <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sg-note">Navy variant: card width <code>clamp(340px,36vw,520px)</code>, link color <code>#D1E2FF</code>. Dark olive variant: section bg <code>#1C1B14</code>, card bg <code>#323026</code>, heading <code>#F8C707</code>, link color <code>--gold</code>.</div>
+    </section>
+
+    <!-- ── TAGS ── -->
+    <section class="sg-section" id="tags">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Tags &amp; Labels</h2>
+        <span class="sg-badge">Components</span>
+      </div>
+
+      <div class="sg-spec"><span class="sg-spec-name">Content Tags 3 fills, 1 shape</span><span class="sg-spec-meta">border-radius: --radius-sm (4px) · all pages</span></div>
+      <div class="sg-canvas sg-canvas--flex" style="align-items:center;">
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+          <span class="sg-label" style="margin-bottom:4px;">Gold fill charter, featured</span>
+          <span style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;border-radius:var(--radius-sm);padding:3px 8px;font-weight:700;background:var(--gold);color:var(--navy);">Charter</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+          <span class="sg-label" style="margin-bottom:4px;">Navy fill member, MJF</span>
+          <span style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;border-radius:var(--radius-sm);padding:3px 8px;font-weight:700;background:rgba(16,44,87,0.1);color:var(--navy);">MJF</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+          <span class="sg-label" style="margin-bottom:4px;">Muted fill inactive, late</span>
+          <span style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;border-radius:var(--radius-sm);padding:3px 8px;font-weight:700;background:rgba(107,111,118,0.12);color:var(--muted);">Late</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
+          <span class="sg-label" style="margin-bottom:4px;">Eyebrow / category plain text</span>
+          <span style="font-family:var(--serif);font-weight:600;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-deep);">Service</span>
+        </div>
+      </div>
+      <hr class="sg-divider">
+      <div class="sg-spec"><span class="sg-spec-name">Eyebrow Label (.eyebrow)</span><span class="sg-spec-meta">All pages · above section headings</span></div>
+      <div class="sg-canvas sg-canvas--grid2">
+        <div>
+          <div style="font-family:var(--serif);font-weight:600;font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-deep);">Our Story</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:5px;">On light bg → --gold-deep (#9B7A00)</div>
+        </div>
+        <div style="background:var(--navy-deep);padding:16px;border-radius:var(--radius-md);">
+          <div style="font-family:var(--serif);font-weight:600;font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);">Join Us</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.38);margin-top:5px;">On dark bg → --gold (#FCCB06)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STATS ── -->
+    <section class="sg-section" id="stats">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Stats</h2>
+        <span class="sg-badge">Components</span>
+      </div>
+      <div class="sg-spec"><span class="sg-spec-name">Dark variant hero stats bar</span><span class="sg-spec-meta">index.html</span></div>
+      <div class="sg-canvas sg-canvas--dark sg-canvas--grid4">
+        <div style="padding:20px 0;"><div style="font-family:var(--serif);font-weight:600;font-size:42px;line-height:1;color:#fff;letter-spacing:-0.025em;">49<em style="color:var(--gold);font-style:normal;">+</em></div><div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px;font-weight:600;">Years of Service</div></div>
+        <div style="padding:20px 0 20px 28px;border-left:1px solid rgba(255,255,255,0.1);"><div style="font-family:var(--serif);font-weight:600;font-size:42px;line-height:1;color:#fff;letter-spacing:-0.025em;">3<em style="color:var(--gold);font-style:normal;">K+</em></div><div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px;font-weight:600;">Lives Impacted</div></div>
+        <div style="padding:20px 0 20px 28px;border-left:1px solid rgba(255,255,255,0.1);"><div style="font-family:var(--serif);font-weight:600;font-size:42px;line-height:1;color:#fff;letter-spacing:-0.025em;">120<em style="color:var(--gold);font-style:normal;">+</em></div><div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px;font-weight:600;">Projects Done</div></div>
+        <div style="padding:20px 0 20px 28px;border-left:1px solid rgba(255,255,255,0.1);"><div style="font-family:var(--serif);font-weight:600;font-size:42px;line-height:1;color:#fff;letter-spacing:-0.025em;">85<em style="color:var(--gold);font-style:normal;">+</em></div><div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:8px;font-weight:600;">Active Members</div></div>
+      </div>
+      <div class="sg-spec" style="margin-top:20px;"><span class="sg-spec-name">Light variant section stats</span><span class="sg-spec-meta">about.html</span></div>
+      <div class="sg-canvas sg-canvas--grid4">
+        <div style="padding:20px 0;"><div style="font-family:var(--serif);font-weight:600;font-size:42px;line-height:1;color:var(--navy);letter-spacing:-0.025em;">1.4<em style="color:var(--gold-deep);font-style:normal;">M</em></div><div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-top:8px;font-weight:600;">Members Worldwide</div></div>
+        <div style="padding:20px 0 20px 28px;border-left:1px solid var(--rule);"><div style="font-family:var(--serif);font-weight:600;font-size:42px;line-height:1;color:var(--navy);letter-spacing:-0.025em;">48<em style="color:var(--gold-deep);font-style:normal;">K</em></div><div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-top:8px;font-weight:600;">Clubs Globally</div></div>
+        <div style="padding:20px 0 20px 28px;border-left:1px solid var(--rule);"><div style="font-family:var(--serif);font-weight:600;font-size:42px;line-height:1;color:var(--navy);letter-spacing:-0.025em;">200<em style="color:var(--gold-deep);font-style:normal;">+</em></div><div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-top:8px;font-weight:600;">Countries</div></div>
+        <div style="padding:20px 0 20px 28px;border-left:1px solid var(--rule);"><div style="font-family:var(--serif);font-weight:600;font-size:42px;line-height:1;color:var(--navy);letter-spacing:-0.025em;">1917</div><div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-top:8px;font-weight:600;">Founded</div></div>
+      </div>
+    </section>
+
+    <!-- ── SECTION HEADINGS ── -->
+    <section class="sg-section" id="section-heading">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Section Headings</h2>
+        <span class="sg-badge">Components</span>
+      </div>
+      <div class="sg-note" style="margin-bottom:20px;">Each section heading's eyebrow/h2/body colors and typography follow the exact pairing for its background, as defined in <a href="#backgrounds" style="text-decoration:underline;">Backgrounds</a>.</div>
+
+      <div class="sg-spec"><span class="sg-spec-name">Frost background</span><span class="sg-spec-meta">#F7FAFD · .news, .story-feature</span></div>
+      <div class="sg-canvas" style="background:#F7FAFD;border-color:rgba(8,44,97,0.12);">
+        <div style="font-family:var(--sans);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#082C61;font-weight:700;margin-bottom:14px;">Latest News</div>
+        <h2 style="font-family:var(--serif);font-size:clamp(26px,3.2vw,40px);font-weight:400;color:#082C61;line-height:1.12;letter-spacing:-0.02em;margin-bottom:14px;">Stories from the <em style="font-style:normal;color:inherit;">ground</em></h2>
+        <p style="font-family:var(--serif);font-style:italic;font-size:15.5px;color:#6E7F95;line-height:24px;max-width:560px;">Updates, features, and coverage from our latest projects and events across the community.</p>
+      </div>
+
+      <hr class="sg-divider">
+      <div class="sg-spec"><span class="sg-spec-name">Navy background</span><span class="sg-spec-meta">#0F1F35 · .about</span></div>
+      <div class="sg-canvas" style="background:#0F1F35;border-color:rgba(255,255,255,0.08);">
+        <div style="font-family:var(--sans);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#ADA890;font-weight:700;margin-bottom:14px;">Who We Are</div>
+        <h2 style="font-family:var(--serif);font-size:clamp(26px,3.2vw,40px);font-weight:400;color:#E1DBC4;line-height:1.12;letter-spacing:-0.02em;margin-bottom:14px;">Rooted in <em style="font-style:normal;color:inherit;">service</em></h2>
+        <p style="font-family:var(--serif);font-style:italic;font-size:15.5px;color:#C1BCA4;line-height:24px;max-width:560px;">Since 1974, our members have carried forward a shared commitment to fellowship and community care.</p>
+      </div>
+
+      <hr class="sg-divider">
+      <div class="sg-spec"><span class="sg-spec-name">Gold background</span><span class="sg-spec-meta">#FFCB2B · .numbers-strip</span></div>
+      <div class="sg-canvas" style="background:#FFCB2B;border-color:rgba(7,35,56,0.2);">
+        <div style="font-family:var(--sans);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#072338;font-weight:700;margin-bottom:14px;">By the Numbers</div>
+        <h2 style="font-family:var(--serif);font-size:clamp(26px,3.2vw,40px);font-weight:400;color:#082C61;line-height:1.12;letter-spacing:-0.02em;margin-bottom:14px;">Measurable <em style="font-style:normal;color:inherit;">impact</em></h2>
+        <p style="font-family:var(--serif);font-style:italic;font-size:15.5px;color:#77735F;line-height:24px;max-width:560px;">Every number here represents a life touched through our ongoing service projects.</p>
+      </div>
+
+      <hr class="sg-divider">
+      <div class="sg-spec"><span class="sg-spec-name">Cream background</span><span class="sg-spec-meta">#FCF8EF (--white) · .method</span></div>
+      <div class="sg-canvas" style="background:#FCF8EF;border-color:rgba(7,35,56,0.12);">
+        <div style="font-family:var(--sans);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#072338;font-weight:700;margin-bottom:14px;">How We Work</div>
+        <h2 style="font-family:var(--serif);font-size:clamp(26px,3.2vw,40px);font-weight:400;color:#082C61;line-height:1.12;letter-spacing:-0.02em;margin-bottom:14px;">A method built on <em style="font-style:normal;color:inherit;">trust</em></h2>
+        <p style="font-family:var(--serif);font-style:italic;font-size:15.5px;color:#77735F;line-height:24px;max-width:560px;">A clear, repeatable process guides every project from proposal to completion.</p>
+      </div>
+    </section>
+
+    <!-- ── INFO ROWS ── -->
+    <section class="sg-section" id="info-rows">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Info Rows</h2>
+        <span class="sg-badge">Components</span>
+      </div>
+      <div class="sg-canvas" style="max-width:340px;">
+        <div style="display:flex;flex-direction:column;gap:18px;">
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <div style="width:38px;height:38px;border-radius:var(--radius-md);background:rgba(16,44,87,0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div style="font-size:10.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#9ab4c8;margin-bottom:3px;">Address</div><div style="font-size:13.5px;color:var(--navy);font-weight:600;line-height:1.5;">Byculla Club, Mumbai 400 027</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <div style="width:38px;height:38px;border-radius:var(--radius-md);background:rgba(16,44,87,0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 9.79 19.79 19.79 0 0 1 1.07 1.16 2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><div style="font-size:10.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#9ab4c8;margin-bottom:3px;">Phone</div><div style="font-size:13.5px;color:var(--navy);font-weight:600;line-height:1.5;">+91 98765 43210</div><div style="font-size:12px;color:#7a9ab5;margin-top:2px;">Mon–Sat, 10am–6pm</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="sg-note">Icon badge: <code>38×38px · border-radius: --radius-md (8px)</code>. Icon color: <code>--navy</code>. Label color: <code>#9ab4c8</code> (light blue-gray, not --muted).</div>
+    </section>
+
+    <!-- ── STEPS ── -->
+    <section class="sg-section" id="steps">
+      <div class="sg-section-head">
+        <h2 class="sg-section-title">Steps</h2>
+        <span class="sg-badge">Components</span>
+      </div>
+      <div class="sg-canvas sg-canvas--flex" style="flex-wrap:nowrap;overflow-x:auto;gap:20px;">
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:16px;flex:0 0 170px;">
+          <div style="width:44px;height:44px;border-radius:50%;background:#FCF8EF;border:1.5px solid var(--navy);color:var(--navy);font-family:var(--serif);font-size:17px;font-weight:700;display:grid;place-items:center;">1</div>
+          <div><h4 style="font-family:var(--serif);font-size:18px;color:var(--navy);font-weight:700;margin-bottom:6px;">Reach Out</h4><p style="font-size:13px;color:var(--muted);line-height:1.55;">A Lion will get back to you within 48 hours.</p></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:16px;flex:0 0 170px;">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:var(--serif);font-size:17px;font-weight:700;display:grid;place-items:center;">2</div>
+          <div><h4 style="font-family:var(--serif);font-size:18px;color:var(--navy);font-weight:700;margin-bottom:6px;">Meet the Lions</h4><p style="font-size:13px;color:var(--muted);line-height:1.55;">Attend a meeting as a guest first-hand.</p></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:16px;flex:0 0 170px;">
+          <div style="width:44px;height:44px;border-radius:50%;background:#FCF8EF;border:1.5px solid var(--navy);color:var(--navy);font-family:var(--serif);font-size:17px;font-weight:700;display:grid;place-items:center;">3</div>
+          <div><h4 style="font-family:var(--serif);font-size:18px;color:var(--navy);font-weight:700;margin-bottom:6px;">Get Inducted</h4><p style="font-size:13px;color:var(--muted);line-height:1.55;">Complete your application and join officially.</p></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:16px;flex:0 0 170px;">
+          <div style="width:44px;height:44px;border-radius:50%;background:#FCF8EF;border:1.5px solid var(--navy);color:var(--navy);font-family:var(--serif);font-size:17px;font-weight:700;display:grid;place-items:center;">4</div>
+          <div><h4 style="font-family:var(--serif);font-size:18px;color:var(--navy);font-weight:700;margin-bottom:6px;">Serve &amp; Grow</h4><p style="font-size:13px;color:var(--muted);line-height:1.55;">Join projects, committees and events.</p></div>
+        </div>
+      </div>
+      <div class="sg-note">Active step: <code>background:--navy · color:--gold</code>. Default: white bg, navy border. Node: <code>44×44px · border-radius:50%</code>.</div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+/* ── Card border hover variant 2: TL splits, both paths meet at BR ── */
+(function () {
+  const STROKE = '#FCCB06';
+  const PL = 1000;
+  const CR = 12; // --radius-lg
+
+  function makePath(svg, d) {
+    const el = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    el.setAttribute('d', d);
+    el.setAttribute('fill', 'none');
+    el.setAttribute('stroke', STROKE);
+    el.setAttribute('stroke-width', '1.5');
+    el.setAttribute('stroke-linecap', 'round');
+    el.setAttribute('stroke-linejoin', 'round');
+    el.setAttribute('pathLength', PL);
+    svg.appendChild(el);
+    return el;
+  }
+
+  function animateEl(el, delay, duration) {
+    el.style.strokeDasharray = PL;
+    el.style.strokeDashoffset = PL;
+    el.style.opacity = '1';
+    el.style.transition = 'none';
+    void el.getBoundingClientRect();
+    setTimeout(() => {
+      el.style.transition = 'stroke-dashoffset ' + duration + 'ms ease-in-out';
+      el.style.strokeDashoffset = '0';
+    }, delay);
+  }
+
+  function drawVariant2(svg, w, h, cr) {
+    const dA = 'M ' + (1+cr) + ',1 L ' + (w-1-cr) + ',1 A ' + cr + ',' + cr + ' 0 0 1 ' + (w-1) + ',' + (1+cr) + ' L ' + (w-1) + ',' + (h-1-cr) + ' A ' + cr + ',' + cr + ' 0 0 1 ' + (w-1-cr) + ',' + (h-1);
+    const dB = 'M ' + (1+cr) + ',1 A ' + cr + ',' + cr + ' 0 0 0 1,' + (1+cr) + ' L 1,' + (h-1-cr) + ' A ' + cr + ',' + cr + ' 0 0 0 ' + (1+cr) + ',' + (h-1) + ' L ' + (w-1-cr) + ',' + (h-1);
+    animateEl(makePath(svg, dA), 0, 1200);
+    animateEl(makePath(svg, dB), 0, 1200);
+  }
+
+  document.querySelectorAll('[data-sg-card]').forEach(function (card) {
+    var svgEl = card.querySelector('.sg-card-svg');
+    if (!svgEl) return;
+    var leaveTimer;
+
+    card.addEventListener('mouseenter', function () {
+      clearTimeout(leaveTimer);
+      while (svgEl.firstChild) svgEl.removeChild(svgEl.firstChild);
+      var b = card.getBoundingClientRect();
+      svgEl.setAttribute('viewBox', '0 0 ' + b.width + ' ' + b.height);
+      drawVariant2(svgEl, b.width, b.height, CR);
+    });
+
+    card.addEventListener('mouseleave', function () {
+      svgEl.querySelectorAll('path').forEach(function (p) {
+        p.style.transition = 'opacity 0.4s ease';
+        p.style.opacity = '0';
+      });
+      leaveTimer = setTimeout(function () {
+        while (svgEl.firstChild) svgEl.removeChild(svgEl.firstChild);
+      }, 450);
+    });
+  });
+})();
+
+const sections = document.querySelectorAll('.sg-section');
+const navLinks = document.querySelectorAll('.sg-nav a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

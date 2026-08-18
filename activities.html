@@ -1,0 +1,1380 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Our Activities | Lions Club of Byculla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/light-redesign.css">
+<link rel="stylesheet" href="css/nav-submenu.css">
+<style>
+
+/* ── ACTIVITIES HERO mirrors about.html about-hero ── */
+.act-hero {
+  position: relative;
+  background: var(--navy-deep) url('images/our activities.png') center/cover no-repeat;
+  padding: 149px 0 125px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.act-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 0;
+}
+
+.act-hero::after {
+  display: none;
+}
+
+.act-hero .wrap { position: relative; z-index: 1; }
+
+.act-hero .eyebrow { color: var(--gold); margin-bottom: 18px; }
+
+.act-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0 0 22px;
+}
+
+.act-hero h1 em { color: inherit; font-style: normal; }
+
+.act-hero .lede {
+  font-family: var(--serif);
+  font-style: italic;
+  color: rgba(255,255,255,0.68);
+  font-size: 1.05rem;
+  max-width: 560px;
+  line-height: 24px;
+}
+
+/* Breadcrumb same as about.html */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  margin-bottom: 26px;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color .2s; }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb svg { color: rgba(255,255,255,0.3); flex-shrink: 0; }
+
+/* Identity strip same structure as about.html */
+.identity-strip { background: var(--navy); }
+.identity-strip .wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.id-item {
+  padding: 26px 32px;
+}
+.id-item .lbl {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.42);
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+.id-item .val {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+.id-item .val em { color: var(--gold); font-style: normal; }
+
+/* Section layout helpers */
+.pg-section { padding: 96px 0; }
+.pg-section.bg-paper  { background: var(--paper); }
+.pg-section.bg-cream  { background: var(--white); }
+.pg-section.bg-frost  { background: #F7FAFD; }
+.pg-section.bg-white  { background: #fff; }
+.pg-section.bg-navy   { background: var(--navy); }
+.pg-section.bg-navy-deep { background: var(--navy-deep); }
+.pg-section.bg-warm   { background: var(--paper-warm); }
+
+.sec-h {
+  font: var(--type-section-title);
+  color: var(--navy);
+  margin: 0 0 20px;
+  letter-spacing: -0.02em;
+}
+.sec-h em  { color: inherit; font-style: normal; }
+.sec-h.light { color: #fff; }
+.sec-h.light em { color: inherit; }
+.sec-lead {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 620px;
+  margin: 0 0 52px;
+}
+
+/* ── FILTER BAR ── */
+/* The in-page category tabs. These also back the "Our activities" nav submenu
+   deep-links (?cat=…), which read their labels to retitle the section. */
+.filter-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 56px;
+}
+
+/* Mobile dropdown alternative to the pill grid */
+.filter-select-wrap { display: none; position: relative; margin-bottom: 40px; }
+.filter-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 20px; top: 50%;
+  width: 9px; height: 9px;
+  border-right: 2px solid var(--navy);
+  border-bottom: 2px solid var(--navy);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.filter-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--navy);
+  background: var(--white);
+  border: 2px solid var(--navy);
+  border-radius: 8px;
+  padding: 16px 44px 16px 18px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+.filter-select:focus { outline: none; border-color: var(--gold-deep); }
+
+/* ── YEAR FILTER ──
+   Secondary to the category pills, so it stays deliberately quieter than
+   .filter-select above: sans not serif, hairline --rule border not 2px navy. */
+.feed-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.year-select-wrap { position: relative; min-width: 180px; }
+.year-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 16px; top: 50%;
+  width: 8px; height: 8px;
+  border-right: 2px solid var(--navy);
+  border-bottom: 2px solid var(--navy);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.year-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--white);
+  border: 2px solid var(--rule);
+  border-radius: var(--radius-md);
+  padding: 11px 36px 11px 16px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+.year-select:focus { outline: none; border-color: var(--gold-deep); }
+
+/* Shown only when a category × year combination has no projects, so the grid
+   never just goes silently blank. */
+.act-empty {
+  display: none;
+  font: var(--type-lead);
+  color: var(--muted);
+  padding: 8px 0 32px;
+}
+.act-empty.is-shown { display: block; }
+
+/* ── ACTIVITY FEED — card grid, the only view for the feed ── */
+
+.act-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.act-card {
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.32s ease, border-color 0.2s ease;
+}
+.act-card:hover { box-shadow: var(--shadow-md); border-color: rgba(252,203,6,0.6); }
+.act-card.is-hidden { display: none; }
+
+/* Every card carries a real photograph, so the category placeholder gradients the
+   original grid needed are gone — the image fills the frame. --paper backs the
+   frame so a slow-loading image reads as a card, not a hole. */
+.act-card__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--paper);
+}
+.act-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.act-card:hover .act-card__img img { transform: scale(1.04); }
+
+.act-card__body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+
+/* Matches .news-card__tag — the category tag on a photo card, same role as this.
+   Every shipped label (.eyebrow, .camp-cat, .news-card__tag) is sans 700 #072338;
+   the serif/gold-deep variant in the styleguide's Tags section is not in use. */
+.act-card__tag {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 1.12px;
+  text-transform: uppercase;
+  color: #072338;
+}
+
+/* Positions the year (reusing .news-card__date verbatim) alongside the tag —
+   layout only, the reused classes keep their own color/type. */
+.act-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.act-card__institution {
+  font: var(--type-panel-title);
+  color: var(--navy);
+  margin: 0;
+}
+
+/* Matches .camp-blurb on the homepage appeal cards — same anatomy, same surface. */
+.act-card__what {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.62;
+  margin: 0;
+}
+
+/* Pushed to the card's foot by margin-top:auto so the italic outcome line sits on
+   the same baseline across a row of cards with uneven text above it. */
+.act-card__outcome {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  font-style: italic;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  margin-top: auto;
+}
+
+/* ── ACTIVITY FEED — list rows ──
+   Same feed, second half. Projects we hold no photograph for render as rows
+   instead of cards, so the grid above is only real photographs and nothing is
+   padded out with a stock image. Not a separate section: the list continues
+   straight on under the grid, inside the same feed, and answers to the same
+   category + year filters. Rows reuse .act-card__tag / __institution / __what
+   verbatim, so a row and a card read as the same object in two densities. */
+.act-list {
+  margin-top: 52px;
+  padding-top: 4px;
+  border-top: 2px solid var(--gold);
+}
+.act-list.is-hidden { display: none; }
+
+.act-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 22px 4px;
+  border-bottom: 1px solid var(--rule);
+  transition: background-color 0.2s ease;
+}
+.act-row:hover { background: rgba(252,203,6,0.06); }
+.act-row.is-hidden { display: none; }
+
+.act-row__body { display: flex; flex-direction: column; gap: 6px; }
+
+/* The tag sits on the grid's first column, so it needs to clear the serif
+   institution line's optical top rather than the row's raw top edge. */
+.act-row .act-card__tag { padding-top: 6px; }
+
+/* Year badge pinned to the row's own top-right corner (reuses .news-card__date
+   verbatim) — independent of the grid columns, so it stays put across breakpoints. */
+.act-row__date { position: absolute; top: 22px; right: 4px; }
+
+/* No border-top / margin-top here — inside a row the outcome is a third line,
+   not a card foot, and .act-card__outcome's auto margin has nothing to push
+   against in a grid cell. */
+.act-row .act-card__outcome {
+  border-top: 0;
+  padding-top: 2px;
+  margin-top: 0;
+}
+
+.filter-pill {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  border-radius: 8px;
+  border: 2px solid var(--rule);
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  text-align: left;
+  min-width: 0;
+  overflow: hidden;
+}
+.filter-pill:hover {
+  border-color: rgba(252,203,6,0.65);
+  box-shadow: 0 2px 12px rgba(16,44,87,0.07);
+}
+.filter-pill[aria-pressed="true"] {
+  background: var(--navy);
+  border-color: var(--navy);
+  box-shadow: 0 2px 14px rgba(16,44,87,0.12);
+}
+.filter-pill[aria-pressed="true"] .fp-icon { color: var(--gold); }
+.filter-pill[aria-pressed="true"] .fp-name { color: #fff; }
+.filter-pill[aria-pressed="true"] .fp-sub { color: rgba(255,255,255,0.65); }
+
+.fp-icon {
+  width: 96px;
+  height: auto;
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 6px 6px 0;
+  overflow: hidden;
+}
+.fp-icon svg { width: 45%; height: 45%; }
+.fp-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.fp-text { display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 0; padding: 16px 20px; }
+.fp-name {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.25;
+}
+.fp-sub {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+/* all-pill is slightly compact */
+.filter-pill--all .fp-icon { color: var(--gold-deep); }
+
+/* ── CAUSE PILLARS ── */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.pillar-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.32s ease, border-color 0.2s ease;
+}
+.pillar-card:hover { box-shadow: var(--shadow-md); border-color: rgba(252,203,6,0.6); }
+
+.pillar-card__icon { width: 40px; height: 40px; color: var(--gold-deep); flex-shrink: 0; }
+
+.pillar-card__name {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+}
+
+.pillar-card__tagline { font-size: 12.5px; font-style: italic; color: var(--muted); line-height: 1.5; }
+
+.pillar-card__desc { font-size: 13px; color: var(--body); line-height: 1.65; flex: 1; }
+
+.pillar-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--serif);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--navy);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 4px;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+.pillar-card__link:hover { color: var(--gold-deep); gap: 9px; }
+
+/* ── SPOTLIGHT ── */
+.spotlight-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.spotlight-img {
+  aspect-ratio: 3/4;
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(252,203,6,0.14) 0%, transparent 55%),
+    linear-gradient(160deg, #102C57 0%, #0B1F3F 55%, #1a3a70 100%);
+  border: 1px solid rgba(252,203,6,0.18);
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 22px, rgba(255,255,255,0.015) 22px, rgba(255,255,255,0.015) 23px);
+}
+.spotlight-img-caption {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.42);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.spotlight-text h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.2;
+  margin: 0 0 20px;
+}
+.spotlight-text h2 em { font-style: normal; color: inherit; }
+.spotlight-body { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--body); line-height: 1.8; margin-bottom: 32px; }
+.spotlight-quote {
+  border-left: 3px solid var(--gold);
+  padding: 18px 24px;
+  background: rgba(252,203,6,0.05);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.spotlight-quote p {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-style: italic;
+  color: var(--navy);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ── FUNDRAISER ── */
+.fundraiser-inner { text-align: center; max-width: 620px; margin: 0 auto; }
+.fundraiser-inner h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 400;
+  color: var(--navy);
+  margin: 0 0 16px;
+}
+.fundraiser-inner h2 em { font-style: normal; color: inherit; }
+.fundraiser-inner .sub { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--body); line-height: 1.75; margin-bottom: 36px; }
+.fundraiser-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+.fundraiser-note { font-size: 11.5px; color: var(--muted); letter-spacing: 0.04em; }
+
+/* ── AWARDS ── */
+.awards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
+.award-item {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.28s ease;
+}
+.award-item:hover { border-color: rgba(252,203,6,0.35); box-shadow: 0 0 32px rgba(252,203,6,0.08); }
+.award-icon { width: 40px; height: 40px; color: var(--gold); }
+.award-name { font-family: var(--serif); font-size: 1rem; font-weight: 600; color: #fff; line-height: 1.3; }
+.award-body { font-size: 11.5px; color: rgba(255,255,255,0.42); letter-spacing: 0.06em; text-transform: uppercase; }
+.awards-closing { text-align: center; font-size: 13.5px; font-style: italic; color: rgba(255,255,255,0.35); margin-top: 48px; }
+
+/* ── CTA CARDS ── */
+.cta-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 820px; margin: 56px auto 0; }
+.cta-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  padding: 44px 36px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.28s ease, border-color 0.2s ease;
+}
+.cta-card:hover { box-shadow: var(--shadow-md); border-color: rgba(252,203,6,0.5); }
+.cta-card--dark { background: var(--navy); border-color: var(--navy); }
+.cta-card__headline { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+.cta-card--dark .cta-card__headline { color: #fff; }
+.cta-card__body { font-size: 14px; color: var(--body); line-height: 1.65; }
+.cta-card--dark .cta-card__body { color: rgba(255,255,255,0.6); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .pillars-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .nav-c-links { display: none; }
+  .nav-c-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .identity-strip .wrap { grid-template-columns: repeat(2, 1fr); }
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  .act-grid { grid-template-columns: repeat(2, 1fr); }
+  .act-row { grid-template-columns: 200px 1fr; gap: 20px; }
+  .filter-bar { grid-template-columns: repeat(2, 1fr); }
+  .spotlight-grid { grid-template-columns: 1fr; gap: 36px; }
+  .awards-grid { grid-template-columns: 1fr; }
+  .cta-cards { grid-template-columns: 1fr; max-width: 480px; }
+}
+@media (max-width: 640px) {
+  .identity-strip .wrap { grid-template-columns: 1fr 1fr; }
+  .id-item { padding: 18px 20px; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .act-grid { grid-template-columns: 1fr; }
+  /* The tag stacks above the institution on a phone — 260px of label column
+     would leave the text a sliver. */
+  .act-row { grid-template-columns: 1fr; gap: 8px; }
+  .act-row .act-card__tag { padding-top: 0; }
+  /* Eight image pills don't fit a phone — the dropdown takes over below 640. */
+  .filter-bar { display: none; }
+  .filter-select-wrap { display: block; }
+  /* Full width so it reads as a pair with the category dropdown above it,
+     rather than a stray 180px control floated to one side. */
+  .year-select-wrap { width: 100%; min-width: 0; }
+  .fundraiser-btns { flex-direction: column; align-items: center; }
+  .wrap { padding: 0 16px; }
+  .pg-section { padding: 64px 0; }
+}
+@media (max-width: 400px) {
+  .identity-strip .wrap { grid-template-columns: 1fr; }
+  .id-item { padding: 14px 16px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV standalone, identical to about.html -->
+<nav class="main" id="mainNav" aria-label="Main navigation">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <div class="brand-logo">
+        <img src="images/Logo.png" alt="Lions Club of Byculla">
+      </div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <ul class="nav-c-links">
+      <li class="has-sub">
+        <a href="about.html">About us <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </li>
+      <li><a href="impact.html">Our impact</a></li>
+      <li class="has-sub">
+        <a href="activities.html">Our activities <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="activities.html">All projects</a></li>
+          <li><a href="activities.html?cat=health">Diabetes &amp; Healthcare</a></li>
+          <li><a href="activities.html?cat=cancer">Childhood Cancer Care</a></li>
+          <li><a href="activities.html?cat=education">Education &amp; Youth</a></li>
+          <li><a href="activities.html?cat=vision">Eye Care &amp; Vision</a></li>
+          <li><a href="activities.html?cat=elder">Elder care</a></li>
+          <li><a href="activities.html?cat=hunger">Hunger &amp; Food Security</a></li>
+          <li><a href="activities.html?cat=animal">Animal Welfare</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="news.html">News &amp; events <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="news.html?tab=event">Events</a></li>
+          <li><a href="news.html?tab=news">News</a></li>
+          <li><a href="news.html?tab=bulletin">Bulletin</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+    <div class="nav-c-cta">
+      <a href="donate.html" class="nav-c-donate">Donate</a>
+      <a href="#" class="nav-login-icon" aria-label="Login"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <div class="drawer-head">
+    <a class="brand" href="index.html">
+      <div class="brand-logo"><img src="images/Logo.png" id="drawerLogo" alt="Lions Club of Byculla"></div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <button type="button" class="drawer-acc-toggle drawer-first" data-target="drawerAbout" aria-expanded="false">
+      About us
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerAbout">
+      <a href="about.html#story">Our story</a>
+      <a href="about.html#tl-v2">Our journey</a>
+      <a href="about.html#board">Leadership</a>
+      <a href="about.html#presidents">Past presidents</a>
+      <a href="about.html#lions-international">Lions International</a>
+    </div>
+    <a href="impact.html">Our impact</a>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerActivities" aria-expanded="false">
+      Our activities
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerActivities">
+      <a href="activities.html">All projects</a>
+      <a href="activities.html?cat=health">Diabetes &amp; Healthcare</a>
+      <a href="activities.html?cat=cancer">Childhood Cancer Care</a>
+      <a href="activities.html?cat=education">Education &amp; Youth</a>
+      <a href="activities.html?cat=vision">Eye Care &amp; Vision</a>
+      <a href="activities.html?cat=elder">Elder care</a>
+      <a href="activities.html?cat=hunger">Hunger &amp; Food Security</a>
+      <a href="activities.html?cat=animal">Animal Welfare</a>
+    </div>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerNews" aria-expanded="false">
+      News &amp; events
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerNews">
+      <a href="news.html?tab=event">Events</a>
+      <a href="news.html?tab=news">News</a>
+      <a href="news.html?tab=bulletin">Bulletin</a>
+    </div>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="drawer-foot">
+    <a href="#" class="login-pill-mob">
+      <svg viewBox="0 0 24 24" width="18" height="18" style="stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Login
+    </a>
+    <a href="donate.html" class="donate-pill-mob">Donate</a>
+  </div>
+</nav>
+
+<!-- ── HERO mirrors about.html ── -->
+<section class="act-hero" aria-labelledby="act-hero-headline">
+  <div class="wrap">
+    <h1 id="act-hero-headline">
+      Turning compassion<br>
+      <em>Into action.</em>
+    </h1>
+    <p class="lede">
+      Since 1977, every rupee we raise goes directly into the field hospitals, classrooms, blood banks, and shelters. This is a window into the lives we have touched, and the work that never stops.
+    </p>
+  </div>
+</section>
+
+
+<main>
+
+  <!-- ── ACTIVITY FEED ── -->
+  <section class="pg-section bg-cream" id="act-feed" aria-labelledby="feed-headline">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">A year in service</div>
+        <h2 class="sec-h" id="feed-headline">Our projects <em>Documented &amp; delivered.</em></h2>
+        <p class="sec-lead">Every project photographed, verified, and filed with Lions International. Not charity from a distance presence on the ground.</p>
+      </div>
+
+      <div class="filter-select-wrap">
+        <select class="filter-select" id="filterSelect" aria-label="Filter projects by cause">
+          <option value="all">All projects</option>
+          <option value="health">Diabetes &amp; Healthcare</option>
+          <option value="cancer">Childhood Cancer Care</option>
+          <option value="education">Education &amp; Youth</option>
+          <option value="vision">Eye Care &amp; Vision</option>
+          <option value="elder">Elder care</option>
+          <option value="hunger">Hunger &amp; Food Security</option>
+          <option value="animal">Animal Welfare</option>
+        </select>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filter projects by cause">
+
+        <button class="filter-pill filter-pill--all" data-filter="all" aria-pressed="true">
+          <span class="fp-text">
+            <span class="fp-name">All</span>
+            <span class="fp-sub">All projects</span>
+          </span>
+        </button>
+
+        <button class="filter-pill" data-filter="health" aria-pressed="false">
+          <span class="fp-icon">
+            <img src="images/img-7.png" alt="">
+          </span>
+          <span class="fp-text">
+            <span class="fp-name">Diabetes &amp; Healthcare</span>
+            <span class="fp-sub">Restoring health, renewing hope</span>
+          </span>
+        </button>
+
+        <button class="filter-pill" data-filter="cancer" aria-pressed="false">
+          <span class="fp-icon">
+            <img src="images/img-5.png" alt="">
+          </span>
+          <span class="fp-text">
+            <span class="fp-name">Childhood Cancer Care</span>
+            <span class="fp-sub">Supporting brave young lives</span>
+          </span>
+        </button>
+
+        <button class="filter-pill" data-filter="education" aria-pressed="false">
+          <span class="fp-icon">
+            <img src="images/img-8.png" alt="">
+          </span>
+          <span class="fp-text">
+            <span class="fp-name">Education &amp; Youth</span>
+            <span class="fp-sub">Learning today, leading tomorrow</span>
+          </span>
+        </button>
+
+        <button class="filter-pill" data-filter="vision" aria-pressed="false">
+          <span class="fp-icon">
+            <img src="images/slit lamp.png" alt="">
+          </span>
+          <span class="fp-text">
+            <span class="fp-name">Eye Care &amp; Vision</span>
+            <span class="fp-sub">Bringing sight, changing lives</span>
+          </span>
+        </button>
+
+        <button class="filter-pill" data-filter="elder" aria-pressed="false">
+          <span class="fp-icon">
+            <img src="images/elder-care.png" alt="">
+          </span>
+          <span class="fp-text">
+            <span class="fp-name">Elder care</span>
+            <span class="fp-sub">Caring for our elders</span>
+          </span>
+        </button>
+
+        <button class="filter-pill" data-filter="hunger" aria-pressed="false">
+          <span class="fp-icon">
+            <img src="images/img-2.png" alt="">
+          </span>
+          <span class="fp-text">
+            <span class="fp-name">Hunger &amp; Food Security</span>
+            <span class="fp-sub">Nourishing lives, delivering hope</span>
+          </span>
+        </button>
+
+        <button class="filter-pill" data-filter="animal" aria-pressed="false">
+          <span class="fp-icon">
+            <img src="images/img-6.png" alt="">
+          </span>
+          <span class="fp-text">
+            <span class="fp-name">Animal Welfare</span>
+            <span class="fp-sub">Protecting animals with compassion</span>
+          </span>
+        </button>
+
+      </div>
+
+      <!-- Year filter. Options are built at runtime from the cards' data-year values,
+           so adding a project from a new year populates this on its own. -->
+      <div class="feed-controls">
+        <div class="year-select-wrap">
+          <select class="year-select" id="yearSelect" aria-label="Filter projects by year">
+            <option value="all">All years</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="act-empty" id="actEmpty" role="status"></p>
+
+      <!-- The projects themselves. These <article> cards render directly — this is where
+           you add, edit or remove a project. data-category drives the category filter,
+           data-year the year dropdown; both must match for a card to show. -->
+      <div class="act-grid" id="actGrid">
+
+        <article class="act-card" data-category="health" data-year="2025" data-photo="images/a-brief-photo-history-of-masina-hospital.jpg">
+          <div class="act-card__img"><img src="images/a-brief-photo-history-of-masina-hospital.jpg" alt="Diabetes awareness camp at Masina Hospital"></div>
+          <div class="act-card__body">
+            <div class="act-meta">
+              <span class="act-card__tag">Diabetes &amp; Healthcare</span>
+              <span class="news-card__date">2025</span>
+            </div>
+            <p class="act-card__institution">Masina Hospital</p>
+            <p class="act-card__what">Diabetes awareness &amp; check-up camp</p>
+            <p class="act-card__outcome">Free screening for underserved communities. Early detection saves lives, not just treats illness.</p>
+          </div>
+        </article>
+
+        <article class="act-card" data-category="health" data-year="2025" data-photo="images/extracted-9.jpg">
+          <div class="act-card__img"><img src="images/extracted-9.jpg" alt="Wheelchair donation at Gamadia Colony clinic"></div>
+          <div class="act-card__body">
+            <div class="act-meta">
+              <span class="act-card__tag">Diabetes &amp; Healthcare</span>
+              <span class="news-card__date">2025</span>
+            </div>
+            <p class="act-card__institution">H.C. Jehangir Health Clinic, Gamadia Colony</p>
+            <p class="act-card__what">6 wheelchairs Rs 1,30,000</p>
+            <p class="act-card__outcome">Mobility returned to six individuals who had lost the ability to move freely.</p>
+          </div>
+        </article>
+
+        <article class="act-card" data-category="cancer" data-year="2025" data-photo="images/clown_magicshow.jpg">
+          <div class="act-card__img"><img src="images/clown_magicshow.jpg" alt="Clown and magic show at Wadia Hospital cancer ward"></div>
+          <div class="act-card__body">
+            <div class="act-meta">
+              <span class="act-card__tag">Childhood Cancer Care</span>
+              <span class="news-card__date">2025</span>
+            </div>
+            <p class="act-card__institution">Bai Jerbai Wadia Children's Hospital, Cancer Ward</p>
+            <p class="act-card__what">Clown &amp; magic show</p>
+            <p class="act-card__outcome">Joy is medicine too. We brought laughter to children enduring their hardest days.</p>
+          </div>
+        </article>
+
+        <article class="act-card" data-category="cancer" data-year="2025" data-photo="images/img-10.png">
+          <div class="act-card__img"><img src="images/img-10.png" alt="Chemoport donation at SRCC Children's Hospital"></div>
+          <div class="act-card__body">
+            <div class="act-meta">
+              <span class="act-card__tag">Childhood Cancer Care</span>
+              <span class="news-card__date">2025</span>
+            </div>
+            <p class="act-card__institution">SRCC Children's Hospital, Haji Ali</p>
+            <p class="act-card__what">3 chemoports for chemotherapy Rs 60,000</p>
+            <p class="act-card__outcome">Life-saving access to treatment for children whose families could not afford it.</p>
+          </div>
+        </article>
+
+        <article class="act-card" data-category="education" data-year="2025" data-photo="images/school kit.png">
+          <div class="act-card__img"><img src="images/school kit.png" alt="School bags and watches donation at Bandra school"></div>
+          <div class="act-card__body">
+            <div class="act-meta">
+              <span class="act-card__tag">Education &amp; Youth</span>
+              <span class="news-card__date">2025</span>
+            </div>
+            <p class="act-card__institution">Avanbai Petit Girls High School, Bandra</p>
+            <p class="act-card__what">School bags &amp; wrist watches</p>
+            <p class="act-card__outcome">Small gifts, large signals every child deserves to walk into school feeling ready.</p>
+          </div>
+        </article>
+
+        <article class="act-card" data-category="education" data-year="2025" data-photo="images/extracted-6.jpg">
+          <div class="act-card__img"><img src="images/extracted-6.jpg" alt="Scholarship distribution at Vidya Integrated Powai"></div>
+          <div class="act-card__body">
+            <div class="act-meta">
+              <span class="act-card__tag">Education &amp; Youth</span>
+              <span class="news-card__date">2025</span>
+            </div>
+            <p class="act-card__institution">Vidya Integrated, Powai</p>
+            <p class="act-card__what">Scholarships</p>
+            <p class="act-card__outcome">Education funded for children whose potential far outpaces their resources.</p>
+          </div>
+        </article>
+
+        <article class="act-card" data-category="vision" data-year="2025" data-photo="images/Free cataract surgery camp.png">
+          <div class="act-card__img"><img src="images/Free cataract surgery camp.png" alt="Ophthalmoscope donation at BYL Nair Hospital"></div>
+          <div class="act-card__body">
+            <div class="act-meta">
+              <span class="act-card__tag">Eye Care &amp; Vision</span>
+              <span class="news-card__date">2025</span>
+            </div>
+            <p class="act-card__institution">BYL Nair Hospital, Ophthalmic Department</p>
+            <p class="act-card__what">Ophthalmoscope &amp; probes Rs 4,97,000</p>
+            <p class="act-card__outcome">Precision instruments for a department that serves patients who have nowhere else to turn.</p>
+          </div>
+        </article>
+
+        <article class="act-card" data-category="hunger" data-year="2025" data-photo="images/img-9.png">
+          <div class="act-card__img"><img src="images/img-9.png" alt="Food grains and milk distribution at JJ Dharamshalla"></div>
+          <div class="act-card__body">
+            <div class="act-meta">
+              <span class="act-card__tag">Hunger &amp; Food Security</span>
+              <span class="news-card__date">2025</span>
+            </div>
+            <p class="act-card__institution">Sir J.J. Dharamshalla, Nagpada</p>
+            <p class="act-card__what">Milk &amp; food grains</p>
+            <p class="act-card__outcome">A simple meal, delivered with dignity. No one in our city should go to sleep hungry.</p>
+          </div>
+        </article>
+
+        <article class="act-card" data-category="hunger" data-year="2025" data-photo="images/Feedin lunch.jpg">
+          <div class="act-card__img"><img src="images/Feedin lunch.jpg" alt="Lunch and washing machine at Asha Sadan Dongri"></div>
+          <div class="act-card__body">
+            <div class="act-meta">
+              <span class="act-card__tag">Hunger &amp; Food Security</span>
+              <span class="news-card__date">2025</span>
+            </div>
+            <p class="act-card__institution">Asha Sadan, Dongri</p>
+            <p class="act-card__what">Lunch &amp; washing machine</p>
+            <p class="act-card__outcome">Sustenance and sanitation two things every shelter home deserves without having to ask.</p>
+          </div>
+        </article>
+
+        <article class="act-card" data-category="elder" data-year="2025" data-photo="images/extracted-2.jpg">
+          <div class="act-card__img"><img src="images/extracted-2.jpg" alt="Musical entertainment at Parekh Dharamshalla Vasai"></div>
+          <div class="act-card__body">
+            <div class="act-meta">
+              <span class="act-card__tag">Elder care</span>
+              <span class="news-card__date">2025</span>
+            </div>
+            <p class="act-card__institution">Parekh Dharamshalla for Senior Citizens, Vasai</p>
+            <p class="act-card__what">Musical entertainment &amp; snacks Rs 15,000</p>
+            <p class="act-card__outcome">Some afternoons, what a person needs most is not medicine it is music. We brought both.</p>
+          </div>
+        </article>
+
+        <article class="act-card" data-category="elder" data-year="2025" data-photo="images/extracted-4.jpg">
+          <div class="act-card__img"><img src="images/extracted-4.jpg" alt="Gift hampers for widows at N.M. Petit Chawl Fort"></div>
+          <div class="act-card__body">
+            <div class="act-meta">
+              <span class="act-card__tag">Elder care</span>
+              <span class="news-card__date">2025</span>
+            </div>
+            <p class="act-card__institution">N.M. Petit Widow's Chawl, Fort</p>
+            <p class="act-card__what">Gift hampers to 14 widows Rs 31,000</p>
+            <p class="act-card__outcome">Fourteen widows. Fourteen hampers. The weight of being remembered, in a box.</p>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Projects we hold no photograph for. Same feed, listed rather than
+           carded — a row carries the identical data-category / data-year pair,
+           so both halves respond to one filter. Move an entry up into .act-grid
+           the day a real photo for it arrives; don't add a stock image here. -->
+      <div class="act-list" id="actList">
+
+        <div class="act-row" data-category="health" data-year="2025">
+          <span class="act-card__tag">Diabetes &amp; Healthcare</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">Lady Hirabai Cawasji Jehangir Health Unit, Tardeo</p>
+            <p class="act-card__what">TV, fans &amp; water cooler</p>
+            <p class="act-card__outcome">Comfort items that transform a clinical space into a dignified one.</p>
+          </div>
+          <span class="news-card__date act-row__date">2025</span>
+        </div>
+
+        <div class="act-row" data-category="cancer" data-year="2025">
+          <span class="act-card__tag">Childhood Cancer Care</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">Tata Memorial Hospital</p>
+            <p class="act-card__what">Negative suction device Rs 4,00,000</p>
+            <p class="act-card__outcome">Critical post-operative equipment donated to one of India's foremost cancer hospitals.</p>
+          </div>
+          <span class="news-card__date act-row__date">2025</span>
+        </div>
+
+        <div class="act-row" data-category="education" data-year="2025">
+          <span class="act-card__tag">Education &amp; Youth</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">Dadar Athornan Madrassa</p>
+            <p class="act-card__what">6 computers</p>
+            <p class="act-card__outcome">Digital access is no longer a luxury. We helped bridge the gap for students who deserve to compete on equal ground.</p>
+          </div>
+          <span class="news-card__date act-row__date">2025</span>
+        </div>
+
+        <div class="act-row" data-category="vision" data-year="2025">
+          <span class="act-card__tag">Eye Care &amp; Vision</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">RNC Free Eye Hospital, Valsad</p>
+            <p class="act-card__what">Slit lamp</p>
+            <p class="act-card__outcome">Equipment that will serve thousands of patients for years to come. One donation. Lasting sight.</p>
+          </div>
+          <span class="news-card__date act-row__date">2025</span>
+        </div>
+
+        <div class="act-row" data-category="elder" data-year="2025">
+          <span class="act-card__tag">Elder care</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">J.J. Dharamshalla for Seniors, Nagpada</p>
+            <p class="act-card__what">Acer laptop Rs 35,000</p>
+            <p class="act-card__outcome">Staying connected to the world should not stop at a certain age. A laptop gifted; a window reopened.</p>
+          </div>
+          <span class="news-card__date act-row__date">2025</span>
+        </div>
+
+        <div class="act-row" data-category="animal" data-year="2025">
+          <span class="act-card__tag">Animal Welfare</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">Animal Rescue Centre, Thane</p>
+            <p class="act-card__what">Maintenance support Rs 50,000</p>
+            <p class="act-card__outcome">India has 60 million stray animals. We believe every one deserves a safe place.</p>
+          </div>
+          <span class="news-card__date act-row__date">2025</span>
+        </div>
+
+        <div class="act-row" data-category="cancer" data-year="2024">
+          <span class="act-card__tag">Childhood Cancer Care</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">St Jude India Child Care, Cotton Green</p>
+            <p class="act-card__what">Provisions &amp; hampers for 170 children Rs 75,000</p>
+            <p class="act-card__outcome">Meals and essentials delivered to children undergoing cancer treatment and their families.</p>
+          </div>
+          <span class="news-card__date act-row__date">2024</span>
+        </div>
+
+        <div class="act-row" data-category="education" data-year="2024">
+          <span class="act-card__tag">Education &amp; Youth</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">Anjuman-e-Islam Girls School</p>
+            <p class="act-card__what">Educational aid for children of cancer patients Rs 1,00,000</p>
+            <p class="act-card__outcome">Keeping a classroom seat open for children whose parents are fighting cancer.</p>
+          </div>
+          <span class="news-card__date act-row__date">2024</span>
+        </div>
+
+        <div class="act-row" data-category="vision" data-year="2024">
+          <span class="act-card__tag">Eye Care &amp; Vision</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">Xavier Resource Center for Visually Challenged</p>
+            <p class="act-card__what">Donation of assistive resources</p>
+            <p class="act-card__outcome">Tools that help visually challenged students study and compete on equal footing.</p>
+          </div>
+          <span class="news-card__date act-row__date">2024</span>
+        </div>
+
+        <div class="act-row" data-category="vision" data-year="2010">
+          <span class="act-card__tag">Eye Care &amp; Vision</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">B.Y.L. Nair Hospital, Ophthalmic Department</p>
+            <p class="act-card__what">Continued Ophthalmic Department upgrade</p>
+            <p class="act-card__outcome">The same year the club secured its FCRA sanction and was named Best Club in the district.</p>
+          </div>
+          <span class="news-card__date act-row__date">2010</span>
+        </div>
+
+        <div class="act-row" data-category="hunger" data-year="2001">
+          <span class="act-card__tag">Hunger &amp; Food Security</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">Earthquake Relief, Bhuj &amp; Anjaar, Gujarat</p>
+            <p class="act-card__what">Grain &amp; essential commodities distribution</p>
+            <p class="act-card__outcome">Personally led relief convoys to villages left devastated by the Gujarat earthquake.</p>
+          </div>
+          <span class="news-card__date act-row__date">2001</span>
+        </div>
+
+        <div class="act-row" data-category="education" data-year="2001">
+          <span class="act-card__tag">Education &amp; Youth</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">Happy Home and School for the Blind</p>
+            <p class="act-card__what">Adopted 40 blind children</p>
+            <p class="act-card__outcome">A full year of care and schooling sponsored for forty children living without sight.</p>
+          </div>
+          <span class="news-card__date act-row__date">2001</span>
+        </div>
+
+        <div class="act-row" data-category="elder" data-year="2001">
+          <span class="act-card__tag">Elder care</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">Lok Seva Sangam, Chembur</p>
+            <p class="act-card__what">Physiotherapy equipment donated</p>
+            <p class="act-card__outcome">Equipment that restored mobility and independence to those in need of rehabilitation.</p>
+          </div>
+          <span class="news-card__date act-row__date">2001</span>
+        </div>
+
+        <div class="act-row" data-category="health" data-year="1991">
+          <span class="act-card__tag">Diabetes &amp; Healthcare</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">Masina Hospital</p>
+            <p class="act-card__what">9-bed General Ward with Burns Unit Rs 1,00,000</p>
+            <p class="act-card__outcome">The first dedicated burns unit of its kind in Maharashtra, built when few institutions had one.</p>
+          </div>
+          <span class="news-card__date act-row__date">1991</span>
+        </div>
+
+        <div class="act-row" data-category="cancer" data-year="1991">
+          <span class="act-card__tag">Childhood Cancer Care</span>
+          <div class="act-row__body">
+            <p class="act-card__institution">Khushnam Khambatta Mercy Mission, USA</p>
+            <p class="act-card__what">Cancer treatment sponsorship Rs 1,27,000</p>
+            <p class="act-card__outcome">A mercy mission that sent a Byculla child abroad for life-saving cancer care.</p>
+          </div>
+          <span class="news-card__date act-row__date">1991</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="footer-motto">Ushta Te - Happiness Unto All</div>
+        <p>A multi-generational service organisation rooted in South Mumbai. Premier Club, District 3231 A1. Serving without interruption since 1977.</p>
+        <div class="est">Est. 1977 &middot; Golden jubilee 2027</div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick links</h5>
+        <ul>
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="#">Leadership</a></li>
+          <li><a href="#">Annual reports</a></li>
+          <li><a href="#">Press &amp; media</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Our causes</h5>
+        <ul>
+          <li><a href="#">Eye Care &amp; Vision</a></li>
+          <li><a href="#">Childhood Cancer Care</a></li>
+          <li><a href="#">Education &amp; Youth</a></li>
+          <li><a href="#">Hunger &amp; Food Security</a></li>
+          <li><a href="#">Diabetes &amp; Healthcare</a></li>
+          <li><a href="#">Animal Welfare</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="#">Join as a member</a></li>
+          <li><a href="#">Volunteer for a day</a></li>
+          <li><a href="#">Do-good cookbook</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Golden Jubilee FRD</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <ul>
+          <li>Byculla, Mumbai - 400 008</li>
+          <li><a href="mailto:info@lionsbyculla.org">info@lionsbyculla.org</a></li>
+          <li>+91 22 2300 XXXX</li>
+        </ul>
+        <a href="#" class="whatsapp">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2025 Lions Club of Byculla &middot; District 3231 A1 &middot; Premier Club &middot; Golden jubilee 2027</div>
+      <div><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script-1.js"></script>
+<script src="js/members-auth.js"></script>
+<script>
+'use strict';
+
+/* Nav scroll fix to top on scroll like about.html */
+(function () {
+  var nav = document.getElementById('mainNav');
+  if (!nav) return;
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+})();
+
+/* Activity Feed Filter */
+(function () {
+  var pills = document.querySelectorAll('.filter-pill');
+  /* The cards are the markup — filtering just hides the ones that don't match. */
+  /* Cards and rows are one feed under two densities — filtered together, and
+     counted together so the empty state only fires when both halves are bare. */
+  var cards = document.querySelectorAll('.act-card, .act-row');
+  var list = document.getElementById('actList');
+  var select = document.getElementById('filterSelect');
+  var yearSelect = document.getElementById('yearSelect');
+  var empty = document.getElementById('actEmpty');
+
+  var currentCategory = 'all';
+  var currentYear = 'all';
+
+  /* Year options are read off the cards, newest first, so adding a project from a
+     new year populates the dropdown with no edit here. */
+  (function populateYears() {
+    if (!yearSelect) return;
+    var years = [];
+    cards.forEach(function (card) {
+      var y = card.getAttribute('data-year');
+      if (y && years.indexOf(y) === -1) years.push(y);
+    });
+    years.sort().reverse().forEach(function (y) {
+      var opt = document.createElement('option');
+      opt.value = y;
+      opt.textContent = y;
+      yearSelect.appendChild(opt);
+    });
+  })();
+
+  /* Category and year are independent filters — a card shows only if it clears both. */
+  function render() {
+    var shown = 0;
+    var rowsShown = 0;
+    cards.forEach(function (card) {
+      var okCat = currentCategory === 'all' || card.getAttribute('data-category') === currentCategory;
+      var okYear = currentYear === 'all' || card.getAttribute('data-year') === currentYear;
+      var show = okCat && okYear;
+      card.classList.toggle('is-hidden', !show);
+      if (show) {
+        shown++;
+        if (card.classList.contains('act-row')) rowsShown++;
+      }
+    });
+    /* Hide the whole list when every row is filtered out — otherwise its gold
+       top rule hangs under the grid with nothing beneath it. */
+    if (list) list.classList.toggle('is-hidden', rowsShown === 0);
+    if (empty) {
+      empty.classList.toggle('is-shown', shown === 0);
+      if (shown === 0) {
+        empty.textContent = currentYear === 'all'
+          ? 'No projects in this category yet.'
+          : 'No projects in this category for ' + currentYear + '.';
+      }
+    }
+  }
+
+  function applyFilter(value) {
+    currentCategory = value;
+    pills.forEach(function (p) {
+      p.setAttribute('aria-pressed', p.getAttribute('data-filter') === value ? 'true' : 'false');
+    });
+    if (select && select.value !== value) select.value = value;
+    render();
+
+    /* Reflect the active category in the section heading + browser tab title
+       so it's clear which sub-page you're on. */
+    var headline = document.getElementById('feed-headline');
+    if (headline) {
+      if (value === 'all') {
+        headline.innerHTML = 'Our projects <em>Documented &amp; delivered.</em>';
+        document.title = 'Our Activities | Lions Club of Byculla';
+      } else {
+        var activePill = document.querySelector('.filter-pill[data-filter="' + value + '"]');
+        var label = activePill ? activePill.querySelector('.fp-name').textContent.trim() : value;
+        headline.innerHTML = 'Our <em></em> projects.';
+        headline.querySelector('em').textContent = label;
+        document.title = label + ' | Lions Club of Byculla';
+      }
+    }
+  }
+
+  pills.forEach(function (pill) {
+    pill.addEventListener('click', function () { applyFilter(pill.getAttribute('data-filter')); });
+  });
+
+  if (select) {
+    select.addEventListener('change', function () { applyFilter(select.value); });
+  }
+
+  if (yearSelect) {
+    yearSelect.addEventListener('change', function () {
+      currentYear = yearSelect.value;
+      render();
+    });
+  }
+
+  /* Deep-link: activities.html#cancer selects that filter and scrolls to it.
+     Scrolling is deferred past 'load' since the browser's own (failed) fragment
+     scroll for a non-element hash like #cancer runs around load and would
+     otherwise reset the page back to the top after we scroll. */
+  var catParam = new URLSearchParams(window.location.search).get('cat');
+  var hashFilter = window.location.hash.replace('#', '');
+  if (catParam && document.querySelector('.filter-pill[data-filter="' + catParam + '"]')) {
+    /* Category deep-link (e.g. activities.html?cat=vision) — show that category as its own page. */
+    applyFilter(catParam);
+  } else if (hashFilter && document.querySelector('.filter-pill[data-filter="' + hashFilter + '"]')) {
+    applyFilter(hashFilter);
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        document.getElementById('act-feed').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 0);
+    });
+  }
+
+})();
+</script>
+
+</body>
+</html>

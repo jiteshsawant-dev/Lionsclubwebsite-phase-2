@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Leadership | Lions Club of Byculla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/light-redesign.css">
+<link rel="stylesheet" href="css/nav-submenu.css">
+<link rel="stylesheet" href="css/about-pages.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="main" id="mainNav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <div class="brand-logo">
+        <img src="images/Logo.png" alt="Lions Club of Byculla">
+      </div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <ul class="nav-c-links">
+      <li class="has-sub">
+        <a href="about.html">About us <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </li>
+      <li><a href="impact.html">Our impact</a></li>
+      <li class="has-sub">
+        <a href="activities.html">Our activities <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="activities.html">All projects</a></li>
+          <li><a href="activities.html?cat=health">Diabetes &amp; Healthcare</a></li>
+          <li><a href="activities.html?cat=cancer">Childhood Cancer Care</a></li>
+          <li><a href="activities.html?cat=education">Education &amp; Youth</a></li>
+          <li><a href="activities.html?cat=vision">Eye Care &amp; Vision</a></li>
+          <li><a href="activities.html?cat=elder">Elder care</a></li>
+          <li><a href="activities.html?cat=hunger">Hunger &amp; Food Security</a></li>
+          <li><a href="activities.html?cat=animal">Animal Welfare</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="news.html">News &amp; events <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="news.html?tab=event">Events</a></li>
+          <li><a href="news.html?tab=news">News</a></li>
+          <li><a href="news.html?tab=bulletin">Bulletin</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+    <div class="nav-c-cta">
+      <a href="donate.html" class="nav-c-donate">Donate</a>
+      <a href="#" class="nav-login-icon" aria-label="Login"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <div class="drawer-head">
+    <a class="brand" href="index.html">
+      <div class="brand-logo"><img src="images/Logo.png" id="drawerLogo" alt="Lions Club of Byculla"></div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <button type="button" class="drawer-acc-toggle drawer-first" data-target="drawerAbout" aria-expanded="false">
+      About us
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerAbout">
+      <a href="about.html#story">Our story</a>
+      <a href="about.html#tl-v2">Our journey</a>
+      <a href="about.html#board">Leadership</a>
+      <a href="about.html#presidents">Past presidents</a>
+      <a href="about.html#lions-international">Lions International</a>
+    </div>
+    <a href="impact.html">Our impact</a>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerActivities" aria-expanded="false">
+      Our activities
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerActivities">
+      <a href="activities.html">All projects</a>
+      <a href="activities.html?cat=health">Diabetes &amp; Healthcare</a>
+      <a href="activities.html?cat=cancer">Childhood Cancer Care</a>
+      <a href="activities.html?cat=education">Education &amp; Youth</a>
+      <a href="activities.html?cat=vision">Eye Care &amp; Vision</a>
+      <a href="activities.html?cat=elder">Elder care</a>
+      <a href="activities.html?cat=hunger">Hunger &amp; Food Security</a>
+      <a href="activities.html?cat=animal">Animal Welfare</a>
+    </div>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerNews" aria-expanded="false">
+      News &amp; events
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerNews">
+      <a href="news.html?tab=event">Events</a>
+      <a href="news.html?tab=news">News</a>
+      <a href="news.html?tab=bulletin">Bulletin</a>
+    </div>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="drawer-foot">
+    <a href="#" class="login-pill-mob"><svg viewBox="0 0 24 24" width="18" height="18" style="stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg> Login</a>
+    <a href="donate.html" class="donate-pill-mob">Donate</a>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<section class="about-hero sub-hero">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+      <a href="about.html">About us</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+      <span>Leadership</span>
+    </div>
+    <h1>The lions who <em>lead us.</em></h1>
+    <p class="lede">The Board of Directors serving the current Lions year, and the club&rsquo;s proudest distinction &mdash; a District Governor of District 323 A1.</p>
+  </div>
+</section>
+
+<!-- ── BOARD OF DIRECTORS ─────────────────────────────────────── -->
+<section class="pg-section bg-frost" id="board">
+  <div class="wrap">
+    <div class="eyebrow sec-eyebrow">Our leadership</div>
+    <h2 class="sec-h">Board of <em>Directors.</em></h2>
+    <p class="sec-lead">Lions Club of Byculla &mdash; Board of Directors for the current Lions year.</p>
+    <div class="board-grid">
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Daara Patel</h4><div class="board-role">President</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Tehemton Dalal</h4><div class="board-role">Immd Past President</div></div></div>
+      <div class="board-card" style="background-image:url('images/dummy.webp')"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Capt. Percy Master</h4><div class="board-role">VP1</div></div></div>
+      <div class="board-card" style="background-image:url('images/dummy.webp')"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Burges Wania</h4><div class="board-role">VP2</div></div></div>
+      <div class="board-card"><div class="board-card-info"><h4><span style="color:var(--muted);font-style:italic;">Name Pending</span></h4><div class="board-role">VP3</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Shahrukh Marolia</h4><div class="board-role">Secretary</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Percy Kaikobad</h4><div class="board-role">Treasurer</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Kayzad Nilgiriwalla</h4><div class="board-role">Jt Secretary</div></div></div>
+      <div class="board-card"><div class="board-card-info"><h4><span style="color:var(--muted);font-style:italic;">Name Pending</span></h4><div class="board-role">Jt Treasurer</div></div></div>
+      <div class="board-card" style="background-image:url('images/dummy.webp')"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Feroze Katrak</h4><div class="board-role">Advisor &amp; Mentor</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Pirojshaw Sarkari</h4><div class="board-role">Finance Director</div></div></div>
+      <div class="board-card" style="background-image:url('images/dummy.webp')"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Adil Bhesadia</h4><div class="board-role">Memb Dev &amp; Retention</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Firdaus Minocher</h4><div class="board-role">PRO &amp; Bulletin Editor</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Mehernosh Tata</h4><div class="board-role">Tail Twister</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Behram Rabadi</h4><div class="board-role">Club Administrator</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Neville Batliwalla</h4><div class="board-role">Lion Tamer</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Noshir Divecha</h4><div class="board-role">Director (2 Years)</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Huned Rangwalla</h4><div class="board-role">Director (2 Years)</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Khushroo Sarkari</h4><div class="board-role">Director (2 Years)</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Rohinton Bhathena</h4><div class="board-role">Director (2 Years)</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Adi Banajee</h4><div class="board-role">Director (2 Years)</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Shabbir Bharmal</h4><div class="board-role">Director (2 Years)</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Fakruddin Motiwala</h4><div class="board-role">Director (2 Years)</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Aspi Sarkari</h4><div class="board-role">Director (2 Years)</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Jimmy Khan</h4><div class="board-role">Director (2 Years)</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Vistasp Sachinwala</h4><div class="board-role">Director (1 Year)</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Jamshed Mistry</h4><div class="board-role">Director (1 Year)</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Sorab Balsara</h4><div class="board-role">Director (1 Year)</div></div></div>
+      <div class="board-card"><div class="board-card-info"><div class="board-lion">Lion</div><h4>Adi Dastur</h4><div class="board-role">Director (1 Year)</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DISTRICT GOVERNOR ──────────────────────────────────────── -->
+<section class="pg-section bg-navy" id="district-governor">
+  <div class="wrap">
+    <div class="eyebrow sec-eyebrow">Our pride</div>
+    <h2 class="sec-h">District Governor,<br><em>2008 &ndash; 2009.</em></h2>
+    <div class="dg-grid">
+      <div>
+        <img class="dg-avatar" src="images/district_governor.jpg" alt="MJF Lion Daara B. Patel, District Governor 2008–2009">
+      </div>
+      <div>
+        <div class="eyebrow" style="margin-bottom:8px;">MJF Lion Daara B. Patel</div>
+        <h3 class="dg-h">District Governor, District 323 A1<br><em>2008 &ndash; 2009</em></h3>
+        <p class="dg-bio">MJF Lion Daara B. Patel joined Lionism in 1979 and became one of the most respected leaders in District 323 A1. As District Governor, he led under the vision &ldquo;Service Always in All Ways,&rdquo; expanding community impact through innovative service initiatives.</p>
+        <p class="dg-bio">Beyond Lionism, he has held senior leadership positions across the pharmaceutical and aviation industries and currently serves as Secretary-General of the Indian Drug Manufacturers&rsquo; Association (IDMA).</p>
+        <ul class="dg-list">
+          <li>Led the first International Sight First Twinning Project, benefiting 4,000+ patients and distributing 3,000 free spectacles.</li>
+          <li>Introduced &ldquo;Service Sunday,&rdquo; later adopted across Multiple Districts in India.</li>
+          <li>Organized the first joint MERL Seminar for Districts 323 A1, A2 &amp; A3.</li>
+          <li>Recipient of multiple International President&rsquo;s Appreciation Certificates and prestigious leadership awards.</li>
+          <li>Served as Faculty Member at the Lions Clubs International Training Institute and delivered lectures across Asia and the USA.</li>
+          <li>Featured in the International Edition of Who&rsquo;s Who of the Asian Pacific Rim for professional excellence.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PREV / NEXT ────────────────────────────────────────────── -->
+<section class="page-nav">
+  <div class="wrap">
+    <a class="page-nav-link" href="our-journey.html">
+      <span class="pn-lbl">Previous</span>
+      <span class="pn-title">Our journey</span>
+    </a>
+    <a class="page-nav-link is-next" href="past-presidents.html">
+      <span class="pn-lbl">Next</span>
+      <span class="pn-title">Past presidents</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="footer-motto">Ushta Te - Happiness Unto All</div>
+        <p>A multi-generational service organisation rooted in South Mumbai. Premier Club, District 3231 A1. Serving without interruption since 1977.</p>
+        <div class="est">Est. 1977 &middot; Golden Jubilee 2027</div>
+      </div>
+      <div class="footer-col">
+        <h5>About us</h5>
+        <ul>
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Our causes</h5>
+        <ul>
+          <li><a href="impact.html">Vision &amp; eye care</a></li>
+          <li><a href="impact.html">Childhood cancer</a></li>
+          <li><a href="impact.html">Education</a></li>
+          <li><a href="impact.html">Hunger &amp; nutrition</a></li>
+          <li><a href="impact.html">Medical aid</a></li>
+          <li><a href="impact.html">Animal welfare</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="index.html#join">Join as a member</a></li>
+          <li><a href="#">Volunteer for a day</a></li>
+          <li><a href="#">Do-good cookbook</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="#">Golden Jubilee FRD</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <ul>
+          <li>Byculla, Mumbai - 400 008</li>
+          <li><a href="mailto:info@lionsbyculla.org">info@lionsbyculla.org</a></li>
+          <li>+91 22 2300 XXXX</li>
+        </ul>
+        <a href="#" class="whatsapp">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2025 Lions Club of Byculla &middot; District 3231 A1 &middot; Premier Club &middot; Golden Jubilee 2027</div>
+      <div><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/about-toggles.js"></script>
+<script src="js/script-1.js"></script>
+<script src="js/members-auth.js"></script>
+</body>
+</html>

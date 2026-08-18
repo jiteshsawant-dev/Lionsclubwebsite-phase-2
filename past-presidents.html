@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Past presidents | Lions Club of Byculla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/light-redesign.css">
+<link rel="stylesheet" href="css/nav-submenu.css">
+<link rel="stylesheet" href="css/about-pages.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="main" id="mainNav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <div class="brand-logo">
+        <img src="images/Logo.png" alt="Lions Club of Byculla">
+      </div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <ul class="nav-c-links">
+      <li class="has-sub">
+        <a href="about.html">About us <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </li>
+      <li><a href="impact.html">Our impact</a></li>
+      <li class="has-sub">
+        <a href="activities.html">Our activities <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="activities.html">All projects</a></li>
+          <li><a href="activities.html?cat=health">Diabetes &amp; Healthcare</a></li>
+          <li><a href="activities.html?cat=cancer">Childhood Cancer Care</a></li>
+          <li><a href="activities.html?cat=education">Education &amp; Youth</a></li>
+          <li><a href="activities.html?cat=vision">Eye Care &amp; Vision</a></li>
+          <li><a href="activities.html?cat=elder">Elder care</a></li>
+          <li><a href="activities.html?cat=hunger">Hunger &amp; Food Security</a></li>
+          <li><a href="activities.html?cat=animal">Animal Welfare</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="news.html">News &amp; events <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="news.html?tab=event">Events</a></li>
+          <li><a href="news.html?tab=news">News</a></li>
+          <li><a href="news.html?tab=bulletin">Bulletin</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+    <div class="nav-c-cta">
+      <a href="donate.html" class="nav-c-donate">Donate</a>
+      <a href="#" class="nav-login-icon" aria-label="Login"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <div class="drawer-head">
+    <a class="brand" href="index.html">
+      <div class="brand-logo"><img src="images/Logo.png" id="drawerLogo" alt="Lions Club of Byculla"></div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <button type="button" class="drawer-acc-toggle drawer-first" data-target="drawerAbout" aria-expanded="false">
+      About us
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerAbout">
+      <a href="about.html#story">Our story</a>
+      <a href="about.html#tl-v2">Our journey</a>
+      <a href="about.html#board">Leadership</a>
+      <a href="about.html#presidents">Past presidents</a>
+      <a href="about.html#lions-international">Lions International</a>
+    </div>
+    <a href="impact.html">Our impact</a>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerActivities" aria-expanded="false">
+      Our activities
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerActivities">
+      <a href="activities.html">All projects</a>
+      <a href="activities.html?cat=health">Diabetes &amp; Healthcare</a>
+      <a href="activities.html?cat=cancer">Childhood Cancer Care</a>
+      <a href="activities.html?cat=education">Education &amp; Youth</a>
+      <a href="activities.html?cat=vision">Eye Care &amp; Vision</a>
+      <a href="activities.html?cat=elder">Elder care</a>
+      <a href="activities.html?cat=hunger">Hunger &amp; Food Security</a>
+      <a href="activities.html?cat=animal">Animal Welfare</a>
+    </div>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerNews" aria-expanded="false">
+      News &amp; events
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerNews">
+      <a href="news.html?tab=event">Events</a>
+      <a href="news.html?tab=news">News</a>
+      <a href="news.html?tab=bulletin">Bulletin</a>
+    </div>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="drawer-foot">
+    <a href="#" class="login-pill-mob"><svg viewBox="0 0 24 24" width="18" height="18" style="stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg> Login</a>
+    <a href="donate.html" class="donate-pill-mob">Donate</a>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<section class="about-hero sub-hero">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+      <a href="about.html">About us</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+      <span>Past presidents</span>
+    </div>
+    <h1>Forty presidents,<br><em>Present &ndash; 1977.</em></h1>
+    <p class="lede">Each one leaving their mark through landmark service projects, record fundraising and award-winning administration.</p>
+  </div>
+</section>
+
+<!-- ── PAST PRESIDENTS ────────────────────────────────────────── -->
+<section class="pg-section bg-cream" id="presidents">
+  <div class="wrap">
+    <div class="eyebrow sec-eyebrow">Our leadership legacy</div>
+    <h2 class="sec-h">Past presidents.<br><em>Present &ndash; 1977.</em></h2>
+    <p class="sec-lead" style="max-width:700px;">40 presidents over nearly five decades, each leaving their mark through landmark service projects, record fundraising and award-winning administration.</p>
+    <div class="presidents-grid">
+
+      <div class="pres-card current-pres">
+        <div class="pres-year">2026 &ndash; 27 &middot; Current</div>
+        <div class="pres-name">Lion Daara Patel</div>
+        <span class="pres-tag current-tag">Current president</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Leading the Club into its Golden Jubilee year.</p>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-year">2025 &ndash; 26</div>
+        <div class="pres-name">Lion Tehempton Dalal</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Continued the Club&rsquo;s tradition of service and community impact during his term as President.</p>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-year">2024 &ndash; 25</div>
+        <div class="pres-name">Lion Adil Mistry</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Continued the Club&rsquo;s tradition of service and community impact during his term as President.</p>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-year">2023 &ndash; 24</div>
+        <div class="pres-name">Lion Adil Bhesadia</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Continued the Club&rsquo;s tradition of service and community impact during his term as President.</p>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-year">2013 &ndash; 14</div>
+        <div class="pres-name">Lion Sorab Bulsara</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Continued the club&rsquo;s legacy of service and fellowship, setting the stage for the Golden Jubilee decade.</p>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-year">2012 &ndash; 13</div>
+        <div class="pres-name">Lion Rohinton Hirjibhoy Bhathena</div>
+        <span class="pres-tag mjf-tag-sm">MJF</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Continued the club&rsquo;s tradition of exemplary district-level administration and service.</p>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-year">2011 &ndash; 12</div>
+        <div class="pres-name">Lion Burges Hoshang Wania</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Past President of Leo Club of Queensway before rising through Lions leadership ranks.</p>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-year">2010 &ndash; 11</div>
+        <div class="pres-name">Lion Pervez Kanga</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Joined Lionism in 2002&ndash;03. Retired from Larsen &amp; Toubro after 32 years. Guided by senior members to lead with distinction.</p>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-year">2009 &ndash; 10</div>
+        <div class="pres-name">Lion Tehmasp Dorabshaw Munshi</div>
+        <span class="pres-tag mjf-tag-sm">MJF &middot; Best club award</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Secured FCRA registration from Govt. of India. Completed Nair Hospital ophthalmic mega-project. &#8377;14+ Lakhs.</p>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-year">2008 &ndash; 09</div>
+        <div class="pres-name">Lion Percy Kaikobad</div>
+        <span class="pres-tag mjf-tag-sm">MJF &middot; Best president, region</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">LCIF grant of US$75,000 for Nair Hospital ophthalmic ward upgrade. Projects &#8377;14.5 Lakhs.</p>
+      </div>
+
+      <div class="pres-card">
+        <div class="pres-year">2007 &ndash; 08</div>
+        <div class="pres-name">Lion Noshir Jamshedji Divecha</div>
+        <span class="pres-tag mjf-tag-sm">MJF</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">International twinning eye camp (California &amp; Nevada) 2,000+ examined, spectacles donated. Projects &#8377;17 Lakhs.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">2006 &ndash; 07</div>
+        <div class="pres-name">Lion Rohinton D. Panthaki</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Projects worth &#8377;14 Lakhs including twinning projects, eye camps &amp; blood donation drives.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">2005 &ndash; 06</div>
+        <div class="pres-name">Lion Soli Pestonji Tavadia</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Projects worth &#8377;6 Lakhs. Distributed essential items to flood victims at Ambernath, Badiapur and remote areas.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">2004 &ndash; 05</div>
+        <div class="pres-name">Lion Kobad Burjorji Doodhmal</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Donated a generator to Nair Hospital. Led team to Chennai post-tsunami relief with Lions Club of Chennai.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">2003 &ndash; 04</div>
+        <div class="pres-name">Lion Eruch Dossabhoy Mistry</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Record projects worth &#8377;15.5 Lakhs. Handed over Outreach Mobile Van (LCIF grant &#8377;8.62 Lakhs) to Nair Hospital.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">2002 &ndash; 03</div>
+        <div class="pres-name">Lion Aspi Cooper</div>
+        <span class="pres-tag mjf-tag-sm">MJF &middot; Best president, MD 323</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Won Best President &amp; Best Administered Club awards. Won Late Minoo J.D. Engineer Trophy a record 3rd time for LCB.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">2001 &ndash; 02</div>
+        <div class="pres-name">Lion Rupesh Jassani</div>
+        <span class="pres-tag mjf-tag-sm">110 projects · 52 weeks</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Record 110 projects in 52 weeks. 40 medical camps, 1,500 spectacles, 13,000 lives touched. Most Outstanding Club Award.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">2001 &ndash; 02</div>
+        <div class="pres-name">Late Lion Dhunjishaw F. Ichhaporia</div>
+        <span class="pres-tag late-tag">In memoriam · 1–8 July 2001</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Our 25th President, who served for just seven days before his sudden passing remembered for his perfectionism and dedication.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">2000 &ndash; 01</div>
+        <div class="pres-name">Late Lion Piloo Gustadji Kaka</div>
+        <span class="pres-tag late-tag">In memoriam</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Donated vitrectomy equipment for eye surgeries. Personally led relief mission to Bhuj earthquake villages.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1999 &ndash; 2000</div>
+        <div class="pres-name">Lion Aspi Minocher</div>
+        <span class="pres-tag mjf-tag-sm">Best secretary, multiple district</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Renovation of Operation Theatre &amp; construction of polyclinic cabins at Nagpada Neighbourhood House.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1998 &ndash; 99</div>
+        <div class="pres-name">Lion Shahrukh Ratanshaw Marolia</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Pioneered a common platform at district level for Vice District Governor aspirants. Charity ball at the Yacht Club.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1997 &ndash; 98</div>
+        <div class="pres-name">Lion Phiroze Bomanji Javeri</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Donated group speech training equipment to School for the Deaf and a Vacuum Suction Unit to Nair Hospital.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1996 &ndash; 97</div>
+        <div class="pres-name">Late Lion Maneck Tata</div>
+        <span class="pres-tag late-tag">In memoriam</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Twinning project with Lions Club of Lonavala &amp; Bombay Queensway. Sponsored telephone booth for a physically handicapped person.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1995 &ndash; 96</div>
+        <div class="pres-name">Lion Ali Akbar Changi</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Won Late Lion Minoo J.D. Engineer Trophy (Best Secretary, Multiple District). Projects worth &#8377;9 Lakhs.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1994 &ndash; 95</div>
+        <div class="pres-name">Lion Jimmy Firoze Khan</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Won Best President, Best Secretary &amp; Best Docket awards. Sponsored an open heart surgery.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1993 &ndash; 94</div>
+        <div class="pres-name">Lion Percy Ratanshaw Buhariwala</div>
+        <span class="pres-tag mjf-tag-sm">MJF</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Built 13 tenements at Lions Village in Kawtha for Latur earthquake victims. Total projects: &#8377;7.8 Lakhs.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1992 &ndash; 93</div>
+        <div class="pres-name">Lion Prakash Laxmanrao Tate</div>
+        <span class="pres-tag mjf-tag-sm">MJF</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Renovated library at Sir J.J. School &amp; donated a cloth-cutting machine to National Job Development Centre.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1991 &ndash; 92</div>
+        <div class="pres-name">Lion Neville Behramshaw Mehta</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Donated an imported wheelchair; organised medical &amp; eye check-up camps at Saphala Village.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1990 &ndash; 91</div>
+        <div class="pres-name">Lion Shabbir H. Babrawala</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">First Burns Unit in Maharashtra at Masina Hospital (9 beds, &#8377;1 Lakh). Sponsored baby cancer treatment in the USA.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1989 &ndash; 90</div>
+        <div class="pres-name">Lion Cawas Darabshaw Palia</div>
+        <span class="pres-tag mjf-tag-sm">MJF</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Built a recreation room for the National Association for the Blind at Ambernath.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1988 &ndash; 89</div>
+        <div class="pres-name">Lion Adi Maneksha Mistry</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Soundproofed the Language Laboratory at Kamla Mehta School for the Blind, Dadar.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1987 &ndash; 88</div>
+        <div class="pres-name">Lion Hoshang Nadirshaw Wania</div>
+        <span class="pres-tag mjf-tag-sm">Best secretary award</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Donated dental equipment to Masina Hospital. Organised blood drives &amp; sponsored Police trophies.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1986 &ndash; 87</div>
+        <div class="pres-name">Late Lion Mohammed Zoyeb Merchant</div>
+        <span class="pres-tag late-tag">In memoriam</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">The &ldquo;Finance Minister&rdquo; of the club. Donated equipment to Nair Hospital &amp; Savera School.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1985 &ndash; 86</div>
+        <div class="pres-name">Lion Parvez Framroz Buhariwalla</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Built rooftop garden at Asha Sadan Child Care Centre, inaugurated by Field Marshall Sam Maneckshaw.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1983 &ndash; 84</div>
+        <div class="pres-name">Lion Homi Sorabji Divwala</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Soundproofed &amp; air-conditioned classrooms at Hellen Keller Institute for the deaf and mute.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1981 &ndash; 82</div>
+        <div class="pres-name">Lion Kersi K. Commissariat</div>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Electrification of 25 Adivasi huts at Talasari, Gujarat. Sponsored Lioness Club of Byculla.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1980 &ndash; 81</div>
+        <div class="pres-name">Late Lion Baji Nariman Maloo</div>
+        <span class="pres-tag mjf-tag-sm">MJF</span>
+        <span class="pres-tag late-tag">In memoriam</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Originator of the Drug Bank &amp; Night of Nights. Health fair benefitting 5,000 people.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1979 &ndash; 80</div>
+        <div class="pres-name">Late Lion Darius Gotla</div>
+        <span class="pres-tag late-tag">In memoriam</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Donated the Water Safety Patrol project to Mumbai Police for Ganpati immersions.</p>
+      </div>
+
+      <div class="pres-card pres-card--extra">
+        <div class="pres-year">1978 &ndash; 79</div>
+        <div class="pres-name">Late Lion Homi P. Tavadia</div>
+        <span class="pres-tag late-tag">In memoriam</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">104 service projects in a single year. Championed small, impactful community projects.</p>
+      </div>
+
+      <div class="pres-card charter-pres pres-card--extra">
+        <div class="pres-year">1977 &ndash; 78 &middot; Charter</div>
+        <div class="pres-name">Lion Maneck Homi Dastur</div>
+        <span class="pres-tag charter-tag">Charter president</span>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:8px;line-height:1.5;">Youngest Charter President in the world, aged 29. Inaugurated the Lions Drug Bank.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PREV / NEXT ────────────────────────────────────────────── -->
+<section class="page-nav">
+  <div class="wrap">
+    <a class="page-nav-link" href="leadership.html">
+      <span class="pn-lbl">Previous</span>
+      <span class="pn-title">Leadership</span>
+    </a>
+    <a class="page-nav-link is-next" href="lions-international.html">
+      <span class="pn-lbl">Next</span>
+      <span class="pn-title">Lions International</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="footer-motto">Ushta Te - Happiness Unto All</div>
+        <p>A multi-generational service organisation rooted in South Mumbai. Premier Club, District 3231 A1. Serving without interruption since 1977.</p>
+        <div class="est">Est. 1977 &middot; Golden Jubilee 2027</div>
+      </div>
+      <div class="footer-col">
+        <h5>About us</h5>
+        <ul>
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Our causes</h5>
+        <ul>
+          <li><a href="impact.html">Vision &amp; eye care</a></li>
+          <li><a href="impact.html">Childhood cancer</a></li>
+          <li><a href="impact.html">Education</a></li>
+          <li><a href="impact.html">Hunger &amp; nutrition</a></li>
+          <li><a href="impact.html">Medical aid</a></li>
+          <li><a href="impact.html">Animal welfare</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="index.html#join">Join as a member</a></li>
+          <li><a href="#">Volunteer for a day</a></li>
+          <li><a href="#">Do-good cookbook</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="#">Golden Jubilee FRD</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <ul>
+          <li>Byculla, Mumbai - 400 008</li>
+          <li><a href="mailto:info@lionsbyculla.org">info@lionsbyculla.org</a></li>
+          <li>+91 22 2300 XXXX</li>
+        </ul>
+        <a href="#" class="whatsapp">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2025 Lions Club of Byculla &middot; District 3231 A1 &middot; Premier Club &middot; Golden Jubilee 2027</div>
+      <div><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/about-toggles.js"></script>
+<script src="js/script-1.js"></script>
+<script src="js/members-auth.js"></script>
+</body>
+</html>

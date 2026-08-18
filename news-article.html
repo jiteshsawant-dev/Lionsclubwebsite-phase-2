@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>News &amp; Events | Lions Club of Byculla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/light-redesign.css">
+<link rel="stylesheet" href="css/nav-submenu.css">
+<style>
+
+/* ── ARTICLE HERO ── */
+.article-hero {
+  position: relative;
+  background: var(--navy-deep) url('images/29.jpg') center/cover no-repeat;
+  padding: 134px 0 70px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.article-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.78);
+  z-index: 0;
+}
+.article-hero .wrap { position: relative; z-index: 1; }
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  margin-bottom: 26px;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color .2s; }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb span[aria-current] { color: rgba(255,255,255,0.7); }
+.breadcrumb .sep { color: rgba(255,255,255,0.3); }
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.article-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.15;
+  margin: 0;
+  max-width: 880px;
+}
+.article-date {
+  display: block;
+  margin-top: 18px;
+  color: rgba(255,255,255,0.6);
+  font-size: 13px;
+}
+
+/* ── ARTICLE BODY ── */
+.article-section { padding: 64px 0 80px; }
+.article-body {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1.06rem;
+  line-height: 1.85;
+  color: var(--navy);
+}
+.article-body .lede {
+  font-size: 1.22rem;
+  line-height: 24px;
+  color: var(--navy-deep);
+  font-weight: 500;
+  margin: 0 0 28px;
+}
+.article-body p { margin: 0 0 22px; }
+.article-body h2 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--navy-deep);
+  margin: 40px 0 16px;
+}
+.article-body blockquote {
+  margin: 32px 0;
+  padding: 4px 0 4px 26px;
+  border-left: 3px solid var(--gold);
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: var(--navy-deep);
+}
+.article-body blockquote cite {
+  display: block;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.article-back {
+  max-width: 760px;
+  margin: 48px auto 0;
+}
+.article-back a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--navy-deep);
+  transition: color .2s;
+}
+.article-back a:hover { color: var(--gold); }
+
+.article-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="main" id="mainNav" aria-label="Main navigation">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <div class="brand-logo">
+        <img src="images/Logo.png" alt="Lions Club of Byculla">
+      </div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <ul class="nav-c-links">
+      <li class="has-sub">
+        <a href="about.html">About us <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </li>
+      <li><a href="impact.html">Our impact</a></li>
+      <li class="has-sub">
+        <a href="activities.html">Our activities <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="activities.html">All projects</a></li>
+          <li><a href="activities.html?cat=health">Diabetes &amp; Healthcare</a></li>
+          <li><a href="activities.html?cat=cancer">Childhood Cancer Care</a></li>
+          <li><a href="activities.html?cat=education">Education &amp; Youth</a></li>
+          <li><a href="activities.html?cat=vision">Eye Care &amp; Vision</a></li>
+          <li><a href="activities.html?cat=elder">Elder care</a></li>
+          <li><a href="activities.html?cat=hunger">Hunger &amp; Food Security</a></li>
+          <li><a href="activities.html?cat=animal">Animal Welfare</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="news.html">News &amp; events <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="news.html?tab=event">Events</a></li>
+          <li><a href="news.html?tab=news">News</a></li>
+          <li><a href="news.html?tab=bulletin">Bulletin</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+    <div class="nav-c-cta">
+      <a href="donate.html" class="nav-c-donate">Donate</a>
+      <a href="#" class="nav-login-icon" aria-label="Login"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <div class="drawer-head">
+    <a class="brand" href="index.html">
+      <div class="brand-logo"><img src="images/Logo.png" id="drawerLogo" alt="Lions Club of Byculla"></div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <button type="button" class="drawer-acc-toggle drawer-first" data-target="drawerAbout" aria-expanded="false">
+      About us
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerAbout">
+      <a href="about.html#story">Our story</a>
+      <a href="about.html#tl-v2">Our journey</a>
+      <a href="about.html#board">Leadership</a>
+      <a href="about.html#presidents">Past presidents</a>
+      <a href="about.html#lions-international">Lions International</a>
+    </div>
+    <a href="impact.html">Our impact</a>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerActivities" aria-expanded="false">
+      Our activities
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerActivities">
+      <a href="activities.html">All projects</a>
+      <a href="activities.html?cat=health">Diabetes &amp; Healthcare</a>
+      <a href="activities.html?cat=cancer">Childhood Cancer Care</a>
+      <a href="activities.html?cat=education">Education &amp; Youth</a>
+      <a href="activities.html?cat=vision">Eye Care &amp; Vision</a>
+      <a href="activities.html?cat=elder">Elder care</a>
+      <a href="activities.html?cat=hunger">Hunger &amp; Food Security</a>
+      <a href="activities.html?cat=animal">Animal Welfare</a>
+    </div>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerNews" aria-expanded="false">
+      News &amp; events
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerNews">
+      <a href="news.html?tab=event">Events</a>
+      <a href="news.html?tab=news">News</a>
+      <a href="news.html?tab=bulletin">Bulletin</a>
+    </div>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="drawer-foot">
+    <a href="#" class="login-pill-mob">
+      <svg viewBox="0 0 24 24" width="18" height="18" style="stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Login
+    </a>
+    <a href="donate.html" class="donate-pill-mob">Donate</a>
+  </div>
+</nav>
+
+<!-- ARTICLE HERO -->
+<section class="article-hero">
+  <div class="wrap">
+    <div class="article-meta">
+      <span class="article-tag" id="articleTag">News</span>
+    </div>
+    <h1 id="articleTitle">Loading story&hellip;</h1>
+    <span class="news-card__date article-date" id="articleDate"></span>
+  </div>
+</section>
+
+<!-- ARTICLE BODY -->
+<main>
+  <section class="article-section">
+    <div class="wrap">
+      <article class="article-body" id="articleBody"></article>
+      <div class="article-back">
+        <a href="news.html">&larr; Back to all news &amp; events</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="footer-motto">Ushta Te - Happiness Unto All</div>
+        <p>A multi-generational service organisation rooted in South Mumbai. Premier Club, District 3231 A1. Serving without interruption since 1977.</p>
+        <div class="est">Est. 1977 &middot; Golden jubilee 2027</div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick links</h5>
+        <ul>
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="#">Leadership</a></li>
+          <li><a href="#">Annual reports</a></li>
+          <li><a href="#">Press &amp; media</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Our causes</h5>
+        <ul>
+          <li><a href="#">Vision &amp; eye care</a></li>
+          <li><a href="#">Childhood cancer</a></li>
+          <li><a href="#">Education</a></li>
+          <li><a href="#">Hunger &amp; nutrition</a></li>
+          <li><a href="#">Medical aid</a></li>
+          <li><a href="#">Animal welfare</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="#">Join as a member</a></li>
+          <li><a href="#">Volunteer for a day</a></li>
+          <li><a href="#">Do-good cookbook</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Golden Jubilee FRD</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <ul>
+          <li>Byculla, Mumbai - 400 008</li>
+          <li><a href="mailto:info@lionsbyculla.org">info@lionsbyculla.org</a></li>
+          <li>+91 22 2300 XXXX</li>
+        </ul>
+        <a href="#" class="whatsapp">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2025 Lions Club of Byculla &middot; District 3231 A1 &middot; Premier Club &middot; Golden jubilee 2027</div>
+      <div><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script-1.js"></script>
+<script src="js/members-auth.js"></script>
+<script>
+'use strict';
+
+/* Nav scroll */
+(function () {
+  var nav = document.getElementById('mainNav');
+  if (!nav) return;
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+})();
+
+/* ── ARTICLE CONTENT ── */
+(function () {
+  var ARTICLES = {
+    'best-club-award': {
+      tag: 'Award', tagClass: 'tag-award', date: '10 May 2026',
+      title: 'Second Best Club Award 2025–26 presented at District Convention, Lonavala',
+      body:
+        '<p class="lede">Lions Club of Byculla was honoured for the fourth consecutive year with the Second Best Club Award by District 3231 A1 at the annual district convention held in Lonavala.</p>' +
+        '<p>The recognition caps a year of sustained service across all of the club’s pillars — from health camps and vision care to childhood cancer support and hunger relief. The award, judged on service hours, funds raised, membership growth, and community impact, was presented before delegates from clubs across the district.</p>' +
+        '<p>Accepting the award on behalf of the club, the President thanked every member, volunteer, and donor who made the year possible. “This belongs to the families we served, not to us,” she said.</p>' +
+        '<blockquote>Four years running, Byculla has shown what consistent, quiet service looks like. They set the standard for our district.<cite>District Governor, 3231 A1</cite></blockquote>' +
+        '<h2>A year of measurable impact</h2>' +
+        '<p>Highlights cited by the judging panel included over 340 residents screened at free diabetes camps, 20 wheelchairs distributed to differently-abled residents, and more than ₹8 lakhs raised for paediatric cancer care. The club now turns its focus to its Golden Jubilee in 2027.</p>'
+    },
+    'installation-ceremony': {
+      tag: 'Event', tagClass: 'tag-event', date: '28 Apr 2026',
+      title: 'Installation ceremony 2025–26: New office bearers inducted with pride',
+      body:
+        '<p class="lede">The installation ceremony at Byculla Club welcomed the new board for the coming Lions year, with District Governor Lion Rajesh Mehta presiding over the induction.</p>' +
+        '<p>Members, families, and guests gathered for an evening that blended tradition with celebration. The incoming President and office bearers took their oath of service, pledging to carry forward the club’s legacy of community work into its milestone Golden Jubilee year.</p>' +
+        '<p>The outgoing board was felicitated for a year that brought home the district’s Second Best Club Award and touched thousands of lives across South Mumbai.</p>' +
+        '<blockquote>We inherit not just titles but a responsibility — to keep showing up for those who need us most.<cite>Incoming President</cite></blockquote>' +
+        '<p>The evening closed with fellowship and a shared commitment to an ambitious calendar of camps, drives, and outreach for the year ahead.</p>'
+    },
+    'diabetes-screening-camp': {
+      tag: 'Health', tagClass: 'tag-health', date: '15 Apr 2026',
+      title: 'Free diabetes and blood pressure screening camp benefits 340 residents of Byculla',
+      body:
+        '<p class="lede">Conducted in collaboration with Masina Hospital, the camp provided free testing and consultations to over 340 local residents in a single afternoon.</p>' +
+        '<p>Set up in the heart of Byculla, the camp offered blood-sugar and blood-pressure screening, one-on-one consultations with physicians, and counselling on diet and lifestyle. Several residents were identified as at-risk and referred for follow-up care at no cost.</p>' +
+        '<h2>Early detection that matters</h2>' +
+        '<p>For many who attended, it was their first health check in years. Volunteers guided each visitor through the stations, ensuring elderly and first-time patients were comfortable throughout.</p>' +
+        '<blockquote>Catching diabetes early changes the entire course of a person’s life. That is exactly what days like this are for.<cite>Attending physician, Masina Hospital</cite></blockquote>' +
+        '<p>The screening camp is part of the club’s ongoing health-equity programme, which brings preventive care directly into the neighbourhoods that need it most.</p>'
+    },
+    'do-good-cookbook': {
+      tag: 'Community', tagClass: 'tag-community', date: '5 Mar 2026',
+      title: 'The Do-Good Cookbook launched: recipes from Lions families raise funds for hunger relief',
+      body:
+        '<p class="lede">Our community cookbook, featuring 80 recipes contributed by Lions families, was launched at the clubhouse with proceeds supporting the hunger and nutrition pillar.</p>' +
+        '<p>Months in the making, the Do-Good Cookbook gathers cherished family recipes from members across generations — from quick everyday meals to festive specialities. Every copy sold directly funds food-grain distribution and nutrition programmes run by the club.</p>' +
+        '<p>The launch evening featured tastings of selected dishes, with contributing families sharing the stories behind their recipes.</p>' +
+        '<blockquote>Every page is a memory, and every sale is a meal for someone who needs one.<cite>Cookbook committee lead</cite></blockquote>' +
+        '<p>Copies are available at club events and through members, with all proceeds going directly to hunger relief.</p>'
+    },
+    'press-feature-cancer': {
+      tag: 'News', tagClass: 'tag-news', date: '18 Feb 2026',
+      title: 'Mid-Day and Times of India feature Lions Byculla’s childhood cancer support programme',
+      body:
+        '<p class="lede">Two leading Mumbai dailies spotlighted our partnership with Tata Memorial Hospital and the impact of over ₹8 lakhs raised for paediatric cancer care.</p>' +
+        '<p>The coverage traced the journey of families supported through the programme — from chemoports and treatment costs to clown therapy that brings light to children during long hospital stays. The reports highlighted how sustained, locally-driven giving can ease the burden on families facing childhood cancer.</p>' +
+        '<h2>Walking beside families</h2>' +
+        '<p>The club’s childhood cancer pillar works on the principle that a child’s fight should never become a family’s financial ruin. Funds raised cover medical essentials that insurance and aid often miss.</p>' +
+        '<blockquote>The support did not stop at money — they stood with us through the hardest months of our lives.<cite>Parent of a young patient</cite></blockquote>' +
+        '<p>The features have already prompted new offers of support and volunteering from across the city.</p>'
+    },
+    'annual-picnic': {
+      tag: 'Event', tagClass: 'tag-event', date: '26 Jan 2026',
+      title: 'Annual picnic and sports day brings Lions families together at Essel World',
+      body:
+        '<p class="lede">Over 150 members, spouses, and children gathered for a day of games, food, and fellowship at Essel World, strengthening the Lions family bond.</p>' +
+        '<p>The annual outing is a much-loved fixture on the club calendar — a day set aside not for service but for the people who make service possible. Families enjoyed rides, friendly sporting contests, and a shared lunch under the sun.</p>' +
+        '<p>Children of members took part in age-group races and games, while seasoned members swapped stories from decades of club history.</p>' +
+        '<blockquote>We serve as a family, so it is only right that we celebrate as one too.<cite>Fellowship committee</cite></blockquote>' +
+        '<p>The day reinforced the camaraderie that has kept the club active and united since 1977.</p>'
+    },
+    'wheelchair-donation': {
+      tag: 'Community', tagClass: 'tag-community', date: '8 Jan 2026',
+      title: '20 wheelchairs donated to differently-abled residents of South Mumbai',
+      body:
+        '<p class="lede">In partnership with the BMC, Lions Byculla distributed 20 motorised and manual wheelchairs to beneficiaries identified through community outreach.</p>' +
+        '<p>Each recipient was assessed to match them with the right mobility aid, restoring independence and dignity in daily life. The distribution drive is part of the club’s broader medical-aid and differently-abled support work.</p>' +
+        '<h2>Mobility is dignity</h2>' +
+        '<p>For recipients and their families, the wheelchairs mean the ability to attend school, reach work, and move through the city with far greater freedom.</p>' +
+        '<blockquote>A wheelchair is not equipment — it is a doorway back into everyday life.<cite>Project coordinator</cite></blockquote>' +
+        '<p>The club plans to expand the programme in the coming year, reaching more residents across South Mumbai.</p>'
+    },
+    'eye-camp-gt-hospital': {
+      tag: 'Health', tagClass: 'tag-health', date: '3 Dec 2025',
+      title: 'Free eye check-up camp at G.T. Hospital screens 210 patients, 32 referred for surgery',
+      body:
+        '<p class="lede">In collaboration with the Lions Eye Bank, our annual vision camp identified 32 patients requiring cataract surgery, all covered at no cost.</p>' +
+        '<p>Over the course of the camp, 210 patients received comprehensive eye examinations, refraction tests, and consultations with ophthalmologists. Those needing surgery were scheduled for fully-sponsored cataract procedures.</p>' +
+        '<h2>Sight restored, free of cost</h2>' +
+        '<p>Vision care remains one of the club’s founding causes, rooted in the belief that sight is not a privilege. Equipment donated to partner hospitals — slit lamps, ophthalmoscopes, and more — extends the impact well beyond camp day.</p>' +
+        '<blockquote>To restore someone’s sight is to give them back their world. There is no greater service.<cite>Lions Eye Bank partner</cite></blockquote>' +
+        '<p>Surgeries for the referred patients are already underway, with post-operative care included.</p>'
+    },
+    'melvin-jones-fellowship': {
+      tag: 'Award', tagClass: 'tag-award', date: '18 Nov 2025',
+      title: 'Three members receive the Melvin Jones Fellowship at the international convention',
+      body:
+        '<p class="lede">The Melvin Jones Fellowship, Lions International’s highest humanitarian honour, was awarded to three members for exceptional service contributions.</p>' +
+        '<p>Named after the founder of Lions Clubs International, the fellowship recognises individuals whose dedication to humanitarian service stands as an example to the entire organisation. The three honoured members were celebrated for years of leadership across the club’s health, education, and community work.</p>' +
+        '<blockquote>You cannot get very far until you start doing something for somebody else.<cite>Melvin Jones, founder of Lions Clubs International</cite></blockquote>' +
+        '<p>The recognition at the international convention places Lions Club of Byculla among clubs whose members have left a lasting humanitarian mark — a fitting honour as the club approaches its Golden Jubilee.</p>'
+    }
+  };
+
+  function getId() {
+    var params = new URLSearchParams(window.location.search);
+    return params.get('id');
+  }
+
+  var id = getId();
+  var data = id ? ARTICLES[id] : null;
+
+  var tagEl = document.getElementById('articleTag');
+  var dateEl = document.getElementById('articleDate');
+  var titleEl = document.getElementById('articleTitle');
+  var bodyEl = document.getElementById('articleBody');
+
+  if (!data) {
+    document.title = 'Story not found | Lions Club of Byculla';
+    tagEl.style.display = 'none';
+    titleEl.textContent = 'Story not found';
+    bodyEl.innerHTML = '<p class="lede">Sorry, we couldn’t find that story.</p>' +
+      '<p>It may have been moved or removed. Please head back to the news page to browse all of our latest stories and updates.</p>';
+    return;
+  }
+
+  document.title = data.title.replace(/&[a-z]+;/g, '') + ' | Lions Club of Byculla';
+  tagEl.textContent = data.tag;
+  tagEl.className = 'article-tag news-card__tag ' + data.tagClass;
+  dateEl.textContent = data.date;
+  titleEl.innerHTML = data.title;
+  bodyEl.innerHTML = data.body;
+})();
+</script>
+
+</body>
+</html>

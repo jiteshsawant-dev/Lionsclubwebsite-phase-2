@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Members Portal | Lions Club of Byculla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/light-redesign.css">
+<link rel="stylesheet" href="css/nav-submenu.css">
+<style>
+
+/* ── MEMBERS PORTAL PAGE STYLES ────────────────────────────────── */
+
+/* Portal hero bar */
+.portal-hero{
+  background:var(--navy-deep);
+  padding:154px 0 40px;
+  position:relative;
+  overflow:hidden;
+}
+.portal-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(252,203,6,0.07) 0%,transparent 60%);
+}
+.portal-hero .wrap{position:relative;z-index:1;}
+.portal-hero .eyebrow{color:var(--gold);margin-bottom:14px;}
+.portal-hero h1{
+  font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:300;
+  color:#fff;margin:0 0 14px;letter-spacing:-0.02em;line-height:1.1;
+}
+.portal-hero h1 em{color:inherit;font-style:normal;}
+
+/* Tab strip */
+.portal-tabs-wrap{
+  background:#fff;
+  border-bottom:2px solid var(--rule);
+  position:sticky;top:87px;z-index:50;
+}
+@media(max-width:1000px){
+  .portal-tabs-wrap{top:65px;}
+}
+.portal-tabs{
+  display:flex;gap:0;overflow-x:auto;
+  scrollbar-width:none;
+}
+.portal-tabs::-webkit-scrollbar{display:none;}
+.portal-tab{
+  flex-shrink:0;padding:16px 22px;
+  font-size:13px;font-weight:600;color:var(--muted);
+  cursor:pointer;border:none;background:none;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  font-family:var(--sans);white-space:nowrap;
+  transition:color .2s,border-color .2s;
+}
+.portal-tab:hover{color:var(--navy);}
+.portal-tab.active{color:var(--navy);border-bottom-color:var(--gold);}
+
+/* Tab content */
+.portal-body{padding:24px 0 80px;background:var(--white);}
+.portal-content{display:none;}
+.portal-content.active{display:block;}
+
+/* Section headings inside tabs */
+.tab-h{
+  font-family:var(--serif);font-size:clamp(20px,2vw,26px);
+  font-weight:400;color:var(--navy);margin:0 0 6px;letter-spacing:-0.01em;
+}
+.tab-sub{font-size:13px;color:var(--muted);margin:0 0 28px;}
+
+/* Member directory table */
+.dir-controls{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:20px;flex-wrap:wrap;gap:12px;
+}
+.dir-search-wrap{position:relative;}
+.dir-search-icon{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  color:var(--muted);pointer-events:none;
+}
+.dir-search{
+  padding:9px 14px 9px 38px;border:1.5px solid var(--rule);border-radius:var(--radius-md);
+  font-size:14px;width:220px;outline:none;font-family:var(--sans);
+  color:var(--ink);transition:border-color .2s;
+}
+.dir-search:focus{border-color:var(--navy);}
+.dir-search-wrap:has(.dir-search:focus) .dir-search-icon{color:var(--navy);}
+.member-table{width:100%;border-collapse:collapse;font-size:14px;}
+.member-table th{
+  background:var(--navy);color:#fff;padding:12px 16px;text-align:left;
+  font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;
+  font-family:var(--sans);
+}
+.member-table th:first-child{border-radius:var(--radius-sm) 0 0 0;}
+.member-table th:last-child{border-radius:0 var(--radius-sm) 0 0;}
+.member-table td{padding:12px 16px;border-bottom:1px solid var(--rule);color:var(--body);}
+.member-table tr:last-child td{border-bottom:none;}
+.member-table tr:hover td{background:var(--paper);}
+.table-wrap{background:#fff;border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;}
+
+/* Roster sub-tabs (Board Members / Members) */
+.roster-tabs-bar{display:flex;margin-bottom:20px;}
+.roster-tabs{
+  position:relative;display:inline-flex;background:transparent;
+  border:1.5px solid var(--rule);border-radius:4px;overflow:hidden;
+}
+.roster-tab{
+  border:none;background:#fff;font-family:var(--serif);
+  font-size:14px;font-weight:500;padding:10px 26px;color:var(--muted);
+  cursor:pointer;transition:all .2s ease;white-space:nowrap;
+}
+.roster-tab:hover{background:rgba(16,44,87,0.06);color:var(--navy);}
+.roster-tab[aria-selected="true"]{background:var(--navy);color:var(--white);}
+.roster-tab[aria-selected="true"]:hover{background:var(--navy);}
+.roster-table-wrap+.roster-table-wrap{margin-top:0;}
+
+/* Pay / form cards */
+.pay-card{
+  background:#fff;border:1px solid var(--rule);border-radius:var(--radius-lg);
+  padding:32px;max-width:640px;
+}
+.pay-card .tab-h{margin-bottom:4px;}
+.pay-card .tab-sub{margin-bottom:24px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-field{position:relative;margin-bottom:18px;padding-top:16px;}
+.form-field label{
+  position:absolute;left:2px;top:26px;
+  font-family:var(--sans);font-size:14px;font-weight:400;
+  color:var(--muted);pointer-events:none;
+  transition:top .15s ease,font-size .15s ease,color .15s ease,letter-spacing .15s ease;
+}
+.form-field input,.form-field select,.form-field textarea{
+  width:100%;padding:11px 2px;border:none;border-bottom:1.5px solid var(--rule);
+  border-radius:0;font-size:14px;outline:none;
+  box-sizing:border-box;font-family:var(--sans);color:var(--ink);
+  background:transparent;transition:border-color .2s,border-bottom-width .2s;
+}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-bottom:2px solid var(--gold-deep);padding-bottom:10px;background:transparent;}
+.form-field input::placeholder,.form-field textarea::placeholder{color:transparent;}
+.form-field input:focus::placeholder,.form-field textarea:focus::placeholder{color:var(--muted);}
+.form-field textarea{height:120px;resize:vertical;}
+.form-field input:focus + label,
+.form-field input:not(:placeholder-shown) + label,
+.form-field textarea:focus + label,
+.form-field textarea:not(:placeholder-shown) + label,
+.form-field select + label{
+  top:0;font-size:10.5px;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--navy);
+}
+.form-field input:focus + label,
+.form-field textarea:focus + label{color:var(--gold-deep);}
+.form-note{font-size:11px;color:var(--muted);margin-top:10px;}
+.btn-submit{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:14px;background:transparent;color:var(--navy);
+  border:1.5px solid var(--navy);border-radius:var(--radius-md);
+  font-family:var(--serif);font-size:14px;font-weight:500;
+  cursor:pointer;margin-top:8px;
+  transition:background .2s,color .2s;
+}
+.btn-submit:hover{background:var(--navy);color:#fff;}
+.btn-submit svg{width:17px;height:17px;stroke:var(--gold-deep);stroke-width:2.2;fill:none;transition:stroke .2s;}
+
+/* Success message */
+.success-msg{
+  display:none;margin-top:16px;background:rgba(16,185,129,0.08);
+  border:1px solid rgba(16,185,129,0.3);border-radius:var(--radius-lg);
+  padding:16px;font-size:14px;color:#059669;
+}
+
+/* Document cards */
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.doc-card{
+  background:#fff;border:1px solid var(--rule);border-radius:var(--radius-lg);
+  padding:20px;display:flex;align-items:center;gap:16px;
+  transition:box-shadow .2s,border-color .2s;
+}
+.doc-card:hover{box-shadow:var(--shadow-sm);border-color:rgba(252,203,6,0.5);}
+.doc-icon{
+  width:46px;height:46px;border-radius:var(--radius-md);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.doc-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.doc-desc{font-size:12px;color:var(--muted);}
+.doc-status{
+  margin-left:auto;font-size:11px;font-weight:700;color:var(--gold-deep);
+  flex-shrink:0;
+}
+.doc-note{
+  margin-top:20px;background:var(--paper);border-radius:var(--radius-md);
+  padding:16px;font-size:13px;color:var(--muted);border-left:3px solid var(--gold);
+}
+
+/* Records table */
+.records-controls{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:16px;flex-wrap:wrap;
+}
+.btn-add-activity{
+  display:inline-flex;align-items:center;gap:8px;flex-shrink:0;
+  background:var(--navy);color:#fff;border:none;border-radius:var(--radius-md);
+  font-family:var(--serif);font-size:13px;font-weight:500;
+  padding:10px 20px;cursor:pointer;white-space:nowrap;
+  transition:background .2s;
+}
+.btn-add-activity:hover{background:var(--navy-deep);}
+.status-badge{
+  font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;
+  background:rgba(16,185,129,0.1);color:#059669;
+}
+.status-badge.inactive{
+  background:rgba(107,111,118,0.12);color:var(--muted);
+}
+
+/* Suggestions */
+.suggestions-wrap{max-width:600px;}
+
+/* ── DASHBOARD ─────────────────────────────────────────────────── */
+/* Personalised hero greeting */
+.portal-hero-inner{display:flex;align-items:center;gap:18px;}
+.dash-welcome-avatar{
+  width:64px;height:64px;border-radius:50%;flex-shrink:0;
+  background:var(--gold);color:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:22px;font-weight:700;
+}
+.portal-hero-greet{
+  font-family:var(--serif);font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:300;
+  color:#fff;margin:0 0 10px;letter-spacing:-0.02em;line-height:1.1;
+}
+.portal-hero-greet span{color:#fff;}
+.portal-hero-greet #dashName{color:var(--gold);}
+.dash-meta{font-size:13px;color:rgba(255,255,255,0.7);margin:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.dash-section-first{margin-top:0;}
+.dash-role-badge{
+  display:inline-block;background:rgba(252,203,6,0.15);color:var(--gold);
+  font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  padding:4px 12px;border-radius:999px;
+}
+
+/* Section label */
+.dash-section-h{
+  font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;color:#77735F;margin:40px 0 16px;
+}
+
+/* Status cards */
+.dash-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+.dash-cards-2{grid-template-columns:repeat(2,1fr);max-width:520px;}
+.dash-cards-3{grid-template-columns:repeat(3,1fr);}
+.dash-cards-4{grid-template-columns:repeat(auto-fit,minmax(168px,1fr));}
+.dash-card{
+  background:#fff;border:1px solid var(--rule);border-radius:var(--radius-lg);
+  padding:22px;transition:box-shadow .2s,border-color .2s;
+}
+.dash-card:hover{box-shadow:var(--shadow-sm);}
+.dash-card.is-due{border-color:#dc2626;}
+.dash-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.dash-card-icon{
+  width:42px;height:42px;border-radius:var(--radius-md);
+  background:#EFE8D7;
+  display:flex;align-items:center;justify-content:center;font-size:19px;
+}
+.dash-card-label{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:4px;}
+.dash-card-value{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--navy);line-height:1.1;}
+.dash-card-sub{font-size:12px;margin-top:8px;color:var(--muted);}
+.dash-pill{font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;}
+.dash-pill.paid{background:rgba(16,185,129,0.1);color:#059669;}
+.dash-pill.due{background:rgba(245,158,11,0.12);color:#b45309;}
+.dash-pill-action{cursor:pointer;text-decoration:none;transition:opacity .15s;}
+.dash-pill-action:hover{opacity:.75;}
+.dash-card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;}
+.dash-card-foot .dash-card-sub{margin-top:0;}
+.dash-card-pay{font-size:12px;font-weight:700;color:var(--navy);text-decoration:none;white-space:nowrap;cursor:pointer;transition:opacity .15s;}
+.dash-card-pay:hover{opacity:.7;text-decoration:underline;}
+
+/* Dashboard layout — single column since the Quick actions sidebar was removed. */
+.dash-layout{display:grid;grid-template-columns:1fr;gap:28px;align-items:start;}
+.dash-main{min-width:0;}
+
+/* Club stats */
+.dash-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;}
+.dash-stat{
+  background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius-lg);
+  padding:24px 20px;text-align:center;
+}
+.dash-stat-num{font-family:var(--serif);font-size:30px;font-weight:700;color:var(--navy);line-height:1;}
+.dash-stat-num span{color:var(--gold-deep);}
+.dash-stat-label{font-size:12px;color:var(--muted);margin-top:8px;font-weight:600;}
+
+/* Role-based panel */
+.dash-role-panel{
+  background:#fff;border:1px solid var(--rule);border-left:3px solid var(--gold);
+  border-radius:var(--radius-lg);padding:24px 26px;
+}
+.dash-role-panel h4{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--navy);margin:0 0 4px;}
+.dash-role-panel .rp-sub{font-size:12px;color:var(--muted);margin:0 0 18px;}
+.rp-list{display:flex;flex-direction:column;gap:10px;}
+.rp-item{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 16px;background:var(--paper);border-radius:var(--radius-md);
+  font-size:13px;color:var(--body);
+}
+.rp-item strong{color:var(--navy);}
+.rp-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;flex-shrink:0;}
+.rp-badge.amber{background:rgba(245,158,11,0.12);color:#b45309;}
+.rp-badge.green{background:rgba(16,185,129,0.1);color:#059669;}
+.rp-badge.navy{background:rgba(16,44,87,0.08);color:var(--navy);}
+
+/* Next meeting strip — the one thing every member opens the portal for. */
+.dash-meeting{
+  background:var(--navy);border-radius:var(--radius-lg);padding:22px 26px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+.dm-eyebrow{
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:8px;
+}
+.dm-when{font-family:var(--serif);font-size:20px;font-weight:400;color:#fff;line-height:1.3;}
+.dm-where{font-size:13px;color:rgba(255,255,255,0.68);margin-top:6px;}
+.dm-rsvp{
+  background:var(--gold);border:none;border-radius:var(--radius-md);
+  padding:11px 22px;font-family:var(--sans);font-size:13px;font-weight:700;
+  color:var(--navy);cursor:pointer;transition:opacity .15s;flex-shrink:0;
+}
+.dm-rsvp:hover{opacity:.85;}
+.dm-rsvp:disabled{opacity:.6;cursor:default;}
+
+/* Dues shown as RATES, not balances — a shared login has no "you" to owe. */
+.dash-dues{background:#fff;border:1px solid var(--rule);border-radius:var(--radius-lg);padding:4px 22px;}
+.dues-row{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:16px 0;border-bottom:1px solid var(--rule);
+}
+.dues-name{font-size:14px;color:var(--body);}
+.dues-sub{font-size:12px;color:var(--muted);margin-top:3px;}
+.dues-right{display:flex;align-items:center;gap:18px;flex-shrink:0;}
+.dues-amt{font-family:var(--serif);font-size:17px;color:#B3261E;}
+.dues-note{display:flex;align-items:center;gap:9px;padding:15px 0;font-size:12px;color:var(--muted);}
+.dues-note svg{flex-shrink:0;stroke:var(--muted);}
+
+/* Notice board + this month */
+.dash-board-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+@media(max-width:760px){.dash-board-grid{grid-template-columns:1fr;}}
+.dash-list{background:#fff;border:1px solid var(--rule);border-radius:var(--radius-lg);padding:4px 20px;}
+.dash-list-row{padding:14px 0;border-bottom:1px solid var(--rule);}
+.dash-list-row:last-child{border-bottom:none;}
+.dl-title{font-size:13px;color:var(--body);line-height:1.5;}
+.dl-meta{font-size:11px;color:var(--muted);margin-top:5px;}
+.dash-occasion{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 0;border-bottom:1px solid var(--rule);
+}
+.dash-occasion:last-child{border-bottom:none;}
+.dash-occasion svg{flex-shrink:0;stroke:var(--gold-deep);}
+
+/* Golden Jubilee tracker */
+.dash-jubilee{
+  margin-top:40px;background:linear-gradient(120deg,var(--navy) 0%,var(--navy-deep) 100%);
+  border-radius:var(--radius-lg);padding:28px 32px;color:#fff;position:relative;overflow:hidden;
+}
+.dash-jubilee h4{font-family:var(--serif);font-size:18px;font-weight:700;margin:0 0 6px;color:#fff;}
+.dash-jubilee h4 span{color:var(--gold);}
+.dash-jubilee>p{font-size:13px;color:rgba(255,255,255,0.65);margin:0 0 18px;max-width:520px;line-height:1.6;}
+.jub-bar{height:10px;background:rgba(255,255,255,0.12);border-radius:999px;overflow:hidden;}
+.jub-fill{height:100%;background:var(--gold);border-radius:999px;width:37%;}
+.jub-stats{display:flex;gap:34px;margin-top:16px;flex-wrap:wrap;}
+.jub-stat .n{color:var(--gold);font-size:18px;font-family:var(--serif);font-weight:700;}
+.jub-stat .l{font-size:11px;color:rgba(255,255,255,0.6);margin-top:2px;}
+
+/* Responsive */
+@media(max-width:640px){
+  .form-row{grid-template-columns:1fr;}
+  .portal-hero h1{font-size:1.8rem;}
+  .portal-tab{padding:13px 14px;font-size:12px;}
+  .portal-body{padding:16px 0 60px;}
+  .pay-card{padding:24px 20px;}
+  .dash-welcome{padding:22px 20px;gap:14px;}
+  .dash-welcome-avatar{width:52px;height:52px;font-size:18px;}
+  .dash-jubilee{padding:22px 20px;}
+  .dir-search{width:100%;}
+  .dir-controls{flex-direction:column;align-items:stretch;}
+  .jub-stats{gap:20px;}
+  .rp-item{flex-wrap:wrap;gap:6px;}
+  .dash-cards-2{grid-template-columns:1fr 1fr;max-width:none;}
+  .dash-cards-3{grid-template-columns:1fr 1fr;}
+}
+
+@media(max-width:480px){
+  .dash-cards-2, .dash-cards-3{grid-template-columns:1fr;}
+  .dash-card{padding:18px;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="main" id="mainNav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <div class="brand-logo">
+        <img src="images/Logo.png" alt="Lions Club of Byculla">
+      </div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <ul class="nav-c-links">
+      <li class="has-sub">
+        <a href="about.html">About us <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </li>
+      <li><a href="impact.html">Our impact</a></li>
+      <li class="has-sub">
+        <a href="activities.html">Our activities <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="activities.html">All projects</a></li>
+          <li><a href="activities.html?cat=health">Diabetes &amp; Healthcare</a></li>
+          <li><a href="activities.html?cat=cancer">Childhood Cancer Care</a></li>
+          <li><a href="activities.html?cat=education">Education &amp; Youth</a></li>
+          <li><a href="activities.html?cat=vision">Eye Care &amp; Vision</a></li>
+          <li><a href="activities.html?cat=elder">Elder care</a></li>
+          <li><a href="activities.html?cat=hunger">Hunger &amp; Food Security</a></li>
+          <li><a href="activities.html?cat=animal">Animal Welfare</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="news.html">News &amp; events <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="news.html?tab=event">Events</a></li>
+          <li><a href="news.html?tab=news">News</a></li>
+          <li><a href="news.html?tab=bulletin">Bulletin</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+    <div class="nav-c-cta">
+      <a href="donate.html" class="nav-c-donate">Donate</a>
+      <a href="#" class="nav-login-icon" aria-label="Login"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <div class="drawer-head">
+    <a class="brand" href="index.html">
+      <div class="brand-logo"><img src="images/Logo.png" id="drawerLogo" alt="Lions Club of Byculla"></div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <button type="button" class="drawer-acc-toggle drawer-first" data-target="drawerAbout" aria-expanded="false">
+      About us
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerAbout">
+      <a href="about.html#story">Our story</a>
+      <a href="about.html#tl-v2">Our journey</a>
+      <a href="about.html#board">Leadership</a>
+      <a href="about.html#presidents">Past presidents</a>
+      <a href="about.html#lions-international">Lions International</a>
+    </div>
+    <a href="impact.html">Our impact</a>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerActivities" aria-expanded="false">
+      Our activities
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerActivities">
+      <a href="activities.html">All projects</a>
+      <a href="activities.html?cat=health">Diabetes &amp; Healthcare</a>
+      <a href="activities.html?cat=cancer">Childhood Cancer Care</a>
+      <a href="activities.html?cat=education">Education &amp; Youth</a>
+      <a href="activities.html?cat=vision">Eye Care &amp; Vision</a>
+      <a href="activities.html?cat=elder">Elder care</a>
+      <a href="activities.html?cat=hunger">Hunger &amp; Food Security</a>
+      <a href="activities.html?cat=animal">Animal Welfare</a>
+    </div>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerNews" aria-expanded="false">
+      News &amp; events
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerNews">
+      <a href="news.html?tab=event">Events</a>
+      <a href="news.html?tab=news">News</a>
+      <a href="news.html?tab=bulletin">Bulletin</a>
+    </div>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="drawer-foot">
+    <a href="members.html" class="login-pill-mob" id="drawerMemberLink"><svg viewBox="0 0 24 24" width="18" height="18" style="stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg> Members Portal</a>
+    <a href="#" class="donate-pill-mob">Donate</a>
+  </div>
+</nav>
+
+<!-- ── PORTAL HERO ────────────────────────────────────────────── -->
+<section class="portal-hero">
+  <div class="wrap">
+    <div class="portal-hero-inner">
+      <div class="dash-welcome-avatar">LCB</div>
+      <div>
+        <h1 class="portal-hero-greet"><span id="dashGreet">Welcome</span>, <span id="dashName">Lions of Byculla</span></h1>
+        <p class="dash-meta">
+          <span class="dash-role-badge">Members portal</span>
+          <span>Lions Year 2025&ndash;2026</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TAB STRIP ──────────────────────────────────────────────── -->
+<div class="portal-tabs-wrap">
+  <div class="wrap">
+    <div class="portal-tabs" role="tablist">
+      <button class="portal-tab active" role="tab" aria-selected="true"  onclick="switchTab(this,'tab-dashboard')">Dashboard</button>
+      <button class="portal-tab"        role="tab" aria-selected="false" onclick="switchTab(this,'tab-directory')">Members Directory</button>
+      <button class="portal-tab"        role="tab" aria-selected="false" onclick="switchTab(this,'tab-documents')">Documents</button>
+      <button class="portal-tab"        role="tab" aria-selected="false" onclick="switchTab(this,'tab-records')">Club Records</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── PORTAL BODY ────────────────────────────────────────────── -->
+<div class="portal-body">
+  <div class="wrap">
+
+    <!-- ── DASHBOARD ── -->
+    <div class="portal-content active" id="tab-dashboard">
+      <div class="dash-layout">
+      <div class="dash-main">
+
+      <!-- Next meeting. Same for every member, so it leads the page. -->
+      <div class="dash-meeting">
+        <div>
+          <div class="dm-eyebrow">Next meeting</div>
+          <div class="dm-when">Thursday 14 August &middot; 7:30 pm</div>
+          <div class="dm-where">Masina Hospital hall &middot; Guest: DG Lion Rustom Mehta</div>
+        </div>
+        <button class="dm-rsvp" type="button" onclick="rsvpNextMeeting(this)">RSVP</button>
+      </div>
+
+      <!-- Club at a glance -->
+      <h3 class="dash-section-h">Club at a glance</h3>
+      <div class="dash-cards dash-cards-3">
+        <div class="dash-card">
+          <div class="dash-card-top">
+            <div class="dash-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v10H4V12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+            </div>
+          </div>
+          <div class="dash-card-label">Total Donation</div>
+          <div class="dash-card-value">&#8377;3,42,500</div>
+          <div class="dash-card-sub">All donation till LY-2026-27</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-top">
+            <div class="dash-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+          </div>
+          <div class="dash-card-label">Club Members</div>
+          <div class="dash-card-value">111</div>
+          <div class="dash-card-sub">Active members</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-top">
+            <div class="dash-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+          </div>
+          <div class="dash-card-label">Projects</div>
+          <div class="dash-card-value">18</div>
+          <div class="dash-card-sub">Completed this year</div>
+        </div>
+      </div>
+
+      <!-- Dues shown as rates. A shared login cannot know who owes what, so
+           personal balances live with the treasurer, not on this page. -->
+      <h3 class="dash-section-h">Dues and payments</h3>
+      <div class="dash-dues">
+        <div class="dues-row">
+          <div>
+            <div class="dues-name">Annual membership fee</div>
+            <div class="dues-sub">2025&ndash;2026 &middot; due by 31 July</div>
+          </div>
+          <div class="dues-right">
+            <span class="dues-amt">&#8377;5,000</span>
+            <a class="dash-card-pay" onclick="openFormModal('tab-fees')" href="#">Pay &rarr;</a>
+          </div>
+        </div>
+        <div class="dues-row">
+          <div>
+            <div class="dues-name">Meeting charge</div>
+            <div class="dues-sub">Per meeting attended</div>
+          </div>
+          <div class="dues-right">
+            <span class="dues-amt">&#8377;200</span>
+            <a class="dash-card-pay" onclick="openFormModal('tab-meeting')" href="#">Pay &rarr;</a>
+          </div>
+        </div>
+        <div class="dues-note">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          For your own balance, contact Lion Percy Kaikobad, Treasurer
+        </div>
+      </div>
+
+      <!-- Notice board + this month -->
+      <div class="dash-board-grid">
+        <div>
+          <h3 class="dash-section-h">Notice board</h3>
+          <div class="dash-list">
+            <div class="dash-list-row">
+              <div class="dl-title">Blood donation camp &mdash; volunteers needed</div>
+              <div class="dl-meta">Secretary &middot; 4 Aug</div>
+            </div>
+            <div class="dash-list-row">
+              <div class="dl-title">July bulletin is out</div>
+              <div class="dl-meta">President &middot; 1 Aug</div>
+            </div>
+            <div class="dash-list-row">
+              <div class="dl-title">Zone meeting moved to 22 Aug</div>
+              <div class="dl-meta">Secretary &middot; 28 Jul</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="dash-section-h">This month</h3>
+          <div class="dash-list">
+            <div class="dash-occasion">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-8H4v8"/><path d="M2 21h20"/><path d="M7 13V8a5 5 0 0110 0v5"/><path d="M12 3v2"/></svg>
+              <div>
+                <div class="dl-title">Lion Farida Mistry</div>
+                <div class="dl-meta">Birthday &middot; 12 Aug</div>
+              </div>
+            </div>
+            <div class="dash-occasion">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-8H4v8"/><path d="M2 21h20"/><path d="M7 13V8a5 5 0 0110 0v5"/><path d="M12 3v2"/></svg>
+              <div>
+                <div class="dl-title">Lion Adi Contractor</div>
+                <div class="dl-meta">Birthday &middot; 19 Aug</div>
+              </div>
+            </div>
+            <div class="dash-occasion">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              <div>
+                <div class="dl-title">Lion Zubin and Delna Sethna</div>
+                <div class="dl-meta">Anniversary &middot; 24 Aug</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div><!-- /dash-main -->
+
+      </div><!-- /dash-layout -->
+    </div>
+
+    <!-- ── MEMBERS DIRECTORY ── -->
+    <div class="portal-content" id="tab-directory">
+      <div class="dir-controls">
+        <div>
+          <h2 class="tab-h">Members Directory</h2>
+          <p class="tab-sub" style="margin:4px 0 0;">Current registered members of the Lions Club of Byculla.</p>
+        </div>
+        <div class="dir-search-wrap">
+          <svg class="dir-search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="dir-search" placeholder="Search members&hellip;" oninput="filterMembers(this.value)" aria-label="Search members">
+        </div>
+      </div>
+      <div class="roster-tabs-bar">
+        <div class="roster-tabs" role="tablist" aria-label="Switch between board members and members" data-active="board">
+          <button class="roster-tab" data-roster="board" role="tab" aria-selected="true" onclick="switchRosterTab(this,'board')">Board Members</button>
+          <button class="roster-tab" data-roster="members" role="tab" aria-selected="false" onclick="switchRosterTab(this,'members')">Members</button>
+        </div>
+      </div>
+
+      <div class="table-wrap roster-table-wrap" id="boardTableWrap" style="overflow-x:auto;">
+        <table class="member-table" id="boardTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Member Since</th>
+            </tr>
+          </thead>
+          <tbody id="boardTbody">
+            <tr><td>1</td><td>Lion Daara Patel</td><td>President</td><td>1979</td></tr>
+            <tr><td>2</td><td>Lion Tehemton Dalal</td><td>Immd Past President</td><td>To be updated</td></tr>
+            <tr><td>3</td><td>Lion Shahrukh Marolia</td><td>Secretary</td><td>To be updated</td></tr>
+            <tr><td>4</td><td>Lion Percy Kaikobad</td><td>Treasurer</td><td>To be updated</td></tr>
+            <tr><td>5</td><td>Lion Burges Wania</td><td>VP2</td><td>To be updated</td></tr>
+            <tr><td>6</td><td>Lion Kayzad Nilgiriwalla</td><td>Joint Secretary</td><td>To be updated</td></tr>
+            <tr><td>7</td><td>Lion Adil Bhesadia</td><td>Membership Dev &amp; Retention</td><td>To be updated</td></tr>
+            <tr><td>8</td><td>Lion Noshir Divecha</td><td>Director</td><td>To be updated</td></tr>
+            <tr><td>9</td><td>Lion Rohinton Bhathena</td><td>Director</td><td>To be updated</td></tr>
+            <tr><td>10</td><td>Lion Firoze Katrak</td><td>Advisor &amp; Mentor</td><td>To be updated</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-wrap roster-table-wrap" id="membersTableWrap" style="overflow-x:auto;display:none;">
+        <table class="member-table" id="membersTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Member Since</th>
+              <th>Date of Birth</th>
+            </tr>
+          </thead>
+          <tbody id="membersTbody">
+            <tr><td>1</td><td>Lion Farhad Bilimoria</td><td>Member</td><td>1998</td><td>To be updated</td></tr>
+            <tr><td>2</td><td>Lion Cyrus Engineer</td><td>Member</td><td>2001</td><td>To be updated</td></tr>
+            <tr><td>3</td><td>Lion Zenobia Elavia</td><td>Member</td><td>2003</td><td>To be updated</td></tr>
+            <tr><td>4</td><td>Lion Rustom Chinoy</td><td>Member</td><td>2005</td><td>To be updated</td></tr>
+            <tr><td>5</td><td>Lion Perzen Cama</td><td>Member</td><td>2007</td><td>To be updated</td></tr>
+            <tr><td>6</td><td>Lion Jehangir Screwvala</td><td>Member</td><td>2009</td><td>To be updated</td></tr>
+            <tr><td>7</td><td>Lion Freny Mistry</td><td>Member</td><td>2011</td><td>To be updated</td></tr>
+            <tr><td>8</td><td>Lion Homi Wadia</td><td>Member</td><td>2013</td><td>To be updated</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="font-size:12px;color:var(--muted);margin-top:14px;">Full directory will be populated once provided by the club secretary.</p>
+    </div>
+
+    <!-- ── PAY MEMBERSHIP FEES ── -->
+    <div class="portal-content" id="tab-fees">
+      <div class="pay-card">
+        <h2 class="tab-h">Pay Membership Fees</h2>
+        <p class="tab-sub">Pay your annual Lions Club of Byculla membership fees securely online.</p>
+        <div class="form-row">
+          <div class="form-field"><input type="text" id="feesName" placeholder="Your name"/><label for="feesName">Full Name</label></div>
+          <div class="form-field"><input type="text" id="feesMemberId" placeholder="Your member ID"/><label for="feesMemberId">Member ID</label></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><select id="feesYear"><option>2025&ndash;2026</option><option>2024&ndash;2025</option><option>2023&ndash;2024</option></select><label for="feesYear">Lions Year</label></div>
+          <div class="form-field"><input type="number" id="feesAmount" placeholder="Enter amount"/><label for="feesAmount">Amount (&#8377;)</label></div>
+        </div>
+        <div class="form-field"><select id="feesMethod"><option>UPI / GPay / PhonePe</option><option>Net Banking</option><option>Credit / Debit Card</option><option>Cheque / DD</option></select><label for="feesMethod">Payment Method</label></div>
+        <button class="btn-submit" onclick="showSuccess('feesSuccess')">
+          Pay Membership Fees
+          <svg viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="13,6 19,12 13,18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="form-note">Payment gateway integration coming soon. Your submission will be recorded.</p>
+        <div class="success-msg" id="feesSuccess">&#10003; Your payment request has been recorded. The treasurer will confirm receipt shortly.</div>
+      </div>
+    </div>
+
+    <!-- ── PAY MEETING CHARGES ── -->
+    <div class="portal-content" id="tab-meeting">
+      <div class="pay-card">
+        <h2 class="tab-h">Pay Meeting Charges</h2>
+        <p class="tab-sub">Pay your Lions Club meeting attendance charges for the current or upcoming meeting.</p>
+        <div class="form-row">
+          <div class="form-field"><input type="text" id="meetName" placeholder="Your name"/><label for="meetName">Full Name</label></div>
+          <div class="form-field"><input type="text" id="meetMemberId" placeholder="Your member ID"/><label for="meetMemberId">Member ID</label></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><input type="date" id="meetDate" placeholder=" "/><label for="meetDate">Meeting Date</label></div>
+          <div class="form-field"><input type="number" id="meetAmount" placeholder="Enter amount"/><label for="meetAmount">Amount (&#8377;)</label></div>
+        </div>
+        <div class="form-field"><select id="meetMethod"><option>UPI / GPay / PhonePe</option><option>Net Banking</option><option>Credit / Debit Card</option><option>Cheque / DD</option></select><label for="meetMethod">Payment Method</label></div>
+        <button class="btn-submit" onclick="showSuccess('meetingSuccess')">
+          Pay Meeting Charges
+          <svg viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="13,6 19,12 13,18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="form-note">Payment gateway integration coming soon. Your submission will be recorded.</p>
+        <div class="success-msg" id="meetingSuccess">&#10003; Your payment request has been recorded. The treasurer will confirm receipt shortly.</div>
+      </div>
+    </div>
+
+    <!-- ── MEMBERS DONATION ── -->
+    <div class="portal-content" id="tab-donation">
+      <div class="pay-card">
+        <h2 class="tab-h">Members Donation</h2>
+        <p class="tab-sub">Make a donation towards any of our club projects or the general service fund.</p>
+        <div class="form-row">
+          <div class="form-field"><input type="text" id="donName" placeholder="Your name"/><label for="donName">Full Name</label></div>
+          <div class="form-field"><input type="text" id="donMemberId" placeholder="Your member ID"/><label for="donMemberId">Member ID</label></div>
+        </div>
+        <div class="form-field">
+          <select id="donTowards">
+            <option>General Service Fund</option>
+            <option>Childhood Cancer &amp; Epilepsy Project</option>
+            <option>Eye Care Programme</option>
+            <option>Medical Aid Fund</option>
+            <option>Education Support</option>
+            <option>Senior Citizen Care</option>
+            <option>Animal Welfare</option>
+            <option>Golden Jubilee Fund</option>
+          </select>
+          <label for="donTowards">Donate Towards</label>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><input type="number" id="donAmount" placeholder="Enter donation amount"/><label for="donAmount">Amount (&#8377;)</label></div>
+          <div class="form-field"><select id="donMethod"><option>UPI / GPay / PhonePe</option><option>Net Banking</option><option>Credit / Debit Card</option><option>Cheque / DD</option></select><label for="donMethod">Payment Method</label></div>
+        </div>
+        <button class="btn-submit" onclick="showSuccess('donationSuccess')">
+          Submit Donation
+          <svg viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="13,6 19,12 13,18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="form-note">Payment gateway integration coming soon. Your submission will be recorded.</p>
+        <div class="success-msg" id="donationSuccess">&#10003; Your donation intent has been recorded. The treasurer will reach out to confirm the payment details shortly.</div>
+      </div>
+    </div>
+
+    <!-- ── CLUB DOCUMENTS ── -->
+    <div class="portal-content" id="tab-documents">
+      <h2 class="tab-h">Club Documents</h2>
+      <p class="tab-sub">All official club documents stored securely. Access is restricted to members only.</p>
+      <div class="doc-grid">
+        <div class="doc-card">
+          <div class="doc-icon" style="background:rgba(252,203,6,0.1);">&#128220;</div>
+          <div><div class="doc-name">Club Constitution</div><div class="doc-desc">Official club rules and regulations</div></div>
+          <div class="doc-status">Coming Soon</div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-icon" style="background:rgba(16,44,87,0.08);">&#127963;</div>
+          <div><div class="doc-name">Charter Certificate</div><div class="doc-desc">Original club charter document</div></div>
+          <div class="doc-status">Coming Soon</div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-icon" style="background:rgba(99,102,241,0.1);">&#9878;</div>
+          <div><div class="doc-name">Charity Commissioner</div><div class="doc-desc">Registration &amp; compliance documents</div></div>
+          <div class="doc-status">Coming Soon</div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-icon" style="background:rgba(16,185,129,0.1);">&#127760;</div>
+          <div><div class="doc-name">FCRA Documents</div><div class="doc-desc">Foreign Contribution Regulation Act filings</div></div>
+          <div class="doc-status">Coming Soon</div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-icon" style="background:rgba(239,68,68,0.1);">&#128202;</div>
+          <div><div class="doc-name">Tax Returns</div><div class="doc-desc">Annual tax filing records</div></div>
+          <div class="doc-status">Coming Soon</div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-icon" style="background:rgba(245,158,11,0.1);">&#128221;</div>
+          <div><div class="doc-name">Change Reports</div><div class="doc-desc">Amendments and change records</div></div>
+          <div class="doc-status">Coming Soon</div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-icon" style="background:rgba(16,44,87,0.06);">&#128196;</div>
+          <div><div class="doc-name">Meeting Minutes</div><div class="doc-desc">Board and regular meeting records</div></div>
+          <div class="doc-status">Coming Soon</div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-icon" style="background:rgba(252,203,6,0.08);">&#127942;</div>
+          <div><div class="doc-name">Awards &amp; Citations</div><div class="doc-desc">District and multiple district awards</div></div>
+          <div class="doc-status">Coming Soon</div>
+        </div>
+      </div>
+      <div class="doc-note">
+        Documents will be uploaded to cloud storage once the website moves to the full hosting server. All files will be accessible here for members only.
+      </div>
+    </div>
+
+    <!-- ── CLUB RECORDS ── -->
+    <div class="portal-content" id="tab-records">
+      <div class="records-controls">
+        <div>
+          <h2 class="tab-h">Club Activities &amp; Project Records</h2>
+          <p class="tab-sub">Activities and projects as recorded on the Lions International (LI) portal, maintained for club records.</p>
+        </div>
+        <button class="btn-add-activity" onclick="openAddActivityModal()" type="button">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add Activity
+        </button>
+      </div>
+      <div class="table-wrap" style="overflow-x:auto;">
+        <table class="member-table">
+          <thead>
+            <tr>
+              <th>Activity / Project</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="activitiesTbody">
+            <tr>
+              <td>Childhood Cancer &amp; Epilepsy Programme</td>
+              <td style="color:var(--muted);">Landmark Project</td>
+              <td style="color:var(--muted);">12 Feb 2026</td>
+              <td><span class="status-badge">Active</span></td>
+            </tr>
+            <tr>
+              <td>Blood Donation Camp</td>
+              <td style="color:var(--muted);">Health Drive</td>
+              <td style="color:var(--muted);">28 Apr 2026</td>
+              <td><span class="status-badge">Active</span></td>
+            </tr>
+            <tr>
+              <td>Old Age Home Visits</td>
+              <td style="color:var(--muted);">Elder Care</td>
+              <td style="color:var(--muted);">9 Jun 2025</td>
+              <td><span class="status-badge inactive">Inactive</span></td>
+            </tr>
+            <tr>
+              <td>Eye Care Screening Programme</td>
+              <td style="color:var(--muted);">Vision</td>
+              <td style="color:var(--muted);">3 Jul 2026</td>
+              <td><span class="status-badge">Active</span></td>
+            </tr>
+            <tr id="activitiesNoteRow">
+              <td style="color:var(--muted);font-style:italic;" colspan="4">Additional activities will be added as per LI portal records once provided by the club.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── SUGGESTIONS ── -->
+    <div class="portal-content" id="tab-suggestions">
+      <div class="suggestions-wrap">
+        <h2 class="tab-h">Member Suggestions</h2>
+        <p class="tab-sub">Have an idea or suggestion for the club? Share it here. All suggestions are welcome and will be reviewed by the committee.</p>
+        <div class="form-field">
+          <input type="text" id="suggName" placeholder="Your name"/>
+          <label for="suggName">Your Name</label>
+        </div>
+        <div class="form-field">
+          <select id="suggCategory">
+            <option>General Suggestion</option>
+            <option>New Project / Activity</option>
+            <option>Website Improvement</option>
+            <option>Event Suggestion</option>
+            <option>Fellowship Idea</option>
+            <option>Other</option>
+          </select>
+          <label for="suggCategory">Category</label>
+        </div>
+        <div class="form-field">
+          <textarea id="suggText" placeholder="Share your thoughts, ideas, or suggestions here&hellip;"></textarea>
+          <label for="suggText">Your Suggestion</label>
+        </div>
+        <button class="btn-submit" onclick="submitSuggestion()">
+      Submit Suggestion
+      <svg viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="13,6 19,12 13,18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+        <div class="success-msg" id="suggSuccess">
+          &#10003; Thank you! Your suggestion has been recorded and will be shared with the committee.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /wrap -->
+</div><!-- /portal-body -->
+
+<!-- SUGGEST MODAL -->
+<div id="suggestModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:12px;padding:36px 32px;width:100%;max-width:480px;position:relative;margin:20px;">
+    <button onclick="closeSuggestModal()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:#6b7280;">&times;</button>
+    <h2 class="tab-h" style="margin-bottom:6px;">Share a suggestion</h2>
+    <p class="tab-sub" style="margin-bottom:24px;">All suggestions are reviewed by the committee.</p>
+    <div class="form-field">
+      <input type="text" id="suggName" placeholder="Your name"/>
+      <label for="suggName">Your Name</label>
+    </div>
+    <div class="form-field">
+      <select id="suggCategory">
+        <option>General Suggestion</option>
+        <option>New Project / Activity</option>
+        <option>Website Improvement</option>
+        <option>Event Suggestion</option>
+        <option>Fellowship Idea</option>
+        <option>Other</option>
+      </select>
+      <label for="suggCategory">Category</label>
+    </div>
+    <div class="form-field">
+      <textarea id="suggText" placeholder="Share your thoughts, ideas, or suggestions here…"></textarea>
+      <label for="suggText">Your Suggestion</label>
+    </div>
+    <button class="btn-submit" onclick="submitSuggestion()">
+      Submit Suggestion
+      <svg viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="13,6 19,12 13,18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="success-msg" id="suggSuccess">&#10003; Thank you! Your suggestion has been recorded.</div>
+  </div>
+</div>
+
+<!-- ADD ACTIVITY MODAL -->
+<div id="addActivityModal" class="fmodal-backdrop" onclick="if(event.target===this)closeAddActivityModal()">
+  <div class="fmodal-box" role="dialog" aria-modal="true">
+    <button class="fmodal-close" onclick="closeAddActivityModal()" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h2 class="tab-h" style="margin-bottom:6px;">Add Activity / Project</h2>
+    <p class="tab-sub" style="margin-bottom:24px;">Add a new entry to the club's activity &amp; project records.</p>
+    <div class="form-field">
+      <input type="text" id="actName" placeholder="Activity or project name"/>
+      <label for="actName">Activity / Project</label>
+    </div>
+    <div class="form-field">
+      <input type="text" id="actCategory" placeholder="e.g. Health Drive"/>
+      <label for="actCategory">Category</label>
+    </div>
+    <div class="form-field">
+      <input type="date" id="actDate"/>
+      <label for="actDate">Date</label>
+    </div>
+    <div class="form-field">
+      <select id="actStatus">
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+      <label for="actStatus">Status</label>
+    </div>
+    <button class="btn-submit" onclick="submitActivity()">
+      Add Activity
+      <svg viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="13,6 19,12 13,18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="success-msg" id="actSuccess">&#10003; Activity added to the records.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="footer-motto">Ushta Te - Happiness Unto All</div>
+        <p>A multi-generational service organisation rooted in South Mumbai. Premier Club, District 3231 A1. Serving without interruption since 1977.</p>
+        <div class="est">Est. 1977 &middot; Golden Jubilee 2027</div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick links</h5>
+        <ul>
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="#">Annual reports</a></li>
+          <li><a href="#">Press &amp; media</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Our causes</h5>
+        <ul>
+          <li><a href="impact.html">Vision &amp; eye care</a></li>
+          <li><a href="impact.html">Childhood cancer</a></li>
+          <li><a href="impact.html">Education</a></li>
+          <li><a href="impact.html">Hunger &amp; nutrition</a></li>
+          <li><a href="impact.html">Medical aid</a></li>
+          <li><a href="impact.html">Animal welfare</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="index.html#join">Join as a member</a></li>
+          <li><a href="#">Volunteer for a day</a></li>
+          <li><a href="#">Do-good cookbook</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Golden Jubilee FRD</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <ul>
+          <li>Byculla, Mumbai - 400 008</li>
+          <li><a href="mailto:info@lionsbyculla.org">info@lionsbyculla.org</a></li>
+          <li>+91 22 2300 XXXX</li>
+        </ul>
+        <a href="#" class="whatsapp">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2025 Lions Club of Byculla &middot; District 3231 A1 &middot; Premier Club &middot; Golden Jubilee 2027</div>
+      <div><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script-1.js"></script>
+<script src="js/members-auth.js"></script>
+<script>
+
+  // ── Auth guard — redirect to home if not logged in ───────────────
+  (function () {
+    var stored = sessionStorage.getItem('lcb_member');
+    if (!stored) {
+      window.location.href = 'index.html';
+      return;
+    }
+    try {
+      var member = JSON.parse(stored);
+    } catch (e) {
+      sessionStorage.removeItem('lcb_member');
+      window.location.href = 'index.html';
+    }
+  })();
+
+  // ── Greeting ─────────────────────────────────────────────────────
+  // The portal runs on one shared club login, so nothing on the dashboard
+  // is per-member. The clock is the only thing left that varies.
+  (function setGreeting() {
+    var el = document.getElementById('dashGreet');
+    if (!el) return;
+    var h = new Date().getHours();
+    el.textContent = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  })();
+
+  // ── RSVP for the next meeting ────────────────────────────────────
+  function rsvpNextMeeting(btn) {
+    var modal = document.getElementById('rsvpModal');
+    if (!modal) return;
+
+    // Pre-fill from session if available
+    var stored = sessionStorage.getItem('lcb_member');
+    if (stored) {
+      try {
+        var m = JSON.parse(stored);
+        var n = document.getElementById('rsvpName');
+        var id = document.getElementById('rsvpMemberId');
+        if (n) n.value = m.name || '';
+        if (id) id.value = m.memberId || '';
+      } catch(e){}
+    }
+
+    // Reset to step 1
+    document.getElementById('rsvpStep1').style.display = '';
+    document.getElementById('rsvpStep2').style.display = 'none';
+    document.getElementById('rsvpDone').style.display = 'none';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    window._rsvpBtn = btn;
+  }
+
+  function rsvpConfirmAttendance() {
+    var name = document.getElementById('rsvpName').value.trim();
+    if (!name) { document.getElementById('rsvpName').focus(); return; }
+    document.getElementById('rsvpStep1').style.display = 'none';
+    document.getElementById('rsvpStep2').style.display = '';
+  }
+
+  function rsvpPayMeeting() {
+    document.getElementById('rsvpStep2').style.display = 'none';
+    document.getElementById('rsvpDone').style.display = '';
+    document.getElementById('rsvpDoneMsg').textContent =
+      '✓ RSVP confirmed and payment request recorded. The treasurer will confirm receipt.';
+    if (window._rsvpBtn) { window._rsvpBtn.textContent = 'RSVP ✓'; window._rsvpBtn.disabled = true; }
+  }
+
+  function rsvpSkipPayment() {
+    document.getElementById('rsvpStep2').style.display = 'none';
+    document.getElementById('rsvpDone').style.display = '';
+    document.getElementById('rsvpDoneMsg').textContent =
+      '✓ RSVP confirmed! You can pay the meeting fee later from the dashboard.';
+    if (window._rsvpBtn) { window._rsvpBtn.textContent = 'RSVP ✓'; window._rsvpBtn.disabled = true; }
+  }
+
+  function closeRsvpModal() {
+    document.getElementById('rsvpModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── Jump to a tab by id (used by dashboard quick actions) ─────────
+  function goToTab(tabId) {
+    document.querySelectorAll('.portal-tab').forEach(function (t) {
+      var oc = t.getAttribute('onclick') || '';
+      if (oc.indexOf("'" + tabId + "'") > -1) {
+        switchTab(t, tabId);
+        t.scrollIntoView({ inline: 'center', block: 'nearest' });
+      }
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Tab switching ────────────────────────────────────────────────
+  function switchTab(btn, tabId) {
+    document.querySelectorAll('.portal-tab').forEach(function (t) {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.portal-content').forEach(function (c) {
+      c.classList.remove('active');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    var tab = document.getElementById(tabId);
+    if (tab) tab.classList.add('active');
+  }
+
+  // ── Roster sub-tabs (Board Members / Members) ────────────────────
+  function switchRosterTab(btn, key) {
+    var tabsEl = btn.closest('.roster-tabs');
+    tabsEl.setAttribute('data-active', key);
+    tabsEl.querySelectorAll('.roster-tab').forEach(function (t) {
+      t.setAttribute('aria-selected', t.getAttribute('data-roster') === key ? 'true' : 'false');
+    });
+    document.getElementById('boardTableWrap').style.display = key === 'board' ? '' : 'none';
+    document.getElementById('membersTableWrap').style.display = key === 'members' ? '' : 'none';
+  }
+
+  // ── Member search ────────────────────────────────────────────────
+  function filterMembers(val) {
+    var active = document.querySelector('.roster-tabs').getAttribute('data-active');
+    var tbodyId = active === 'members' ? 'membersTbody' : 'boardTbody';
+    var rows = document.querySelectorAll('#' + tbodyId + ' tr');
+    rows.forEach(function (r) {
+      r.style.display = r.textContent.toLowerCase().includes(val.toLowerCase()) ? '' : 'none';
+    });
+  }
+
+  // ── Generic success handler ──────────────────────────────────────
+  function showSuccess(id) {
+    var el = document.getElementById(id);
+    if (el) { el.style.display = 'block'; }
+  }
+
+  // ── Suggest modal ────────────────────────────────────────────────
+  function openSuggestModal() {
+    var m = document.getElementById('suggestModal');
+    m.style.display = 'flex';
+    document.getElementById('suggSuccess').style.display = 'none';
+  }
+  function closeSuggestModal() {
+    document.getElementById('suggestModal').style.display = 'none';
+  }
+  document.addEventListener('click', function(e) {
+    if (e.target === document.getElementById('suggestModal')) closeSuggestModal();
+  });
+
+  // ── Suggestions submit ───────────────────────────────────────────
+  function submitSuggestion() {
+    var name = document.getElementById('suggName').value.trim();
+    var text = document.getElementById('suggText').value.trim();
+    if (!name || !text) { alert('Please fill in your name and suggestion.'); return; }
+    document.getElementById('suggSuccess').style.display = 'block';
+    document.getElementById('suggName').value = '';
+    document.getElementById('suggText').value = '';
+    document.getElementById('suggCategory').selectedIndex = 0;
+  }
+
+  // ── Logout ───────────────────────────────────────────────────────
+  function doPortalLogout() {
+    sessionStorage.removeItem('lcb_member');
+    window.location.href = 'index.html';
+  }
+
+
+  // ── Form Modal ────────────────────────────────────────────────────
+  var FORM_ID_PREFIX = { 'tab-fees': 'fees', 'tab-meeting': 'meet', 'tab-donation': 'don' };
+  function openFormModal(tabId) {
+    var src = document.getElementById(tabId);
+    if (!src) return;
+    var payCard = src.querySelector('.pay-card');
+    if (!payCard) return;
+    document.getElementById('formModalBody').innerHTML = payCard.innerHTML;
+    document.getElementById('formModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    var stored = sessionStorage.getItem('lcb_member');
+    var prefix = FORM_ID_PREFIX[tabId];
+    if (stored && prefix) {
+      try {
+        var member = JSON.parse(stored);
+        var nameEl = document.getElementById(prefix + 'Name');
+        var idEl = document.getElementById(prefix + 'MemberId');
+        if (nameEl) nameEl.value = member.name;
+        if (idEl && member.memberId) idEl.value = member.memberId;
+      } catch (e) {}
+    }
+  }
+  function closeFormModal() {
+    document.getElementById('formModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── Add Activity modal ────────────────────────────────────────────
+  function openAddActivityModal() {
+    document.getElementById('addActivityModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('actSuccess').style.display = 'none';
+  }
+  function closeAddActivityModal() {
+    document.getElementById('addActivityModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function formatActivityDate(isoStr) {
+    if (!isoStr) return '';
+    var parts = isoStr.split('-');
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var y = parts[0], m = parseInt(parts[1], 10) - 1, d = parseInt(parts[2], 10);
+    return d + ' ' + months[m] + ' ' + y;
+  }
+  function submitActivity() {
+    var name = document.getElementById('actName').value.trim();
+    var category = document.getElementById('actCategory').value.trim();
+    var date = document.getElementById('actDate').value;
+    var statusSel = document.getElementById('actStatus');
+    var isInactive = statusSel.value === 'inactive';
+    if (!name || !category) { alert('Please fill in the activity name and category.'); return; }
+
+    var row = document.createElement('tr');
+    var nameCell = document.createElement('td');
+    nameCell.textContent = name;
+    var catCell = document.createElement('td');
+    catCell.style.color = 'var(--muted)';
+    catCell.textContent = category;
+    var dateCell = document.createElement('td');
+    dateCell.style.color = 'var(--muted)';
+    dateCell.textContent = formatActivityDate(date) || '—';
+    var statusCell = document.createElement('td');
+    var badge = document.createElement('span');
+    badge.className = 'status-badge' + (isInactive ? ' inactive' : '');
+    badge.textContent = isInactive ? 'Inactive' : 'Active';
+    statusCell.appendChild(badge);
+    row.appendChild(nameCell); row.appendChild(catCell); row.appendChild(dateCell); row.appendChild(statusCell);
+
+    document.getElementById('activitiesTbody').insertBefore(row, document.getElementById('activitiesNoteRow'));
+
+    document.getElementById('actSuccess').style.display = 'block';
+    document.getElementById('actName').value = '';
+    document.getElementById('actCategory').value = '';
+    document.getElementById('actDate').value = '';
+    statusSel.selectedIndex = 0;
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeFormModal(); closeAddActivityModal(); closeRsvpModal(); }
+  });
+</script>
+
+<!-- ── FORM MODAL ── -->
+<div id="formModal" class="fmodal-backdrop" onclick="if(event.target===this)closeFormModal()">
+  <div class="fmodal-box" role="dialog" aria-modal="true">
+    <button class="fmodal-close" onclick="closeFormModal()" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="formModalBody"></div>
+  </div>
+</div>
+
+<!-- ── RSVP MODAL ── -->
+<div id="rsvpModal" class="fmodal-backdrop" onclick="if(event.target===this)closeRsvpModal()">
+  <div class="fmodal-box rsvp-box" role="dialog" aria-modal="true">
+
+    <!-- Step 1: Confirm attendance -->
+    <div id="rsvpStep1">
+      <div class="rsvp-meeting-banner">
+        <div class="rsvp-meeting-label">Next meeting</div>
+        <div class="rsvp-meeting-date">Thursday 14 August &middot; 7:30 pm</div>
+        <div class="rsvp-meeting-venue">Masina Hospital hall &middot; Guest: DG Lion Rustom Mehta</div>
+      </div>
+      <h2 class="tab-h" style="margin-top:24px;">Confirm your attendance</h2>
+      <p class="tab-sub">Let us know you'll be there.</p>
+      <div class="form-row">
+        <div class="form-field"><input type="text" id="rsvpName" placeholder="Your name" required/><label for="rsvpName">Full Name</label></div>
+        <div class="form-field"><input type="text" id="rsvpMemberId" placeholder="Your member ID"/><label for="rsvpMemberId">Member ID</label></div>
+      </div>
+      <button class="btn-submit" onclick="rsvpConfirmAttendance()">
+        Confirm RSVP
+        <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- Step 2: Optional meeting fee payment -->
+    <div id="rsvpStep2" style="display:none;">
+      <div class="rsvp-pay-header">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <div>
+          <h2 class="tab-h" style="margin:0;">Pay meeting fee?</h2>
+          <p class="tab-sub" style="margin:4px 0 0;">You can pay now or later from the dashboard.</p>
+        </div>
+      </div>
+      <div class="rsvp-fee-card">
+        <span>Meeting charge</span>
+        <span class="dues-amt">&#8377;200</span>
+      </div>
+      <div class="form-field"><select id="rsvpMethod"><option>UPI / GPay / PhonePe</option><option>Net Banking</option><option>Credit / Debit Card</option><option>Cheque / DD</option></select><label for="rsvpMethod">Payment Method</label></div>
+      <p class="form-note">Payment gateway integration coming soon. Your submission will be recorded.</p>
+      <div class="rsvp-actions">
+        <button class="btn-submit" onclick="rsvpPayMeeting()">
+          Pay &#8377;200
+          <svg viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="13,6 19,12 13,18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="rsvp-skip" onclick="rsvpSkipPayment()">Skip, I'll pay later</button>
+      </div>
+    </div>
+
+    <!-- Done state -->
+    <div id="rsvpDone" style="display:none;">
+      <div class="rsvp-done-wrap">
+        <div class="rsvp-done-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <p class="rsvp-done-msg" id="rsvpDoneMsg"></p>
+        <button class="rsvp-skip" onclick="closeRsvpModal()" style="margin-top:8px;">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.fmodal-backdrop{
+  position:fixed;inset:0;background:rgba(16,44,87,0.45);backdrop-filter:blur(4px);
+  z-index:900;display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.fmodal-backdrop.open{opacity:1;pointer-events:all;}
+.fmodal-box{
+  background:#fff;border-radius:var(--radius-lg);
+  width:100%;max-width:560px;max-height:90vh;overflow-y:auto;
+  padding:36px 32px;position:relative;
+  transform:translateY(16px);transition:transform .2s;
+  box-shadow:0 20px 60px rgba(16,44,87,0.18);
+}
+.fmodal-backdrop.open .fmodal-box{transform:translateY(0);}
+.fmodal-close{
+  position:absolute;top:16px;right:16px;background:none;border:none;
+  cursor:pointer;color:var(--muted);padding:4px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;
+  transition:color .15s;
+}
+.fmodal-close:hover{color:var(--navy);}
+
+/* RSVP modal */
+.rsvp-box{max-width:480px;}
+.rsvp-meeting-banner{
+  background:var(--navy);color:#fff;border-radius:var(--radius-md);
+  padding:18px 20px;margin-top:16px;
+}
+.rsvp-meeting-label{
+  font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;
+}
+.rsvp-meeting-date{font-family:var(--serif);font-size:17px;margin-bottom:3px;}
+.rsvp-meeting-venue{font-size:12px;color:rgba(255,255,255,.65);}
+.rsvp-pay-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;}
+.rsvp-fee-card{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--paper);border-radius:var(--radius-md);
+  padding:14px 18px;margin-bottom:18px;
+  font-size:14px;color:var(--ink);
+}
+.rsvp-actions{display:flex;align-items:center;gap:16px;margin-top:18px;flex-wrap:wrap;}
+.rsvp-skip{
+  background:none;border:none;cursor:pointer;
+  font-family:var(--serif);font-size:13px;color:var(--muted);
+  text-decoration:underline;text-underline-offset:3px;padding:0;
+}
+.rsvp-skip:hover{color:var(--navy);}
+.rsvp-done-wrap{text-align:center;padding:24px 0 8px;}
+.rsvp-done-icon{margin-bottom:14px;}
+.rsvp-done-msg{font-size:14px;color:var(--ink);line-height:1.6;max-width:320px;margin:0 auto;}
+</style>
+</body>
+</html>

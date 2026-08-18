@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Donate | Lions Club of Byculla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/light-redesign.css">
+<link rel="stylesheet" href="css/nav-submenu.css">
+<link rel="stylesheet" href="css/campaigns.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/membership-modal.css">
+<link rel="stylesheet" href="css/appeal-donate.css">
+<style>
+
+/* ── HERO ── */
+.donate-hero {
+  background: var(--navy-deep);
+  padding: 144px 0 56px;
+  position: relative;
+  overflow: hidden;
+}
+.donate-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 90% at 0% 50%, rgba(252,203,6,0.08) 0%, transparent 60%);
+}
+.donate-hero .wrap { position: relative; z-index: 1; }
+.donate-hero .eyebrow { color: var(--gold); margin-bottom: 16px; }
+.donate-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+.donate-hero h1 em { color: inherit; font-style: normal; }
+.donate-hero .lede {
+  font-family: var(--serif);
+  font-style: italic;
+  color: rgba(255,255,255,0.62);
+  font-size: 1rem;
+  max-width: 520px;
+  line-height: 24px;
+}
+
+/* ── APPEALS ──
+   Cards, grid and section head are the shared campaign components
+   (css/campaigns.css). Only page-level framing changes here: on donate.html
+   the appeals are the page rather than one band inside it. */
+.appeals { border-bottom: none; }
+
+/* ── 80G NOTE ── */
+.give-note {
+  background: var(--paper-warm);
+  padding: 52px 0;
+  text-align: center;
+}
+.give-note p {
+  font: var(--type-lead);
+  color: var(--navy);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 760px) {
+  .donate-hero { padding: 124px 0 44px; }
+  .donate-hero h1 { font-size: 2rem; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="main" id="mainNav" aria-label="Main navigation">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <div class="brand-logo">
+        <img src="images/Logo.png" alt="Lions Club of Byculla">
+      </div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <ul class="nav-c-links">
+      <li class="has-sub">
+        <a href="about.html">About us <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </li>
+      <li><a href="impact.html">Our impact</a></li>
+      <li class="has-sub">
+        <a href="activities.html">Our activities <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="activities.html">All projects</a></li>
+          <li><a href="activities.html?cat=health">Diabetes &amp; Healthcare</a></li>
+          <li><a href="activities.html?cat=cancer">Childhood Cancer Care</a></li>
+          <li><a href="activities.html?cat=education">Education &amp; Youth</a></li>
+          <li><a href="activities.html?cat=vision">Eye Care &amp; Vision</a></li>
+          <li><a href="activities.html?cat=elder">Elder care</a></li>
+          <li><a href="activities.html?cat=hunger">Hunger &amp; Food Security</a></li>
+          <li><a href="activities.html?cat=animal">Animal Welfare</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="news.html">News &amp; events <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="news.html?tab=event">Events</a></li>
+          <li><a href="news.html?tab=news">News</a></li>
+          <li><a href="news.html?tab=bulletin">Bulletin</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+    <div class="nav-c-cta">
+      <a href="donate.html" class="nav-c-donate">Donate</a>
+      <a href="#" class="nav-login-icon" aria-label="Login"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <div class="drawer-head">
+    <a class="brand" href="index.html">
+      <div class="brand-logo"><img src="images/Logo.png" id="drawerLogo" alt="Lions Club of Byculla"></div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <button type="button" class="drawer-acc-toggle drawer-first" data-target="drawerAbout" aria-expanded="false">
+      About us
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerAbout">
+      <a href="about.html#story">Our story</a>
+      <a href="about.html#tl-v2">Our journey</a>
+      <a href="about.html#board">Leadership</a>
+      <a href="about.html#presidents">Past presidents</a>
+      <a href="about.html#lions-international">Lions International</a>
+    </div>
+    <a href="impact.html">Our impact</a>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerActivities" aria-expanded="false">
+      Our activities
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerActivities">
+      <a href="activities.html">All projects</a>
+      <a href="activities.html?cat=health">Diabetes &amp; Healthcare</a>
+      <a href="activities.html?cat=cancer">Childhood Cancer Care</a>
+      <a href="activities.html?cat=education">Education &amp; Youth</a>
+      <a href="activities.html?cat=vision">Eye Care &amp; Vision</a>
+      <a href="activities.html?cat=elder">Elder care</a>
+      <a href="activities.html?cat=hunger">Hunger &amp; Food Security</a>
+      <a href="activities.html?cat=animal">Animal Welfare</a>
+    </div>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerNews" aria-expanded="false">
+      News &amp; events
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerNews">
+      <a href="news.html?tab=event">Events</a>
+      <a href="news.html?tab=news">News</a>
+      <a href="news.html?tab=bulletin">Bulletin</a>
+    </div>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="drawer-foot">
+    <a href="#" class="login-pill-mob">
+      <svg viewBox="0 0 24 24" width="18" height="18" style="stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Login
+    </a>
+    <a href="donate.html" class="donate-pill-mob">Donate</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="donate-hero">
+  <div class="wrap">
+    <h1>Every rupee you give<br><em>changes a real life.</em></h1>
+    <p class="lede">Choose the appeal you want to back. Every rupee is accounted for, and every contribution moves the bar.</p>
+  </div>
+</section>
+
+<!-- ACTIVE DONATION APPEALS -->
+<!-- Cards are rendered from js/campaigns.js — edit the figures there.
+     No data-limit here, so this page lists every live appeal. -->
+<section id="appeals" class="appeals" aria-labelledby="appealsHeading">
+  <div class="wrap">
+
+    <div class="appeals-head">
+      <div>
+        <div class="eyebrow">Active projects</div>
+        <h2 id="appealsHeading">Give to something <em>happening right now.</em></h2>
+        <p class="intro">These are the causes the club is raising funds for today. Pick a cause, choose an amount, and give in under a minute.</p>
+      </div>
+      <div class="appeals-total" id="campaignTotal"></div>
+    </div>
+
+    <div class="campaign-grid" id="campaignGrid"></div>
+
+    <div class="appeals-foot">
+      <a href="activities.html" class="btn-outline">See all our activities</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- 80G NOTE -->
+<section class="give-note">
+  <div class="wrap">
+    <p>All donations to the Lions Club of Byculla Charitable Trust are eligible for 80G tax exemption. Receipts are issued against the PAN you give us.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     APPEAL DONATION MODAL
+     Opens from any "Donate for this cause" card above. The heading, blurb
+     and figures are filled in by js/appeal-donate.js from the card that was
+     clicked, so one dialog serves every appeal.
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="mem-overlay" id="appealOverlay" role="dialog" aria-modal="true" aria-labelledby="appealModalTitle" hidden>
+  <div class="mem-modal mem-modal--donate">
+
+    <button class="mem-close" id="appealClose" aria-label="Close">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <div class="mem-head">
+      <div class="mem-head__text">
+        <div class="eyebrow" id="appealModalCat">Active project</div>
+        <h2 id="appealModalTitle">Donate for this cause</h2>
+        <p id="appealModalBlurb"></p>
+      </div>
+    </div>
+
+    <div class="mem-body">
+      <form id="appealForm" novalidate>
+
+        <!-- Where the appeal stands right now — same figures as the card -->
+        <div class="appeal-snapshot">
+          <div class="camp-figures">
+            <span class="camp-raised"><strong id="appealModalRaised"></strong> raised</span>
+            <span class="camp-pct" id="appealModalPct"></span>
+          </div>
+          <div class="camp-bar" role="progressbar" id="appealModalBar"
+               aria-valuemin="0" aria-valuemax="100" aria-label="Funding progress">
+            <span class="camp-fill" id="appealModalFill"></span>
+          </div>
+          <div class="camp-meta" id="appealModalMeta"></div>
+        </div>
+
+        <div class="mem-choice-label">Choose an amount</div>
+        <div class="appeal-amounts">
+          <label class="mem-choice"><input type="radio" name="appealAmount" value="500"><span>&#8377;500</span></label>
+          <label class="mem-choice"><input type="radio" name="appealAmount" value="1000" checked><span>&#8377;1,000</span></label>
+          <label class="mem-choice"><input type="radio" name="appealAmount" value="2500"><span>&#8377;2,500</span></label>
+          <label class="mem-choice"><input type="radio" name="appealAmount" value="5000"><span>&#8377;5,000</span></label>
+          <label class="mem-choice"><input type="radio" name="appealAmount" value="10000"><span>&#8377;10,000</span></label>
+          <label class="mem-choice"><input type="radio" name="appealAmount" value="other"><span>Other</span></label>
+        </div>
+
+        <div class="cf-group appeal-custom" id="appealCustomWrap">
+          <input type="number" id="appealCustom" name="customAmount" min="100" step="100" placeholder="Amount in rupees">
+          <label for="appealCustom">Amount (&#8377;)</label>
+        </div>
+
+        <div class="cf-group">
+          <input type="text" id="appealName" name="name" placeholder="Your full name" required>
+          <label for="appealName">Full name</label>
+        </div>
+
+        <div class="cf-row">
+          <div class="cf-group">
+            <input type="email" id="appealEmail" name="email" placeholder="your@email.com" required>
+            <label for="appealEmail">Email address</label>
+          </div>
+          <div class="cf-group">
+            <input type="tel" id="appealPhone" name="phone" placeholder="+91 98765 43210" inputmode="tel" required>
+            <label for="appealPhone">Phone number</label>
+          </div>
+        </div>
+
+        <div class="cf-row">
+          <div class="cf-group">
+            <input type="text" id="appealPan" name="pan" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase" required>
+            <label for="appealPan">PAN (for 80G receipt)</label>
+          </div>
+          <div class="cf-group">
+            <select id="appealMethod" name="method" required>
+              <option value="" disabled selected>Select payment method</option>
+              <option>UPI / GPay / PhonePe</option>
+              <option>Net Banking</option>
+              <option>Credit / Debit Card</option>
+              <option>Cheque / DD</option>
+            </select>
+            <label for="appealMethod">Payment method</label>
+          </div>
+        </div>
+
+        <p class="cf-privacy">Your donation is tagged to this appeal alone. You will be redirected to a secure payment page after submitting. Donations are eligible for 80G tax exemption and your receipt will be emailed to you.</p>
+
+        <button type="submit" class="btn-contact" id="appealSubmit">
+          <span id="appealSubmitLabel">Donate &#8377;1,000</span>
+          <svg viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="13,6 19,12 13,18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+
+      <div class="form-success" id="appealSuccess">
+        <div class="s-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Thank you for your donation</h3>
+        <p id="appealSuccessNote"></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="footer-motto">Ushta Te - Happiness Unto All</div>
+        <p>A multi-generational service organisation rooted in South Mumbai. Premier Club, District 3231 A1. Serving without interruption since 1977.</p>
+        <div class="est">Est. 1977 &middot; Golden jubilee 2027</div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick links</h5>
+        <ul>
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="#">Leadership</a></li>
+          <li><a href="#">Annual reports</a></li>
+          <li><a href="#">Press &amp; media</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Our causes</h5>
+        <ul>
+          <li><a href="#">Vision &amp; eye care</a></li>
+          <li><a href="#">Childhood cancer</a></li>
+          <li><a href="#">Education</a></li>
+          <li><a href="#">Hunger &amp; nutrition</a></li>
+          <li><a href="#">Medical aid</a></li>
+          <li><a href="#">Animal welfare</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="#">Join as a member</a></li>
+          <li><a href="#">Volunteer for a day</a></li>
+          <li><a href="#">Do-good cookbook</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="#">Golden Jubilee FRD</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <ul>
+          <li>Byculla, Mumbai - 400 008</li>
+          <li><a href="mailto:info@lionsbyculla.org">info@lionsbyculla.org</a></li>
+          <li>+91 22 2300 XXXX</li>
+        </ul>
+        <a href="#" class="whatsapp">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2025 Lions Club of Byculla &middot; District 3231 A1 &middot; Premier Club &middot; Golden jubilee 2027</div>
+      <div><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script-1.js"></script>
+<script src="js/members-auth.js"></script>
+<script src="js/campaigns.js"></script>
+<script src="js/appeal-donate.js"></script>
+<script>
+(function () {
+  var nav = document.getElementById('mainNav');
+  if (!nav) return;
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>

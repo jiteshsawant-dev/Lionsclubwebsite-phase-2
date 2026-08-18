@@ -1,0 +1,998 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Lions Club of Byculla - Ushta Te, Happiness Unto All</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/light-redesign.css">
+<link rel="stylesheet" href="css/nav-submenu.css">
+<link rel="stylesheet" href="css/campaigns.css">
+<link rel="stylesheet" href="css/hero-light-reveal.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/membership-modal.css">
+<link rel="stylesheet" href="css/appeal-donate.css">
+</head>
+<body>
+
+<!-- ANNOUNCE -->
+
+<!-- NAV -->
+<nav class="main">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <div class="brand-logo">
+        <img src="images/Logo.png" alt="Lions Club of Byculla">
+      </div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <ul class="nav-c-links">
+      <li class="has-sub">
+        <a href="about.html">About us <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </li>
+      <li><a href="impact.html">Our impact</a></li>
+      <li class="has-sub">
+        <a href="activities.html">Our activities <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="activities.html">All projects</a></li>
+          <li><a href="activities.html?cat=health">Diabetes &amp; Healthcare</a></li>
+          <li><a href="activities.html?cat=cancer">Childhood Cancer Care</a></li>
+          <li><a href="activities.html?cat=education">Education &amp; Youth</a></li>
+          <li><a href="activities.html?cat=vision">Eye Care &amp; Vision</a></li>
+          <li><a href="activities.html?cat=elder">Elder care</a></li>
+          <li><a href="activities.html?cat=hunger">Hunger &amp; Food Security</a></li>
+          <li><a href="activities.html?cat=animal">Animal Welfare</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="news.html">News &amp; events <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="news.html?tab=event">Events</a></li>
+          <li><a href="news.html?tab=news">News</a></li>
+          <li><a href="news.html?tab=bulletin">Bulletin</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+    <div class="nav-c-cta">
+      <a href="donate.html" class="nav-c-donate">Donate</a>
+      <a href="#" class="nav-login-icon" aria-label="Login"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <div class="drawer-head">
+    <a class="brand" href="index.html">
+      <div class="brand-logo"><img src="" id="drawerLogo" alt="Lions Club of Byculla"></div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <button type="button" class="drawer-acc-toggle drawer-first" data-target="drawerAbout" aria-expanded="false">
+      About us
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerAbout">
+      <a href="about.html#story">Our story</a>
+      <a href="about.html#tl-v2">Our journey</a>
+      <a href="about.html#board">Leadership</a>
+      <a href="about.html#presidents">Past presidents</a>
+      <a href="about.html#lions-international">Lions International</a>
+    </div>
+    <a href="impact.html">Our impact</a>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerActivities" aria-expanded="false">
+      Our activities
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerActivities">
+      <a href="activities.html">All projects</a>
+      <a href="activities.html?cat=health">Diabetes &amp; Healthcare</a>
+      <a href="activities.html?cat=cancer">Childhood Cancer Care</a>
+      <a href="activities.html?cat=education">Education &amp; Youth</a>
+      <a href="activities.html?cat=vision">Eye Care &amp; Vision</a>
+      <a href="activities.html?cat=elder">Elder care</a>
+      <a href="activities.html?cat=hunger">Hunger &amp; Food Security</a>
+      <a href="activities.html?cat=animal">Animal Welfare</a>
+    </div>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerNews" aria-expanded="false">
+      News &amp; events
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerNews">
+      <a href="news.html?tab=event">Events</a>
+      <a href="news.html?tab=news">News</a>
+      <a href="news.html?tab=bulletin">Bulletin</a>
+    </div>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="drawer-foot">
+    <a href="#" class="login-pill-mob"><svg viewBox="0 0 24 24" width="18" height="18" style="stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg> Login</a>
+    <a href="donate.html" class="donate-pill-mob">Donate</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="light-hero" id="lightHero">
+  <div class="light-hero-beam">
+    <div class="beam-anchor"><div class="beam-plane"></div></div>
+  </div>
+  <div class="light-hero-navmask"></div>
+  <div class="light-hero-photo"><img src="images/Image (Community children smiling together).png" alt="Community children smiling together"></div>
+
+  <div class="light-hero-content">
+    <h1>Lighting smiles through<br>50&nbsp;years of service since 1977.</h1>
+    <p class="lede">Five decades of healthcare, vision, education and dignity<br>for the communities who need it most.</p>
+  </div>
+
+  <div class="light-hero-stats">
+    <div class="stat"><div class="num">111+</div><div class="lbl">Active members</div></div>
+    <div class="stat"><div class="num">77L+</div><div class="lbl">Projects in 2026</div></div>
+    <div class="stat"><div class="num">20+</div><div class="lbl">Partner institutions</div></div>
+    <div class="stat"><div class="num">47+</div><div class="lbl">Service projects</div></div>
+  </div>
+</section>
+
+<!-- IMPACT AREAS -->
+<section class="section" id="impact" aria-label="Our impact">
+  <div class="wrap">
+  <div class="section-header">
+    <div class="header-top-row">
+      <div class="header-left">
+        <p class="eyebrow">Our activities</p>
+        <h2>Seven fronts. <em>One commitment.</em></h2>
+      </div>
+      <a href="activities.html" class="btn-outline">View all activities</a>
+    </div>
+    <p class="header-intro nowrap-desktop">For nearly 50 years, Lions Club of Byculla has served communities through seven pillars of service — wherever hope is needed most.</p>
+  </div>
+
+  <div class="carousel-wrap">
+    <div class="carousel" id="carousel">
+  <a class="card card--featured" href="activities.html#cancer">
+    <img class="card-bg" src="images/img-5.png" alt="Childhood Cancer Care" />
+    <div class="card-veil"></div>
+    <div class="card-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg></div>
+    <div class="card-bottom">
+      <span class="card-num">01</span>
+      <h3 class="card-title">Childhood<br>Cancer Care</h3>
+      <p class="card-desc">Partnering with institutions to secure equipment, fund life-saving surgeries, and bring joy to young patients.</p>
+    </div>
+  </a>
+  <a class="card" href="activities.html#vision">
+    <img class="card-bg" src="images/slit lamp.png" alt="Eye Care & Vision" />
+    <div class="card-veil"></div>
+    <div class="card-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg></div>
+    <div class="card-bottom">
+      <span class="card-num">02</span>
+      <h3 class="card-title">Eye Care &<br>Vision</h3>
+      <p class="card-desc">Slit lamps, ophthalmic equipment & free eye camps for the underprivileged across india.</p>
+    </div>
+  </a>
+  <a class="card" href="activities.html#animal">
+    <img class="card-bg" src="images/img-6.png" alt="Animal welfare" />
+    <div class="card-veil"></div>
+    <div class="card-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg></div>
+    <div class="card-bottom">
+      <span class="card-num">03</span>
+      <h3 class="card-title">Animal<br>Welfare</h3>
+      <p class="card-desc">India has 60 million abandoned animals. We step up for shelters, rescue & sterilisation drives.</p>
+    </div>
+  </a>
+  <a class="card" href="activities.html#health">
+    <img class="card-bg" src="images/img-7.png" alt="Diabetes & Healthcare" />
+    <div class="card-veil"></div>
+    <div class="card-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg></div>
+    <div class="card-bottom">
+      <span class="card-num">04</span>
+      <h3 class="card-title">Diabetes &<br>Healthcare</h3>
+      <p class="card-desc">Diabetes awareness camps, blood donation drives & medical aid for poor patients.</p>
+    </div>
+  </a>
+  <a class="card" href="activities.html#hunger">
+    <img class="card-bg" src="images/img-2.png" alt="Hunger & Food Security" />
+    <div class="card-veil"></div>
+    <div class="card-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg></div>
+    <div class="card-bottom">
+      <span class="card-num">05</span>
+      <h3 class="card-title">Hunger &<br>Food Security</h3>
+      <p class="card-desc">Food drives, essential distributions & monthly meals for orphanages in across india.</p>
+    </div>
+  </a>
+  <a class="card" href="activities.html#education">
+    <img class="card-bg" src="images/img-8.png" alt="Education & Youth" />
+    <div class="card-veil"></div>
+    <div class="card-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg></div>
+    <div class="card-bottom">
+      <span class="card-num">06</span>
+      <h3 class="card-title">Education<br>& Youth</h3>
+      <p class="card-desc">Supporting education and youth development to unlock potential and create lasting impact.</p>
+    </div>
+  </a>
+  <a class="card" href="activities.html#elder">
+    <img class="card-bg" src="images/elder-care.png" alt="Elder Care"/>
+    <div class="card-veil"></div>
+    <div class="card-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7,7 17,7 17,17"/></svg></div>
+    <div class="card-bottom">
+      <span class="card-num">07</span>
+      <h3 class="card-title">Elder Care</h3>
+      <p class="card-desc">Healthcare assistance, wellness screenings, and support programs designed to enhance the quality of life for elderly individuals in need.</p>
+    </div>
+  </a>
+    </div>
+  </div>
+
+  <div class="dots" id="dots"></div>
+
+  <div class="impact-viewall-mobile">
+    <a href="activities.html" class="btn-outline">View all activities</a>
+  </div>
+  </div>
+</section>
+
+<!-- ACTIVE DONATION APPEALS -->
+<!-- Cards are rendered from js/campaigns.js — edit the figures there. -->
+<section id="appeals" class="appeals" aria-labelledby="appealsHeading">
+  <div class="wrap">
+
+    <div class="appeals-head">
+      <div>
+        <div class="eyebrow">Active projects</div>
+        <h2 id="appealsHeading">Give to something <em>happening right now.</em></h2>
+        <p class="intro">These are the causes the club is raising funds for today. Every rupee is accounted for, and every contribution moves the bar.</p>
+      </div>
+      <div class="appeals-total" id="campaignTotal"></div>
+    </div>
+
+    <div class="campaign-grid" id="campaignGrid" data-limit="4"></div>
+
+    <div class="appeals-foot">
+      <a href="donate.html" class="btn-outline">See all the ways to give</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="method">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Our method</div>
+      <h2>How <em>service</em> actually happens.</h2>
+      <p class="intro">Behind every camp, every surgery, every scholarship is a discipline refined over 50 years.<br>Five steps. No shortcuts. Every rupee accounted for and photographically documented.</p>
+    </div>
+    <div class="stepper">
+      <div class="step active"><div class="node"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h4>Appeal</h4><p>Individuals or institutions submit requests for assistance through the club's service channels.</p></div>
+      <div class="step active"><div class="node"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h4>Review & approve</h4><p>Applications are evaluated by the Board and approved based on need, urgency, and impact.</p></div>
+      <div class="step active"><div class="node"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 8.5 8"/><path d="M6 13h3"/><path d="M9 13c6.667 0 6.667-10 0-10"/></svg></div><h4>Organise funds</h4><p>Member contributions, fundraising initiatives, and CSR partnerships help secure the required support.</p></div>
+      <div class="step active"><div class="node"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><h4>Deliver</h4><p>Approved aid is distributed through Lions volunteers and partner organizations.</p></div>
+      <div class="step active"><div class="node"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></div><h4>Document</h4><p>Every project is photographed, documented, and uploaded to the Lions portal for transparency and accountability.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MEASURABLE IMPACT -->
+<section class="numbers-strip">
+  <div class="wrap">
+    <div class="ns-head">
+      <div class="ns-eyebrow-pill">Measurable Impact</div>
+      <h2>The numbers behind the stories.</h2>
+    </div>
+    <div class="ns-card">
+      <div class="ns-grid">
+        <div class="ns-item">
+          <div class="big">4,200+</div>
+          <div class="ns-label">Eye Surgeries Performed</div>
+          <div class="ns-desc">Restoring sight, one patient at a time</div>
+        </div>
+        <div class="ns-item">
+          <div class="big">280+</div>
+          <div class="ns-label">Medical Camps Organised</div>
+          <div class="ns-desc">Across Mumbai and neighbouring districts</div>
+        </div>
+        <div class="ns-item">
+          <div class="big">1,500+</div>
+          <div class="ns-label">Young Patients Supported</div>
+          <div class="ns-desc">Through childhood cancer care programs</div>
+        </div>
+        <div class="ns-item">
+          <div class="big">&#8377;77L+</div>
+          <div class="ns-label">Deployed in 2026</div>
+          <div class="ns-desc">In community projects, this year alone</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<div class="photo-panel">
+  <div class="photo-panel-img">
+    <img src="images/img-9.png" alt="Lions Club of Byculla community volunteers">
+  </div>
+  <div class="photo-panel-right">
+    <div class="photo-panel-card">
+      <h2>A premier club.<br><em>50 years without<br>interruption.</em></h2>
+      <p>What began with 8 Lions and a dream in 1977 has grown into one of Mumbai&rsquo;s most active service institutions. Inaugurated at the Taj Mahal Hotel, we have never stopped. Every year, more projects, more reach, more lives touched.</p>
+      <a href="about.html#story" class="panel-link">Know more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- IMPACT STORIES bento grid -->
+<section id="campaign" class="story-feature">
+  <div class="wrap">
+
+    <div class="sec-head" style="margin-bottom:40px">
+      <div class="eyebrow">Impact stories</div>
+      <h2>Every act leaves <em>a mark.</em></h2>
+      <p class="intro nowrap-desktop">Behind every project is a person whose life changed. These are just a few of their stories.</p>
+    </div>
+
+    <div class="bento-grid">
+
+      <!-- Card 1 Children & Cancer -->
+      <div class="bento-card">
+        <div class="bento-img">
+          <img src="images/clown_magicshow.jpg" alt="Children at Wadia Hospital cancer ward">
+        </div>
+        <div class="bento-body">
+          <div class="bento-cat">Children &amp; Cancer</div>
+          <h3 class="bento-headline">Bringing laughter to a cancer ward, one magic show at a time</h3>
+          <p class="bento-story">At Bai Jerbai Wadia Children&rsquo;s Hospital, Lions Club of Byculla stepped in not just with medicines, but with a clown and magic show that turned a difficult day into a moment of pure joy.</p>
+          <div class="bento-footer">
+            <span class="bento-metric">Wadia Children&rsquo;s Hospital &middot; 2024</span>
+            <span class="bento-loc">Mumbai, India</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 Health & Lifesaving -->
+      <div class="bento-card">
+        <div class="bento-img">
+          <img src="images/blood donation camp Cst.jpg" alt="Blood donation camp CST Mumbai">
+        </div>
+        <div class="bento-body">
+          <div class="bento-cat">Health &amp; Lifesaving</div>
+          <h3 class="bento-headline">261 units of blood and the lives they quietly saved</h3>
+          <p class="bento-story">At CST Railway Station, Lions Club of Byculla collected over 261 units of blood across multiple donation drives the quiet act of giving what no factory can make.</p>
+          <div class="bento-footer">
+            <span class="bento-metric">261+ units &middot; Multiple camps</span>
+            <span class="bento-loc">CST, Mumbai</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 Hunger & Essentials -->
+      <div class="bento-card">
+        <div class="bento-img">
+          <img src="images/Feedin lunch.jpg" alt="Food essentials distribution drive Byculla">
+        </div>
+        <div class="bento-body">
+          <div class="bento-cat">Hunger &amp; Essentials</div>
+          <h3 class="bento-headline">A box of provisions and the dignity it restored</h3>
+          <p class="bento-story">Through the Food &amp; Essentials Distribution Drive, members handed grain kits to families in need the reassurance that someone in the community sees them.</p>
+          <div class="bento-footer">
+            <span class="bento-metric">Food &amp; essential kits &middot; Mumbai families</span>
+            <span class="bento-loc">Byculla, Mumbai</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bento-viewall">
+      <a href="impact.html" class="btn-outline">View all impact stories <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news" class="news">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">News &amp; events</div>
+      <h2>Decades of doing. <em>Still going.</em></h2>
+      <p class="intro">Service projects, fellowship gatherings, district conventions, and international forums the full rhythm of life as a Lion.</p>
+    </div>
+    <div class="news-grid">
+      <a class="news-card" href="news-article.html?id=best-club-award" data-type="award" aria-label="Read: Second Best Club Award 2025-26">
+        <div class="news-card__img">
+          <img src="images/123.jpg" alt="Second Best Club Award 2025-26 presented at District Convention, Lonavala">
+        </div>
+        <div class="news-card__body">
+          <h3 class="news-card__title">Second Best Club Award 2025&ndash;26 presented at District Convention, Lonavala</h3>
+          <p class="news-card__excerpt">Lions Club of Byculla was honoured for the fourth consecutive year with the Second Best Club Award by District 3231 A1 at the annual district convention.</p>
+          <div class="news-card__footer">
+            <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+            <span class="news-card__date">10 May 2026</span>
+          </div>
+        </div>
+      </a>
+      <a class="news-card" href="news-article.html?id=installation-ceremony" data-type="event" aria-label="Read: Installation ceremony 2025-26">
+        <div class="news-card__img">
+          <img src="images/bod.jpg" alt="Installation ceremony 2025-26, new office bearers">
+        </div>
+        <div class="news-card__body">
+          <h3 class="news-card__title">Installation ceremony 2025&ndash;26: New office bearers inducted with pride</h3>
+          <p class="news-card__excerpt">The installation ceremony at Byculla Club welcomed the new board for the coming Lions year, with District Governor Lion Rajesh Mehta presiding.</p>
+          <div class="news-card__footer">
+            <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+            <span class="news-card__date">28 Apr 2026</span>
+          </div>
+        </div>
+      </a>
+      <a class="news-card" href="event.html?id=cataract-camp" aria-label="Read: Free cataract surgery camp, 19 July 2026">
+        <div class="news-card__img">
+          <img src="images/Free cataract surgery camp.png" alt="Free cataract surgery camp, Masina Hospital">
+          <div class="news-card__date-badge" aria-hidden="true">
+            <span class="day">19</span>
+            <span class="month">Jul</span>
+            <span class="year">2026</span>
+          </div>
+        </div>
+        <div class="news-card__body">
+          <h3 class="news-card__title">Free cataract surgery camp &mdash; Masina Hospital</h3>
+          <div class="news-card__details">
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              9:00 AM &ndash; 5:00 PM
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Masina Hospital, Byculla
+            </span>
+          </div>
+          <p class="news-card__excerpt">Free cataract surgeries for patients identified from our December eye camp. Referrals only. All costs borne by the club.</p>
+          <div class="news-card__footer">
+            <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+          </div>
+        </div>
+      </a>
+      <a class="news-card" href="event.html?id=school-kit-drive" aria-label="Read: School kit distribution drive, 3 August 2026">
+        <div class="news-card__img">
+          <img src="images/school kit.png" alt="School kit distribution drive, BMC Schools">
+          <div class="news-card__date-badge" aria-hidden="true">
+            <span class="day">3</span>
+            <span class="month">Aug</span>
+            <span class="year">2026</span>
+          </div>
+        </div>
+        <div class="news-card__body">
+          <h3 class="news-card__title">School kit distribution drive &mdash; BMC Schools</h3>
+          <div class="news-card__details">
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              10:00 AM &ndash; 2:00 PM
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              3 BMC Schools, South Mumbai
+            </span>
+          </div>
+          <p class="news-card__excerpt">Distribution of 500 school kits (notebooks, stationery, bags) to students of Class 1&ndash;7 in partner schools funded by the Golden Jubilee fundraiser.</p>
+          <div class="news-card__footer">
+            <span class="news-card__read-more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+    <div class="news-cta"><a href="news.html" class="btn-outline">View all news &amp; events</a></div>
+  </div>
+</section>
+
+
+
+<!-- GET INVOLVED -->
+<section id="join" class="join">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Get involved</div>
+      <h2>Join the <em>Legacy.</em></h2>
+      <p class="intro">Our membership has grown to 111+ in the past three years — professionals, students, and families united by a single purpose.</p>
+    </div>
+    <div class="join-cta-wrap">
+      <!-- href kept as a no-JS fallback; the click handler opens the modal instead.
+           Arrow SVG dropped: light-redesign.css hides .btn-gold svg. -->
+      <a href="contact.html" class="btn-gold" id="applyMembershipBtn">Apply for membership</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── MEMBERSHIP APPLICATION MODAL ──
+     Fields transcribed from Pdf/"Print file.pdf" (Application For Membership
+     v3.0). The PDF's "For Club Use Only" block (approval status, board meeting
+     date, officer signatures, assigned Membership ID) is deliberately omitted —
+     it is filled in by the club after submission, not by the applicant. -->
+<div class="mem-overlay" id="memOverlay" role="dialog" aria-modal="true" aria-labelledby="memTitle" hidden>
+  <div class="mem-modal" role="document">
+
+    <div class="mem-head">
+      <button type="button" class="mem-close" id="memClose" aria-label="Close application form">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="mem-head__logos">
+        <img src="images/LC_Logo.png" alt="Lions Clubs International">
+        <img src="images/Logo.png" alt="Lions Club of Byculla">
+      </div>
+      <div class="mem-head__text">
+        <div class="eyebrow">Lions Club of Byculla</div>
+        <h2 id="memTitle">Application for membership</h2>
+        <p>An invitation to join a legacy of service and fellowship.</p>
+      </div>
+    </div>
+
+    <div class="mem-body">
+      <form id="memForm" novalidate>
+
+        <!-- ── MEMBER DETAILS ── -->
+        <div class="mem-section">
+          <h3 class="mem-section__title">Member details</h3>
+
+          <!-- Photo placeholders lead the section, mirroring the printed form
+               where the member/spouse photo boxes sit at the top. -->
+          <div class="mem-uploads">
+            <label class="mem-upload" id="memPhotoWrap">
+              <input type="file" id="memPhoto" name="memberPhoto" accept="image/*">
+              <span class="u-box">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span class="u-hint">Click to upload</span>
+                <button type="button" class="u-remove" aria-label="Remove photo">&times;</button>
+              </span>
+              <span class="u-title">Photo of Lion member</span>
+            </label>
+            <label class="mem-upload" id="memSpousePhotoWrap">
+              <input type="file" id="memSpousePhoto" name="spousePhoto" accept="image/*">
+              <span class="u-box">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span class="u-hint">Click to upload</span>
+                <button type="button" class="u-remove" aria-label="Remove photo">&times;</button>
+              </span>
+              <span class="u-title">Photo of spouse</span>
+            </label>
+          </div>
+
+          <div class="mem-row-4">
+            <div class="cf-group">
+              <input type="text" id="memFirstName" name="firstName" placeholder=" " required>
+              <label for="memFirstName">First name</label>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="memMiddleName" name="middleName" placeholder=" ">
+              <label for="memMiddleName">Middle name</label>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="memSurname" name="surname" placeholder=" " required>
+              <label for="memSurname">Surname</label>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="memPan" name="memberPan" placeholder=" ">
+              <label for="memPan">Member PAN no.</label>
+            </div>
+          </div>
+          <p class="mem-section__note">PAN is for admin use only — not printed in the directory.</p>
+
+          <div class="mem-row-4">
+            <div class="cf-group">
+              <input type="date" id="memDob" name="dateOfBirth" placeholder=" " required>
+              <label for="memDob">Date of birth</label>
+            </div>
+            <div class="cf-group">
+              <input type="date" id="memAnniversary" name="weddingAnniversary" placeholder=" ">
+              <label for="memAnniversary">Wedding anniversary</label>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="memQualifications" name="qualifications" placeholder=" ">
+              <label for="memQualifications">Educational qualifications</label>
+            </div>
+          </div>
+
+          <div class="mem-choice-label">Business / Service / Retired</div>
+          <div class="mem-choices">
+            <label class="mem-choice"><input type="radio" name="occupation" value="Business"><span>Business</span></label>
+            <label class="mem-choice"><input type="radio" name="occupation" value="Service"><span>Service</span></label>
+            <label class="mem-choice"><input type="radio" name="occupation" value="Retired"><span>Retired</span></label>
+          </div>
+
+        </div>
+
+        <!-- ── CONTACT DETAILS ── -->
+        <div class="mem-section">
+          <h3 class="mem-section__title">Contact details</h3>
+          <div class="cf-group">
+            <textarea id="memAddress" name="residenceAddress" placeholder=" " required></textarea>
+            <label for="memAddress">Full address (flat / building / street / area / city / PIN)</label>
+          </div>
+          <div class="mem-row-4">
+            <div class="cf-group">
+              <input type="tel" id="memResPhone" name="residentialPhone" placeholder=" ">
+              <label for="memResPhone">Residential telephone no.</label>
+            </div>
+            <div class="cf-group">
+              <input type="tel" id="memMobile" name="mobile" placeholder=" " required>
+              <label for="memMobile">Mobile no.</label>
+            </div>
+            <div class="cf-group">
+              <input type="email" id="memEmail" name="email" placeholder=" " required>
+              <label for="memEmail">Personal email address</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── OFFICE ADDRESS ── -->
+        <div class="mem-section">
+          <h3 class="mem-section__title">Office address</h3>
+          <div class="cf-group">
+            <textarea id="memOfficeAddress" name="officeAddress" placeholder=" "></textarea>
+            <label for="memOfficeAddress">Full address (flat / building / street / area / city / PIN)</label>
+          </div>
+          <div class="mem-row-4">
+            <div class="cf-group">
+              <input type="tel" id="memOfficePhone" name="officePhone" placeholder=" ">
+              <label for="memOfficePhone">Telephone no.</label>
+            </div>
+            <div class="cf-group">
+              <input type="tel" id="memOfficeMobile" name="officeMobile" placeholder=" ">
+              <label for="memOfficeMobile">Mobile no.</label>
+            </div>
+            <div class="cf-group">
+              <input type="email" id="memOfficeEmail" name="officeEmail" placeholder=" ">
+              <label for="memOfficeEmail">Email address</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SPOUSE & FAMILY ── -->
+        <div class="mem-section">
+          <h3 class="mem-section__title">Spouse &amp; family details</h3>
+          <div class="mem-row-4">
+            <div class="cf-group">
+              <input type="text" id="memSpouseName" name="spouseName" placeholder=" ">
+              <label for="memSpouseName">Name of spouse</label>
+            </div>
+            <div class="cf-group">
+              <input type="date" id="memSpouseDob" name="spouseDob" placeholder=" ">
+              <label for="memSpouseDob">Spouse date of birth</label>
+            </div>
+            <div class="cf-group">
+              <input type="tel" id="memSpouseMobile" name="spouseMobile" placeholder=" ">
+              <label for="memSpouseMobile">Mobile no.</label>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="memSpousePan" name="spousePan" placeholder=" ">
+              <label for="memSpousePan">Spouse PAN no.</label>
+            </div>
+          </div>
+          <p class="mem-section__note">Spouse PAN is for admin use only — not printed in the directory.</p>
+          <div class="mem-row-4">
+            <div class="cf-group">
+              <input type="text" id="memChild1" name="child1" placeholder=" ">
+              <label for="memChild1">Child 1 (name)</label>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="memChild2" name="child2" placeholder=" ">
+              <label for="memChild2">Child 2 (name)</label>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="memChild3" name="child3" placeholder=" ">
+              <label for="memChild3">Child 3 (name)</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── MEMBERSHIP ── -->
+        <div class="mem-section">
+          <h3 class="mem-section__title">Membership</h3>
+
+          <div class="mem-choice-label">Member type</div>
+          <div class="mem-choices">
+            <label class="mem-choice"><input type="radio" name="memberType" value="New Member"><span>New member</span></label>
+            <label class="mem-choice"><input type="radio" name="memberType" value="Former Member"><span>Former member</span></label>
+            <label class="mem-choice"><input type="radio" name="memberType" value="Transfer Member"><span>Transfer member</span></label>
+            <label class="mem-choice"><input type="radio" name="memberType" value="Family Member"><span>Family member</span></label>
+            <label class="mem-choice"><input type="radio" name="memberType" value="Young Adult"><span>Young adult</span></label>
+            <label class="mem-choice"><input type="radio" name="memberType" value="Student Member"><span>Student member</span></label>
+            <label class="mem-choice"><input type="radio" name="memberType" value="Current / Former Leo"><span>Current / former Leo</span></label>
+          </div>
+
+          <div class="mem-choice-label">Food preference</div>
+          <div class="mem-choices">
+            <label class="mem-choice"><input type="radio" name="foodPreference" value="Non-Veg"><span>Non-veg</span></label>
+            <label class="mem-choice"><input type="radio" name="foodPreference" value="Veg"><span>Veg</span></label>
+            <label class="mem-choice"><input type="radio" name="foodPreference" value="Jain Veg"><span>Jain veg</span></label>
+          </div>
+        </div>
+
+        <!-- ── SPONSORSHIP ── -->
+        <div class="mem-section">
+          <h3 class="mem-section__title">Sponsorship</h3>
+          <div class="mem-row-4">
+            <div class="cf-group">
+              <input type="text" id="memSponsor" name="sponsoredBy" placeholder=" ">
+              <label for="memSponsor">Sponsored by</label>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="memSponsorId" name="sponsorMemberId" placeholder=" ">
+              <label for="memSponsorId">Sponsor's member ID</label>
+            </div>
+            <div class="cf-group">
+              <input type="date" id="memSponsorDate" name="sponsorDate" placeholder=" ">
+              <label for="memSponsorDate">Date</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── FEES ── -->
+        <div class="mem-section">
+          <h3 class="mem-section__title">Fees</h3>
+          <p class="mem-feenote">Our Lion year runs from 1st July to 30th June each year. All fees are subject to change.</p>
+
+          <div class="mem-row-4">
+            <div class="cf-group">
+              <input type="text" id="memEntranceFee" name="entranceFee" placeholder=" ">
+              <label for="memEntranceFee">One-time entrance fee</label>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="memTransferFee" name="transferFee" placeholder=" ">
+              <label for="memTransferFee">One-time transfer fee</label>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="memAnnualFee" name="annualFee" placeholder=" ">
+              <label for="memAnnualFee">Annual club fees</label>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="memHalfYearFee" name="halfYearFee" placeholder=" ">
+              <label for="memHalfYearFee">Half-year fees</label>
+            </div>
+          </div>
+          <p class="mem-section__note">Transfer fee applies only if transferring from another Lions Club; half-year fees apply if joining in January or later.</p>
+
+          <div class="mem-row-4">
+            <div class="cf-group">
+              <input type="text" id="memChequeNo" name="chequeNo" placeholder=" ">
+              <label for="memChequeNo">Cheque no.</label>
+            </div>
+            <div class="cf-group">
+              <input type="date" id="memChequeDate" name="chequeDate" placeholder=" ">
+              <label for="memChequeDate">Date of cheque</label>
+            </div>
+            <div class="cf-group">
+              <input type="text" id="memAmount" name="amount" placeholder=" ">
+              <label for="memAmount">Amount (Rs.)</label>
+            </div>
+          </div>
+          <p class="mem-feenote">Please note: the cheque will not be deposited until the Board of Directors approves your application for membership.</p>
+        </div>
+
+        <!-- ── DECLARATION ── -->
+        <div class="mem-section">
+          <h3 class="mem-section__title">Declaration by applicant</h3>
+          <div class="mem-declaration">
+            I accept membership into Lions International. I acknowledge that the standards of membership are limited to persons of good moral character and reputation. I recognise the importance of rendering personal service to my community in cooperation with other civic-minded persons. I understand that membership is not valid until approved by the club's board of directors.
+          </div>
+          <div class="cf-consent">
+            <input type="checkbox" id="memAccept" name="declaration" required>
+            <label for="memAccept">I have read and accept the declaration above.</label>
+          </div>
+        </div>
+
+        <p class="cf-privacy">By submitting this form, you agree to the processing of your personal data by Lions Club of Byculla as described in the <a href="#">Privacy statement</a>.</p>
+
+        <button type="submit" class="btn-contact">
+          Submit application
+          <svg viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="13,6 19,12 13,18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+
+      <div class="form-success" id="memSuccess">
+        <div class="s-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Application received</h3>
+        <p>Thank you for applying to Lions Club of Byculla. Our membership chairperson will be in touch shortly. Your application is not valid until approved by the board of directors.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     APPEAL DONATION MODAL
+     Opens from any "Donate to this appeal" card in the Active projects
+     section. The heading, blurb and figures are filled in by
+     js/appeal-donate.js from the card that was clicked, so one dialog
+     serves every appeal.
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="mem-overlay" id="appealOverlay" role="dialog" aria-modal="true" aria-labelledby="appealModalTitle" hidden>
+  <div class="mem-modal mem-modal--donate">
+
+    <button class="mem-close" id="appealClose" aria-label="Close">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <div class="mem-head">
+      <div class="mem-head__text">
+        <div class="eyebrow" id="appealModalCat">Active project</div>
+        <h2 id="appealModalTitle">Donate for this cause</h2>
+        <p id="appealModalBlurb"></p>
+      </div>
+    </div>
+
+    <div class="mem-body">
+      <form id="appealForm" novalidate>
+
+        <!-- Where the appeal stands right now — same figures as the card -->
+        <div class="appeal-snapshot">
+          <div class="camp-figures">
+            <span class="camp-raised"><strong id="appealModalRaised"></strong> raised</span>
+            <span class="camp-pct" id="appealModalPct"></span>
+          </div>
+          <div class="camp-bar" role="progressbar" id="appealModalBar"
+               aria-valuemin="0" aria-valuemax="100" aria-label="Funding progress">
+            <span class="camp-fill" id="appealModalFill"></span>
+          </div>
+          <div class="camp-meta" id="appealModalMeta"></div>
+        </div>
+
+        <div class="mem-choice-label">Choose an amount</div>
+        <div class="appeal-amounts">
+          <label class="mem-choice"><input type="radio" name="appealAmount" value="500"><span>&#8377;500</span></label>
+          <label class="mem-choice"><input type="radio" name="appealAmount" value="1000" checked><span>&#8377;1,000</span></label>
+          <label class="mem-choice"><input type="radio" name="appealAmount" value="2500"><span>&#8377;2,500</span></label>
+          <label class="mem-choice"><input type="radio" name="appealAmount" value="5000"><span>&#8377;5,000</span></label>
+          <label class="mem-choice"><input type="radio" name="appealAmount" value="10000"><span>&#8377;10,000</span></label>
+          <label class="mem-choice"><input type="radio" name="appealAmount" value="other"><span>Other</span></label>
+        </div>
+
+        <div class="cf-group appeal-custom" id="appealCustomWrap">
+          <input type="number" id="appealCustom" name="customAmount" min="100" step="100" placeholder="Amount in rupees">
+          <label for="appealCustom">Amount (&#8377;)</label>
+        </div>
+
+        <div class="cf-group">
+          <input type="text" id="appealName" name="name" placeholder="Your full name" required>
+          <label for="appealName">Full name</label>
+        </div>
+
+        <div class="cf-row">
+          <div class="cf-group">
+            <input type="email" id="appealEmail" name="email" placeholder="your@email.com" required>
+            <label for="appealEmail">Email address</label>
+          </div>
+          <div class="cf-group">
+            <input type="tel" id="appealPhone" name="phone" placeholder="+91 98765 43210" inputmode="tel" required>
+            <label for="appealPhone">Phone number</label>
+          </div>
+        </div>
+
+        <div class="cf-row">
+          <div class="cf-group">
+            <input type="text" id="appealPan" name="pan" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase" required>
+            <label for="appealPan">PAN (for 80G receipt)</label>
+          </div>
+          <div class="cf-group">
+            <select id="appealMethod" name="method" required>
+              <option value="" disabled selected>Select payment method</option>
+              <option>UPI / GPay / PhonePe</option>
+              <option>Net Banking</option>
+              <option>Credit / Debit Card</option>
+              <option>Cheque / DD</option>
+            </select>
+            <label for="appealMethod">Payment method</label>
+          </div>
+        </div>
+
+        <p class="cf-privacy">Your donation is tagged to this appeal alone. You will be redirected to a secure payment page after submitting. Donations are eligible for 80G tax exemption and your receipt will be emailed to you.</p>
+
+        <button type="submit" class="btn-contact" id="appealSubmit">
+          <span id="appealSubmitLabel">Donate &#8377;1,000</span>
+          <svg viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="13,6 19,12 13,18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+
+      <div class="form-success" id="appealSuccess">
+        <div class="s-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Thank you for your donation</h3>
+        <p id="appealSuccessNote"></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="footer-motto">Ushta Te - Happiness Unto All</div>
+        <p>A multi-generational service organisation rooted in South Mumbai. Premier Club, District 3231 A1. Serving without interruption since 1977.</p>
+        <div class="est">Est. 1977 &middot; Golden jubilee 2027</div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick links</h5>
+        <ul>
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="#">Leadership</a></li>
+          <li><a href="#">Annual reports</a></li>
+          <li><a href="#">Press &amp; media</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Our causes</h5>
+        <ul>
+          <li><a href="#">Vision &amp; eye care</a></li>
+          <li><a href="#">Childhood Cancer</a></li>
+          <li><a href="#">Education</a></li>
+          <li><a href="#">Hunger &amp; nutrition</a></li>
+          <li><a href="#">Medical aid</a></li>
+          <li><a href="#">Animal welfare</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="#">Join as a member</a></li>
+          <li><a href="#">Volunteer for a day</a></li>
+          <li><a href="#">Do-good cookbook</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Golden Jubilee FRD</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <ul>
+          <li>Byculla, Mumbai - 400 008</li>
+          <li><a href="mailto:info@lionsbyculla.org">info@lionsbyculla.org</a></li>
+          <li>+91 22 2300 XXXX</li>
+        </ul>
+        <a href="#" class="whatsapp">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2025 Lions Club of Byculla &middot; District 3231 A1 &middot; Premier Club &middot; Golden jubilee 2027</div>
+      <div><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script-1.js"></script>
+<script src="js/campaigns.js"></script>
+<script src="js/hero-light-reveal.js"></script>
+<script src="js/countup.js"></script>
+<script src="js/members-auth.js"></script>
+<script src="js/membership-modal.js"></script>
+<script src="js/appeal-donate.js"></script>
+
+
+</body>
+</html>

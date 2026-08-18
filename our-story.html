@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Our story | Lions Club of Byculla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/light-redesign.css">
+<link rel="stylesheet" href="css/nav-submenu.css">
+<link rel="stylesheet" href="css/about-pages.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="main" id="mainNav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <div class="brand-logo">
+        <img src="images/Logo.png" alt="Lions Club of Byculla">
+      </div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <ul class="nav-c-links">
+      <li class="has-sub">
+        <a href="about.html">About us <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </li>
+      <li><a href="impact.html">Our impact</a></li>
+      <li class="has-sub">
+        <a href="activities.html">Our activities <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="activities.html">All projects</a></li>
+          <li><a href="activities.html?cat=health">Diabetes &amp; Healthcare</a></li>
+          <li><a href="activities.html?cat=cancer">Childhood Cancer Care</a></li>
+          <li><a href="activities.html?cat=education">Education &amp; Youth</a></li>
+          <li><a href="activities.html?cat=vision">Eye Care &amp; Vision</a></li>
+          <li><a href="activities.html?cat=elder">Elder care</a></li>
+          <li><a href="activities.html?cat=hunger">Hunger &amp; Food Security</a></li>
+          <li><a href="activities.html?cat=animal">Animal Welfare</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="news.html">News &amp; events <svg class="nav-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg></a>
+        <ul class="nav-sub">
+          <li><a href="news.html?tab=event">Events</a></li>
+          <li><a href="news.html?tab=news">News</a></li>
+          <li><a href="news.html?tab=bulletin">Bulletin</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+    <div class="nav-c-cta">
+      <a href="donate.html" class="nav-c-donate">Donate</a>
+      <a href="#" class="nav-login-icon" aria-label="Login"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <div class="drawer-head">
+    <a class="brand" href="index.html">
+      <div class="brand-logo"><img src="images/Logo.png" id="drawerLogo" alt="Lions Club of Byculla"></div>
+      <div class="brand-text">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="sub">District 3231&middot;A1 &middot; Est. 1977</div>
+      </div>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <button type="button" class="drawer-acc-toggle drawer-first" data-target="drawerAbout" aria-expanded="false">
+      About us
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerAbout">
+      <a href="about.html#story">Our story</a>
+      <a href="about.html#tl-v2">Our journey</a>
+      <a href="about.html#board">Leadership</a>
+      <a href="about.html#presidents">Past presidents</a>
+      <a href="about.html#lions-international">Lions International</a>
+    </div>
+    <a href="impact.html">Our impact</a>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerActivities" aria-expanded="false">
+      Our activities
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerActivities">
+      <a href="activities.html">All projects</a>
+      <a href="activities.html?cat=health">Diabetes &amp; Healthcare</a>
+      <a href="activities.html?cat=cancer">Childhood Cancer Care</a>
+      <a href="activities.html?cat=education">Education &amp; Youth</a>
+      <a href="activities.html?cat=vision">Eye Care &amp; Vision</a>
+      <a href="activities.html?cat=elder">Elder care</a>
+      <a href="activities.html?cat=hunger">Hunger &amp; Food Security</a>
+      <a href="activities.html?cat=animal">Animal Welfare</a>
+    </div>
+    <button type="button" class="drawer-acc-toggle" data-target="drawerNews" aria-expanded="false">
+      News &amp; events
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6,9 12,15 18,9"/></svg>
+    </button>
+    <div class="drawer-sub" id="drawerNews">
+      <a href="news.html?tab=event">Events</a>
+      <a href="news.html?tab=news">News</a>
+      <a href="news.html?tab=bulletin">Bulletin</a>
+    </div>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="drawer-foot">
+    <a href="#" class="login-pill-mob"><svg viewBox="0 0 24 24" width="18" height="18" style="stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg> Login</a>
+    <a href="donate.html" class="donate-pill-mob">Donate</a>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<section class="about-hero sub-hero">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+      <a href="about.html">About us</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+      <span>Our story</span>
+    </div>
+    <h1>How it all <em>began.</em></h1>
+    <p class="lede">Eight lions, a plan sketched out on the CCI lawns, and a charter received on 30th July 1977 &mdash; the founding of the Lions Club of Byculla.</p>
+  </div>
+</section>
+
+<!-- ── OUR STORY ──────────────────────────────────────────────── -->
+<section class="pg-section bg-frost" id="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-body">
+        <div class="eyebrow sec-eyebrow">Our history</div>
+        <h2 class="sec-h">How it all <em>began.</em></h2>
+        <p class="lead">Some years ago, a few members of the Lions Club of Bombay Central decided to branch out on their own and form a new club Lions Club of Byculla.</p>
+        <p>It was a band of just 8 to 10 lions led by the young and dashing Lion Maneck Dastur, while the others included Kersi Commissariat, Byram Kanga, Darius Gotla, Homi Tavadia, Paeterasp Patel, J.J. Rodriguez, Dhunji Hodiwala and Dinshaw Minocher.</p>
+        <p>One of their first meetings was at the C.C.I. lawns, where they chalked out the plan of the new club. As they planned to concentrate the membership drive in and around Rustom Baug, they thought it appropriate to name it &ldquo;Lions Club of Byculla&rdquo;. Though Darius, Homi and Byram were much older than Maneck, everyone agreed that he should be the Charter President and he created history by becoming the youngest Charter President of any Lions Club in the world.</p>
+        <p>In those days, Maneck Dastur was the voice of Lions Club of Byculla. He played a key role in setting it up, but behind him was the support of the lions mentioned above, as well as the lion-hearted Lion Baji Nariman Maloo.</p>
+        <p>The club was built on <strong>3 key concepts: fellowship, service and able administration.</strong> Although they managed to keep their heads above water, they struggled at times as most charter members were from the core middle class, white-collar professionals. None were born with a golden spoon, so the club depended more on generosity of heart than generosity of purse.</p>
+        <p>The club was inaugurated at its first charter night by Police Commissioner of Mumbai, Mr. V.V. Chaubal, at the Taj Mahal Hotel. The Charter was received on <strong>30th July 1977</strong> at a glittering function at the hands of PDG Lion Dr. Harpal. The Police Commissioner was invited to join as an Honorary Member.</p>
+      </div>
+      <div class="story-aside">
+        <img class="story-img-placeholder" src="images/img-9.png" alt="Historical photo">
+        <div class="pull-quote">
+          <p>None of us was born with a golden spoon in our mouth so we had to depend more on the generosity of heart and not of the purse.</p>
+          <span class="attrib">From the founding chronicles</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── THREE PILLARS ─────────────────────────────────────────── -->
+<section class="pg-section bg-cream">
+  <div class="wrap">
+    <div class="eyebrow sec-eyebrow">Our founding mission</div>
+    <h2 class="sec-h">Three pillars, <em>one purpose.</em></h2>
+    <p class="sec-lead" style="max-width:700px;">From the very first meeting at the CCI lawns, the Lions Club of Byculla was built on three concepts that continue to guide every member and every project to this day.</p>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h3>Service</h3>
+        <p>From the very first project distributing food at Chowpatty to crores worth of medical donations, service has always been the measure of a Lions year. Not the size of the purse, but the size of the effort.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h3>Fellowship</h3>
+        <p>Bonds forged between members who shared more than a badge. The club was built by ordinary people with extraordinary generosity of heart, who showed up for each other as much as for the community.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h3>Able Administration</h3>
+        <p>A club that runs well serves better. Rigorous dockets, award-winning secretaries, and consistent recognition at district and multiple-district level reflect a founding commitment to excellence in governance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PREV / NEXT ────────────────────────────────────────────── -->
+<section class="page-nav">
+  <div class="wrap">
+    <a class="page-nav-link is-next" href="our-journey.html">
+      <span class="pn-lbl">Next</span>
+      <span class="pn-title">Our journey</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Lions Club of Byculla</div>
+        <div class="footer-motto">Ushta Te - Happiness Unto All</div>
+        <p>A multi-generational service organisation rooted in South Mumbai. Premier Club, District 3231 A1. Serving without interruption since 1977.</p>
+        <div class="est">Est. 1977 &middot; Golden Jubilee 2027</div>
+      </div>
+      <div class="footer-col">
+        <h5>About us</h5>
+        <ul>
+          <li><a href="about.html#story">Our story</a></li>
+          <li><a href="about.html#tl-v2">Our journey</a></li>
+          <li><a href="about.html#board">Leadership</a></li>
+          <li><a href="about.html#presidents">Past presidents</a></li>
+          <li><a href="about.html#lions-international">Lions International</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Our causes</h5>
+        <ul>
+          <li><a href="impact.html">Vision &amp; eye care</a></li>
+          <li><a href="impact.html">Childhood cancer</a></li>
+          <li><a href="impact.html">Education</a></li>
+          <li><a href="impact.html">Hunger &amp; nutrition</a></li>
+          <li><a href="impact.html">Medical aid</a></li>
+          <li><a href="impact.html">Animal welfare</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="index.html#join">Join as a member</a></li>
+          <li><a href="#">Volunteer for a day</a></li>
+          <li><a href="#">Do-good cookbook</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="#">Golden Jubilee FRD</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <ul>
+          <li>Byculla, Mumbai - 400 008</li>
+          <li><a href="mailto:info@lionsbyculla.org">info@lionsbyculla.org</a></li>
+          <li>+91 22 2300 XXXX</li>
+        </ul>
+        <a href="#" class="whatsapp">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2025 Lions Club of Byculla &middot; District 3231 A1 &middot; Premier Club &middot; Golden Jubilee 2027</div>
+      <div><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script-1.js"></script>
+<script src="js/members-auth.js"></script>
+</body>
+</html>
