@@ -282,8 +282,9 @@
   margin: 0;
 }
 
-/* Matches .camp-blurb on the homepage appeal cards — same anatomy, same surface. */
-.act-card__what {
+/* Matches .camp-blurb on the homepage appeal cards — same anatomy, same surface.
+   A card carries an eyebrow tag + year, institution, and this description. */
+.act-card__desc {
   font-family: var(--sans);
   font-size: 13px;
   color: var(--muted);
@@ -291,25 +292,12 @@
   margin: 0;
 }
 
-/* Pushed to the card's foot by margin-top:auto so the italic outcome line sits on
-   the same baseline across a row of cards with uneven text above it. */
-.act-card__outcome {
-  font-family: var(--sans);
-  font-size: 12.5px;
-  color: var(--muted);
-  line-height: 1.6;
-  font-style: italic;
-  padding-top: 12px;
-  border-top: 1px solid var(--rule);
-  margin-top: auto;
-}
-
 /* ── ACTIVITY FEED — list rows ──
    Same feed, second half. Projects we hold no photograph for render as rows
    instead of cards, so the grid above is only real photographs and nothing is
    padded out with a stock image. Not a separate section: the list continues
    straight on under the grid, inside the same feed, and answers to the same
-   category + year filters. Rows reuse .act-card__tag / __institution / __what
+   category + year filters. Rows reuse .act-card__tag / __institution / __desc
    verbatim, so a row and a card read as the same object in two densities. */
 .act-list {
   margin-top: 52px;
@@ -340,15 +328,6 @@
 /* Year badge pinned to the row's own top-right corner (reuses .news-card__date
    verbatim) — independent of the grid columns, so it stays put across breakpoints. */
 .act-row__date { position: absolute; top: 22px; right: 4px; }
-
-/* No border-top / margin-top here — inside a row the outcome is a third line,
-   not a card foot, and .act-card__outcome's auto margin has nothing to push
-   against in a grid cell. */
-.act-row .act-card__outcome {
-  border-top: 0;
-  padding-top: 2px;
-  margin-top: 0;
-}
 
 .filter-pill {
   width: 100%;
@@ -885,8 +864,7 @@
               <span class="news-card__date">2025</span>
             </div>
             <p class="act-card__institution">Masina Hospital</p>
-            <p class="act-card__what">Diabetes awareness &amp; check-up camp</p>
-            <p class="act-card__outcome">Free screening for underserved communities. Early detection saves lives, not just treats illness.</p>
+            <p class="act-card__desc">A diabetes awareness and check-up camp offering free screening to underserved communities, because early detection saves lives rather than simply treating illness.</p>
           </div>
         </article>
 
@@ -898,8 +876,7 @@
               <span class="news-card__date">2025</span>
             </div>
             <p class="act-card__institution">H.C. Jehangir Health Clinic, Gamadia Colony</p>
-            <p class="act-card__what">6 wheelchairs Rs 1,30,000</p>
-            <p class="act-card__outcome">Mobility returned to six individuals who had lost the ability to move freely.</p>
+            <p class="act-card__desc">Six wheelchairs worth Rs 1,30,000 donated to the clinic, returning everyday mobility to individuals who had lost the ability to move freely.</p>
           </div>
         </article>
 
@@ -911,8 +888,7 @@
               <span class="news-card__date">2025</span>
             </div>
             <p class="act-card__institution">Bai Jerbai Wadia Children's Hospital, Cancer Ward</p>
-            <p class="act-card__what">Clown &amp; magic show</p>
-            <p class="act-card__outcome">Joy is medicine too. We brought laughter to children enduring their hardest days.</p>
+            <p class="act-card__desc">A clown and magic show staged in the children's cancer ward, because joy is medicine too and laughter reaches children enduring their hardest days.</p>
           </div>
         </article>
 
@@ -924,8 +900,7 @@
               <span class="news-card__date">2025</span>
             </div>
             <p class="act-card__institution">SRCC Children's Hospital, Haji Ali</p>
-            <p class="act-card__what">3 chemoports for chemotherapy Rs 60,000</p>
-            <p class="act-card__outcome">Life-saving access to treatment for children whose families could not afford it.</p>
+            <p class="act-card__desc">Three chemoports worth Rs 60,000 funded for chemotherapy, giving life-saving access to treatment for children whose families could not afford it.</p>
           </div>
         </article>
 
@@ -937,8 +912,7 @@
               <span class="news-card__date">2025</span>
             </div>
             <p class="act-card__institution">Avanbai Petit Girls High School, Bandra</p>
-            <p class="act-card__what">School bags &amp; wrist watches</p>
-            <p class="act-card__outcome">Small gifts, large signals every child deserves to walk into school feeling ready.</p>
+            <p class="act-card__desc">School bags and wrist watches distributed to the students, small gifts carrying a large signal: every child deserves to walk into school feeling ready.</p>
           </div>
         </article>
 
@@ -950,8 +924,7 @@
               <span class="news-card__date">2025</span>
             </div>
             <p class="act-card__institution">Vidya Integrated, Powai</p>
-            <p class="act-card__what">Scholarships</p>
-            <p class="act-card__outcome">Education funded for children whose potential far outpaces their resources.</p>
+            <p class="act-card__desc">Scholarships awarded to students at Vidya Integrated, funding an education for children whose potential far outpaces the resources available to them.</p>
           </div>
         </article>
 
@@ -963,8 +936,7 @@
               <span class="news-card__date">2025</span>
             </div>
             <p class="act-card__institution">BYL Nair Hospital, Ophthalmic Department</p>
-            <p class="act-card__what">Ophthalmoscope &amp; probes Rs 4,97,000</p>
-            <p class="act-card__outcome">Precision instruments for a department that serves patients who have nowhere else to turn.</p>
+            <p class="act-card__desc">An ophthalmoscope and probes worth Rs 4,97,000 given to the ophthalmic department, precision instruments for a unit that serves patients with nowhere else to turn.</p>
           </div>
         </article>
 
@@ -976,8 +948,7 @@
               <span class="news-card__date">2025</span>
             </div>
             <p class="act-card__institution">Sir J.J. Dharamshalla, Nagpada</p>
-            <p class="act-card__what">Milk &amp; food grains</p>
-            <p class="act-card__outcome">A simple meal, delivered with dignity. No one in our city should go to sleep hungry.</p>
+            <p class="act-card__desc">Milk and food grains supplied to the dharamshalla, a simple meal delivered with dignity, because no one in our city should go to sleep hungry.</p>
           </div>
         </article>
 
@@ -989,8 +960,7 @@
               <span class="news-card__date">2025</span>
             </div>
             <p class="act-card__institution">Asha Sadan, Dongri</p>
-            <p class="act-card__what">Lunch &amp; washing machine</p>
-            <p class="act-card__outcome">Sustenance and sanitation two things every shelter home deserves without having to ask.</p>
+            <p class="act-card__desc">Lunch served and a washing machine installed at the shelter home, sustenance and sanitation, two things every shelter deserves without having to ask.</p>
           </div>
         </article>
 
@@ -1002,8 +972,7 @@
               <span class="news-card__date">2025</span>
             </div>
             <p class="act-card__institution">Parekh Dharamshalla for Senior Citizens, Vasai</p>
-            <p class="act-card__what">Musical entertainment &amp; snacks Rs 15,000</p>
-            <p class="act-card__outcome">Some afternoons, what a person needs most is not medicine it is music. We brought both.</p>
+            <p class="act-card__desc">An afternoon of live music and snacks worth Rs 15,000 for the residents, because some days what a person needs most is not medicine but music. We brought both.</p>
           </div>
         </article>
 
@@ -1015,8 +984,7 @@
               <span class="news-card__date">2025</span>
             </div>
             <p class="act-card__institution">N.M. Petit Widow's Chawl, Fort</p>
-            <p class="act-card__what">Gift hampers to 14 widows Rs 31,000</p>
-            <p class="act-card__outcome">Fourteen widows. Fourteen hampers. The weight of being remembered, in a box.</p>
+            <p class="act-card__desc">Gift hampers worth Rs 31,000 handed to fourteen widows at the chawl. Fourteen hampers, each carrying the weight of being remembered.</p>
           </div>
         </article>
 
@@ -1032,8 +1000,7 @@
           <span class="act-card__tag">Diabetes &amp; Healthcare</span>
           <div class="act-row__body">
             <p class="act-card__institution">Lady Hirabai Cawasji Jehangir Health Unit, Tardeo</p>
-            <p class="act-card__what">TV, fans &amp; water cooler</p>
-            <p class="act-card__outcome">Comfort items that transform a clinical space into a dignified one.</p>
+            <p class="act-card__desc">A television, fans and a water cooler provided to the health unit, comfort items that turn a clinical waiting space into a dignified one.</p>
           </div>
           <span class="news-card__date act-row__date">2025</span>
         </div>
@@ -1042,8 +1009,7 @@
           <span class="act-card__tag">Childhood Cancer Care</span>
           <div class="act-row__body">
             <p class="act-card__institution">Tata Memorial Hospital</p>
-            <p class="act-card__what">Negative suction device Rs 4,00,000</p>
-            <p class="act-card__outcome">Critical post-operative equipment donated to one of India's foremost cancer hospitals.</p>
+            <p class="act-card__desc">A negative suction device worth Rs 4,00,000 donated to one of India's foremost cancer hospitals, critical equipment for post-operative care.</p>
           </div>
           <span class="news-card__date act-row__date">2025</span>
         </div>
@@ -1052,8 +1018,7 @@
           <span class="act-card__tag">Education &amp; Youth</span>
           <div class="act-row__body">
             <p class="act-card__institution">Dadar Athornan Madrassa</p>
-            <p class="act-card__what">6 computers</p>
-            <p class="act-card__outcome">Digital access is no longer a luxury. We helped bridge the gap for students who deserve to compete on equal ground.</p>
+            <p class="act-card__desc">Six computers installed for the students. Digital access is no longer a luxury, and this helped bridge the gap for students who deserve to compete on equal ground.</p>
           </div>
           <span class="news-card__date act-row__date">2025</span>
         </div>
@@ -1062,8 +1027,7 @@
           <span class="act-card__tag">Eye Care &amp; Vision</span>
           <div class="act-row__body">
             <p class="act-card__institution">RNC Free Eye Hospital, Valsad</p>
-            <p class="act-card__what">Slit lamp</p>
-            <p class="act-card__outcome">Equipment that will serve thousands of patients for years to come. One donation. Lasting sight.</p>
+            <p class="act-card__desc">A slit lamp donated to the free eye hospital, one instrument that will serve thousands of patients for years to come. One donation, lasting sight.</p>
           </div>
           <span class="news-card__date act-row__date">2025</span>
         </div>
@@ -1072,8 +1036,7 @@
           <span class="act-card__tag">Elder care</span>
           <div class="act-row__body">
             <p class="act-card__institution">J.J. Dharamshalla for Seniors, Nagpada</p>
-            <p class="act-card__what">Acer laptop Rs 35,000</p>
-            <p class="act-card__outcome">Staying connected to the world should not stop at a certain age. A laptop gifted; a window reopened.</p>
+            <p class="act-card__desc">An Acer laptop worth Rs 35,000 gifted to the home, because staying connected to the world should not stop at a certain age. A window reopened.</p>
           </div>
           <span class="news-card__date act-row__date">2025</span>
         </div>
@@ -1082,8 +1045,7 @@
           <span class="act-card__tag">Animal Welfare</span>
           <div class="act-row__body">
             <p class="act-card__institution">Animal Rescue Centre, Thane</p>
-            <p class="act-card__what">Maintenance support Rs 50,000</p>
-            <p class="act-card__outcome">India has 60 million stray animals. We believe every one deserves a safe place.</p>
+            <p class="act-card__desc">Rs 50,000 in maintenance support for the rescue centre. India has 60 million stray animals, and we believe every one of them deserves a safe place.</p>
           </div>
           <span class="news-card__date act-row__date">2025</span>
         </div>
@@ -1092,8 +1054,7 @@
           <span class="act-card__tag">Childhood Cancer Care</span>
           <div class="act-row__body">
             <p class="act-card__institution">St Jude India Child Care, Cotton Green</p>
-            <p class="act-card__what">Provisions &amp; hampers for 170 children Rs 75,000</p>
-            <p class="act-card__outcome">Meals and essentials delivered to children undergoing cancer treatment and their families.</p>
+            <p class="act-card__desc">Provisions and hampers worth Rs 75,000 for 170 children, delivering meals and essentials to children undergoing cancer treatment and to their families.</p>
           </div>
           <span class="news-card__date act-row__date">2024</span>
         </div>
@@ -1102,8 +1063,7 @@
           <span class="act-card__tag">Education &amp; Youth</span>
           <div class="act-row__body">
             <p class="act-card__institution">Anjuman-e-Islam Girls School</p>
-            <p class="act-card__what">Educational aid for children of cancer patients Rs 1,00,000</p>
-            <p class="act-card__outcome">Keeping a classroom seat open for children whose parents are fighting cancer.</p>
+            <p class="act-card__desc">Rs 1,00,000 in educational aid for the children of cancer patients, keeping a classroom seat open for students whose parents are fighting the disease.</p>
           </div>
           <span class="news-card__date act-row__date">2024</span>
         </div>
@@ -1112,8 +1072,7 @@
           <span class="act-card__tag">Eye Care &amp; Vision</span>
           <div class="act-row__body">
             <p class="act-card__institution">Xavier Resource Center for Visually Challenged</p>
-            <p class="act-card__what">Donation of assistive resources</p>
-            <p class="act-card__outcome">Tools that help visually challenged students study and compete on equal footing.</p>
+            <p class="act-card__desc">Assistive resources donated to the centre, tools that help visually challenged students study, sit their exams and compete on equal footing.</p>
           </div>
           <span class="news-card__date act-row__date">2024</span>
         </div>
@@ -1122,8 +1081,7 @@
           <span class="act-card__tag">Eye Care &amp; Vision</span>
           <div class="act-row__body">
             <p class="act-card__institution">B.Y.L. Nair Hospital, Ophthalmic Department</p>
-            <p class="act-card__what">Continued Ophthalmic Department upgrade</p>
-            <p class="act-card__outcome">The same year the club secured its FCRA sanction and was named Best Club in the district.</p>
+            <p class="act-card__desc">A continued upgrade of the ophthalmic department, carried out the same year the club secured its FCRA sanction and was named Best Club in the district.</p>
           </div>
           <span class="news-card__date act-row__date">2010</span>
         </div>
@@ -1132,8 +1090,7 @@
           <span class="act-card__tag">Hunger &amp; Food Security</span>
           <div class="act-row__body">
             <p class="act-card__institution">Earthquake Relief, Bhuj &amp; Anjaar, Gujarat</p>
-            <p class="act-card__what">Grain &amp; essential commodities distribution</p>
-            <p class="act-card__outcome">Personally led relief convoys to villages left devastated by the Gujarat earthquake.</p>
+            <p class="act-card__desc">Grain and essential commodities distributed across Bhuj and Anjaar, with members personally leading relief convoys into villages left devastated by the Gujarat earthquake.</p>
           </div>
           <span class="news-card__date act-row__date">2001</span>
         </div>
@@ -1142,8 +1099,7 @@
           <span class="act-card__tag">Education &amp; Youth</span>
           <div class="act-row__body">
             <p class="act-card__institution">Happy Home and School for the Blind</p>
-            <p class="act-card__what">Adopted 40 blind children</p>
-            <p class="act-card__outcome">A full year of care and schooling sponsored for forty children living without sight.</p>
+            <p class="act-card__desc">Forty blind children adopted by the club, a full year of care and schooling sponsored for children living without sight.</p>
           </div>
           <span class="news-card__date act-row__date">2001</span>
         </div>
@@ -1152,8 +1108,7 @@
           <span class="act-card__tag">Elder care</span>
           <div class="act-row__body">
             <p class="act-card__institution">Lok Seva Sangam, Chembur</p>
-            <p class="act-card__what">Physiotherapy equipment donated</p>
-            <p class="act-card__outcome">Equipment that restored mobility and independence to those in need of rehabilitation.</p>
+            <p class="act-card__desc">Physiotherapy equipment donated to the centre, restoring mobility and independence to patients working their way through rehabilitation.</p>
           </div>
           <span class="news-card__date act-row__date">2001</span>
         </div>
@@ -1162,8 +1117,7 @@
           <span class="act-card__tag">Diabetes &amp; Healthcare</span>
           <div class="act-row__body">
             <p class="act-card__institution">Masina Hospital</p>
-            <p class="act-card__what">9-bed General Ward with Burns Unit Rs 1,00,000</p>
-            <p class="act-card__outcome">The first dedicated burns unit of its kind in Maharashtra, built when few institutions had one.</p>
+            <p class="act-card__desc">A nine-bed general ward with a burns unit built for Rs 1,00,000, the first dedicated burns unit of its kind in Maharashtra, at a time when few institutions had one.</p>
           </div>
           <span class="news-card__date act-row__date">1991</span>
         </div>
@@ -1172,8 +1126,7 @@
           <span class="act-card__tag">Childhood Cancer Care</span>
           <div class="act-row__body">
             <p class="act-card__institution">Khushnam Khambatta Mercy Mission, USA</p>
-            <p class="act-card__what">Cancer treatment sponsorship Rs 1,27,000</p>
-            <p class="act-card__outcome">A mercy mission that sent a Byculla child abroad for life-saving cancer care.</p>
+            <p class="act-card__desc">Cancer treatment sponsored at Rs 1,27,000 through a mercy mission that sent a Byculla child abroad for life-saving care.</p>
           </div>
           <span class="news-card__date act-row__date">1991</span>
         </div>

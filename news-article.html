@@ -46,19 +46,13 @@
 .breadcrumb span[aria-current] { color: rgba(255,255,255,0.7); }
 .breadcrumb .sep { color: rgba(255,255,255,0.3); }
 
-.article-meta {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 18px;
-}
 .article-hero h1 {
   font-family: var(--serif);
   font-size: clamp(2rem, 4.4vw, 3.2rem);
   font-weight: 400;
   color: #fff;
   line-height: 1.15;
-  margin: 0;
+  margin: 24px 0 0;
   max-width: 880px;
 }
 .article-date {
@@ -125,15 +119,6 @@
   transition: color .2s;
 }
 .article-back a:hover { color: var(--gold); }
-
-.article-tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #fff;
-}
 </style>
 </head>
 <body>
@@ -260,9 +245,6 @@
 <!-- ARTICLE HERO -->
 <section class="article-hero">
   <div class="wrap">
-    <div class="article-meta">
-      <span class="article-tag" id="articleTag">News</span>
-    </div>
     <h1 id="articleTitle">Loading story&hellip;</h1>
     <span class="news-card__date article-date" id="articleDate"></span>
   </div>
@@ -355,8 +337,7 @@
 /* ── ARTICLE CONTENT ── */
 (function () {
   var ARTICLES = {
-    'best-club-award': {
-      tag: 'Award', tagClass: 'tag-award', date: '10 May 2026',
+    'best-club-award': { date: '10 May 2026',
       title: 'Second Best Club Award 2025–26 presented at District Convention, Lonavala',
       body:
         '<p class="lede">Lions Club of Byculla was honoured for the fourth consecutive year with the Second Best Club Award by District 3231 A1 at the annual district convention held in Lonavala.</p>' +
@@ -366,8 +347,7 @@
         '<h2>A year of measurable impact</h2>' +
         '<p>Highlights cited by the judging panel included over 340 residents screened at free diabetes camps, 20 wheelchairs distributed to differently-abled residents, and more than ₹8 lakhs raised for paediatric cancer care. The club now turns its focus to its Golden Jubilee in 2027.</p>'
     },
-    'installation-ceremony': {
-      tag: 'Event', tagClass: 'tag-event', date: '28 Apr 2026',
+    'installation-ceremony': { date: '28 Apr 2026',
       title: 'Installation ceremony 2025–26: New office bearers inducted with pride',
       body:
         '<p class="lede">The installation ceremony at Byculla Club welcomed the new board for the coming Lions year, with District Governor Lion Rajesh Mehta presiding over the induction.</p>' +
@@ -376,8 +356,7 @@
         '<blockquote>We inherit not just titles but a responsibility — to keep showing up for those who need us most.<cite>Incoming President</cite></blockquote>' +
         '<p>The evening closed with fellowship and a shared commitment to an ambitious calendar of camps, drives, and outreach for the year ahead.</p>'
     },
-    'diabetes-screening-camp': {
-      tag: 'Health', tagClass: 'tag-health', date: '15 Apr 2026',
+    'diabetes-screening-camp': { date: '15 Apr 2026',
       title: 'Free diabetes and blood pressure screening camp benefits 340 residents of Byculla',
       body:
         '<p class="lede">Conducted in collaboration with Masina Hospital, the camp provided free testing and consultations to over 340 local residents in a single afternoon.</p>' +
@@ -387,8 +366,7 @@
         '<blockquote>Catching diabetes early changes the entire course of a person’s life. That is exactly what days like this are for.<cite>Attending physician, Masina Hospital</cite></blockquote>' +
         '<p>The screening camp is part of the club’s ongoing health-equity programme, which brings preventive care directly into the neighbourhoods that need it most.</p>'
     },
-    'do-good-cookbook': {
-      tag: 'Community', tagClass: 'tag-community', date: '5 Mar 2026',
+    'do-good-cookbook': { date: '5 Mar 2026',
       title: 'The Do-Good Cookbook launched: recipes from Lions families raise funds for hunger relief',
       body:
         '<p class="lede">Our community cookbook, featuring 80 recipes contributed by Lions families, was launched at the clubhouse with proceeds supporting the hunger and nutrition pillar.</p>' +
@@ -397,8 +375,7 @@
         '<blockquote>Every page is a memory, and every sale is a meal for someone who needs one.<cite>Cookbook committee lead</cite></blockquote>' +
         '<p>Copies are available at club events and through members, with all proceeds going directly to hunger relief.</p>'
     },
-    'press-feature-cancer': {
-      tag: 'News', tagClass: 'tag-news', date: '18 Feb 2026',
+    'press-feature-cancer': { date: '18 Feb 2026',
       title: 'Mid-Day and Times of India feature Lions Byculla’s childhood cancer support programme',
       body:
         '<p class="lede">Two leading Mumbai dailies spotlighted our partnership with Tata Memorial Hospital and the impact of over ₹8 lakhs raised for paediatric cancer care.</p>' +
@@ -408,8 +385,7 @@
         '<blockquote>The support did not stop at money — they stood with us through the hardest months of our lives.<cite>Parent of a young patient</cite></blockquote>' +
         '<p>The features have already prompted new offers of support and volunteering from across the city.</p>'
     },
-    'annual-picnic': {
-      tag: 'Event', tagClass: 'tag-event', date: '26 Jan 2026',
+    'annual-picnic': { date: '26 Jan 2026',
       title: 'Annual picnic and sports day brings Lions families together at Essel World',
       body:
         '<p class="lede">Over 150 members, spouses, and children gathered for a day of games, food, and fellowship at Essel World, strengthening the Lions family bond.</p>' +
@@ -418,8 +394,7 @@
         '<blockquote>We serve as a family, so it is only right that we celebrate as one too.<cite>Fellowship committee</cite></blockquote>' +
         '<p>The day reinforced the camaraderie that has kept the club active and united since 1977.</p>'
     },
-    'wheelchair-donation': {
-      tag: 'Community', tagClass: 'tag-community', date: '8 Jan 2026',
+    'wheelchair-donation': { date: '8 Jan 2026',
       title: '20 wheelchairs donated to differently-abled residents of South Mumbai',
       body:
         '<p class="lede">In partnership with the BMC, Lions Byculla distributed 20 motorised and manual wheelchairs to beneficiaries identified through community outreach.</p>' +
@@ -429,8 +404,7 @@
         '<blockquote>A wheelchair is not equipment — it is a doorway back into everyday life.<cite>Project coordinator</cite></blockquote>' +
         '<p>The club plans to expand the programme in the coming year, reaching more residents across South Mumbai.</p>'
     },
-    'eye-camp-gt-hospital': {
-      tag: 'Health', tagClass: 'tag-health', date: '3 Dec 2025',
+    'eye-camp-gt-hospital': { date: '3 Dec 2025',
       title: 'Free eye check-up camp at G.T. Hospital screens 210 patients, 32 referred for surgery',
       body:
         '<p class="lede">In collaboration with the Lions Eye Bank, our annual vision camp identified 32 patients requiring cataract surgery, all covered at no cost.</p>' +
@@ -440,8 +414,7 @@
         '<blockquote>To restore someone’s sight is to give them back their world. There is no greater service.<cite>Lions Eye Bank partner</cite></blockquote>' +
         '<p>Surgeries for the referred patients are already underway, with post-operative care included.</p>'
     },
-    'melvin-jones-fellowship': {
-      tag: 'Award', tagClass: 'tag-award', date: '18 Nov 2025',
+    'melvin-jones-fellowship': { date: '18 Nov 2025',
       title: 'Three members receive the Melvin Jones Fellowship at the international convention',
       body:
         '<p class="lede">The Melvin Jones Fellowship, Lions International’s highest humanitarian honour, was awarded to three members for exceptional service contributions.</p>' +
@@ -459,14 +432,12 @@
   var id = getId();
   var data = id ? ARTICLES[id] : null;
 
-  var tagEl = document.getElementById('articleTag');
   var dateEl = document.getElementById('articleDate');
   var titleEl = document.getElementById('articleTitle');
   var bodyEl = document.getElementById('articleBody');
 
   if (!data) {
     document.title = 'Story not found | Lions Club of Byculla';
-    tagEl.style.display = 'none';
     titleEl.textContent = 'Story not found';
     bodyEl.innerHTML = '<p class="lede">Sorry, we couldn’t find that story.</p>' +
       '<p>It may have been moved or removed. Please head back to the news page to browse all of our latest stories and updates.</p>';
@@ -474,8 +445,6 @@
   }
 
   document.title = data.title.replace(/&[a-z]+;/g, '') + ' | Lions Club of Byculla';
-  tagEl.textContent = data.tag;
-  tagEl.className = 'article-tag news-card__tag ' + data.tagClass;
   dateEl.textContent = data.date;
   titleEl.innerHTML = data.title;
   bodyEl.innerHTML = data.body;
