@@ -1,0 +1,162 @@
+/* ══════════════════════════════════════════════════════════════════
+   SHARED FORM KIT
+   Extracted verbatim from contact.html so the field system has ONE
+   definition. Previously these rules lived only in contact.html's
+   <style> block, so any other page needing a form had to copy them —
+   which is how lookalike components drift out of the design system.
+
+   Bottom-stroke fields with floating labels. See styleguide.html →
+   Form Inputs. Consumers: contact.html, index.html (membership modal).
+
+   Page-scoped CSS may position these (grid, margin) but must not
+   restyle their colour, border, radius, or typography.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Field rows ── */
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.cf-row .cf-group { margin-bottom: 0; }
+
+/* ── Field group: input / select / textarea + floating label ── */
+.cf-group { position: relative; margin-bottom: 14px; padding-top: 16px; }
+.cf-group input,
+.cf-group select,
+.cf-group textarea {
+  width: 100%;
+  padding: 10px 2px;
+  border: none;
+  border-bottom: 1.5px solid var(--rule);
+  border-radius: 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  background: transparent;
+  transition: border-color .2s, border-bottom-width .2s;
+  outline: none;
+  box-sizing: border-box;
+  appearance: none;
+}
+.cf-group input::placeholder,
+.cf-group textarea::placeholder { color: transparent; }
+.cf-group input:focus,
+.cf-group select:focus,
+.cf-group textarea:focus {
+  border-bottom: 2px solid var(--gold-deep);
+  padding-bottom: 9px;
+  background: transparent;
+}
+.cf-group textarea { resize: vertical; min-height: 96px; }
+.cf-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23102C57' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  padding-right: 24px;
+  cursor: pointer;
+  color: var(--muted);
+}
+.cf-group select.has-value { color: var(--ink); }
+
+.cf-group label {
+  position: absolute;
+  left: 2px;
+  top: 26px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--muted);
+  pointer-events: none;
+  transition: top .15s ease, font-size .15s ease, color .15s ease, letter-spacing .15s ease, opacity .15s ease;
+}
+/* Select's own placeholder option would double up with the label, so the
+   label stays hidden until JS marks the field .has-value. */
+.cf-group select + label { opacity: 0; }
+.cf-group input:focus + label,
+.cf-group input:not([type="date"]):not(:placeholder-shown) + label,
+.cf-group textarea:focus + label,
+.cf-group textarea:not(:placeholder-shown) + label,
+.cf-group input[type="date"].has-value + label,
+.cf-group select.has-value + label {
+  top: 0;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 1;
+}
+.cf-group input:focus + label,
+.cf-group textarea:focus + label,
+.cf-group select.has-value:focus + label {
+  color: var(--gold-deep);
+}
+
+/* Date inputs have no placeholder, so :not(:placeholder-shown) matches them
+   even when empty — which floated the label permanently. They also paint their
+   own "dd-mm-yyyy" text and picker icon at all times, so an untouched date
+   field read as already filled next to its neighbours.
+
+   Fix: hide the browser's own chrome until the field is focused or JS marks it
+   .has-value (same pattern selects already use). Empty date fields then look
+   exactly like empty text fields. */
+.cf-group input[type="date"] { color: var(--ink); }
+.cf-group input[type="date"]:not(:focus):not(.has-value)::-webkit-datetime-edit { color: transparent; }
+.cf-group input[type="date"]:not(:focus):not(.has-value)::-webkit-calendar-picker-indicator { opacity: 0; }
+/* Firefox equivalent — it has no ::-webkit-* pseudo-elements. */
+@supports (-moz-appearance: none) {
+  .cf-group input[type="date"]:not(:focus):not(.has-value) { color: transparent; }
+}
+.cf-group input[type="date"]:focus::-webkit-calendar-picker-indicator,
+.cf-group input[type="date"].has-value::-webkit-calendar-picker-indicator { opacity: 0.55; cursor: pointer; }
+
+/* ── Privacy / consent ── */
+.cf-privacy {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 22px;
+}
+.cf-privacy a { color: var(--navy); text-decoration: underline; }
+
+.cf-consent { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 22px; }
+.cf-consent input[type=checkbox] { width: 15px; height: 15px; flex-shrink: 0; margin-top: 2px; accent-color: var(--navy); cursor: pointer; }
+.cf-consent label { font-size: 12.5px; color: var(--body); line-height: 1.5; cursor: pointer; }
+.cf-consent label a { color: var(--navy); text-decoration: underline; }
+
+/* ── Submit ── */
+.btn-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  background: transparent;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px;
+  border: 1.5px solid var(--navy);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.btn-contact:hover { background: var(--navy); color: #fff; }
+.btn-contact svg { width: 17px; height: 17px; stroke: var(--gold-deep); stroke-width: 2.2; fill: none; transition: stroke .2s; }
+
+/* ── Success state ── */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 60px 24px;
+}
+.form-success .s-icon {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: rgba(16,44,87,0.08);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px;
+}
+.form-success .s-icon svg { width: 28px; height: 28px; stroke: var(--navy); stroke-width: 2.2; fill: none; }
+.form-success h3 { font-family: var(--serif); color: var(--navy); font-size: 1.3rem; margin: 0 0 10px; }
+.form-success p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+@media (max-width: 640px) {
+  .cf-row { grid-template-columns: 1fr; }
+}

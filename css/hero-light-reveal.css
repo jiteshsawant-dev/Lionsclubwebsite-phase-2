@@ -1,0 +1,159 @@
+/*
+ * LIGHT-REVEAL HERO — homepage
+ * Values below come straight from Figma's exported SVG for this component
+ * (Component 7.svg = start, Component 8.svg = end): a huge conic-gradient
+ * plane (cream→navy over 114.231deg, then solid navy) positioned by a CSS
+ * matrix transform, mirroring Figma's own <g transform="matrix(...)">
+ * technique but on a plain div instead of an SVG <g>.
+ */
+
+/* Give the nav its own opaque fill instead of borrowing the hero's
+   navy through transparency — the two should read as separate,
+   deliberate layers, not one bleeding into the other. */
+nav.main{
+  background:rgb(15,31,54);
+}
+
+.light-hero{
+  position:relative;
+  /* +200px on top of the viewport height, all of which goes to the photo
+     band below (see .light-hero-photo) — the headline/stats area above
+     keeps the same 74vh it always had. */
+  min-height:calc(100vh + 200px);
+  overflow:hidden;
+  background:rgb(15,31,54);
+  isolation:isolate;
+}
+
+.light-hero-beam{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  overflow:hidden;
+  /* Flips the beam wrapper's contents top-to-bottom so the bright origin
+     sits near the bottom of the hero (by the photo) instead of near the
+     top (by the nav) — no changes to the JS/matrix math needed. */
+  transform: scaleY(-1);
+}
+/* nav.main is transparent and sits directly over the hero (see
+   light-redesign.css). Without the flip, the beam's own construction
+   guarantees solid navy directly behind the nav strip; the flip breaks
+   that guarantee, so repaint that strip solid navy here instead. */
+.light-hero-navmask{
+  position:absolute; top:0; left:0; right:0; height:86px;
+  background:rgb(15,31,54);
+  z-index:2;
+  pointer-events:none;
+}
+.beam-anchor{
+  position:absolute;
+  left:0; top:0; width:0; height:0;
+  transform-origin:0 0;
+}
+.beam-plane{
+  position:absolute;
+  /* Sized well past the min calibrated footprint (2001.47px) so that
+     pushing the end-state translateX (E1) out to clear the right edge
+     (see hero-light-reveal.js) doesn't drag the plane's own left edge
+     inward and uncover the section's navy background on that side. */
+  left:-1600px; top:-1600px;
+  width:3200px; height:3200px;
+  background:conic-gradient(from 90deg,
+    rgba(244,230,202,1) 0deg,
+    rgba(15,31,54,1) 114.231deg,
+    rgba(15,31,54,1) 360deg);
+}
+
+.light-hero-photo{
+  position:absolute; left:0; right:0; bottom:0; height:calc(26vh + 200px);
+  overflow:hidden; z-index:2;
+}
+.light-hero-photo img{
+  width:100%; height:100%; object-fit:cover;
+  opacity:.12;
+}
+
+/* Matches nav's own .wrap (max-width:1440px; margin:0 auto; padding:0 48px)
+   so the headline's left edge lines up with the logo at any viewport width. */
+.light-hero-content{
+  position:relative; z-index:3;
+  max-width:1440px; margin:0 auto;
+  padding:24vh 48px 0;
+}
+.light-hero-content h1{
+  font-family:var(--serif); font-weight:300; font-size:46px; line-height:1.05;
+  color:#002D79; letter-spacing:-0.01em; margin-bottom:12px;
+  max-width:800px;
+}
+.light-hero-content .lede{
+  font-family:var(--serif); font-style:italic; font-size:15px; line-height:1.6;
+  color:#605C4D;
+  max-width:592px;
+}
+
+/* Pinned to sit just above the photo strip (bottom:0, height:calc(26vh + 200px))
+   instead of sitting in normal flow right under the lede with a big gap. */
+.light-hero-stats{
+  position:absolute; z-index:3;
+  left:0; right:0; bottom:calc(26vh + 232px);
+  max-width:1440px; margin:0 auto;
+  display:flex; gap:72px; flex-wrap:wrap;
+  padding:0 48px;
+}
+.light-hero-stats .stat .num{
+  font-family:var(--serif); font-size:24px; color:#605C4D;
+}
+.light-hero-stats .stat .lbl{
+  font-family:var(--sans); font-size:13px; letter-spacing:0.04em; text-transform:uppercase;
+  color:#605C4D;
+}
+
+/* Tablet & down: the absolute-pinned stats layout assumes a tall, wide
+   desktop viewport. On shorter/narrower screens the stats rise into the
+   lede and overlap it, so switch to natural document flow — content first,
+   stats stacked below, photo strip kept as a fixed-height band at the base. */
+@media (max-width:1024px){
+  .light-hero{ min-height:auto; padding-bottom:200px; }
+  .light-hero-content{ padding-top:16vh; }
+  /* position:relative (not static) keeps the flow placement while preserving
+     the base rule's z-index:3, so the stats paint above the beam overlay.
+     A single 4-column row (with reduced type) keeps all four inline and
+     within the light wedge, clear of the navy on the right. */
+  .light-hero-stats{
+    position:relative;
+    margin:48px 0 0;
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:0 20px;
+    max-width:none;
+  }
+  /* Must include .stat to match the base rule's specificity, else these
+     smaller sizes lose the cascade and the labels stay 13px and wrap. */
+  .light-hero-stats .stat .num{ font-size:19px; }
+  .light-hero-stats .stat .lbl{ font-size:10px; letter-spacing:0.03em; }
+  /* styles.css adds a border-top to .stat:nth-child(n+3) under 1000px as a
+     row divider for 2-col layouts; it bleeds in here and draws a stray line
+     above the last two stats in a single row, so cancel it. */
+  .light-hero-stats .stat{ border-top:none; padding-top:0; }
+  .light-hero-photo{ height:180px; }
+}
+
+@media (max-width:720px){
+  .light-hero-content{ padding:16vh 24px 0; }
+  .light-hero-content h1{ font-size:32px; }
+  /* 4-across won't fit on a phone — fall back to a 2x2 grid with the
+     row divider restored between the two rows. */
+  .light-hero-stats{
+    padding:0 24px;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:32px 24px;
+    max-width:480px;
+  }
+  .light-hero-stats .stat .num{ font-size:22px; }
+  .light-hero-stats .stat .lbl{ font-size:12px; letter-spacing:0.04em; }
+  .light-hero-stats .stat:nth-child(n+3){
+    border-top:1px solid rgba(16,44,87,0.1);
+    padding-top:24px;
+  }
+}

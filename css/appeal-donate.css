@@ -1,0 +1,65 @@
+/* ══════════════════════════════════════════════════════════════════
+   APPEAL DONATION MODAL — opens from a card's "Donate to this appeal"
+   in the homepage Active projects section.
+
+   This file adds NO new components. Everything it shows is borrowed:
+
+     overlay / panel / head / close / body / chips
+                              → css/membership-modal.css  (.mem-*)
+     fields / submit / success → css/forms.css            (.cf-*, .btn-contact,
+                                                           .form-success)
+     the appeal's own figures  → css/campaigns.css        (.camp-figures,
+                                                           .camp-bar, .camp-fill,
+                                                           .camp-raised, .camp-pct,
+                                                           .camp-meta)
+
+   Rules below only POSITION and SPACE those components — no colour, border,
+   radius or typography of a shared component is restyled here.
+
+   LOAD ORDER: must come after membership-modal.css and campaigns.css, since
+   .mem-modal--donate narrows the panel .mem-modal sets wide.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Panel ──
+   A donation is a short form, so it reads better narrow than at the
+   membership modal's 860px. */
+.mem-modal--donate { max-width: 520px; }
+
+/* Nothing sits to the right of the heading here (the membership modal puts its
+   logos there), so keep the title clear of the absolutely-positioned close. */
+.mem-modal--donate .mem-head { padding-right: 66px; }
+
+/* ── Appeal snapshot ──
+   The same figures the card was showing, so the donor can see what they are
+   giving to without going back to check. Tint matches .mem-declaration. */
+.appeal-snapshot {
+  background: rgba(16,44,87,0.04);
+  border-radius: var(--radius-md);
+  padding: 15px 18px 17px;
+  margin-bottom: 26px;
+}
+
+/* ── Amount chips ──
+   .mem-choice chips laid out on a fixed three-up grid so the amounts line up
+   in columns instead of wrapping ragged. */
+.appeal-amounts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+  margin-bottom: 18px;
+}
+.appeal-amounts .mem-choice span {
+  display: block;
+  text-align: center;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+/* Custom amount field — revealed only when "Other" is chosen. */
+.appeal-custom { display: none; }
+.appeal-custom.is-shown { display: block; }
+
+/* ── Responsive ── */
+@media (max-width: 420px) {
+  .appeal-amounts { grid-template-columns: repeat(2, 1fr); }
+}

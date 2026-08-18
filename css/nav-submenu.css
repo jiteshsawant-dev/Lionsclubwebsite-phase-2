@@ -1,0 +1,103 @@
+/* ══════════════════════════════════════════════════════════════════
+   NAV SUBMENU — desktop dropdown for .nav-c-links
+   Mobile/drawer accordion styles already live in css/styles.css
+   (.drawer-acc-toggle / .drawer-sub)
+   ══════════════════════════════════════════════════════════════════ */
+
+.nav-c-links > li.has-sub {
+  position: relative;
+}
+
+/* Chevron on the parent link */
+.nav-c-links > li.has-sub > a .nav-chev {
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: transform .22s cubic-bezier(.4,0,.2,1), opacity .2s;
+}
+.nav-c-links > li.has-sub.open > a .nav-chev,
+.nav-c-links > li.has-sub:hover > a .nav-chev {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* The dropdown panel */
+.nav-sub {
+  position: absolute;
+  top: 100%;
+  left: 4px;
+  min-width: 236px;
+  margin-top: 10px;
+  padding: 8px;
+  list-style: none;
+  background: #1B3A66;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 14px 38px rgba(0,0,0,0.34);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 120;
+}
+
+/* Invisible bridge so the pointer can travel from link to panel */
+.nav-sub::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: -12px;
+  height: 12px;
+}
+
+.nav-c-links > li.has-sub:hover > .nav-sub,
+.nav-c-links > li.has-sub:focus-within > .nav-sub,
+.nav-c-links > li.has-sub.open > .nav-sub {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-sub li { margin: 0; }
+
+.nav-sub a {
+  display: block;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.74);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  transition: color .15s, background .15s;
+}
+.nav-sub a:hover,
+.nav-sub a:focus-visible {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+}
+.nav-sub a.active {
+  color: var(--gold);
+  background: rgba(252,203,6,0.08);
+}
+
+/* Keep the parent lit while a child page is open */
+.nav-c-links > li.has-sub > a.active-parent {
+  color: var(--gold);
+}
+.nav-c-links > li.has-sub > a.active-parent::after {
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+/* Drawer: active states for the accordion parent + its children */
+.drawer-acc-toggle.active { color: var(--gold); font-weight: 700; }
+.drawer-sub a.active { color: var(--gold); font-weight: 600; }
+
+@media(max-width:900px) {
+  .nav-sub { display: none; }
+}

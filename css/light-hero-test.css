@@ -1,0 +1,114 @@
+/*
+ * LIGHT-REVEAL HERO — test page only
+ * Values below come straight from Figma's exported SVG for this component
+ * (Component 7.svg = start, Component 8.svg = end): a huge conic-gradient
+ * plane (cream→navy over 114.231deg, then solid navy) positioned by a CSS
+ * matrix transform, exactly mirroring Figma's own <g transform="matrix(...)">
+ * technique but on a plain div instead of an SVG <g> (SVG transforms proved
+ * unreliable to animate reliably in-browser).
+ */
+
+/* Give the nav its own opaque fill instead of borrowing the hero's
+   navy through transparency — the two should read as separate,
+   deliberate layers, not one bleeding into the other. */
+nav.main{
+  background:rgb(15,31,54);
+}
+
+.light-hero{
+  position:relative;
+  /* +200px on top of the viewport height, all of which goes to the photo
+     band below (see .light-hero-photo) — the headline/stats area above
+     keeps the same 74vh it always had. */
+  min-height:calc(100vh + 200px);
+  overflow:hidden;
+  background:rgb(15,31,54);
+  isolation:isolate;
+}
+
+.light-hero-beam{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  overflow:hidden;
+}
+.beam-anchor{
+  position:absolute;
+  left:0; top:0; width:0; height:0;
+  transform-origin:0 0;
+}
+.beam-plane{
+  position:absolute;
+  /* Sized well past the min calibrated footprint (2001.47px) so that
+     pushing the end-state translateX (E1) out to clear the right edge
+     (see the inline script below) doesn't drag the plane's own left edge
+     inward and uncover the section's navy background on that side. */
+  left:-1600px; top:-1600px;
+  width:3200px; height:3200px;
+  background:conic-gradient(from 90deg,
+    rgba(244,230,202,1) 0deg,
+    rgba(15,31,54,1) 114.231deg,
+    rgba(15,31,54,1) 360deg);
+}
+
+.light-hero-photo{
+  position:absolute; left:0; right:0; bottom:0; height:calc(26vh + 200px);
+  overflow:hidden; z-index:2;
+}
+.light-hero-photo img{
+  width:100%; height:100%; object-fit:cover;
+  opacity:.12;
+}
+
+/* Matches nav's own .wrap (max-width:1440px; margin:0 auto; padding:0 48px)
+   so the headline's left edge lines up with the logo at any viewport width,
+   instead of the two using different, unrelated gutter values. */
+.light-hero-content{
+  position:relative; z-index:3;
+  max-width:1440px; margin:0 auto;
+  padding:20vh 48px 0;
+}
+.light-hero-content h1{
+  font-family:var(--serif); font-weight:300; font-size:46px; line-height:1.05;
+  color:#002D79; letter-spacing:-0.01em; margin-bottom:12px;
+  max-width:592px;
+}
+.light-hero-content .lede{
+  font-family:var(--serif); font-style:italic; font-size:15px; line-height:1.6;
+  color:#605C4D;
+  max-width:592px;
+}
+
+/* Pinned to sit just above the photo strip (bottom:0, height:calc(26vh + 200px))
+   instead of sitting in normal flow right under the lede with a big gap. */
+.light-hero-stats{
+  position:absolute; z-index:3;
+  left:0; right:0; bottom:calc(26vh + 232px);
+  max-width:1440px; margin:0 auto;
+  display:flex; gap:72px; flex-wrap:wrap;
+  padding:0 48px;
+}
+.light-hero-stats .stat .num{
+  font-family:var(--serif); font-size:24px; color:#605C4D;
+}
+.light-hero-stats .stat .lbl{
+  font-family:var(--sans); font-size:13px; letter-spacing:0.04em; text-transform:uppercase;
+  color:#605C4D;
+}
+
+.light-hero-trigger{
+  position:absolute; right:32px; bottom:32px; z-index:4;
+  font-family:var(--serif); font-weight:700; font-size:14px; letter-spacing:0.04em;
+  color:var(--gold); background:rgba(11,31,63,0.55);
+  border:1.5px solid var(--gold); border-radius:var(--radius-md);
+  padding:10px 18px; cursor:pointer;
+  transition:background .2s ease;
+}
+.light-hero-trigger:hover{ background:rgba(252,203,6,0.14); }
+
+@media (max-width:720px){
+  .light-hero-content{ padding:16vh 24px 0; }
+  .light-hero-content h1{ font-size:32px; }
+  .light-hero-stats{ padding:0 24px; gap:32px; }
+}

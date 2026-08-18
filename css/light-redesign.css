@@ -1,0 +1,669 @@
+/*
+ * LIGHT IN DARKNESS — Strategic Light Effects
+ * Lions Club of Byculla
+ *
+ * Concept: A single arc of golden light — the planetary-limb / solar
+ * eclipse reference — lives in the hero as the visual hook. Everywhere
+ * else, light appears only on interaction: button hover, card hover,
+ * step node pulse. Sections keep their original palette.
+ *
+ * Brand: Navy #102C57 / Gold #FCCB06
+ * Type:  Roboto Serif (headings) / Mulish (body)
+ */
+
+
+
+
+/* Hero stat numbers — lighter weight */
+.stat .num { font-weight: 300 !important; }
+
+/* ════════════════════════════════════════════════════════════════════
+   HERO ARC SVG — position + breathing animation
+   The SVG element itself (inline HTML) is positioned absolute,
+   filling the full hero-bg-wrap. CSS only handles placement + timing.
+   ════════════════════════════════════════════════════════════════════ */
+.hero-arc-svg {
+  position: absolute;
+  inset: 0;
+  width:  100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  animation: arc-breathe 8s ease-in-out infinite;
+}
+
+@keyframes arc-breathe {
+  0%, 100% { opacity: 0.82; }
+  50%       { opacity: 1.00; }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   HERO BEACON — ambient corona glow around the photo column
+   Reinforces the eclipse effect: light radiates from behind the
+   community photo, as if the photo IS the eclipse dark sphere.
+   ════════════════════════════════════════════════════════════════════ */
+.hero-beacon {
+  position: absolute;
+  top:  0;
+  left: 38%;
+  transform: translateX(-50%);
+  width:  min(600px, 50vw);
+  height: min(400px, 35vw);
+  pointer-events: none;
+  z-index: 2;
+
+  /* Reinforces the arc flare at the top-centre peak */
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(252,203,6,0.20) 0%,
+    rgba(252,203,6,0.07) 45%,
+    transparent          70%
+  );
+
+  animation: beacon-breathe 7s ease-in-out infinite;
+}
+
+@keyframes beacon-breathe {
+  0%, 100% { opacity: 0.68; }
+  50%       { opacity: 1.00; }
+}
+
+/* Keep hero content above all effects */
+.hero .wrap { position: relative; z-index: 4; }
+
+/* Brand logo link — reset anchor defaults */
+a.brand { text-decoration: none; color: inherit; cursor: pointer; }
+
+
+/* ════════════════════════════════════════════════════════════════════
+   HERO STATS — numbers glow faintly gold
+   Extends the "light" metaphor into the impact metrics.
+   ════════════════════════════════════════════════════════════════════ */
+.hero-stats .num {
+  text-shadow: 0 0 22px rgba(252,203,6,0.38);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   SECTION BACKGROUND SWAP
+   After moving Impact before Method the natural colours flipped.
+   Restore original positional feel: Impact gets white, Method gets #FAFAF8.
+   ════════════════════════════════════════════════════════════════════ */
+#impact { background: #FCF8EF; }
+#impact .eyebrow { color: #072338; }
+#impact .section-header h2 { color: #082C61; }
+#impact .header-intro { color: #77735F; }
+.method { background: #FCF8EF !important; }
+
+
+/* ════════════════════════════════════════════════════════════════════
+   CARD HOVER — uniform lift + shadow across all card types
+   Styleguide spec: --shadow-sm resting → --shadow-md + translateY(-4px) hover
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Impact carousel cards — transparent gold border at rest, turns gold on hover */
+.card {
+  border: 1.5px solid rgba(252,203,6,0);
+  transition: flex .45s cubic-bezier(.4,0,.2,1), box-shadow 0.32s ease, border-color 0.2s ease !important;
+}
+.card:hover {
+  box-shadow: var(--shadow-md) !important;
+  border-color: rgba(252,203,6,0.6) !important;
+}
+
+/* News cards */
+.news-card {
+  border: 1px solid var(--rule);
+  transition: box-shadow 0.32s ease, border-color 0.2s ease !important;
+}
+.news-card:hover {
+  box-shadow: var(--shadow-md) !important;
+  border-color: rgba(252,203,6,0.6);
+}
+
+/* Voice / testimonial cards — preserve 2.5px gold top accent */
+.voice-card {
+  border: 1px solid var(--rule);
+  border-top: 2.5px solid var(--gold);
+  transition: box-shadow 0.32s ease, border-color 0.2s ease !important;
+}
+.voice-card:hover {
+  transform: none !important;
+  box-shadow: var(--shadow-md) !important;
+  border-color: rgba(252,203,6,0.6) !important;
+}
+
+
+
+/* ════════════════════════════════════════════════════════════════════
+   OUR METHOD — centred section header
+   ════════════════════════════════════════════════════════════════════ */
+.method .sec-head { text-align: center; }
+.method .sec-head .intro {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   METHOD STEPPER — per-segment connecting line + local hover glow
+
+   Replace the single stepper::before line (wrong span, fading ends)
+   with one ::after per step so:
+     • line runs exactly node-centre → next-node-centre
+     • only the hovered step's segment lights up gold
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Kill the original single full-width line */
+.stepper::before { display: none !important; }
+
+/* Centre each step: node + label + text all centred */
+.method .step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+}
+.method .step p { margin-left: auto; margin-right: auto; }
+
+/* One segment per step, drawn from this node's centre to the next.
+   With a centred node, left:50% = this node centre,
+   right:-50% = 50% past the step's right edge = next node centre. */
+.step::after {
+  content: "";
+  position: absolute;
+  top: 22px;     /* half of node height (44px) */
+  left: 50%;     /* this node's centre */
+  right: -50%;   /* next node's centre */
+  height: 1px;
+  background: rgba(16,44,87,0.22);
+  z-index: 1;    /* behind z-index:2 nodes */
+  transition: background 0.30s ease, box-shadow 0.30s ease;
+}
+
+/* Last step has no successor — no line needed */
+.step:last-child::after { display: none; }
+
+/* Hover: gold outline ring around node */
+.step .node {
+  transition: border-color 0.28s ease !important;
+}
+
+.step:hover .node {
+  border-color: var(--gold, #FCCB06) !important;
+}
+
+.step:hover::after {
+  background: var(--gold, #FCCB06);
+  box-shadow: 0 0 8px rgba(252,203,6,0.55);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   DONATE PILL (nav) — golden glow pulse
+   ════════════════════════════════════════════════════════════════════ */
+.nav-links > li > a.donate-pill {
+  transition:
+    box-shadow   0.32s ease,
+    background   0.20s ease,
+    border-color 0.20s ease !important;
+}
+
+.nav-links > li > a.donate-pill:hover {
+  box-shadow: 0 0 20px rgba(252,203,6,0.60) !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   ABOUT VALUE DOTS — subtle persistent glow
+   The small bullet-point dots are tiny beacons, always on.
+   ════════════════════════════════════════════════════════════════════ */
+.about-val-dot {
+  box-shadow: 0 0 8px rgba(252,203,6,0.40);
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   IMPACT STORIES — 3-column equal card grid
+   Style guide: warm section bg so white cards float, serif headline,
+   plain-text category label, "Read story" link inside card,
+   soft shadow + lift on hover.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Warm paper section bg — matches styleguide var(--paper) #F4F0E6 */
+.story-feature { background: var(--white) !important; }
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.bento-card {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.32s ease, border-color 0.2s ease;
+}
+
+.bento-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(252,203,6,0.6);
+}
+
+/* Photo — 3/2 consistent ratio */
+.bento-img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.bento-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Text content */
+.bento-body {
+  padding: 22px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+/* Category — serif eyebrow, plain text, no pill (styleguide Tags > Eyebrow) */
+.bento-cat {
+  font-family: 'Mulish', var(--sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.12px;
+  text-transform: uppercase;
+  color: #072338;
+}
+
+/* Headline — serif, navy (styleguide News Card: 600 weight, 19px) */
+.bento-headline {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* Body copy — var(--body) not var(--muted) per styleguide */
+.bento-story {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--body);
+  flex: 1;
+  margin: 0;
+}
+
+/* "Read story" inline link */
+.bento-read {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--navy);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.2s;
+}
+
+.bento-read:hover { gap: 14px; }
+
+/* Footer: metric + location, separated by top rule */
+.bento-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(16,44,87,0.07);
+  margin-top: auto;
+  gap: 10px;
+}
+
+.bento-metric {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.bento-loc {
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* "View all" button row */
+.bento-viewall {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .bento-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 580px) {
+  .bento-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   JOIN SECTION — Full Semicircle Arc
+   Same planetary-limb light as the hero, but drawn as a perfect
+   half-circle: endpoints anchored to the bottom corners, apex rising
+   to the top centre. Content sits inside the arch of golden light.
+   ════════════════════════════════════════════════════════════════════ */
+.join {
+  background:  var(--navy-deep, #0B1F3F);
+  position:    relative;
+  overflow:    hidden;
+}
+
+/* Text on dark background */
+.join h2     { color: #fff; }
+.join .intro { color: rgba(255,255,255,0.62); }
+
+/* Stats glow gold */
+.join-stat-num {
+  color:       var(--gold) !important;
+  text-shadow: 0 0 22px rgba(252,203,6,0.42);
+}
+.join-stat-label { color: rgba(255,255,255,0.52) !important; }
+.join-stat       { border-color: rgba(252,203,6,0.12) !important; }
+
+/* Outline button — white border on dark bg */
+.join .btn-outline {
+  border-color: rgba(255,255,255,0.25) !important;
+  color:        #fff !important;
+}
+
+/* SVG arc — anchored to bottom so it sits below the stats row */
+.join-arc-svg {
+  position:       absolute;
+  inset:          0;
+  width:          100%;
+  height:         100%;
+  pointer-events: none;
+  z-index:        0;
+  animation:      arc-breathe 8s ease-in-out infinite;
+  transform:      translateY(28%);
+}
+
+/* Content above the arc */
+.join .wrap { position: relative; z-index: 1; }
+
+/* ══════════════════════════════════════════════════════════════════
+   NAV C — Solid navy bar, flat links with chevrons, transparent CTAs
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Transparent over hero, solid navy on scroll */
+nav.main {
+  background: transparent !important;
+  position: absolute !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+nav.main.scrolled {
+  position: fixed !important;
+  background: var(--navy) !important;
+  backdrop-filter: none !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+/* ── OVERSIZED CREST ────────────────────────────────────────────────
+   The 50-year crest has to read clearly, but the nav's 88px height sets the
+   hero offset on all 14 pages — growing the logo box would shift every hero.
+
+   So the crest grows *downward* out of the bar instead of stretching it: the
+   negative margins keep its contribution to the flex row at the original 56px
+   (100 - 8 - 36 = 56) while the artwork itself is roughly double size. nav.main
+   is z-index 51 and nothing clips it, so it simply overlaps what follows.
+
+   Scoped to nav.main on purpose — .drawer-head .brand-logo must keep its own
+   44x33 sizing, and an unscoped rule would leak these margins into the drawer.
+
+   Box widths track the artwork's 489:511 aspect (width = height x 0.957). A wider
+   box would only add dead space beside the crest and push the wordmark toward the
+   links, which is what makes it wrap.
+   ──────────────────────────────────────────────────────────────────── */
+nav.main .brand-logo {
+  width: 111px;
+  height: 116px;
+  margin-top: -8px;
+  margin-bottom: -52px;
+  transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease;
+}
+
+/* The wordmark must never wrap. It sets .brand's height, so a single wrapped line
+   there grows the whole bar — which is exactly what the bigger crest triggered. */
+nav.main .brand-text .name,
+nav.main .brand-text .sub {
+  white-space: nowrap;
+}
+
+/* Scrolled, the bar is solid navy and fixed, so an overhang would drag across
+   the page content the whole way down. The crest pulls back inside the bar and
+   sits *centred* in it — equal negative margins put 8px of air above and below
+   (bar 88, crest 72), so it never reads as stuck to the bottom edge. The 56px
+   contribution is unchanged (72 - 8 - 8), so the bar height never jumps between
+   states; only the crest scales. */
+nav.main.scrolled .brand-logo {
+  width: 80px;
+  height: 84px;
+  margin-top: -14px;
+  margin-bottom: -14px;
+}
+
+/* Smaller screens run a 10px-padded bar, so the contribution drops to 40px
+   (<=900) then 30px (<=640) to match styles.css. These have to be restated
+   here: `nav.main .brand-logo` outranks the plain `.brand-logo` rules in those
+   media queries, and a media query adds no specificity of its own. */
+/* Below 900 the hamburger (44px) is the tallest item, so it — not the logo —
+   sets the 64px bar. The scrolled crest is centred in that 64px the same way:
+   equal margins, contribution held at 44 so the bar height is untouched. */
+@media (max-width: 900px) {
+  nav.main .brand-logo          { width: 86px; height: 90px; margin-top: -6px; margin-bottom: -44px; }
+  nav.main.scrolled .brand-logo { width: 57px; height: 60px; margin-top: -8px; margin-bottom: -8px; }
+}
+@media (max-width: 640px) {
+  nav.main .brand-logo          { width: 67px; height: 70px; margin-top: -4px; margin-bottom: -36px; }
+  nav.main.scrolled .brand-logo { width: 54px; height: 56px; margin-top: -6px; margin-bottom: -6px; }
+}
+
+/* Flat links with chevron arrows */
+.nav-c-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-c-links > li > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.78);
+  padding: 7px 10px 6px;
+  border-radius: 0;
+  background: transparent;
+  transition: color .15s;
+  white-space: nowrap;
+  position: relative;
+}
+.nav-c-links > li > a::after {
+  content: '';
+  position: absolute;
+  left: 10px; right: 10px; bottom: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.4);
+  opacity: 0;
+  transition: opacity .15s;
+}
+.nav-c-links > li > a:hover { background: transparent; color: #fff; }
+.nav-c-links > li > a:hover::after {
+  background: linear-gradient(90deg, var(--navy), var(--gold), var(--navy));
+  background-size: 200% 100%;
+  animation: btn-underline-shimmer 0.5s linear forwards;
+  opacity: 1;
+}
+.nav-c-links > li > a.active { color: var(--gold); background: transparent; }
+.nav-c-links > li > a.active::after {
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+/* Right-side CTA group */
+.nav-c-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* "Donate" — animated gold gradient border on hover */
+.nav-c-donate {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--gold-deep);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 7px 14px;
+  position: relative;
+}
+.nav-c-donate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-sm);
+  padding: 1px;
+  background: rgba(225,183,3,0.6);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+.nav-c-donate:hover::before {
+  background: linear-gradient(90deg, rgba(225,183,3,0.3), var(--gold), rgba(225,183,3,0.3));
+  background-size: 200% 100%;
+  animation: btn-underline-shimmer 0.5s linear forwards;
+}
+
+/* Login icon — circle, no border */
+.nav-login-icon {
+  width: 36px; height: 36px; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  border-radius: 50%; flex-shrink: 0;
+  transition: background .2s;
+}
+.nav-login-icon:hover { background: rgba(255,255,255,0.2); }
+.nav-login-icon svg { width: 17px; height: 17px; stroke: #fff; stroke-width: 2; fill: none; }
+
+@media(max-width:900px) {
+  .nav-c-links { display: none; }
+  .nav-c-cta { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PLAIN TEXT BUTTONS — Mulish, sentence case, animated underline
+   ══════════════════════════════════════════════════════════════════ */
+.btn-gold, .btn-outline {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 0 3px !important;
+  box-shadow: none !important;
+  font-family: var(--serif) !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: 0.01em !important;
+  position: relative !important;
+}
+.btn-gold svg, .btn-outline svg { display: none !important; }
+.btn-outline { color: var(--navy) !important; }
+.btn-gold    { color: var(--gold) !important; }
+
+/* Static underline */
+.btn-gold::after, .btn-outline::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+  transition: opacity 0.2s;
+}
+
+/* Hover: gradient shimmer */
+.btn-gold:hover::after, .btn-outline:hover::after {
+  background: linear-gradient(90deg, var(--navy), var(--gold), var(--navy));
+  background-size: 200% 100%;
+  animation: btn-underline-shimmer 0.5s linear forwards;
+  opacity: 1;
+}
+@keyframes btn-underline-shimmer {
+  0%   { background-position: 100% 0; }
+  100% { background-position: 0% 0; }
+}
+
+/* Dark-section overrides */
+.hero .btn-outline,
+.join .btn-outline,
+.cta-close .btn-outline { color: rgba(255,255,255,0.88) !important; }
+.hero .btn-gold,
+.join .btn-gold          { color: var(--gold) !important; }
+
+/* On dark bg, gradient goes gold → white → gold */
+.hero .btn-gold:hover::after, .hero .btn-outline:hover::after,
+.join .btn-gold:hover::after, .join .btn-outline:hover::after {
+  background: linear-gradient(90deg, var(--gold), #fff, var(--gold));
+  background-size: 200% 100%;
+  animation: btn-underline-shimmer 0.5s linear forwards;
+  opacity: 1;
+}
+
+/* No box-shadow on hover */
+.btn-gold:hover, .btn-outline:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Force lead/intro paragraphs onto one line on wide screens only —
+   on mobile they must wrap normally or they blow out the page width. */
+@media (min-width: 901px) {
+  .nowrap-desktop { white-space: nowrap; max-width: none; }
+}
