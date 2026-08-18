@@ -20,15 +20,22 @@
      translateY (f) and scaleX (a) barely move — translateX (e) sweeps
      left-to-right, and scaleY (d) stretches the ellipse to flood the
      frame. b/c are ~0 in both and stay 0. */
-  var NAV_HEIGHT = 86; // nav's rendered height — beam's bright point sits right at its edge
-  var A0 = -1.3525, D0 = 0.9701, E0 = 87.5001, F0 = NAV_HEIGHT; // Component 7 (start)
+  /* f (translateY) is 0 in BOTH frames, where Figma's raw value was the nav's
+     86px height. .light-hero-beam is flipped with scaleY(-1), so a positive f
+     no longer pushes the gradient's bright origin DOWN from the nav — it pushes
+     it UP from the hero's bottom edge, and everything below that origin wraps
+     past 360deg in the conic and paints navy. Any f > 0 therefore opens an
+     f-pixel navy band between the bright ray and the bottom photo edge.
+     Pinning f to 0 for the whole sweep keeps the ray flush with the bottom
+     from the first frame, so the light never has a gap under it to grow into. */
+  var A0 = -1.3525, D0 = 0.9701, E0 = 87.5001, F0 = 0; // Component 7 (start)
   /* E1 pushed out from Figma's raw 1357 to 2000: at the raw value the
      cream→navy blend arc still crossed into solid navy within the visible
      right edge for normal hero heights, leaving a dark wedge visible at
      rest. Pushing E1 out moves the whole blend arc past the right edge so
      the hero settles fully into the light/cream tone, with navy never
      visible in the resting state. */
-  var A1 = -1.357,  D1 = 2.437,  E1 = 2000,    F1 = NAV_HEIGHT; // Component 8 (end)
+  var A1 = -1.357,  D1 = 2.437,  E1 = 2000,    F1 = 0; // Component 8 (end)
   var DURATION = 3600, DELAY = 200;
 
   function lerp(a, b, t){ return a + (b - a) * t; }
@@ -47,7 +54,7 @@
     var a = lerp(A0, A1, t) * wRatio;
     var d = lerp(D0, D1, t) * hRatio;
     var e = lerp(E0, E1, t) * wRatio;
-    var f = lerp(F0, F1, t); // already the nav's real pixel height — not Figma-relative
+    var f = lerp(F0, F1, t); // pinned at 0 both ends — see F0/F1 above; kept as a lerp for symmetry
     anchor.style.transform = 'matrix(' + a + ', 0, 0, ' + d + ', ' + e + ', ' + f + ')';
     photo.style.opacity = (0.12 + 0.88 * t).toFixed(3);
   }
