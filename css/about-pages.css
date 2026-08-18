@@ -11,7 +11,7 @@
 }
 .about-hero::before{
   content:'';position:absolute;inset:0;
-  background:rgba(0,0,0,0.75);
+  background:rgba(0,0,0,0.45);
   z-index:0;
 }
 .about-hero::after{display:none;}
